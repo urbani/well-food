@@ -6,8 +6,6 @@
 Такой комментарий появится в списке задач(смотри выше).
  
 
-nik:		e-mail:
-
 MaryDedova	rainy92@mail.ru
 
 nikallass	nikallass@yandex.ru
