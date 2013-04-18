@@ -90,3 +90,16 @@ D:\myGit\trpo_0.5.0\trpo\obj\x86\Debug\trpo.ChiefForm.resources
 D:\myGit\trpo_0.5.0\trpo\obj\x86\Debug\trpo.CourierForm.resources
 D:\myGit\trpo_0.5.0\trpo\obj\x86\Debug\GenerateResource.read.1.tlog
 D:\myGit\trpo_0.5.0\trpo\obj\x86\Debug\GenerateResource.write.1.tlog
+C:\TRPO\trpo\obj\x86\Debug\trpo.exe
+C:\TRPO\trpo\obj\x86\Debug\trpo.pdb
+C:\TRPO\trpo\bin\Debug\trpo.exe
+C:\TRPO\trpo\bin\Debug\trpo.pdb
+C:\TRPO\trpo\obj\x86\Debug\ResolveAssemblyReference.cache
+C:\TRPO\trpo\obj\x86\Debug\trpo.AuthForm.resources
+C:\TRPO\trpo\obj\x86\Debug\trpo.Properties.Resources.resources
+C:\TRPO\trpo\obj\x86\Debug\trpo.ChiefForm.resources
+C:\TRPO\trpo\obj\x86\Debug\trpo.CourierForm.resources
+C:\TRPO\trpo\obj\x86\Debug\GenerateResource.read.1.tlog
+C:\TRPO\trpo\obj\x86\Debug\GenerateResource.write.1.tlog
+C:\TRPO\trpo\obj\x86\Debug\trpo.ManagerForm.resources
+C:\TRPO\trpo\obj\x86\Debug\trpo.AdminForm.resources

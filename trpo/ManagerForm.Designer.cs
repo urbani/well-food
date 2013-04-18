@@ -1,6 +1,6 @@
 ﻿namespace trpo
 {
-    partial class ChiefForm
+    partial class ManagerForm
     {
         /// <summary>
         /// Required designer variable.
@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ChiefForm));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ManagerForm));
             this.mainTable = new System.Windows.Forms.TableLayoutPanel();
             this.headerTable = new System.Windows.Forms.TableLayoutPanel();
             this.headerLabel1 = new System.Windows.Forms.Label();
@@ -236,7 +236,7 @@
             this.statusStrip1.TabIndex = 1;
             this.statusStrip1.Text = "statusStrip1";
             // 
-            // ChiefForm
+            // ManagerForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -244,8 +244,8 @@
             this.Controls.Add(this.mainTable);
             this.Controls.Add(this.statusStrip1);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.Name = "ChiefForm";
-            this.Text = "Шеф-повар";
+            this.Name = "ManagerForm";
+            this.Text = "Закупщик";
             this.mainTable.ResumeLayout(false);
             this.headerTable.ResumeLayout(false);
             this.headerTable.PerformLayout();
