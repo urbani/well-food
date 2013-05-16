@@ -74,9 +74,9 @@
             this.errorLabel.ForeColor = System.Drawing.Color.Red;
             this.errorLabel.Location = new System.Drawing.Point(3, 87);
             this.errorLabel.Name = "errorLabel";
-            this.errorLabel.Size = new System.Drawing.Size(76, 13);
+            this.errorLabel.Size = new System.Drawing.Size(132, 13);
             this.errorLabel.TabIndex = 6;
-            this.errorLabel.Text = "текст ошибки";
+            this.errorLabel.Text = "Неверный логин/пароль";
             this.errorLabel.Visible = false;
             // 
             // loginTextBox
@@ -86,14 +86,17 @@
             this.loginTextBox.Name = "loginTextBox";
             this.loginTextBox.Size = new System.Drawing.Size(139, 27);
             this.loginTextBox.TabIndex = 7;
+            this.loginTextBox.KeyDown += new System.Windows.Forms.KeyEventHandler(this.passTextBox_KeyDown);
             // 
             // passTextBox
             // 
             this.passTextBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.passTextBox.Location = new System.Drawing.Point(103, 45);
             this.passTextBox.Name = "passTextBox";
+            this.passTextBox.PasswordChar = '*';
             this.passTextBox.Size = new System.Drawing.Size(139, 27);
             this.passTextBox.TabIndex = 8;
+            this.passTextBox.KeyDown += new System.Windows.Forms.KeyEventHandler(this.passTextBox_KeyDown);
             // 
             // AuthForm
             // 

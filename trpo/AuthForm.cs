@@ -73,30 +73,62 @@ namespace trpo
 
         }
 
+        private String getSqlResp(String sqlReq)
+        {
+            String result = "";
+            try//SELECT
+            {
+                if (m_objConnection != null)
+                {
+                    OleDbCommand objCommand = new OleDbCommand();
+                    objCommand.CommandType = CommandType.Text;
+                    objCommand.CommandText = sqlReq;
+                    objCommand.Connection = m_objConnection;
+                    OleDbDataReader reader = objCommand.ExecuteReader();
+                    if (reader.Read())
+                    {
+                        result = reader[0].ToString();
+                    }
+
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }//--select
+            return result;
+        }
+
         private void enterButton_Click(object sender, EventArgs e) //Нажатие кнопки 
         {
+            
             if(checkAuth(loginTextBox.Text, passTextBox.Text)) //Проверка авторизации
             {
-                switch (loginTextBox.Text)
+                String req = "SELECT r.Role FROM Users u, Roles r WHERE u.Login='" + loginTextBox.Text + "' AND u.Role = r.ID_R";
+
+                switch (getSqlResp(req))
                 {
-                    case ("admin"):
+                    case ("Administrator"):
                         AdminForm af = new AdminForm(m_objConnection);
                         af.Show();
-
                         break;
-                    case ("chief"):
+                    case ("Chief"):
                         ChiefForm chiF = new ChiefForm(m_objConnection);
                         chiF.Show();
                         break;
-                    case ("manager"):
+                    case ("Manager"):
                         ManagerForm mf = new ManagerForm(m_objConnection);
                         mf.Show();
                         break;
-                    case ("courier"):
+                    case ("Courier"):
                         CourierForm couF = new CourierForm(m_objConnection);
                         couF.Show();
                         break;
                 }
+            }
+            else
+            {
+                errorLabel.Visible = true;
             }
             //TODO: ПОКАЗ текста ошибки при неверном логин-пароле 
         }
@@ -127,6 +159,15 @@ namespace trpo
                     MessageBox.Show(ex.Message);
                 }//--select
                 return res;
+        }
+
+        private void passTextBox_KeyDown(object sender, KeyEventArgs e)
+        {
+            errorLabel.Visible = false;
+            if (e.KeyCode == Keys.Enter)
+		    {
+			    enterButton_Click(sender, new EventArgs());
+		    }
         }
     }
 }
