@@ -42,13 +42,16 @@
             this.button1 = new System.Windows.Forms.Button();
             this.leftBodyTable = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.orderItemBox = new System.Windows.Forms.ListBox();
             this.tabPage2 = new System.Windows.Forms.TabPage();
+            this.tabPage3 = new System.Windows.Forms.TabPage();
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.mainTable.SuspendLayout();
             this.headerTable.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
             this.rightBodyTabel.SuspendLayout();
             this.leftBodyTable.SuspendLayout();
+            this.tabPage1.SuspendLayout();
             this.SuspendLayout();
             // 
             // mainTable
@@ -93,11 +96,11 @@
             this.headerLabel1.Anchor = System.Windows.Forms.AnchorStyles.Right;
             this.headerLabel1.AutoSize = true;
             this.headerLabel1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.headerLabel1.Location = new System.Drawing.Point(44, 11);
+            this.headerLabel1.Location = new System.Drawing.Point(40, 11);
             this.headerLabel1.Name = "headerLabel1";
-            this.headerLabel1.Size = new System.Drawing.Size(51, 20);
+            this.headerLabel1.Size = new System.Drawing.Size(55, 20);
             this.headerLabel1.TabIndex = 0;
-            this.headerLabel1.Text = "label1";
+            this.headerLabel1.Text = "Поиск";
             // 
             // headerLabel2
             // 
@@ -135,11 +138,12 @@
             this.headerSearchButton1.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.headerSearchButton1.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.headerSearchButton1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.headerSearchButton1.Image = global::trpo.Properties.Resources.search1;
+            this.headerSearchButton1.ImageAlign = System.Drawing.ContentAlignment.TopLeft;
             this.headerSearchButton1.Location = new System.Drawing.Point(340, 4);
             this.headerSearchButton1.Name = "headerSearchButton1";
             this.headerSearchButton1.Size = new System.Drawing.Size(37, 34);
             this.headerSearchButton1.TabIndex = 4;
-            this.headerSearchButton1.Text = "b1";
             this.headerSearchButton1.UseVisualStyleBackColor = true;
             // 
             // headerSearchButton2
@@ -200,8 +204,9 @@
             // 
             this.leftBodyTable.Controls.Add(this.tabPage1);
             this.leftBodyTable.Controls.Add(this.tabPage2);
+            this.leftBodyTable.Controls.Add(this.tabPage3);
             this.leftBodyTable.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.leftBodyTable.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.leftBodyTable.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.leftBodyTable.Location = new System.Drawing.Point(3, 3);
             this.leftBodyTable.Name = "leftBodyTable";
             this.leftBodyTable.SelectedIndex = 0;
@@ -210,23 +215,46 @@
             // 
             // tabPage1
             // 
-            this.tabPage1.Location = new System.Drawing.Point(4, 33);
+            this.tabPage1.Controls.Add(this.orderItemBox);
+            this.tabPage1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.tabPage1.Location = new System.Drawing.Point(4, 25);
             this.tabPage1.Name = "tabPage1";
             this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage1.Size = new System.Drawing.Size(343, 323);
+            this.tabPage1.Size = new System.Drawing.Size(343, 331);
             this.tabPage1.TabIndex = 0;
-            this.tabPage1.Text = "tabPage1";
+            this.tabPage1.Text = "Текущий заказ";
             this.tabPage1.UseVisualStyleBackColor = true;
+            // 
+            // orderItemBox
+            // 
+            this.orderItemBox.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.orderItemBox.FormattingEnabled = true;
+            this.orderItemBox.ItemHeight = 20;
+            this.orderItemBox.Location = new System.Drawing.Point(3, 3);
+            this.orderItemBox.Name = "orderItemBox";
+            this.orderItemBox.Size = new System.Drawing.Size(337, 325);
+            this.orderItemBox.TabIndex = 0;
             // 
             // tabPage2
             // 
-            this.tabPage2.Location = new System.Drawing.Point(4, 33);
+            this.tabPage2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.tabPage2.Location = new System.Drawing.Point(4, 25);
             this.tabPage2.Name = "tabPage2";
             this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage2.Size = new System.Drawing.Size(343, 323);
+            this.tabPage2.Size = new System.Drawing.Size(343, 331);
             this.tabPage2.TabIndex = 1;
-            this.tabPage2.Text = "tabPage2";
+            this.tabPage2.Text = "Создание блюда";
             this.tabPage2.UseVisualStyleBackColor = true;
+            // 
+            // tabPage3
+            // 
+            this.tabPage3.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.tabPage3.Location = new System.Drawing.Point(4, 25);
+            this.tabPage3.Name = "tabPage3";
+            this.tabPage3.Size = new System.Drawing.Size(343, 331);
+            this.tabPage3.TabIndex = 2;
+            this.tabPage3.Text = "Создание меню";
+            this.tabPage3.UseVisualStyleBackColor = true;
             // 
             // statusStrip1
             // 
@@ -252,6 +280,7 @@
             this.tableLayoutPanel1.ResumeLayout(false);
             this.rightBodyTabel.ResumeLayout(false);
             this.leftBodyTable.ResumeLayout(false);
+            this.tabPage1.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -274,5 +303,7 @@
         protected System.Windows.Forms.TabPage tabPage1;
         protected System.Windows.Forms.TabPage tabPage2;
         protected System.Windows.Forms.TableLayoutPanel rightBodyTabel;
+        private System.Windows.Forms.ListBox orderItemBox;
+        private System.Windows.Forms.TabPage tabPage3;
     }
 }

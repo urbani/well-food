@@ -34,7 +34,6 @@ namespace trpo
             c.Show();
             this.WindowState = FormWindowState.Minimized;
             //------------------------------------------
-
             */
 
 
@@ -51,8 +50,10 @@ namespace trpo
                 MessageBox.Show(ex.Message);
                 m_objConnection = null;
             }//--connect
-
-            }
+//TODO Удалить после завершения работы с формой повара
+ChiefForm chief = new ChiefForm(m_objConnection);
+chief.Show();
+        }
 
 
         //Для сворачивания формы авторизации
@@ -113,8 +114,8 @@ namespace trpo
                         af.Show();
                         break;
                     case ("Chief"):
-                        ChiefForm chiF = new ChiefForm(m_objConnection);
-                        chiF.Show();
+                        ChiefForm chief = new ChiefForm(m_objConnection);
+                        chief.Show();
                         break;
                     case ("Manager"):
                         ManagerForm mf = new ManagerForm(m_objConnection);
@@ -128,6 +129,7 @@ namespace trpo
             }
             else
             {
+                errorLabel.Text = "Неверный логин/пароль";
                 errorLabel.Visible = true;
             }
             //TODO: ПОКАЗ текста ошибки при неверном логин-пароле 

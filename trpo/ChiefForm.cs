@@ -21,6 +21,10 @@ namespace trpo
         {
             InitializeComponent();
             dbConnection = con;
+            orderItemBox.Items.Add("Hi!");
+            orderItemBox.Items.Add("Hi!");
+            orderItemBox.Items.Add("Hi!");
+            orderItemBox.Items.Add("Hi!");
         }
         
     }

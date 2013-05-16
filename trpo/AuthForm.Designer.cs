@@ -74,9 +74,9 @@
             this.errorLabel.ForeColor = System.Drawing.Color.Red;
             this.errorLabel.Location = new System.Drawing.Point(3, 87);
             this.errorLabel.Name = "errorLabel";
-            this.errorLabel.Size = new System.Drawing.Size(132, 13);
+            this.errorLabel.Size = new System.Drawing.Size(78, 13);
             this.errorLabel.TabIndex = 6;
-            this.errorLabel.Text = "Неверный логин/пароль";
+            this.errorLabel.Text = "Текст ошибки";
             this.errorLabel.Visible = false;
             // 
             // loginTextBox
