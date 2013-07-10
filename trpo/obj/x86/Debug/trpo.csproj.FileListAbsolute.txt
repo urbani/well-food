@@ -95,11 +95,11 @@ C:\TRPO\trpo\obj\x86\Debug\trpo.pdb
 C:\TRPO\trpo\bin\Debug\trpo.exe
 C:\TRPO\trpo\bin\Debug\trpo.pdb
 C:\TRPO\trpo\obj\x86\Debug\ResolveAssemblyReference.cache
-C:\TRPO\trpo\obj\x86\Debug\trpo.AuthForm.resources
 C:\TRPO\trpo\obj\x86\Debug\trpo.Properties.Resources.resources
-C:\TRPO\trpo\obj\x86\Debug\trpo.ChiefForm.resources
-C:\TRPO\trpo\obj\x86\Debug\trpo.CourierForm.resources
 C:\TRPO\trpo\obj\x86\Debug\GenerateResource.read.1.tlog
 C:\TRPO\trpo\obj\x86\Debug\GenerateResource.write.1.tlog
-C:\TRPO\trpo\obj\x86\Debug\trpo.ManagerForm.resources
-C:\TRPO\trpo\obj\x86\Debug\trpo.AdminForm.resources
+C:\TRPO\trpo\obj\x86\Debug\trpo.View.AuthForm.resources
+C:\TRPO\trpo\obj\x86\Debug\trpo.View.ManagerForm.resources
+C:\TRPO\trpo\obj\x86\Debug\trpo.View.ChiefForm.resources
+C:\TRPO\trpo\obj\x86\Debug\trpo.View.CourierForm.resources
+C:\TRPO\trpo\obj\x86\Debug\trpo.View.AdminForm.resources
