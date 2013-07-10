@@ -12,4 +12,8 @@ nikallass	nikallass@yandex.ru
 
 vatslav		vatslav.dovnar@gmail.com
 
+<<<<<<< HEAD
 Мои изменения
+=======
+fetch status
+>>>>>>> 1e3f5e2bca910609949080b7e5696fe67744f7b0
