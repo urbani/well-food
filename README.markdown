@@ -12,4 +12,8 @@ nikallass	nikallass@yandex.ru
 
 vatslav		vatslav.dovnar@gmail.com
 
+<<<<<<< HEAD
 изменения Вацлава2
+=======
+Изменения Никиты
+>>>>>>> origin/master
