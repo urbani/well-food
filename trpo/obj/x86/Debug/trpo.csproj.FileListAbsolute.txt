@@ -129,3 +129,5 @@ C:\TRPO\well-food\trpo\obj\x86\Debug\trpo.View.CourierForm.resources
 C:\TRPO\well-food\trpo\obj\x86\Debug\trpo.View.AdminForm.resources
 C:\TRPO\well-food\trpo\obj\x86\Debug\GenerateResource.read.1.tlog
 C:\TRPO\well-food\trpo\obj\x86\Debug\GenerateResource.write.1.tlog
+C:\Users\vatslav-xps\Documents\GitHub\well-food\trpo\obj\x86\Debug\trpo.exe
+C:\Users\vatslav-xps\Documents\GitHub\well-food\trpo\obj\x86\Debug\trpo.pdb
