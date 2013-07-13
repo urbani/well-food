@@ -5,7 +5,8 @@ using System.Text;
 
 namespace trpo.View
 {
-    public interface IOrderManagable
+    public interface IInterractable
     {
+        void showMsg(String msg);
     }
 }

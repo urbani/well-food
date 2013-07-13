@@ -15,12 +15,10 @@ namespace trpo.View
 {
     public partial class ManagerForm : Form
     {
-        private OleDbConnection dbConnection = null;//соединение
 
-        public ManagerForm(OleDbConnection con)
+        public ManagerForm()
         {
             InitializeComponent();
-            dbConnection = con;
         }
         
     }

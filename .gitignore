@@ -10,5 +10,6 @@
 *.sln
 
 # Debug files
-*/Debug/ 
-*/obj/
+Debug/
+Release/
+obj/

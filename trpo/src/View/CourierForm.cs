@@ -17,12 +17,9 @@ namespace trpo.View
     public partial class CourierForm : Form
     {
 
-        private OleDbConnection dbConnection = null;//соединение
-
-        public CourierForm(OleDbConnection con)
+        public CourierForm()
         {
             InitializeComponent();
-            dbConnection = con;
         }
         
     }

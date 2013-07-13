@@ -5,11 +5,12 @@ using System.Text;
 
 namespace trpo.View
 {
-    interface IAuthentification
+    public interface IAuthentification
     {
-
         String getLogin();
         String getPassword();
+        void showErrorText(String s);
+        void hideErrorText();
         void clearAuthData();
     }
 }
