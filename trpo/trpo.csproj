@@ -52,6 +52,9 @@
     <Compile Include="src\View\AuthForm.Designer.cs">
       <DependentUpon>AuthForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="src\View\interfaces\IAuthentification.cs" />
+    <Compile Include="src\View\interfaces\IClientManagable.cs" />
+    <Compile Include="src\View\interfaces\IOrderManagable.cs" />
     <Compile Include="src\View\ManagerForm.cs">
       <SubType>Form</SubType>
     </Compile>
