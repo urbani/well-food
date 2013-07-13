@@ -13,7 +13,7 @@ using System.Collections;
 
 namespace trpo.View
 {
-    public partial class AuthForm : Form//, IAu
+    public partial class AuthForm : Form, IAuthentification
     {
 
         private OleDbConnection m_objConnection = null;

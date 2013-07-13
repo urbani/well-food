@@ -47,9 +47,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="src\Controller\LoginController.cs" />
-    <Compile Include="src\View\AuthForm.cs">
-      <SubType>Form</SubType>
-    </Compile>
+    <Compile Include="src\View\AuthForm.cs" />
     <Compile Include="src\View\AuthForm.Designer.cs">
       <DependentUpon>AuthForm.cs</DependentUpon>
     </Compile>
