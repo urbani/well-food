@@ -5,7 +5,7 @@ using System.Text;
 
 namespace trpo.View
 {
-    interface IAuthentification:IShareInterface
+    interface IAuthentification
     {
 
         String getLogin();

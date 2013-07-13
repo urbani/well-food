@@ -1,0 +1,14 @@
+# Object files
+*.o
+
+# Executables
+*.exe
+
+# Visual studio files
+*.csproj
+*.suo
+*.sln
+
+# Debug files
+*/Debug/ 
+*/obj/

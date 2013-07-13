@@ -47,7 +47,6 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="src\Controller\LoginController.cs" />
-    <Compile Include="src\Model\ClientManager.cs" />
     <Compile Include="src\View\AuthForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -57,7 +56,6 @@
     <Compile Include="src\View\interfaces\IAuthentification.cs" />
     <Compile Include="src\View\interfaces\IClientManagable.cs" />
     <Compile Include="src\View\interfaces\IOrderManagable.cs" />
-    <Compile Include="src\View\interfaces\IShareInterface.cs" />
     <Compile Include="src\View\ManagerForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -122,7 +120,9 @@
   <ItemGroup>
     <None Include="img\search.png" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="src\Model\" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

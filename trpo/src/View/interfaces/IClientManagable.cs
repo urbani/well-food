@@ -5,7 +5,7 @@ using System.Text;
 
 namespace trpo.View
 {
-    interface IClientManagable:IShareInterface
+    interface IClientManagable
     {
     }
 }

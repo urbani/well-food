@@ -5,7 +5,7 @@ using System.Text;
 
 namespace trpo.View
 {
-    interface IOrderManagable:IShareInterface
+    interface IOrderManagable
     {
     }
 }

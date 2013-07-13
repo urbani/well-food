@@ -59,7 +59,7 @@ namespace trpo.View
 
             try//CONNECT
             {
-                string connStr = string.Format(m_CONN_STR, "main_db.accdb");
+                string connStr = string.Format(m_CONN_STR, "../../main_db.accdb");
 
                 m_objConnection = new OleDbConnection(connStr);
 
