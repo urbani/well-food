@@ -33,5 +33,14 @@ namespace trpo.Properties {
                 return ((string)(this["main_dbConnectionString"]));
             }
         }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("../../main_db.accdb")]
+        public string db_path {
+            get {
+                return ((string)(this["db_path"]));
+            }
+        }
     }
 }

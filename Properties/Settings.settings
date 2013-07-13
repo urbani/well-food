@@ -10,5 +10,8 @@
 &lt;/SerializableConnectionString&gt;</DesignTimeValue>
       <Value Profile="(Default)">Provider=Microsoft.ACE.OLEDB.12.0;Data Source=|DataDirectory|\main_db.accdb;Persist Security Info=True</Value>
     </Setting>
+    <Setting Name="db_path" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">../../main_db.accdb</Value>
+    </Setting>
   </Settings>
 </SettingsFile>

@@ -24,7 +24,7 @@ namespace trpo.Model
             {
                 try//CONNECT
                 {
-                    string connStr = string.Format(m_CONN_STR, "../../main_db.accdb");
+                    string connStr = string.Format(m_CONN_STR, Properties.Settings.Default.db_path);
 
                     connection = new OleDbConnection(connStr);
 
