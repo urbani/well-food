@@ -117,13 +117,26 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
+  <data name="headerSearchButton1.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+    <value>
+        iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
+        YQUAAAAGYktHRAD/AP8A/6C9p5MAAAGzSURBVEhL5ZRNK0RRGMfnXpKy8LIyg83IUrFho5RZSFNTPsIU
+        UlaTLNVIykeQhRQxZaEs7CcpZRZjZYwpa8lChLkJv0fP5JQ77mFmI7f+zZ1z/i/Pc865JxT6T08DzU66
+        rrvlOM4xOAWHjM2DcK0LMYJZAbxVwSPBaULc3wQlMC2r8RNGm5jMghnelxgvGaF7Pw3pQ3yvBjnEUaPC
+        Qd77QRNBK3Behcf/ResuEO6qeQFRqylk/FrmtKNmfpeV+wCv0yakDYGnVcV9BKPMZTVkTTrh/Ur5KZuA
+        uFZ0A1lOkN/TCOdITXvpYlU1BzYB00o+CSDH4N3CGQBJY78CMyrks0DmJ2FOA7I2mmEle5A7bAQs0Y7u
+        yboVH3JRBWkLQRTus+5HwoL/QUkZXYx/I5ITl1NuHp7VFx1GcK4iuSI8vQ7ajSA5XROVTvmVb0A2O/AR
+        82p3zwtzFyAP7owC5CSNBTpD8DMvMb5gVGpeemU622a+x8Y84lP5JcJuFcvaDoEpkAQx0GJjLBy/yk1z
+        Wx9/Hm1mjPWUJaifuURiuG8EFBnqqq3kr2q5rDJgg6lIvc3/rt87ew+ANc5f2JgAAAAASUVORK5CYII=
+</value>
+  </data>
   <metadata name="statusStrip1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>17, 17</value>
   </metadata>
   <metadata name="$this.TrayHeight" type="System.Int32, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>35</value>
   </metadata>
-  <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
   <data name="$this.Icon" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         AAABAAEAGhoAAAEAIAAgCwAAFgAAACgAAAAaAAAANAAAAAEAIAAAAAAAkAoAABILAAASCwAAAAAAAAAA

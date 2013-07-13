@@ -8,6 +8,14 @@
 *.csproj
 *.suo
 *.sln
+*.csproj.user
+app.config
+
+# Visual Studio db files
+main_dbDataSet.Designer.cs
+*.xsc
+*.xsd
+*.xss
 
 # Debug files
 Debug/

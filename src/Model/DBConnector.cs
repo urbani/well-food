@@ -10,7 +10,7 @@ namespace trpo.Model
     class DBConnector
     {
         private OleDbConnection connection = null;
-        private static string m_CONN_STR = "Provider=Microsoft.ACE.OLEDB.12.0;Data Source={0}";
+        private static string m_CONN_STR = Properties.Settings.Default.main_dbConnectionString;// "Provider=Microsoft.ACE.OLEDB.12.0;Data Source={0}";
 
         public DBConnector()
         {

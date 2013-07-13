@@ -28,12 +28,12 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ChiefForm));
             System.Windows.Forms.ListViewItem listViewItem1 = new System.Windows.Forms.ListViewItem(new string[] {
             "one",
             "Ололо"}, -1);
             System.Windows.Forms.ListViewItem listViewItem2 = new System.Windows.Forms.ListViewItem("three");
             System.Windows.Forms.ListViewItem listViewItem3 = new System.Windows.Forms.ListViewItem("two");
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ChiefForm));
             this.mainTable = new System.Windows.Forms.TableLayoutPanel();
             this.headerTable = new System.Windows.Forms.TableLayoutPanel();
             this.headerLabel1 = new System.Windows.Forms.Label();
@@ -147,7 +147,7 @@
             this.headerSearchButton1.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.headerSearchButton1.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.headerSearchButton1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.headerSearchButton1.Image = global::trpo.Properties.Resources.search1;
+            this.headerSearchButton1.Image = ((System.Drawing.Image)(resources.GetObject("headerSearchButton1.Image")));
             this.headerSearchButton1.ImageAlign = System.Drawing.ContentAlignment.TopLeft;
             this.headerSearchButton1.Location = new System.Drawing.Point(340, 4);
             this.headerSearchButton1.Name = "headerSearchButton1";
@@ -287,7 +287,7 @@
             this.tabPage2.Location = new System.Drawing.Point(4, 25);
             this.tabPage2.Name = "tabPage2";
             this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage2.Size = new System.Drawing.Size(452, 331);
+            this.tabPage2.Size = new System.Drawing.Size(451, 331);
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "Создание блюда";
             this.tabPage2.UseVisualStyleBackColor = true;
@@ -297,7 +297,7 @@
             this.tabPage3.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.tabPage3.Location = new System.Drawing.Point(4, 25);
             this.tabPage3.Name = "tabPage3";
-            this.tabPage3.Size = new System.Drawing.Size(452, 331);
+            this.tabPage3.Size = new System.Drawing.Size(451, 331);
             this.tabPage3.TabIndex = 2;
             this.tabPage3.Text = "Создание меню";
             this.tabPage3.UseVisualStyleBackColor = true;
