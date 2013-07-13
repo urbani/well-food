@@ -15,14 +15,14 @@ namespace trpo.src.Controller
         //обрабочтик контроллера
         public void Login()
         {
-/*login()
-{
- view.getLogin()
- view.getPass()
- u.auth()
-form.invisible()
- create new Form()
-}*/
+        /*
+         view.getLogin()
+         view.getPass()
+         u.auth()
+        form.invisible()
+         create new Form()
+        */
+
 
         }
     }

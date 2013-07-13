@@ -5,10 +5,9 @@ using System.Text;
 
 namespace trpo.View
 {
-    interface IAuthentification
+    interface IAuthentification:IShareInterface
     {
-        void showError(String msg);
-        void showMsg(String msg);
+
         String getLogin();
         String getPassword();
         void clearAuthData();
