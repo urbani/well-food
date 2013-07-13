@@ -25,14 +25,14 @@ namespace trpo.View
             
             //Для сворачивания формы авторизации
             //Удалить когда потребуется          
-            ChiefForm g = new ChiefForm(m_objConnection);
+          /*  ChiefForm g = new ChiefForm(m_objConnection);
             g.FormClosed += new FormClosedEventHandler(g_FormClosed);
-            g.Show();
+            g.Show();*/
 
-           /* CourierForm c = new CourierForm(m_objConnection);
-            c.FormClosed += new FormClosedEventHandler(c_FormClosed);
-            c.Show();*/
-            this.WindowState = FormWindowState.Minimized;
+            /* CourierForm c = new CourierForm(m_objConnection);
+             c.FormClosed += new FormClosedEventHandler(c_FormClosed);
+             c.Show();
+             this.WindowState = FormWindowState.Minimized;*/
             //------------------------------------------
             
 
@@ -57,7 +57,7 @@ namespace trpo.View
  */
         }
 
-
+/*
         //Для сворачивания формы авторизации
         private void g_FormClosed(object sender, FormClosedEventArgs e)
         {
@@ -69,12 +69,7 @@ namespace trpo.View
             this.Close();
         }
         //------------------------------
-
-
-        private void maskedTextBox1_MaskInputRejected(object sender, MaskInputRejectedEventArgs e)
-        {
-
-        }
+*/
 
         private String getSqlResp(String sqlReq)
         {

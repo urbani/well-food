@@ -118,3 +118,14 @@ C:\Users\student\Documents\GitHub\well-food\trpo\obj\x86\Debug\GenerateResource.
 C:\Users\student\Documents\GitHub\well-food\trpo\obj\x86\Debug\GenerateResource.write.1.tlog
 C:\TRPO\well-food\trpo\obj\x86\Debug\trpo.exe
 C:\TRPO\well-food\trpo\obj\x86\Debug\trpo.pdb
+C:\TRPO\well-food\trpo\bin\Debug\trpo.exe
+C:\TRPO\well-food\trpo\bin\Debug\trpo.pdb
+C:\TRPO\well-food\trpo\obj\x86\Debug\ResolveAssemblyReference.cache
+C:\TRPO\well-food\trpo\obj\x86\Debug\trpo.View.AuthForm.resources
+C:\TRPO\well-food\trpo\obj\x86\Debug\trpo.View.ManagerForm.resources
+C:\TRPO\well-food\trpo\obj\x86\Debug\trpo.Properties.Resources.resources
+C:\TRPO\well-food\trpo\obj\x86\Debug\trpo.View.ChiefForm.resources
+C:\TRPO\well-food\trpo\obj\x86\Debug\trpo.View.CourierForm.resources
+C:\TRPO\well-food\trpo\obj\x86\Debug\trpo.View.AdminForm.resources
+C:\TRPO\well-food\trpo\obj\x86\Debug\GenerateResource.read.1.tlog
+C:\TRPO\well-food\trpo\obj\x86\Debug\GenerateResource.write.1.tlog

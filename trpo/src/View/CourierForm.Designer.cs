@@ -121,7 +121,6 @@
             this.headerList1.Name = "headerList1";
             this.headerList1.Size = new System.Drawing.Size(233, 28);
             this.headerList1.TabIndex = 2;
-            this.headerList1.Text = "SELECT * FROM Products";
             // 
             // headerList2
             // 

@@ -46,42 +46,42 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="View\AuthForm.cs">
+    <Compile Include="src\View\AuthForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="View\AuthForm.Designer.cs">
+    <Compile Include="src\View\AuthForm.Designer.cs">
       <DependentUpon>AuthForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="View\ManagerForm.cs">
+    <Compile Include="src\View\ManagerForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="View\ManagerForm.Designer.cs">
+    <Compile Include="src\View\ManagerForm.Designer.cs">
       <DependentUpon>ManagerForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="View\ChiefForm.cs">
+    <Compile Include="src\View\ChiefForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="View\ChiefForm.Designer.cs">
+    <Compile Include="src\View\ChiefForm.Designer.cs">
       <DependentUpon>ChiefForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="View\CourierForm.cs">
+    <Compile Include="src\View\CourierForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="View\CourierForm.Designer.cs">
+    <Compile Include="src\View\CourierForm.Designer.cs">
       <DependentUpon>CourierForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="View\AdminForm.cs">
+    <Compile Include="src\View\AdminForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="View\AdminForm.Designer.cs">
+    <Compile Include="src\View\AdminForm.Designer.cs">
       <DependentUpon>AdminForm.cs</DependentUpon>
     </Compile>
-    <EmbeddedResource Include="View\AuthForm.resx">
+    <EmbeddedResource Include="src\View\AuthForm.resx">
       <DependentUpon>AuthForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="View\ManagerForm.resx">
+    <EmbeddedResource Include="src\View\ManagerForm.resx">
       <DependentUpon>ManagerForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
@@ -94,13 +94,13 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
-    <EmbeddedResource Include="View\ChiefForm.resx">
+    <EmbeddedResource Include="src\View\ChiefForm.resx">
       <DependentUpon>ChiefForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="View\CourierForm.resx">
+    <EmbeddedResource Include="src\View\CourierForm.resx">
       <DependentUpon>CourierForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="View\AdminForm.resx">
+    <EmbeddedResource Include="src\View\AdminForm.resx">
       <DependentUpon>AdminForm.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="Properties\Settings.settings">
@@ -117,8 +117,8 @@
     <None Include="img\search.png" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Controller\" />
-    <Folder Include="Model\" />
+    <Folder Include="src\Controller\" />
+    <Folder Include="src\Model\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
