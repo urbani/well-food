@@ -116,3 +116,5 @@ C:\Users\student\Documents\GitHub\well-food\trpo\obj\x86\Debug\trpo.View.Courier
 C:\Users\student\Documents\GitHub\well-food\trpo\obj\x86\Debug\trpo.View.AdminForm.resources
 C:\Users\student\Documents\GitHub\well-food\trpo\obj\x86\Debug\GenerateResource.read.1.tlog
 C:\Users\student\Documents\GitHub\well-food\trpo\obj\x86\Debug\GenerateResource.write.1.tlog
+C:\TRPO\well-food\trpo\obj\x86\Debug\trpo.exe
+C:\TRPO\well-food\trpo\obj\x86\Debug\trpo.pdb
