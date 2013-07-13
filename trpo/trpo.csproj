@@ -46,6 +46,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="src\Controller\LoginController.cs" />
     <Compile Include="src\View\AuthForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -120,7 +121,6 @@
     <None Include="img\search.png" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="src\Controller\" />
     <Folder Include="src\Model\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

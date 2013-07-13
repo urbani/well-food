@@ -13,12 +13,32 @@ using System.Collections;
 
 namespace trpo.View
 {
-    public partial class AuthForm : Form
+    public partial class AuthForm : Form//, IAu
     {
 
         private OleDbConnection m_objConnection = null;
         private string m_CONN_STR = "Provider=Microsoft.ACE.OLEDB.12.0;Data Source={0}";
-
+        public string getLogin()    { return loginTextBox.Text;}
+        public string getPassword() {return passTextBox.Text;  }
+        public void clearLogin()    { loginTextBox.Text = "";  }
+        public void clearPassword() { passTextBox.Text = ""; }
+        public void showMsg(string msg)
+        {
+            errorLabel.Text = msg;
+            errorLabel.Visible = true;
+        }
+        public void showError(string msg)
+        {
+            hideMsg();
+            MessageBox.Show(msg);
+        }
+        private void hideMsg() { errorLabel.Visible = false; }
+        public void clearAuthData()
+        {
+            hideMsg();
+            clearLogin();
+            clearPassword();
+        }
         public AuthForm()
         {
             InitializeComponent();

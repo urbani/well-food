@@ -5,11 +5,24 @@ using System.Text;
 
 namespace trpo.src.Controller
 {
-    class LoginController
+    public class LoginController
     {
-
+        //TODO: add IAuthentification into constructor
         LoginController()
         {
+
+        }
+        //обрабочтик контроллера
+        public void Login()
+        {
+/*login()
+{
+ view.getLogin()
+ view.getPass()
+ u.auth()
+form.invisible()
+ create new Form()
+}*/
 
         }
     }
