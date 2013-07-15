@@ -29,7 +29,6 @@ namespace TRPO.View
         public void clearLogin()    { loginTextBox.Text = "";}
         public void clearPassword() { passTextBox.Text = "";}
 
-
         public void showMsg(String text, GlobalObj.ErrorLevels el)
         {
             switch (el)

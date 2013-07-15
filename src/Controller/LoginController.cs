@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using TRPO.View;
 using TRPO.Model;
+using System.Windows.Forms;
 
 namespace TRPO.Controller
 {
@@ -29,6 +30,7 @@ namespace TRPO.Controller
             {
                 System.Diagnostics.Debug.WriteLine("Original error: " + ex.ToString());
                 authView.showMsg("Ошиба базы данных!", GlobalObj.ErrorLevels.Critical);
+                return;
             }
 
             if (user.isAuthenticated())
@@ -36,7 +38,7 @@ namespace TRPO.Controller
                 switch (user.role)
                 {
                     case (Roles.Administrator):
-                        AdminForm af = new AdminForm(); 
+                        AdminForm af = new AdminForm();
                         af.Show();
                         break;
                     case (Roles.Chief):
