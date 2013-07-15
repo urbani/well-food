@@ -53,8 +53,8 @@ namespace TRPO.Controller
 
                         ClientManagementConroller cmc = new ClientManagementConroller(user);
                         OrdersConroller oc = new OrdersConroller(user);
-                        CourierForm couF = new CourierForm(cmc, oc);
-                        couF.Show();
+                        CourierForm cf = new CourierForm(cmc, oc);
+                        cf.Show();
                         break;
                 }
             }

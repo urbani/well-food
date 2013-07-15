@@ -27,6 +27,7 @@ namespace TRPO.View
             clientManagementController.addForm(this);
             ordersController = oc;
             ordersController.addForm(this);
+            //headerList1.Items.Add("Кот котофей");
         }
 
         public void showMsg(String msg, GlobalObj.ErrorLevels el)

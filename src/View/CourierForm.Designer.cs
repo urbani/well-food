@@ -44,6 +44,7 @@
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.tabPage2 = new System.Windows.Forms.TabPage();
             this.statusStrip = new System.Windows.Forms.StatusStrip();
+            this.tabPage3 = new System.Windows.Forms.TabPage();
             this.mainTable.SuspendLayout();
             this.headerTable.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
@@ -69,7 +70,7 @@
             // headerTable
             // 
             this.headerTable.ColumnCount = 4;
-            this.headerTable.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 98F));
+            this.headerTable.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 106F));
             this.headerTable.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 41.74434F));
             this.headerTable.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 44F));
             this.headerTable.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 58.25566F));
@@ -93,31 +94,31 @@
             this.headerLabel1.Anchor = System.Windows.Forms.AnchorStyles.Right;
             this.headerLabel1.AutoSize = true;
             this.headerLabel1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.headerLabel1.Location = new System.Drawing.Point(44, 11);
+            this.headerLabel1.Location = new System.Drawing.Point(19, 11);
             this.headerLabel1.Name = "headerLabel1";
-            this.headerLabel1.Size = new System.Drawing.Size(51, 20);
+            this.headerLabel1.Size = new System.Drawing.Size(84, 20);
             this.headerLabel1.TabIndex = 0;
-            this.headerLabel1.Text = "label1";
+            this.headerLabel1.Text = "Компании";
             // 
             // headerLabel2
             // 
             this.headerLabel2.Anchor = System.Windows.Forms.AnchorStyles.Right;
             this.headerLabel2.AutoSize = true;
             this.headerLabel2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.headerLabel2.Location = new System.Drawing.Point(44, 53);
+            this.headerLabel2.Location = new System.Drawing.Point(3, 53);
             this.headerLabel2.Name = "headerLabel2";
-            this.headerLabel2.Size = new System.Drawing.Size(51, 20);
+            this.headerLabel2.Size = new System.Drawing.Size(100, 20);
             this.headerLabel2.TabIndex = 1;
-            this.headerLabel2.Text = "label2";
+            this.headerLabel2.Text = "Сотрудники";
             // 
             // headerList1
             // 
             this.headerList1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.headerList1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.headerList1.FormattingEnabled = true;
-            this.headerList1.Location = new System.Drawing.Point(101, 7);
+            this.headerList1.Location = new System.Drawing.Point(109, 7);
             this.headerList1.Name = "headerList1";
-            this.headerList1.Size = new System.Drawing.Size(261, 28);
+            this.headerList1.Size = new System.Drawing.Size(258, 28);
             this.headerList1.TabIndex = 2;
             // 
             // headerList2
@@ -125,9 +126,9 @@
             this.headerList2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.headerList2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.headerList2.FormattingEnabled = true;
-            this.headerList2.Location = new System.Drawing.Point(101, 49);
+            this.headerList2.Location = new System.Drawing.Point(109, 49);
             this.headerList2.Name = "headerList2";
-            this.headerList2.Size = new System.Drawing.Size(261, 28);
+            this.headerList2.Size = new System.Drawing.Size(258, 28);
             this.headerList2.TabIndex = 3;
             // 
             // headerSearchButton1
@@ -135,11 +136,11 @@
             this.headerSearchButton1.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.headerSearchButton1.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.headerSearchButton1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.headerSearchButton1.Location = new System.Drawing.Point(368, 4);
+            this.headerSearchButton1.Image = ((System.Drawing.Image)(resources.GetObject("headerSearchButton1.Image")));
+            this.headerSearchButton1.Location = new System.Drawing.Point(373, 4);
             this.headerSearchButton1.Name = "headerSearchButton1";
             this.headerSearchButton1.Size = new System.Drawing.Size(37, 34);
             this.headerSearchButton1.TabIndex = 4;
-            this.headerSearchButton1.Text = "b1";
             this.headerSearchButton1.UseVisualStyleBackColor = true;
             // 
             // headerSearchButton2
@@ -147,11 +148,11 @@
             this.headerSearchButton2.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.headerSearchButton2.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.headerSearchButton2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.headerSearchButton2.Location = new System.Drawing.Point(368, 45);
+            this.headerSearchButton2.Image = ((System.Drawing.Image)(resources.GetObject("headerSearchButton2.Image")));
+            this.headerSearchButton2.Location = new System.Drawing.Point(373, 45);
             this.headerSearchButton2.Name = "headerSearchButton2";
             this.headerSearchButton2.Size = new System.Drawing.Size(37, 35);
             this.headerSearchButton2.TabIndex = 5;
-            this.headerSearchButton2.Text = "b2";
             this.headerSearchButton2.UseVisualStyleBackColor = true;
             // 
             // tableLayoutPanel1
@@ -193,13 +194,14 @@
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(117, 30);
             this.button1.TabIndex = 0;
-            this.button1.Text = "button1";
+            this.button1.Text = "Выполнить";
             this.button1.UseVisualStyleBackColor = true;
             // 
             // leftBodyTable
             // 
             this.leftBodyTable.Controls.Add(this.tabPage1);
             this.leftBodyTable.Controls.Add(this.tabPage2);
+            this.leftBodyTable.Controls.Add(this.tabPage3);
             this.leftBodyTable.Dock = System.Windows.Forms.DockStyle.Fill;
             this.leftBodyTable.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.leftBodyTable.Location = new System.Drawing.Point(3, 3);
@@ -215,7 +217,7 @@
             this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
             this.tabPage1.Size = new System.Drawing.Size(377, 391);
             this.tabPage1.TabIndex = 0;
-            this.tabPage1.Text = "tabPage1";
+            this.tabPage1.Text = "Первое";
             this.tabPage1.UseVisualStyleBackColor = true;
             // 
             // tabPage2
@@ -225,7 +227,7 @@
             this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
             this.tabPage2.Size = new System.Drawing.Size(377, 391);
             this.tabPage2.TabIndex = 1;
-            this.tabPage2.Text = "tabPage2";
+            this.tabPage2.Text = "Второе";
             this.tabPage2.UseVisualStyleBackColor = true;
             // 
             // statusStrip
@@ -235,6 +237,15 @@
             this.statusStrip.Size = new System.Drawing.Size(789, 22);
             this.statusStrip.TabIndex = 1;
             this.statusStrip.Text = "statusStrip1";
+            // 
+            // tabPage3
+            // 
+            this.tabPage3.Location = new System.Drawing.Point(4, 33);
+            this.tabPage3.Name = "tabPage3";
+            this.tabPage3.Size = new System.Drawing.Size(377, 391);
+            this.tabPage3.TabIndex = 2;
+            this.tabPage3.Text = "Третье";
+            this.tabPage3.UseVisualStyleBackColor = true;
             // 
             // CourierForm
             // 
@@ -274,5 +285,6 @@
         protected System.Windows.Forms.TabPage tabPage1;
         protected System.Windows.Forms.TabPage tabPage2;
         protected System.Windows.Forms.TableLayoutPanel rightBodyTabel;
+        private System.Windows.Forms.TabPage tabPage3;
     }
 }
