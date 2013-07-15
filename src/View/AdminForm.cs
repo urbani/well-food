@@ -11,7 +11,7 @@ using System.Data.OleDb;
 using System.Data.Common;
 using System.Collections;
 
-namespace trpo.View
+namespace TRPO.View
 {
     public partial class AdminForm : Form
     {

@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Data.OleDb;
 
-namespace trpo.Model
+namespace TRPO.Model
 {
     class User
     {

@@ -10,9 +10,9 @@ using System.Windows.Forms;
 using System.Data.OleDb;
 using System.Data.Common;
 using System.Collections;
-using trpo.Controller;
+using TRPO.Controller;
 
-namespace trpo.View
+namespace TRPO.View
 {
     public partial class AuthForm : Form, IAuthentification, IInterractable
     {

@@ -5,7 +5,7 @@ using System.Text;
 using System.Data.OleDb;
 using System.Data;
 
-namespace trpo.Model
+namespace TRPO.Model
 {
     class DBConnector
     {
@@ -56,8 +56,8 @@ namespace trpo.Model
             OleDbDataReader result = null;
             if (connection != null)
             {   
-                try//SELECT
-                {
+                //try//SELECT
+               // {
                 
                     OleDbCommand objCommand = new OleDbCommand();
                     objCommand.CommandType = CommandType.Text;
@@ -73,11 +73,11 @@ namespace trpo.Model
                     }
                     */
                     
-                }
-                catch (Exception ex)
-                {
+               // }
+                //catch (Exception ex)
+                //{
                     //MessageBox.Show(ex.Message);
-                }//--select
+                //}//--select
             }
             return result;
         }

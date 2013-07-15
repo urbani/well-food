@@ -2,10 +2,10 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using trpo.View;
-using trpo.Model;
+using TRPO.View;
+using TRPO.Model;
 
-namespace trpo.Controller
+namespace TRPO.Controller
 {
     public class LoginController
     {
@@ -16,7 +16,7 @@ namespace trpo.Controller
         {
             authView = i;
         }
-
+        
         //обработчик  авторизации
         public void Login()
         {

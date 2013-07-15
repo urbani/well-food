@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Windows.Forms;
-using trpo.View;
+using TRPO.View;
 
-namespace trpo
+namespace TRPO
 {
     static class Program
     {
