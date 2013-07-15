@@ -15,15 +15,18 @@ using TRPO.Controller;
 
 namespace TRPO.View
 {
-    public partial class CourierForm : Form, ICourierForm
+    public partial class CourierForm : Form, IClientManagable, IOrderManagable
     {
-        CourierController controller;
+        ClientManagementConroller clientManagementController;
+        OrdersConroller ordersController;
 
-        public CourierForm(CourierController c)
+        public CourierForm(ClientManagementConroller cmc, OrdersConroller oc)
         {
             InitializeComponent();
-            controller = c;
-            controller.addForm(this);
+            clientManagementController = cmc;
+            clientManagementController.addForm(this);
+            ordersController = oc;
+            ordersController.addForm(this);
         }
 
         public void showMsg(String msg, GlobalObj.ErrorLevels el)

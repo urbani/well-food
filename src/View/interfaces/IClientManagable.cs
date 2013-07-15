@@ -7,5 +7,7 @@ namespace TRPO.View
 {
     public interface IClientManagable : IInterractable
     {
+        //setCompanyList(List<T> listCompany)
+        //setEmployList(lisEmpl: List<T>)
     }
 }

@@ -2,24 +2,24 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using TRPO.Model;
 using TRPO.View;
+using TRPO.Model;
 
 namespace TRPO.Controller
 {
-    public class CourierController
+    public class ClientManagementConroller
     {
+        IClientManagable view;
         User user;
-        ICourierForm view;
 
-        public CourierController(User u)
+        public ClientManagementConroller(User u)
         {
             user = u;
         }
 
-        public void addForm(ICourierForm cf)
+        public void addForm(IClientManagable c)
         {
-            view = cf;
+            view = c;
         }
     }
 }
