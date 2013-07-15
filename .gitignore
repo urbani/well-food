@@ -10,9 +10,10 @@
 *.sln
 *.csproj.user
 app.config
+*.Designer.cs
 
 # Visual Studio db files
-main_dbDataSet.Designer.cs
+*.laccdb
 *.xsc
 *.xsd
 *.xss
