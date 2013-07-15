@@ -10,17 +10,22 @@ using System.Windows.Forms;
 using System.Data.OleDb;
 using System.Data.Common;
 using System.Collections;
+using TRPO.Controller;
 
 
 namespace TRPO.View
 {
-    public partial class CourierForm : Form
+    public partial class CourierForm : Form, ICourierForm
     {
+        CourierController controller;
 
-        public CourierForm()
+        public CourierForm(CourierController c)
         {
             InitializeComponent();
+            controller = c;
+            controller.addForm(this);
         }
         
+
     }
 }

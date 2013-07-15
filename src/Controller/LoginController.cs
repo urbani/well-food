@@ -27,7 +27,7 @@ namespace TRPO.Controller
                 switch (user.role)
                 {
                     case (Roles.Administrator):
-                        AdminForm af = new AdminForm();//Как передать в форму User-a?
+                        AdminForm af = new AdminForm();     //Как передать в форму User-a?
                         af.Show();
                         break;
                     case (Roles.Chief):
@@ -39,7 +39,8 @@ namespace TRPO.Controller
                         mf.Show();
                         break;
                     case (Roles.Courier):
-                        CourierForm couF = new CourierForm();
+                        CourierController courierContr = new CourierController(user);
+                        CourierForm couF = new CourierForm(courierContr);
                         couF.Show();
                         break;
                 }

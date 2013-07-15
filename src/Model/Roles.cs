@@ -5,5 +5,5 @@ using System.Text;
 
 namespace TRPO.Model
 {
-    enum Roles { Administrator, Chief, Courier, Manager, Unnown };
+    public enum Roles { Administrator, Chief, Courier, Manager, Unnown };
 }

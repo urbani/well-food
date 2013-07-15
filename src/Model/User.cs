@@ -6,7 +6,7 @@ using System.Data.OleDb;
 
 namespace TRPO.Model
 {
-    class User
+    public class User
     {
         private int id;
         private String name;
