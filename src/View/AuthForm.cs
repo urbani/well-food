@@ -29,15 +29,21 @@ namespace TRPO.View
         public void clearLogin()    { loginTextBox.Text = "";}
         public void clearPassword() { passTextBox.Text = "";}
 
-        public void showMsg(String msg)
-        {
-            MessageBox.Show(msg);
-        }
 
-        public void showErrorText(String text)
+        public void showMsg(String text, GlobalObj.ErrorLevels el)
         {
-            errorLabel.Text = text;
-            errorLabel.Visible = true;
+            switch (el)
+            {
+                case GlobalObj.ErrorLevels.Critical:
+                    MessageBox.Show(text);
+                    break;
+                case GlobalObj.ErrorLevels.Info:
+                    errorLabel.Visible = true;
+                    errorLabel.Text = text;
+                    break;
+            }
+            
+            
         }
 
         public void hideErrorText()

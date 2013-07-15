@@ -3,9 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace TRPO.View
+namespace TRPO.GlobalObj
 {
-    public interface IClientManagable : IInterractable
-    {
-    }
+    public enum ErrorLevels { Critical, Info };
 }

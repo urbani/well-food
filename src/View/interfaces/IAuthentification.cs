@@ -5,11 +5,10 @@ using System.Text;
 
 namespace TRPO.View
 {
-    public interface IAuthentification
+    public interface IAuthentification : IInterractable
     {
         String getLogin();
         String getPassword();
-        void showErrorText(String s);
         void hideErrorText();
         void clearAuthData();
     }

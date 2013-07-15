@@ -56,8 +56,8 @@ namespace TRPO.Model
             OleDbDataReader result = null;
             if (connection != null)
             {   
-                //try//SELECT
-               // {
+                try//SELECT
+                {
                 
                     OleDbCommand objCommand = new OleDbCommand();
                     objCommand.CommandType = CommandType.Text;
@@ -73,11 +73,12 @@ namespace TRPO.Model
                     }
                     */
                     
-               // }
-                //catch (Exception ex)
-                //{
+                }
+                catch (OleDbException ex)
+                {
+                    throw ex;
                     //MessageBox.Show(ex.Message);
-                //}//--select
+                }//--select
             }
             return result;
         }

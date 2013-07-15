@@ -25,7 +25,10 @@ namespace TRPO.View
             controller = c;
             controller.addForm(this);
         }
-        
+
+        public void showMsg(String msg, GlobalObj.ErrorLevels el)
+        {
+        }
 
     }
 }

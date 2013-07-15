@@ -21,7 +21,16 @@ namespace TRPO.Controller
         public void Login()
         {
             User user = new User(authView.getLogin(), authView.getPassword());
-            user.authenticate();
+            try
+            {
+                user.authenticate();
+            }
+            catch (System.Data.OleDb.OleDbException ex)
+            {
+                System.Diagnostics.Debug.WriteLine("Original error: " + ex.ToString());
+                authView.showMsg("Ошиба базы данных!", GlobalObj.ErrorLevels.Critical);
+            }
+
             if (user.isAuthenticated())
             {
                 switch (user.role)
@@ -47,7 +56,7 @@ namespace TRPO.Controller
             }
             else
             {
-                authView.showErrorText("Неверный логин/пароль");
+                authView.showMsg("Неверный логин/пароль", GlobalObj.ErrorLevels.Info);
             }
         }
     }

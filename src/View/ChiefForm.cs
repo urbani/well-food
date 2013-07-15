@@ -20,6 +20,8 @@ namespace TRPO.View
         {
             InitializeComponent();
         }
+
+
         
     }
 }

@@ -7,6 +7,6 @@ namespace TRPO.View
 {
     public interface IInterractable
     {
-        void showMsg(String msg);
+        void showMsg(String msg, GlobalObj.ErrorLevels el);
     }
 }
