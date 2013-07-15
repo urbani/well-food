@@ -10,13 +10,15 @@
 *.sln
 *.csproj.user
 app.config
-*.Designer.cs
+Resources.Designer.cs
+Settings.Designer.cs
 
 # Visual Studio db files
 *.laccdb
 *.xsc
 *.xsd
 *.xss
+main_dbDataSet.Designer.cs
 
 # Debug files
 Debug/
