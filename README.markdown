@@ -12,4 +12,4 @@ nikallass	nikallass@yandex.ru
 
 vatslav		vatslav.dovnar@gmail.com
 
-Nikita edit
+vatslavOverEdit 
