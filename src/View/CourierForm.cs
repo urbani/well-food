@@ -27,11 +27,19 @@ namespace TRPO.View
             clientManagementController.addForm(this);
             ordersController = oc;
             ordersController.addForm(this);
+            clientManagementController.fillCompList();
             //headerList1.Items.Add("Кот котофей");
         }
 
         public void showMsg(String msg, GlobalObj.ErrorLevels el)
         {
+        }
+        public void setCompanyList(Dictionary<int, String> companyList)
+        {
+            foreach (KeyValuePair<int, String> kv in companyList)
+            {
+                headerList1.Items.Add(kv.Value);
+            }
         }
 
     }
