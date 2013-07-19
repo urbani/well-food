@@ -17,11 +17,12 @@ namespace TRPO.View
     public partial class AuthForm : Form, IAuthentification, IInterractable
     {
         private LoginController loginController;
-
+        
         public AuthForm()
         {
             InitializeComponent();
             loginController = new LoginController(this);
+            
         }
 
         public string getLogin()    { return loginTextBox.Text;}
@@ -43,6 +44,16 @@ namespace TRPO.View
             }
             
             
+        }
+
+        public void hideForm()
+        {
+            this.Hide();
+        }
+
+        public void showForm()
+        {
+            this.Show();
         }
 
         public void hideErrorText()
@@ -69,5 +80,6 @@ namespace TRPO.View
                 loginController.Login();
 		    }
         }
+        
     }
 }

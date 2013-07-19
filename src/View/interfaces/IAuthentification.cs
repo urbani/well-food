@@ -10,6 +10,8 @@ namespace TRPO.View
         String getLogin();
         String getPassword();
         void hideErrorText();
-        void clearAuthData();
+        void clearAuthData(); 
+        void hideForm();
+        void showForm();
     }
 }

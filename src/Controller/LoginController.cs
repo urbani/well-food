@@ -17,7 +17,12 @@ namespace TRPO.Controller
         {
             authView = i;
         }
-        
+
+        private void showAuthForm(object sender, FormClosedEventArgs e)
+        {
+            authView.showForm();
+        }
+
         //обработчик  авторизации
         public void Login()
         {
@@ -39,22 +44,30 @@ namespace TRPO.Controller
                 {
                     case (Roles.Administrator):
                         AdminForm af = new AdminForm();
+                        af.FormClosed += new FormClosedEventHandler(showAuthForm);
                         af.Show();
+                        authView.hideForm();
                         break;
                     case (Roles.Chief):
                         ChiefForm chief = new ChiefForm();
+                        chief.FormClosed += new FormClosedEventHandler(showAuthForm);
                         chief.Show();
+                        authView.hideForm();
                         break;
                     case (Roles.Manager):
                         ManagerForm mf = new ManagerForm();
+                        mf.FormClosed += new FormClosedEventHandler(showAuthForm);
                         mf.Show();
+                        authView.hideForm();
                         break;
                     case (Roles.Courier):
 
                         ClientManagementConroller cmc = new ClientManagementConroller(user);
                         OrdersConroller oc = new OrdersConroller(user);
                         CourierForm cf = new CourierForm(cmc, oc);
+                        cf.FormClosed += new FormClosedEventHandler(showAuthForm);
                         cf.Show();
+                        authView.hideForm();
                         break;
                 }
             }
