@@ -42,8 +42,11 @@ namespace TRPO.View
                     errorLabel.Text = text;
                     break;
             }
-            
-            
+        }
+
+        public void showMsg(String msg, String header)
+        {
+            MessageBox.Show(msg, header);
         }
 
         public void hideForm()

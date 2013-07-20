@@ -34,7 +34,7 @@ namespace TRPO.Controller
             catch (System.Data.OleDb.OleDbException ex)
             {
                 System.Diagnostics.Debug.WriteLine("Original error: " + ex.ToString());
-                authView.showMsg("Ошиба базы данных!", GlobalObj.ErrorLevels.Critical);
+                authView.showMsg("Ошибка базы данных!", "Ошибка БД");
                 return;
             }
 

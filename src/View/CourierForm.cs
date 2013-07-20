@@ -34,6 +34,12 @@ namespace TRPO.View
         public void showMsg(String msg, GlobalObj.ErrorLevels el)
         {
         }
+
+        public void showMsg(String msg, String header)
+        {
+            MessageBox.Show(msg, header);
+        }
+
         public void setCompanyList(Dictionary<int, String> companyList)
         {
             foreach (KeyValuePair<int, String> kv in companyList)
