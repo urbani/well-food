@@ -22,6 +22,7 @@ namespace TRPO.Controller
         public void fillCompList()
         {
             view.setCompanyList(clientManager.getCompanies());
+            
         }
 
         public void addForm(IClientManagable c)

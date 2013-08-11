@@ -8,7 +8,7 @@ namespace TRPO.View
     public interface IClientManagable : IInterractable
     {
 
-        void setCompanyList(Dictionary<int, String> companyList);
-        //setEmployList(lisEmpl: List<T>)
+     void setCompanyList(Dictionary<int, String> companyList);//Dictionary<int, String> companyList
+        void setEmployList();
     }
 }

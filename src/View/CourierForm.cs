@@ -47,6 +47,9 @@ namespace TRPO.View
                 headerList1.Items.Add(kv.Value);
             }
         }
+       public void showMenuList(){}
+       public void chowCurMenu(){}
+       public void setEmployList() { }
 
     }
 }
