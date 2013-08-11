@@ -73,9 +73,9 @@
             this.mainTable.Location = new System.Drawing.Point(0, 0);
             this.mainTable.Name = "mainTable";
             this.mainTable.RowCount = 2;
-            this.mainTable.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 90F));
+            this.mainTable.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 8F));
             this.mainTable.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 62.13097F));
-            this.mainTable.Size = new System.Drawing.Size(721, 462);
+            this.mainTable.Size = new System.Drawing.Size(740, 525);
             this.mainTable.TabIndex = 0;
             // 
             // headerTable
@@ -97,7 +97,7 @@
             this.headerTable.RowCount = 2;
             this.headerTable.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.headerTable.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.headerTable.Size = new System.Drawing.Size(715, 84);
+            this.headerTable.Size = new System.Drawing.Size(734, 2);
             this.headerTable.TabIndex = 2;
             // 
             // headerLabel1
@@ -105,9 +105,9 @@
             this.headerLabel1.Anchor = System.Windows.Forms.AnchorStyles.Right;
             this.headerLabel1.AutoSize = true;
             this.headerLabel1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.headerLabel1.Location = new System.Drawing.Point(40, 11);
+            this.headerLabel1.Location = new System.Drawing.Point(40, 0);
             this.headerLabel1.Name = "headerLabel1";
-            this.headerLabel1.Size = new System.Drawing.Size(55, 20);
+            this.headerLabel1.Size = new System.Drawing.Size(55, 1);
             this.headerLabel1.TabIndex = 0;
             this.headerLabel1.Text = "Поиск";
             // 
@@ -116,9 +116,9 @@
             this.headerLabel2.Anchor = System.Windows.Forms.AnchorStyles.Right;
             this.headerLabel2.AutoSize = true;
             this.headerLabel2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.headerLabel2.Location = new System.Drawing.Point(44, 53);
+            this.headerLabel2.Location = new System.Drawing.Point(44, 1);
             this.headerLabel2.Name = "headerLabel2";
-            this.headerLabel2.Size = new System.Drawing.Size(51, 20);
+            this.headerLabel2.Size = new System.Drawing.Size(51, 1);
             this.headerLabel2.TabIndex = 1;
             this.headerLabel2.Text = "label2";
             // 
@@ -127,9 +127,9 @@
             this.headerList1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.headerList1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.headerList1.FormattingEnabled = true;
-            this.headerList1.Location = new System.Drawing.Point(101, 7);
+            this.headerList1.Location = new System.Drawing.Point(101, 3);
             this.headerList1.Name = "headerList1";
-            this.headerList1.Size = new System.Drawing.Size(233, 28);
+            this.headerList1.Size = new System.Drawing.Size(241, 28);
             this.headerList1.TabIndex = 2;
             // 
             // headerList2
@@ -137,9 +137,9 @@
             this.headerList2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.headerList2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.headerList2.FormattingEnabled = true;
-            this.headerList2.Location = new System.Drawing.Point(101, 49);
+            this.headerList2.Location = new System.Drawing.Point(101, 4);
             this.headerList2.Name = "headerList2";
-            this.headerList2.Size = new System.Drawing.Size(233, 28);
+            this.headerList2.Size = new System.Drawing.Size(241, 28);
             this.headerList2.TabIndex = 3;
             // 
             // headerSearchButton1
@@ -149,9 +149,9 @@
             this.headerSearchButton1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.headerSearchButton1.Image = ((System.Drawing.Image)(resources.GetObject("headerSearchButton1.Image")));
             this.headerSearchButton1.ImageAlign = System.Drawing.ContentAlignment.TopLeft;
-            this.headerSearchButton1.Location = new System.Drawing.Point(340, 4);
+            this.headerSearchButton1.Location = new System.Drawing.Point(348, 3);
             this.headerSearchButton1.Name = "headerSearchButton1";
-            this.headerSearchButton1.Size = new System.Drawing.Size(37, 34);
+            this.headerSearchButton1.Size = new System.Drawing.Size(37, 1);
             this.headerSearchButton1.TabIndex = 4;
             this.headerSearchButton1.UseVisualStyleBackColor = true;
             // 
@@ -160,26 +160,26 @@
             this.headerSearchButton2.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.headerSearchButton2.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.headerSearchButton2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.headerSearchButton2.Location = new System.Drawing.Point(340, 45);
+            this.headerSearchButton2.Image = ((System.Drawing.Image)(resources.GetObject("headerSearchButton2.Image")));
+            this.headerSearchButton2.Location = new System.Drawing.Point(348, 4);
             this.headerSearchButton2.Name = "headerSearchButton2";
-            this.headerSearchButton2.Size = new System.Drawing.Size(37, 35);
+            this.headerSearchButton2.Size = new System.Drawing.Size(37, 1);
             this.headerSearchButton2.TabIndex = 5;
-            this.headerSearchButton2.Text = "b2";
             this.headerSearchButton2.UseVisualStyleBackColor = true;
             // 
             // tableLayoutPanel1
             // 
             this.tableLayoutPanel1.ColumnCount = 2;
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 65.17483F));
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 34.82518F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.tableLayoutPanel1.Controls.Add(this.rightBodyTabel, 0, 0);
             this.tableLayoutPanel1.Controls.Add(this.leftBodyTable, 0, 0);
             this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel1.Location = new System.Drawing.Point(3, 93);
+            this.tableLayoutPanel1.Location = new System.Drawing.Point(3, 11);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
             this.tableLayoutPanel1.RowCount = 1;
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(715, 366);
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(734, 511);
             this.tableLayoutPanel1.TabIndex = 4;
             // 
             // rightBodyTabel
@@ -189,7 +189,7 @@
             this.rightBodyTabel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 58.68545F));
             this.rightBodyTabel.Controls.Add(this.button1, 0, 1);
             this.rightBodyTabel.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.rightBodyTabel.Location = new System.Drawing.Point(468, 3);
+            this.rightBodyTabel.Location = new System.Drawing.Point(370, 3);
             this.rightBodyTabel.Name = "rightBodyTabel";
             this.rightBodyTabel.RowCount = 2;
             this.rightBodyTabel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 41.97531F));
@@ -198,7 +198,7 @@
             this.rightBodyTabel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
             this.rightBodyTabel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
             this.rightBodyTabel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.rightBodyTabel.Size = new System.Drawing.Size(244, 360);
+            this.rightBodyTabel.Size = new System.Drawing.Size(361, 505);
             this.rightBodyTabel.TabIndex = 5;
             // 
             // button1
@@ -206,7 +206,7 @@
             this.button1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.button1.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.button1.Location = new System.Drawing.Point(124, 327);
+            this.button1.Location = new System.Drawing.Point(241, 472);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(117, 30);
             this.button1.TabIndex = 0;
@@ -223,7 +223,7 @@
             this.leftBodyTable.Location = new System.Drawing.Point(3, 3);
             this.leftBodyTable.Name = "leftBodyTable";
             this.leftBodyTable.SelectedIndex = 0;
-            this.leftBodyTable.Size = new System.Drawing.Size(459, 360);
+            this.leftBodyTable.Size = new System.Drawing.Size(361, 505);
             this.leftBodyTable.TabIndex = 4;
             // 
             // tabPage1
@@ -233,7 +233,7 @@
             this.tabPage1.Location = new System.Drawing.Point(4, 25);
             this.tabPage1.Name = "tabPage1";
             this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage1.Size = new System.Drawing.Size(451, 331);
+            this.tabPage1.Size = new System.Drawing.Size(353, 476);
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "Текущий заказ";
             this.tabPage1.UseVisualStyleBackColor = true;
@@ -255,7 +255,7 @@
             listViewItem3});
             this.listView1.Location = new System.Drawing.Point(3, 3);
             this.listView1.Name = "listView1";
-            this.listView1.Size = new System.Drawing.Size(445, 325);
+            this.listView1.Size = new System.Drawing.Size(347, 470);
             this.listView1.Sorting = System.Windows.Forms.SortOrder.Ascending;
             this.listView1.TabIndex = 0;
             this.listView1.UseCompatibleStateImageBehavior = false;
@@ -304,9 +304,9 @@
             // 
             // statusStrip1
             // 
-            this.statusStrip1.Location = new System.Drawing.Point(0, 462);
+            this.statusStrip1.Location = new System.Drawing.Point(0, 525);
             this.statusStrip1.Name = "statusStrip1";
-            this.statusStrip1.Size = new System.Drawing.Size(721, 22);
+            this.statusStrip1.Size = new System.Drawing.Size(740, 22);
             this.statusStrip1.TabIndex = 1;
             this.statusStrip1.Text = "statusStrip1";
             // 
@@ -314,7 +314,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(721, 484);
+            this.ClientSize = new System.Drawing.Size(740, 547);
             this.Controls.Add(this.mainTable);
             this.Controls.Add(this.statusStrip1);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
