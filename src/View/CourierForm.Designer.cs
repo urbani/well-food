@@ -154,6 +154,7 @@
    this.headerSearchButton2.Size = new System.Drawing.Size(37, 35);
    this.headerSearchButton2.TabIndex = 5;
    this.headerSearchButton2.UseVisualStyleBackColor = true;
+   this.headerSearchButton2.Click += new System.EventHandler(this.headerSearchButton2_Click);
    // 
    // tableLayoutPanel1
    // 
@@ -275,7 +276,13 @@
         protected System.Windows.Forms.StatusStrip statusStrip;
         protected System.Windows.Forms.Label headerLabel1;
         protected System.Windows.Forms.Label headerLabel2;
+     /// <summary>
+     /// список компаний
+     /// </summary>
         protected System.Windows.Forms.ComboBox headerList1;
+     /// <summary>
+     /// список сотрудников
+     /// </summary>
         protected System.Windows.Forms.ComboBox headerList2;
         protected System.Windows.Forms.Button headerSearchButton1;
         protected System.Windows.Forms.Button headerSearchButton2;

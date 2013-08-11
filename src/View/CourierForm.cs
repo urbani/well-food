@@ -46,20 +46,28 @@ namespace TRPO.View
             foreach (KeyValuePair<int, String> kv in companyList)
             {
                 headerList1.Items.Add(kv.Value);
+                clientManagementController.idCompanyList.Add(kv.Key);
             }
         }
-        public void setEmployList(Dictionary<int, String> companyList)
+        public void setEmployList(Dictionary<int, String> employLost)
         {
-         return;
+         foreach (KeyValuePair<int, String> kv in employLost)
+         {
+          headerList2.Items.Add(kv.Value);
+         }
         }
-        public int getCurCompany()
+        public int getIndexSelectedCompany()
         {
-          
-          return -1;
+         return headerList1.SelectedIndex;
         }
        public void showMenuList(){}
        public void chowCurMenu(){}
-       public void setEmployList() { }
+
+       private void headerSearchButton2_Click(object sender, EventArgs e)
+       {
+        clientManagementController.setEmployList();
+       }
+       //public void setEmployList() { }
 
     }
 }

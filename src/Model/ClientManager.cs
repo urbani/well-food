@@ -9,7 +9,7 @@ namespace TRPO.Model
 {
     public class ClientManager
     {
-        private DBConnector connector =null;
+        private DBConnector connector;
         
 
      /// <summary>
@@ -48,6 +48,8 @@ namespace TRPO.Model
            Dictionary<int, String> result = new Dictionary<int, string>();
            connector.openConnection();
            OleDbDataReader reader = connector.executeQuery("SELECT e.ID_Emp, e.Surname, e.Name_Emp, e.Patronymic FROM Employee AS e WHERE e.Company=" + id.ToString());
+           
+         
            connector.closeConnection();
 
            return result;

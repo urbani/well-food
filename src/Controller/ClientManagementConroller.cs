@@ -13,6 +13,7 @@ namespace TRPO.Controller
         //класс над объектом пользователь-сотрудник (ФИО фото роль и т.д.)
         User user;
         private ClientManager clientManager;
+        public List<int> idCompanyList = new List<int>();//{get;set;}
 
         public ClientManagementConroller(User u)
         {
@@ -20,13 +21,25 @@ namespace TRPO.Controller
             clientManager = new ClientManager();
         }
 
+     public void setEmployList()
+     {
+             try
+            {
+             view.setEmployList(clientManager.getEmployers(idCompanyList[view.getIndexSelectedCompany()]));
+            }
+            catch (ArgumentOutOfRangeException)
+            { }
+      return;
+     }
+
         //начальное заполнение формы данными
         public void fillCompList()
         {
             view.setCompanyList(clientManager.getCompanies());
          //TODO:дописать
            //view.getCurCompany(
-            view.setEmployList( clientManager.getEmployers(1) );
+            //setEmployList();
+            
             
         }
 
@@ -34,5 +47,6 @@ namespace TRPO.Controller
         {
             view = c;
         }
+
     }
 }
