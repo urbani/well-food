@@ -28,6 +28,7 @@ namespace TRPO.View
             ordersController = oc;
             ordersController.addForm(this);
             clientManagementController.fillCompList();
+        
             //headerList1.Items.Add("Кот котофей");
         }
 
@@ -46,6 +47,15 @@ namespace TRPO.View
             {
                 headerList1.Items.Add(kv.Value);
             }
+        }
+        public void setEmployList(Dictionary<int, String> companyList)
+        {
+         return;
+        }
+        public int getCurCompany()
+        {
+          
+          return -1;
         }
        public void showMenuList(){}
        public void chowCurMenu(){}
