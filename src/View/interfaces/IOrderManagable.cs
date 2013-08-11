@@ -7,5 +7,7 @@ namespace TRPO.View
 {
     public interface IOrderManagable : IInterractable
     {
+     void showMenuList();
+     void chowCurMenu();
     }
 }
