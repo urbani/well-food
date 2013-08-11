@@ -39,6 +39,8 @@ namespace TRPO.Model
                     throw odx;
                 }
             }
+
+            
         }
 
         // Закрывает соединение с базой
@@ -58,7 +60,7 @@ namespace TRPO.Model
             {   
                 try//SELECT
                 {
-                
+
                     OleDbCommand objCommand = new OleDbCommand();
                     objCommand.CommandType = CommandType.Text;
                     objCommand.CommandText = query;
