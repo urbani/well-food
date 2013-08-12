@@ -24,3 +24,7 @@ main_dbDataSet.Designer.cs
 Debug/
 Release/
 obj/
+
+
+#Allow files
+!SQL Editor.exe
