@@ -30,9 +30,5 @@ namespace TRPO.Controller
             view.updateOrderList(ordManager.getActiveOrders());
         }
 
-        public void updateDishInfo()
-        {
-            //TODO DISH INFO
-        }
     }
 }

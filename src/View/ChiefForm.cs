@@ -11,17 +11,20 @@ using System.Data.Common;
 using System.Collections;
 using TRPO.Controller;
 using TRPO.GlobalObj;
+using System.IO;
 
 namespace TRPO.View
 {
-    public partial class ChiefForm : Form, IOrderViewable
+    public partial class ChiefForm : Form, IOrderViewable, IDishViewable
     {
         OrderCookController ordCookContr;
+        DishesManagementController dishesManagementContr;
 
-        public ChiefForm(OrderCookController occ)
+        public ChiefForm(OrderCookController occ, DishesManagementController dmc)
         {
             InitializeComponent();
             ordCookContr = occ;
+            dishesManagementContr = dmc;
         }
 
         public void updateOrderList(List<ChiefListEntry> list)
@@ -36,6 +39,11 @@ namespace TRPO.View
                 ListViewItem tmp = new ListViewItem(s);
                 listView1.Items.Add(tmp);
             }
+
+            if (listView1.Items.Count > 0) 
+            {
+                listView1.Items[0].Selected = true;
+            }
         }
 
         public void showMsg(String msg, GlobalObj.ErrorLevels el)
@@ -49,9 +57,42 @@ namespace TRPO.View
             MessageBox.Show(msg, header);
         }
 
+        public String getSelectedDishName()
+        {
+            return listView1.SelectedItems.Count > 0 ? listView1.SelectedItems[0].Text : "";
+        }
+
+        public void setDishInfo(String name, String dType, String linkToPh, String rec)
+        {
+            dishName.Text = name;
+            dishTypeLabel.Text = dType;
+            receipeText.Text = rec;
+            try
+            {
+                if (linkToPh != "")
+                {
+                    dishPicture.Image = Image.FromFile(Properties.Settings.Default.dishesImagesFolderPath + linkToPh);
+                }
+                else
+                {
+                    dishPicture.Image = null;
+                }
+            }
+            catch (FileNotFoundException ex)
+            {
+                dishPicture.Image = null;
+                System.Diagnostics.Debug.WriteLine("WARNING! File with image:" + linkToPh + " of the dish: " + name + " not found!");
+            }
+        }
+
         private void listView1_ItemSelectionChanged(object sender, ListViewItemSelectionChangedEventArgs e)
         {
-            ordCookContr.updateDishInfo();
+            dishesManagementContr.updateDishInfo();
+        }
+
+        private void listView1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
         }
         
     }
