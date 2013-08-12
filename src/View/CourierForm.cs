@@ -28,6 +28,7 @@ namespace TRPO.View
             ordersController = oc;
             ordersController.addForm(this);
             clientManagementController.fillCompList();
+        
             //headerList1.Items.Add("Кот котофей");
         }
 
@@ -45,8 +46,28 @@ namespace TRPO.View
             foreach (KeyValuePair<int, String> kv in companyList)
             {
                 headerList1.Items.Add(kv.Value);
+                clientManagementController.idCompanyList.Add(kv.Key);
             }
         }
+        public void setEmployList(Dictionary<int, String> employLost)
+        {
+         foreach (KeyValuePair<int, String> kv in employLost)
+         {
+          headerList2.Items.Add(kv.Value);
+         }
+        }
+        public int getIndexSelectedCompany()
+        {
+         return headerList1.SelectedIndex;
+        }
+       public void showMenuList(){}
+       public void chowCurMenu(){}
+
+       private void headerSearchButton2_Click(object sender, EventArgs e)
+       {
+        clientManagementController.setEmployList();
+       }
+       //public void setEmployList() { }
 
     }
 }

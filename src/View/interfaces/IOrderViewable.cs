@@ -5,10 +5,8 @@ using System.Text;
 
 namespace TRPO.View
 {
-    public interface IOrderManagable : IInterractable
+    public interface IOrderViewable : IInterractable
     {
-     void showMenuList();
-     void chowCurMenu();
-    
+        void updateOrderList(List<TRPO.GlobalObj.ChiefListEntry> list);
     }
 }

@@ -49,7 +49,10 @@ namespace TRPO.Controller
                         authView.hideForm();
                         break;
                     case (Roles.Chief):
-                        ChiefForm chief = new ChiefForm();
+                        OrderCookController occ = new OrderCookController(user);
+                        ChiefForm chief = new ChiefForm(occ);
+                        occ.setForm(chief);
+                        occ.updateOrderList();
                         chief.FormClosed += new FormClosedEventHandler(showAuthForm);
                         chief.Show();
                         authView.hideForm();
@@ -65,6 +68,8 @@ namespace TRPO.Controller
                         ClientManagementConroller cmc = new ClientManagementConroller(user);
                         OrdersConroller oc = new OrdersConroller(user);
                         CourierForm cf = new CourierForm(cmc, oc);
+                        cmc.addForm(cf);
+                        oc.addForm(cf);//TODO:Удалить такие строки из courier form
                         cf.FormClosed += new FormClosedEventHandler(showAuthForm);
                         cf.Show();
                         authView.hideForm();
