@@ -8,7 +8,15 @@ namespace TRPO.View
     public interface IClientManagable : IInterractable
     {
 
+        /// <summary>
+        /// задает список компаний из Входящего словаря в выподающий список формы
+        /// </summary>
+        /// <param name="companyList"></param>
      void setCompanyList(Dictionary<int, String> companyList);//Dictionary<int, String> companyList
+        /// <summary>
+        /// задает список сотрудников из Входящего словаря в выподающий список формы
+        /// </summary>
+        /// <param name="employList"></param>
      void setEmployList(Dictionary<int, String> employList);
 
 
