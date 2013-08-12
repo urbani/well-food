@@ -18,7 +18,8 @@ namespace TRPO.View
     {
         ClientManagementConroller clientManagementController;
         OrdersConroller ordersController;
-
+        List<String> companyList_ = new List<string>();
+        List<String> employlist_  = new List<string>();
         public CourierForm(ClientManagementConroller cmc, OrdersConroller oc)
         {
             InitializeComponent();
@@ -27,6 +28,11 @@ namespace TRPO.View
             ordersController = oc;
             ordersController.addForm(this);
             clientManagementController.fillCompList();
+
+            //headerList1.DataSource = temp;
+            headerList1.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
+            headerList1.AutoCompleteSource = AutoCompleteSource.ListItems;
+            
         
             //headerList1.Items.Add("Кот котофей");
         }
@@ -47,7 +53,7 @@ namespace TRPO.View
             clientManagementController.idCompanyList.Clear();
             foreach (KeyValuePair<int, String> kv in companyList)
             {
-                headerList1.Items.Add(kv.Value);
+                companyList_.Add(kv.Value);
                 clientManagementController.idCompanyList.Add(kv.Key);
             }
         }
@@ -55,6 +61,7 @@ namespace TRPO.View
         public void setEmployList(Dictionary<int, String> employList)
         {
             headerList2.Items.Clear();
+
             foreach (KeyValuePair<int, String> kv in employList)
             {
                 headerList2.Items.Add(kv.Value);
