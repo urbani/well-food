@@ -23,6 +23,7 @@ namespace TRPO.Controller
 
         public void setEmployList()
         {
+
             view.setEmployList(clientManager.getEmployers(idCompanyList[view.getIndexSelectedCompany()]));
         }
 
@@ -38,4 +39,5 @@ namespace TRPO.Controller
         }
 
     }
+
 }

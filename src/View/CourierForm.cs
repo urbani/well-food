@@ -43,6 +43,8 @@ namespace TRPO.View
 
         public void setCompanyList(Dictionary<int, String> companyList)
         {
+            headerList1.Items.Clear();
+            clientManagementController.idCompanyList.Clear();
             foreach (KeyValuePair<int, String> kv in companyList)
             {
                 headerList1.Items.Add(kv.Value);
@@ -52,6 +54,7 @@ namespace TRPO.View
 
         public void setEmployList(Dictionary<int, String> employList)
         {
+            headerList2.Items.Clear();
             foreach (KeyValuePair<int, String> kv in employList)
             {
                 headerList2.Items.Add(kv.Value);
@@ -67,6 +70,26 @@ namespace TRPO.View
         public void chowCurMenu(){}
 
         private void headerSearchButton2_Click(object sender, EventArgs e)
+        {
+            clientManagementController.setEmployList();
+        }
+
+        private void s(object sender, EventArgs e)
+        {
+
+        }
+
+        private void headerList2_EnabledChanged(object sender, EventArgs e)
+        {
+            
+        }
+
+        private void headerList2_MouseClick(object sender, MouseEventArgs e)
+        {
+            
+        }
+
+        private void headerList1_SelectedIndexChanged(object sender, EventArgs e)
         {
             clientManagementController.setEmployList();
         }
