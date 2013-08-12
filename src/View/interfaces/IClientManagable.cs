@@ -12,12 +12,12 @@ namespace TRPO.View
         /// задает список компаний из Входящего словаря в выподающий список формы
         /// </summary>
         /// <param name="companyList"></param>
-     void setCompanyList(Dictionary<int, String> companyList);//Dictionary<int, String> companyList
+   //  void setCompanyList(Dictionary<int, String> companyList);//Dictionary<int, String> companyList
         /// <summary>
         /// задает список сотрудников из Входящего словаря в выподающий список формы
         /// </summary>
         /// <param name="employList"></param>
-     void setEmployList(Dictionary<int, String> employList);
+    // void setEmployList(Dictionary<int, String> employList);
 
 
      /// <summary>

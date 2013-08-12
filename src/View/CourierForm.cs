@@ -18,8 +18,7 @@ namespace TRPO.View
     {
         ClientManagementConroller clientManagementController;
         OrdersConroller ordersController;
-        List<String> companyList_ = new List<string>();
-        List<String> employlist_  = new List<string>();
+
         public CourierForm(ClientManagementConroller cmc, OrdersConroller oc)
         {
             InitializeComponent();
@@ -29,9 +28,13 @@ namespace TRPO.View
             ordersController.addForm(this);
             clientManagementController.fillCompList();
 
-            //headerList1.DataSource = temp;
+            headerList1.DataSource = clientManagementController.getCompanyList();
             headerList1.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
             headerList1.AutoCompleteSource = AutoCompleteSource.ListItems;
+
+            headerList2.DataSource = clientManagementController.employList.Values;
+            headerList2.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
+            headerList2.AutoCompleteSource = AutoCompleteSource.ListItems;
             
         
             //headerList1.Items.Add("Кот котофей");
@@ -47,26 +50,8 @@ namespace TRPO.View
             MessageBox.Show(msg, header);
         }
 
-        public void setCompanyList(Dictionary<int, String> companyList)
-        {
-            headerList1.Items.Clear();
-            clientManagementController.idCompanyList.Clear();
-            foreach (KeyValuePair<int, String> kv in companyList)
-            {
-                companyList_.Add(kv.Value);
-                clientManagementController.idCompanyList.Add(kv.Key);
-            }
-        }
 
-        public void setEmployList(Dictionary<int, String> employList)
-        {
-            headerList2.Items.Clear();
 
-            foreach (KeyValuePair<int, String> kv in employList)
-            {
-                headerList2.Items.Add(kv.Value);
-            }
-        }
 
         public int getIndexSelectedCompany()
         {
@@ -78,7 +63,7 @@ namespace TRPO.View
 
         private void headerSearchButton2_Click(object sender, EventArgs e)
         {
-            clientManagementController.setEmployList();
+            clientManagementController.fillEmployList();
         }
 
         private void s(object sender, EventArgs e)
@@ -98,9 +83,21 @@ namespace TRPO.View
 
         private void headerList1_SelectedIndexChanged(object sender, EventArgs e)
         {
-            clientManagementController.setEmployList();
+            clientManagementController.fillCompList();
         }
         //public void setEmployList() { }
 
+    }
+
+    public struct ClientData
+    {
+        public int id;
+        public String data;
+        public ClientData(int id_, String data_)
+        {
+            id = id_;
+            data = data_;
+
+        }
     }
 }
