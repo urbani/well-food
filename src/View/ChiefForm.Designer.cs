@@ -47,7 +47,9 @@
             this.dishLayout = new System.Windows.Forms.TableLayoutPanel();
             this.dishLayoutHeader = new System.Windows.Forms.TableLayoutPanel();
             this.dishPicture = new System.Windows.Forms.PictureBox();
+            this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
             this.dishName = new System.Windows.Forms.Label();
+            this.dishTypeLabel = new System.Windows.Forms.Label();
             this.receipeLayout = new System.Windows.Forms.TableLayoutPanel();
             this.label1 = new System.Windows.Forms.Label();
             this.receipeText = new System.Windows.Forms.RichTextBox();
@@ -65,8 +67,7 @@
             this.tabPage3 = new System.Windows.Forms.TabPage();
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.toolStripStatusLabel = new System.Windows.Forms.ToolStripStatusLabel();
-            this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
-            this.dishTypeLabel = new System.Windows.Forms.Label();
+            this.tableLayoutPanel3 = new System.Windows.Forms.TableLayoutPanel();
             this.mainTable.SuspendLayout();
             this.headerTable.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
@@ -74,13 +75,14 @@
             this.dishLayout.SuspendLayout();
             this.dishLayoutHeader.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dishPicture)).BeginInit();
+            this.tableLayoutPanel2.SuspendLayout();
             this.receipeLayout.SuspendLayout();
             this.dishAddLayout.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).BeginInit();
             this.leftBodyTable.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.statusStrip1.SuspendLayout();
-            this.tableLayoutPanel2.SuspendLayout();
+            this.tableLayoutPanel3.SuspendLayout();
             this.SuspendLayout();
             // 
             // mainTable
@@ -189,10 +191,8 @@
             // 
             // tableLayoutPanel1
             // 
-            this.tableLayoutPanel1.ColumnCount = 2;
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel1.Controls.Add(this.rightBodyTabel, 0, 0);
+            this.tableLayoutPanel1.ColumnCount = 1;
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 93.46049F));
             this.tableLayoutPanel1.Controls.Add(this.leftBodyTable, 0, 0);
             this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel1.Location = new System.Drawing.Point(3, 11);
@@ -210,7 +210,7 @@
             this.rightBodyTabel.Controls.Add(this.dishLayout, 0, 0);
             this.rightBodyTabel.Controls.Add(this.dishAddLayout, 0, 1);
             this.rightBodyTabel.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.rightBodyTabel.Location = new System.Drawing.Point(370, 3);
+            this.rightBodyTabel.Location = new System.Drawing.Point(360, 3);
             this.rightBodyTabel.Name = "rightBodyTabel";
             this.rightBodyTabel.RowCount = 2;
             this.rightBodyTabel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 41.97531F));
@@ -219,7 +219,7 @@
             this.rightBodyTabel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
             this.rightBodyTabel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
             this.rightBodyTabel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.rightBodyTabel.Size = new System.Drawing.Size(361, 450);
+            this.rightBodyTabel.Size = new System.Drawing.Size(351, 409);
             this.rightBodyTabel.TabIndex = 5;
             // 
             // dishLayout
@@ -234,7 +234,7 @@
             this.dishLayout.RowCount = 2;
             this.dishLayout.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 112F));
             this.dishLayout.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.dishLayout.Size = new System.Drawing.Size(355, 402);
+            this.dishLayout.Size = new System.Drawing.Size(345, 361);
             this.dishLayout.TabIndex = 1;
             // 
             // dishLayoutHeader
@@ -249,7 +249,7 @@
             this.dishLayoutHeader.Name = "dishLayoutHeader";
             this.dishLayoutHeader.RowCount = 1;
             this.dishLayoutHeader.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.dishLayoutHeader.Size = new System.Drawing.Size(349, 106);
+            this.dishLayoutHeader.Size = new System.Drawing.Size(339, 106);
             this.dishLayoutHeader.TabIndex = 0;
             // 
             // dishPicture
@@ -263,6 +263,21 @@
             this.dishPicture.TabIndex = 0;
             this.dishPicture.TabStop = false;
             // 
+            // tableLayoutPanel2
+            // 
+            this.tableLayoutPanel2.ColumnCount = 1;
+            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel2.Controls.Add(this.dishName, 0, 0);
+            this.tableLayoutPanel2.Controls.Add(this.dishTypeLabel, 0, 1);
+            this.tableLayoutPanel2.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tableLayoutPanel2.Location = new System.Drawing.Point(109, 3);
+            this.tableLayoutPanel2.Name = "tableLayoutPanel2";
+            this.tableLayoutPanel2.RowCount = 2;
+            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 81F));
+            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 19F));
+            this.tableLayoutPanel2.Size = new System.Drawing.Size(227, 100);
+            this.tableLayoutPanel2.TabIndex = 2;
+            // 
             // dishName
             // 
             this.dishName.AutoSize = true;
@@ -270,9 +285,18 @@
             this.dishName.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.dishName.Location = new System.Drawing.Point(3, 0);
             this.dishName.Name = "dishName";
-            this.dishName.Size = new System.Drawing.Size(231, 81);
+            this.dishName.Size = new System.Drawing.Size(221, 81);
             this.dishName.TabIndex = 1;
             this.dishName.Text = "Борщ по-пацански. Подавать с семками в подогретой барсетке";
+            // 
+            // dishTypeLabel
+            // 
+            this.dishTypeLabel.AutoSize = true;
+            this.dishTypeLabel.Location = new System.Drawing.Point(3, 81);
+            this.dishTypeLabel.Name = "dishTypeLabel";
+            this.dishTypeLabel.Size = new System.Drawing.Size(66, 19);
+            this.dishTypeLabel.TabIndex = 2;
+            this.dishTypeLabel.Text = "Первое";
             // 
             // receipeLayout
             // 
@@ -286,7 +310,7 @@
             this.receipeLayout.RowCount = 2;
             this.receipeLayout.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 22F));
             this.receipeLayout.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.receipeLayout.Size = new System.Drawing.Size(349, 284);
+            this.receipeLayout.Size = new System.Drawing.Size(339, 243);
             this.receipeLayout.TabIndex = 1;
             // 
             // label1
@@ -304,7 +328,7 @@
             this.receipeText.Dock = System.Windows.Forms.DockStyle.Fill;
             this.receipeText.Location = new System.Drawing.Point(3, 25);
             this.receipeText.Name = "receipeText";
-            this.receipeText.Size = new System.Drawing.Size(343, 256);
+            this.receipeText.Size = new System.Drawing.Size(333, 215);
             this.receipeText.TabIndex = 1;
             this.receipeText.Text = resources.GetString("receipeText.Text");
             // 
@@ -317,18 +341,18 @@
             this.dishAddLayout.Controls.Add(this.numericUpDown1, 0, 0);
             this.dishAddLayout.Controls.Add(this.button1, 1, 0);
             this.dishAddLayout.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.dishAddLayout.Location = new System.Drawing.Point(3, 411);
+            this.dishAddLayout.Location = new System.Drawing.Point(3, 370);
             this.dishAddLayout.Name = "dishAddLayout";
             this.dishAddLayout.RowCount = 1;
             this.dishAddLayout.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.dishAddLayout.Size = new System.Drawing.Size(355, 36);
+            this.dishAddLayout.Size = new System.Drawing.Size(345, 36);
             this.dishAddLayout.TabIndex = 2;
             // 
             // numericUpDown1
             // 
             this.numericUpDown1.Dock = System.Windows.Forms.DockStyle.Right;
             this.numericUpDown1.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.numericUpDown1.Location = new System.Drawing.Point(163, 3);
+            this.numericUpDown1.Location = new System.Drawing.Point(153, 3);
             this.numericUpDown1.Maximum = new decimal(new int[] {
             9999,
             0,
@@ -353,7 +377,7 @@
             this.button1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.button1.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.button1.Location = new System.Drawing.Point(231, 3);
+            this.button1.Location = new System.Drawing.Point(221, 3);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(121, 30);
             this.button1.TabIndex = 0;
@@ -370,17 +394,17 @@
             this.leftBodyTable.Location = new System.Drawing.Point(3, 3);
             this.leftBodyTable.Name = "leftBodyTable";
             this.leftBodyTable.SelectedIndex = 0;
-            this.leftBodyTable.Size = new System.Drawing.Size(361, 450);
+            this.leftBodyTable.Size = new System.Drawing.Size(728, 450);
             this.leftBodyTable.TabIndex = 4;
             // 
             // tabPage1
             // 
-            this.tabPage1.Controls.Add(this.listView1);
+            this.tabPage1.Controls.Add(this.tableLayoutPanel3);
             this.tabPage1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.tabPage1.Location = new System.Drawing.Point(4, 25);
             this.tabPage1.Name = "tabPage1";
             this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage1.Size = new System.Drawing.Size(353, 421);
+            this.tabPage1.Size = new System.Drawing.Size(720, 421);
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "Текущий заказ";
             this.tabPage1.UseVisualStyleBackColor = true;
@@ -402,7 +426,7 @@
             listViewItem3});
             this.listView1.Location = new System.Drawing.Point(3, 3);
             this.listView1.Name = "listView1";
-            this.listView1.Size = new System.Drawing.Size(347, 415);
+            this.listView1.Size = new System.Drawing.Size(351, 409);
             this.listView1.Sorting = System.Windows.Forms.SortOrder.Ascending;
             this.listView1.TabIndex = 0;
             this.listView1.UseCompatibleStateImageBehavior = false;
@@ -436,7 +460,7 @@
             this.tabPage2.Location = new System.Drawing.Point(4, 25);
             this.tabPage2.Name = "tabPage2";
             this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage2.Size = new System.Drawing.Size(353, 421);
+            this.tabPage2.Size = new System.Drawing.Size(720, 421);
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "Создание блюда";
             this.tabPage2.UseVisualStyleBackColor = true;
@@ -446,7 +470,7 @@
             this.tabPage3.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.tabPage3.Location = new System.Drawing.Point(4, 25);
             this.tabPage3.Name = "tabPage3";
-            this.tabPage3.Size = new System.Drawing.Size(353, 421);
+            this.tabPage3.Size = new System.Drawing.Size(720, 421);
             this.tabPage3.TabIndex = 2;
             this.tabPage3.Text = "Создание меню";
             this.tabPage3.UseVisualStyleBackColor = true;
@@ -468,29 +492,21 @@
             this.toolStripStatusLabel.Text = "Error Text";
             this.toolStripStatusLabel.Visible = false;
             // 
-            // tableLayoutPanel2
+            // tableLayoutPanel3
             // 
-            this.tableLayoutPanel2.ColumnCount = 1;
-            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel2.Controls.Add(this.dishName, 0, 0);
-            this.tableLayoutPanel2.Controls.Add(this.dishTypeLabel, 0, 1);
-            this.tableLayoutPanel2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel2.Location = new System.Drawing.Point(109, 3);
-            this.tableLayoutPanel2.Name = "tableLayoutPanel2";
-            this.tableLayoutPanel2.RowCount = 2;
-            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 81F));
-            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 19F));
-            this.tableLayoutPanel2.Size = new System.Drawing.Size(237, 100);
-            this.tableLayoutPanel2.TabIndex = 2;
-            // 
-            // dishTypeLabel
-            // 
-            this.dishTypeLabel.AutoSize = true;
-            this.dishTypeLabel.Location = new System.Drawing.Point(3, 81);
-            this.dishTypeLabel.Name = "dishTypeLabel";
-            this.dishTypeLabel.Size = new System.Drawing.Size(45, 13);
-            this.dishTypeLabel.TabIndex = 2;
-            this.dishTypeLabel.Text = "Первое";
+            this.tableLayoutPanel3.BackColor = System.Drawing.SystemColors.MenuBar;
+            this.tableLayoutPanel3.ColumnCount = 2;
+            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel3.Controls.Add(this.rightBodyTabel, 1, 0);
+            this.tableLayoutPanel3.Controls.Add(this.listView1, 0, 0);
+            this.tableLayoutPanel3.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tableLayoutPanel3.Location = new System.Drawing.Point(3, 3);
+            this.tableLayoutPanel3.Name = "tableLayoutPanel3";
+            this.tableLayoutPanel3.RowCount = 1;
+            this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 91.80723F));
+            this.tableLayoutPanel3.Size = new System.Drawing.Size(714, 415);
+            this.tableLayoutPanel3.TabIndex = 1;
             // 
             // ChiefForm
             // 
@@ -510,6 +526,8 @@
             this.dishLayout.ResumeLayout(false);
             this.dishLayoutHeader.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dishPicture)).EndInit();
+            this.tableLayoutPanel2.ResumeLayout(false);
+            this.tableLayoutPanel2.PerformLayout();
             this.receipeLayout.ResumeLayout(false);
             this.receipeLayout.PerformLayout();
             this.dishAddLayout.ResumeLayout(false);
@@ -518,8 +536,7 @@
             this.tabPage1.ResumeLayout(false);
             this.statusStrip1.ResumeLayout(false);
             this.statusStrip1.PerformLayout();
-            this.tableLayoutPanel2.ResumeLayout(false);
-            this.tableLayoutPanel2.PerformLayout();
+            this.tableLayoutPanel3.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -560,5 +577,6 @@
         private System.Windows.Forms.RichTextBox receipeText;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel2;
         private System.Windows.Forms.Label dishTypeLabel;
+        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel3;
     }
 }
