@@ -18,7 +18,7 @@ namespace TRPO.View
     {
         ClientManagementConroller clientManagementController;
         OrdersConroller ordersController;
-
+        CurrencyManager currencyManager;
         public CourierForm(ClientManagementConroller cmc, OrdersConroller oc)
         {
             InitializeComponent();
@@ -26,15 +26,18 @@ namespace TRPO.View
             clientManagementController.addForm(this);
             ordersController = oc;
             ordersController.addForm(this);
-            clientManagementController.fillCompList();
+            clientManagementController.fillCompanyList();
 
-            headerList1.DataSource = clientManagementController.getCompanyList();
+            headerList1.DataSource = clientManagementController.companyList;
+            
             headerList1.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
             headerList1.AutoCompleteSource = AutoCompleteSource.ListItems;
 
-            headerList2.DataSource = clientManagementController.employList.Values;
+            headerList2.DataSource = clientManagementController.employList;
             headerList2.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
             headerList2.AutoCompleteSource = AutoCompleteSource.ListItems;
+            currencyManager = (CurrencyManager)BindingContext[headerList2.DataSource]; 
+
             
         
             //headerList1.Items.Add("Кот котофей");
@@ -42,7 +45,7 @@ namespace TRPO.View
 
         public void showMsg(String msg, GlobalObj.ErrorLevels el)
         {
-
+             
         }
 
         public void showMsg(String msg, String header)
@@ -83,9 +86,26 @@ namespace TRPO.View
 
         private void headerList1_SelectedIndexChanged(object sender, EventArgs e)
         {
-            clientManagementController.fillCompList();
+            clientManagementController.fillEmployList();
+            
         }
-        //public void setEmployList() { }
+        public object getCompanyList()
+        {
+            return headerList1.Items;
+        }
+        public void getEmployList()
+        {
+
+            //headerList2.DataSource = null;
+            //headerList2.DataSource = clientManagementController.employList;
+           // headerList2.Items.Clear();
+            headerList2.DataSource = clientManagementController.employList;
+
+
+           
+
+        }
+
 
     }
 

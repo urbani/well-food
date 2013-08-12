@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using TRPO.View;
 using TRPO.Model;
+using System.Windows.Forms;
 
 namespace TRPO.Controller
 {
@@ -14,33 +15,34 @@ namespace TRPO.Controller
         User user;
         private ClientManager clientManager;
 
-        public Dictionary<int, ClientData> companyList = new Dictionary<int,ClientData>();
-        public Dictionary<int, ClientData> employList = new Dictionary<int,ClientData>();
+        Dictionary<int, int> companyIds = new Dictionary<int,int>();
+        public List<string> companyList = new List<string>();
 
-        public IEnumerator<String> getCompanyList()
-        {
+        Dictionary<int, int> employIds  = new Dictionary<int, int>();
+        public List<string> employList = new List<string>();
+        //CurrencyManager currencyManager= (CurrencyManager)this.BindingContext[listBox.DataSource]; 
 
-            foreach (var kv in companyList)
-            {
-                yield return kv.Value.data;
-            }
-        }
-
-
+        
         public ClientManagementConroller(User u)
         {
+            
             user = u;
             clientManager = new ClientManager();
+ 
         }
 
         public void fillEmployList()
         {
+            view.getEmployList();
+            employIds.Clear();
+            employList.Clear();
             Dictionary<int, String> rawData;
-            rawData = clientManager.getEmployers( companyList[view.getIndexSelectedCompany()].id );
+            rawData = clientManager.getEmployers(companyIds[view.getIndexSelectedCompany()]);
             int ptr=0;
             foreach (KeyValuePair<int, String> pair in rawData)
             {
-                employList.Add(ptr, new ClientData(pair.Key,pair.Value));
+                employList.Add(pair.Value);
+                employIds.Add(ptr, pair.Key);
                 ptr++;
 
             }
@@ -49,17 +51,22 @@ namespace TRPO.Controller
         }
 
         //начальное заполнение формы данными
-        public void fillCompList()
+        public void fillCompanyList()
         {
-           // view.setCompanyList(clientManager.getCompanies());
+            view.getEmployList();
+            
+            employIds.Clear();
+            employList.Clear();
+            companyIds.Clear();
+            companyList.Clear();
             Dictionary<int, String> rawData;
             rawData = clientManager.getCompanies();
-            int ptr=0;
+            int ptr = 0;
             foreach (KeyValuePair<int, String> pair in rawData)
             {
-                companyList.Add(ptr, new ClientData(pair.Key,pair.Value));
+                companyList.Add(pair.Value);
+                companyIds.Add(ptr, pair.Key);
                 ptr++;
-
             }
         }
 
@@ -70,38 +77,4 @@ namespace TRPO.Controller
 
     }
 
-    public struct ClientData
-    {
-        public int id;
-        public String data;
-        public ClientData(int id_, String data_)
-        {
-            id = id_;
-            data = data_;
-            
-        }
-    }
-    //public class SimpleList : IList<ClientData>
-    //{
-    //    ref ClientData dataConteiner;
-    //    SimpleList()
-    //    {
-           
-    //    }
-
-    //    public int Add(object value)
-    //    {
-    //        if (_count < _contents.Length)
-    //        {
-    //            _contents[_count] = value;
-    //            _count++;
-
-    //            return (_count - 1);
-    //        }
-    //        else
-    //        {
-    //            return -1;
-    //        }
-    //    }
-    //}
 }
