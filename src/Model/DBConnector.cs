@@ -21,24 +21,10 @@ namespace TRPO.Model
         // Открывает соединение с базой
         public void openConnection()  
         {
-
             if ((connection != null) && (connection.State == ConnectionState.Closed))
             {
-                try//CONNECT
-                {
-                    connection.Open();
-                }
-                catch (InvalidOperationException ioe)
-                {
-                    //connection = null;
-                    throw ioe;
-                } catch (OleDbException odx)
-                {
-                    throw odx;
-                }
+                connection.Open();
             }
-
-            
         }
 
         // Закрывает соединение с базой
@@ -56,19 +42,12 @@ namespace TRPO.Model
             OleDbDataReader result = null;
             if (connection.State == ConnectionState.Open)
             {
-                try//SELECT
-                {
-                    OleDbCommand objCommand = new OleDbCommand();
-                    objCommand.CommandType = CommandType.Text;
-                    objCommand.CommandText = query;
-                    objCommand.Connection = connection;
-                    OleDbDataReader reader = objCommand.ExecuteReader();
-                    result = reader;
-                }
-                catch (OleDbException ex)
-                {
-                    throw ex;
-                }//--select
+                OleDbCommand objCommand = new OleDbCommand();
+                objCommand.CommandType = CommandType.Text;
+                objCommand.CommandText = query;
+                objCommand.Connection = connection;
+                OleDbDataReader reader = objCommand.ExecuteReader();
+                result = reader;
             }
             else
             {
