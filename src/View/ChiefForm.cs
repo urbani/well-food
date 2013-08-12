@@ -48,6 +48,11 @@ namespace TRPO.View
         {
             MessageBox.Show(msg, header);
         }
+
+        private void listView1_ItemSelectionChanged(object sender, ListViewItemSelectionChangedEventArgs e)
+        {
+            ordCookContr.updateDishInfo();
+        }
         
     }
 }

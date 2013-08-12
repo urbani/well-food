@@ -12,7 +12,6 @@ using System.Data.Common;
 using System.Collections;
 using TRPO.Controller;
 
-
 namespace TRPO.View
 {
     public partial class CourierForm : Form, IClientManagable, IOrderManagable
@@ -34,6 +33,7 @@ namespace TRPO.View
 
         public void showMsg(String msg, GlobalObj.ErrorLevels el)
         {
+
         }
 
         public void showMsg(String msg, String header)
@@ -49,25 +49,28 @@ namespace TRPO.View
                 clientManagementController.idCompanyList.Add(kv.Key);
             }
         }
-        public void setEmployList(Dictionary<int, String> employLost)
+
+        public void setEmployList(Dictionary<int, String> employList)
         {
-         foreach (KeyValuePair<int, String> kv in employLost)
-         {
-          headerList2.Items.Add(kv.Value);
-         }
+            foreach (KeyValuePair<int, String> kv in employList)
+            {
+                headerList2.Items.Add(kv.Value);
+            }
         }
+
         public int getIndexSelectedCompany()
         {
-         return headerList1.SelectedIndex;
+            return headerList1.SelectedIndex;
         }
-       public void showMenuList(){}
-       public void chowCurMenu(){}
 
-       private void headerSearchButton2_Click(object sender, EventArgs e)
-       {
-        clientManagementController.setEmployList();
-       }
-       //public void setEmployList() { }
+        public void showMenuList(){}
+        public void chowCurMenu(){}
+
+        private void headerSearchButton2_Click(object sender, EventArgs e)
+        {
+            clientManagementController.setEmployList();
+        }
+        //public void setEmployList() { }
 
     }
 }

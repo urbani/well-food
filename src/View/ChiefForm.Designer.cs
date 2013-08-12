@@ -29,11 +29,11 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ChiefForm));
-            System.Windows.Forms.ListViewItem listViewItem7 = new System.Windows.Forms.ListViewItem(new string[] {
+            System.Windows.Forms.ListViewItem listViewItem1 = new System.Windows.Forms.ListViewItem(new string[] {
             "one",
             "1"}, -1);
-            System.Windows.Forms.ListViewItem listViewItem8 = new System.Windows.Forms.ListViewItem("three");
-            System.Windows.Forms.ListViewItem listViewItem9 = new System.Windows.Forms.ListViewItem("two");
+            System.Windows.Forms.ListViewItem listViewItem2 = new System.Windows.Forms.ListViewItem("three");
+            System.Windows.Forms.ListViewItem listViewItem3 = new System.Windows.Forms.ListViewItem("two");
             this.mainTable = new System.Windows.Forms.TableLayoutPanel();
             this.headerTable = new System.Windows.Forms.TableLayoutPanel();
             this.headerLabel1 = new System.Windows.Forms.Label();
@@ -44,9 +44,16 @@
             this.headerSearchButton2 = new System.Windows.Forms.Button();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.rightBodyTabel = new System.Windows.Forms.TableLayoutPanel();
-            this.button1 = new System.Windows.Forms.Button();
             this.dishLayout = new System.Windows.Forms.TableLayoutPanel();
             this.dishLayoutHeader = new System.Windows.Forms.TableLayoutPanel();
+            this.dishPicture = new System.Windows.Forms.PictureBox();
+            this.dishName = new System.Windows.Forms.Label();
+            this.receipeLayout = new System.Windows.Forms.TableLayoutPanel();
+            this.label1 = new System.Windows.Forms.Label();
+            this.receipeText = new System.Windows.Forms.RichTextBox();
+            this.dishAddLayout = new System.Windows.Forms.TableLayoutPanel();
+            this.numericUpDown1 = new System.Windows.Forms.NumericUpDown();
+            this.button1 = new System.Windows.Forms.Button();
             this.leftBodyTable = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.listView1 = new System.Windows.Forms.ListView();
@@ -58,26 +65,19 @@
             this.tabPage3 = new System.Windows.Forms.TabPage();
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.toolStripStatusLabel = new System.Windows.Forms.ToolStripStatusLabel();
-            this.dishPicture = new System.Windows.Forms.PictureBox();
-            this.dishName = new System.Windows.Forms.Label();
-            this.receipeLayout = new System.Windows.Forms.TableLayoutPanel();
-            this.label1 = new System.Windows.Forms.Label();
-            this.dishAddLayout = new System.Windows.Forms.TableLayoutPanel();
-            this.numericUpDown1 = new System.Windows.Forms.NumericUpDown();
-            this.receipeText = new System.Windows.Forms.RichTextBox();
             this.mainTable.SuspendLayout();
             this.headerTable.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
             this.rightBodyTabel.SuspendLayout();
             this.dishLayout.SuspendLayout();
             this.dishLayoutHeader.SuspendLayout();
-            this.leftBodyTable.SuspendLayout();
-            this.tabPage1.SuspendLayout();
-            this.statusStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dishPicture)).BeginInit();
             this.receipeLayout.SuspendLayout();
             this.dishAddLayout.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).BeginInit();
+            this.leftBodyTable.SuspendLayout();
+            this.tabPage1.SuspendLayout();
+            this.statusStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
             // mainTable
@@ -219,18 +219,6 @@
             this.rightBodyTabel.Size = new System.Drawing.Size(361, 450);
             this.rightBodyTabel.TabIndex = 5;
             // 
-            // button1
-            // 
-            this.button1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.button1.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.button1.Location = new System.Drawing.Point(231, 3);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(121, 30);
-            this.button1.TabIndex = 0;
-            this.button1.Text = "Готово";
-            this.button1.UseVisualStyleBackColor = true;
-            // 
             // dishLayout
             // 
             this.dishLayout.ColumnCount = 1;
@@ -260,6 +248,113 @@
             this.dishLayoutHeader.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.dishLayoutHeader.Size = new System.Drawing.Size(349, 106);
             this.dishLayoutHeader.TabIndex = 0;
+            // 
+            // dishPicture
+            // 
+            this.dishPicture.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.dishPicture.Image = ((System.Drawing.Image)(resources.GetObject("dishPicture.Image")));
+            this.dishPicture.InitialImage = null;
+            this.dishPicture.Location = new System.Drawing.Point(3, 3);
+            this.dishPicture.Name = "dishPicture";
+            this.dishPicture.Size = new System.Drawing.Size(100, 100);
+            this.dishPicture.TabIndex = 0;
+            this.dishPicture.TabStop = false;
+            // 
+            // dishName
+            // 
+            this.dishName.AutoSize = true;
+            this.dishName.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.dishName.Location = new System.Drawing.Point(109, 0);
+            this.dishName.Name = "dishName";
+            this.dishName.Size = new System.Drawing.Size(216, 72);
+            this.dishName.TabIndex = 1;
+            this.dishName.Text = "Борщ по-пацански. Подавать с семками в подогретой барсетке";
+            // 
+            // receipeLayout
+            // 
+            this.receipeLayout.ColumnCount = 1;
+            this.receipeLayout.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.receipeLayout.Controls.Add(this.label1, 0, 0);
+            this.receipeLayout.Controls.Add(this.receipeText, 0, 1);
+            this.receipeLayout.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.receipeLayout.Location = new System.Drawing.Point(3, 115);
+            this.receipeLayout.Name = "receipeLayout";
+            this.receipeLayout.RowCount = 2;
+            this.receipeLayout.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 22F));
+            this.receipeLayout.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.receipeLayout.Size = new System.Drawing.Size(349, 284);
+            this.receipeLayout.TabIndex = 1;
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.label1.Location = new System.Drawing.Point(3, 0);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(61, 18);
+            this.label1.TabIndex = 0;
+            this.label1.Text = "Рецепт:";
+            // 
+            // receipeText
+            // 
+            this.receipeText.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.receipeText.Location = new System.Drawing.Point(3, 25);
+            this.receipeText.Name = "receipeText";
+            this.receipeText.Size = new System.Drawing.Size(343, 256);
+            this.receipeText.TabIndex = 1;
+            this.receipeText.Text = resources.GetString("receipeText.Text");
+            // 
+            // dishAddLayout
+            // 
+            this.dishAddLayout.ColumnCount = 2;
+            this.dishAddLayout.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.dishAddLayout.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 127F));
+            this.dishAddLayout.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+            this.dishAddLayout.Controls.Add(this.numericUpDown1, 0, 0);
+            this.dishAddLayout.Controls.Add(this.button1, 1, 0);
+            this.dishAddLayout.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.dishAddLayout.Location = new System.Drawing.Point(3, 411);
+            this.dishAddLayout.Name = "dishAddLayout";
+            this.dishAddLayout.RowCount = 1;
+            this.dishAddLayout.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.dishAddLayout.Size = new System.Drawing.Size(355, 36);
+            this.dishAddLayout.TabIndex = 2;
+            // 
+            // numericUpDown1
+            // 
+            this.numericUpDown1.Dock = System.Windows.Forms.DockStyle.Right;
+            this.numericUpDown1.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.numericUpDown1.Location = new System.Drawing.Point(163, 3);
+            this.numericUpDown1.Maximum = new decimal(new int[] {
+            9999,
+            0,
+            0,
+            0});
+            this.numericUpDown1.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            this.numericUpDown1.Name = "numericUpDown1";
+            this.numericUpDown1.Size = new System.Drawing.Size(62, 30);
+            this.numericUpDown1.TabIndex = 1;
+            this.numericUpDown1.Value = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            // 
+            // button1
+            // 
+            this.button1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.button1.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.button1.Location = new System.Drawing.Point(231, 3);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(121, 30);
+            this.button1.TabIndex = 0;
+            this.button1.Text = "Готово";
+            this.button1.UseVisualStyleBackColor = true;
             // 
             // leftBodyTable
             // 
@@ -298,9 +393,9 @@
             this.listView1.FullRowSelect = true;
             this.listView1.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.Nonclickable;
             this.listView1.Items.AddRange(new System.Windows.Forms.ListViewItem[] {
-            listViewItem7,
-            listViewItem8,
-            listViewItem9});
+            listViewItem1,
+            listViewItem2,
+            listViewItem3});
             this.listView1.Location = new System.Drawing.Point(3, 3);
             this.listView1.Name = "listView1";
             this.listView1.Size = new System.Drawing.Size(347, 415);
@@ -308,6 +403,7 @@
             this.listView1.TabIndex = 0;
             this.listView1.UseCompatibleStateImageBehavior = false;
             this.listView1.View = System.Windows.Forms.View.Details;
+            this.listView1.ItemSelectionChanged += new System.Windows.Forms.ListViewItemSelectionChangedEventHandler(this.listView1_ItemSelectionChanged);
             // 
             // columnHeader1
             // 
@@ -367,101 +463,6 @@
             this.toolStripStatusLabel.Text = "Error Text";
             this.toolStripStatusLabel.Visible = false;
             // 
-            // dishPicture
-            // 
-            this.dishPicture.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.dishPicture.Image = ((System.Drawing.Image)(resources.GetObject("dishPicture.Image")));
-            this.dishPicture.InitialImage = null;
-            this.dishPicture.Location = new System.Drawing.Point(3, 3);
-            this.dishPicture.Name = "dishPicture";
-            this.dishPicture.Size = new System.Drawing.Size(100, 100);
-            this.dishPicture.TabIndex = 0;
-            this.dishPicture.TabStop = false;
-            // 
-            // dishName
-            // 
-            this.dishName.AutoSize = true;
-            this.dishName.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.dishName.Location = new System.Drawing.Point(109, 0);
-            this.dishName.Name = "dishName";
-            this.dishName.Size = new System.Drawing.Size(216, 72);
-            this.dishName.TabIndex = 1;
-            this.dishName.Text = "Борщ по-пацански. Подавать с семками в подогретой барсетке";
-            // 
-            // receipeLayout
-            // 
-            this.receipeLayout.ColumnCount = 1;
-            this.receipeLayout.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.receipeLayout.Controls.Add(this.label1, 0, 0);
-            this.receipeLayout.Controls.Add(this.receipeText, 0, 1);
-            this.receipeLayout.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.receipeLayout.Location = new System.Drawing.Point(3, 115);
-            this.receipeLayout.Name = "receipeLayout";
-            this.receipeLayout.RowCount = 2;
-            this.receipeLayout.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 22F));
-            this.receipeLayout.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.receipeLayout.Size = new System.Drawing.Size(349, 284);
-            this.receipeLayout.TabIndex = 1;
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label1.Location = new System.Drawing.Point(3, 0);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(61, 18);
-            this.label1.TabIndex = 0;
-            this.label1.Text = "Рецепт:";
-            // 
-            // dishAddLayout
-            // 
-            this.dishAddLayout.ColumnCount = 2;
-            this.dishAddLayout.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.dishAddLayout.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 127F));
-            this.dishAddLayout.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.dishAddLayout.Controls.Add(this.numericUpDown1, 0, 0);
-            this.dishAddLayout.Controls.Add(this.button1, 1, 0);
-            this.dishAddLayout.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.dishAddLayout.Location = new System.Drawing.Point(3, 411);
-            this.dishAddLayout.Name = "dishAddLayout";
-            this.dishAddLayout.RowCount = 1;
-            this.dishAddLayout.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.dishAddLayout.Size = new System.Drawing.Size(355, 36);
-            this.dishAddLayout.TabIndex = 2;
-            // 
-            // numericUpDown1
-            // 
-            this.numericUpDown1.Dock = System.Windows.Forms.DockStyle.Right;
-            this.numericUpDown1.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.numericUpDown1.Location = new System.Drawing.Point(163, 3);
-            this.numericUpDown1.Maximum = new decimal(new int[] {
-            9999,
-            0,
-            0,
-            0});
-            this.numericUpDown1.Minimum = new decimal(new int[] {
-            1,
-            0,
-            0,
-            0});
-            this.numericUpDown1.Name = "numericUpDown1";
-            this.numericUpDown1.Size = new System.Drawing.Size(62, 30);
-            this.numericUpDown1.TabIndex = 1;
-            this.numericUpDown1.Value = new decimal(new int[] {
-            1,
-            0,
-            0,
-            0});
-            // 
-            // receipeText
-            // 
-            this.receipeText.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.receipeText.Location = new System.Drawing.Point(3, 25);
-            this.receipeText.Name = "receipeText";
-            this.receipeText.Size = new System.Drawing.Size(343, 256);
-            this.receipeText.TabIndex = 1;
-            this.receipeText.Text = resources.GetString("receipeText.Text");
-            // 
             // ChiefForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -480,15 +481,15 @@
             this.dishLayout.ResumeLayout(false);
             this.dishLayoutHeader.ResumeLayout(false);
             this.dishLayoutHeader.PerformLayout();
-            this.leftBodyTable.ResumeLayout(false);
-            this.tabPage1.ResumeLayout(false);
-            this.statusStrip1.ResumeLayout(false);
-            this.statusStrip1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dishPicture)).EndInit();
             this.receipeLayout.ResumeLayout(false);
             this.receipeLayout.PerformLayout();
             this.dishAddLayout.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).EndInit();
+            this.leftBodyTable.ResumeLayout(false);
+            this.tabPage1.ResumeLayout(false);
+            this.statusStrip1.ResumeLayout(false);
+            this.statusStrip1.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 

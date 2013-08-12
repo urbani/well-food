@@ -14,25 +14,23 @@ namespace TRPO.Model
 
         public DBConnector()
         {
-            
+            String connStr = String.Format(m_CONN_STR, Properties.Settings.Default.db_path);
+            connection = new OleDbConnection(connStr);
         }
 
         // Открывает соединение с базой
         public void openConnection()  
         {
-            if (connection == null)
+
+            if ((connection != null) && (connection.State == ConnectionState.Closed))
             {
                 try//CONNECT
                 {
-                    string connStr = string.Format(m_CONN_STR, Properties.Settings.Default.db_path);
-
-                    connection = new OleDbConnection(connStr);
-
                     connection.Open();
                 }
                 catch (InvalidOperationException ioe)
                 {
-                    connection = null;
+                    //connection = null;
                     throw ioe;
                 } catch (OleDbException odx)
                 {
@@ -46,7 +44,7 @@ namespace TRPO.Model
         // Закрывает соединение с базой
         public void closeConnection()
         {
-            if (connection != null)
+            if ((connection != null) && (connection.State != ConnectionState.Closed))
             {
                 connection.Close();
             }
@@ -56,31 +54,25 @@ namespace TRPO.Model
         public OleDbDataReader executeQuery(String query)
         {
             OleDbDataReader result = null;
-            if (connection != null)
-            {   
+            if (connection.State == ConnectionState.Open)
+            {
                 try//SELECT
                 {
-
                     OleDbCommand objCommand = new OleDbCommand();
                     objCommand.CommandType = CommandType.Text;
                     objCommand.CommandText = query;
                     objCommand.Connection = connection;
                     OleDbDataReader reader = objCommand.ExecuteReader();
                     result = reader;
-
-                   /* if (reader.Read())
-                    {
-                        result = reader;
-                        // result = reader[0].ToString();
-                    }
-                    */
-                    
                 }
                 catch (OleDbException ex)
                 {
                     throw ex;
-                    //MessageBox.Show(ex.Message);
                 }//--select
+            }
+            else
+            {
+                System.Diagnostics.Debug.WriteLine("WARNING! Попытка выполнения запроса при отстутствии открытого соединения с базой.");
             }
             return result;
         }
