@@ -65,7 +65,7 @@ namespace TRPO.View
 
        private void headerSearchButton2_Click(object sender, EventArgs e)
        {
-        clientManagementController.setEmployList();
+        clientManagementController.fielEmployList();
        }
        //public void setEmployList() { }
 

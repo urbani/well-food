@@ -48,6 +48,11 @@ namespace TRPO.Model
            Dictionary<int, String> result = new Dictionary<int, string>();
            connector.openConnection();
            OleDbDataReader reader = connector.executeQuery("SELECT e.ID_Emp, e.Surname, e.Name_Emp, e.Patronymic FROM Employee AS e WHERE e.Company=" + id.ToString());
+           while (reader.Read())
+           {
+
+               result.Add(Convert.ToInt32(reader[0]), reader[1].ToString());
+           }
 
            connector.closeConnection();
 

@@ -21,15 +21,15 @@ namespace TRPO.Controller
             clientManager = new ClientManager();
         }
 
-     public void setEmployList()
+     public void fielEmployList()
      {
-             try
-            {
-             view.setEmployList(clientManager.getEmployers(idCompanyList[view.getIndexSelectedCompany()]));
-            }
-            catch (ArgumentOutOfRangeException)
-            { }
-      return;
+         try
+        {
+            view.setEmployList(clientManager.getEmployers(idCompanyList[view.getIndexSelectedCompany()]));
+        }
+        catch (ArgumentOutOfRangeException)
+        { }
+        return;
      }
 
         //начальное заполнение формы данными
@@ -42,10 +42,13 @@ namespace TRPO.Controller
             
             
         }
-
-        public void addForm(IClientManagable c)
+        /// <summary>
+        /// задает форму, к которой в последствии обращается котроллер
+        /// </summary>
+        /// <param name="c"></param>
+        public void addForm(IClientManagable CourierWinForm)
         {
-            view = c;
+            view = CourierWinForm;
         }
 
     }
