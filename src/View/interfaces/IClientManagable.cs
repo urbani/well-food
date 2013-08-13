@@ -9,12 +9,12 @@ namespace TRPO.View
     {
 
         /// <summary>
-        /// задает список компаний из Входящего словаря в выподающий список формы
+        /// сообщает списку компаний, что источник данных обновился
         /// </summary>
         /// <param name="companyList"></param>
          void updateCompanyList();//Dictionary<int, String> companyList
         /// <summary>
-        /// задает список сотрудников из Входящего словаря в выподающий список формы
+        /// сообщает списку сотрудников, что источник данных обновился
         /// </summary>
         /// <param name="employList"></param>
          void updateEmployList();
@@ -23,7 +23,7 @@ namespace TRPO.View
 
 
      /// <summary>
-     /// возвращает id текущей компании, если не чего не выбрано, то -1
+     /// возвращает id текущей компании, если не чего не выбрано, то кидает исключение
      /// </summary>
      /// <returns></returns>
      int getIndexSelectedCompany();

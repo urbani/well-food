@@ -53,6 +53,11 @@ namespace TRPO.View
         {
             ordCookContr.updateDishInfo();
         }
+
+        private void listView1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
         
     }
 }

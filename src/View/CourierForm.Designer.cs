@@ -45,11 +45,15 @@
             this.tabPage2 = new System.Windows.Forms.TabPage();
             this.tabPage3 = new System.Windows.Forms.TabPage();
             this.statusStrip = new System.Windows.Forms.StatusStrip();
+            this.listView1 = new System.Windows.Forms.ListView();
+            this.Dishe = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.price = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.mainTable.SuspendLayout();
             this.headerTable.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
             this.rightBodyTabel.SuspendLayout();
             this.leftBodyTable.SuspendLayout();
+            this.tabPage1.SuspendLayout();
             this.SuspendLayout();
             // 
             // mainTable
@@ -217,6 +221,7 @@
             // 
             // tabPage1
             // 
+            this.tabPage1.Controls.Add(this.listView1);
             this.tabPage1.Location = new System.Drawing.Point(4, 33);
             this.tabPage1.Name = "tabPage1";
             this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
@@ -252,6 +257,26 @@
             this.statusStrip.TabIndex = 1;
             this.statusStrip.Text = "statusStrip1";
             // 
+            // listView1
+            // 
+            this.listView1.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.Dishe,
+            this.price});
+            this.listView1.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.Nonclickable;
+            this.listView1.Location = new System.Drawing.Point(8, 6);
+            this.listView1.Name = "listView1";
+            this.listView1.Size = new System.Drawing.Size(352, 359);
+            this.listView1.TabIndex = 0;
+            this.listView1.UseCompatibleStateImageBehavior = false;
+            // 
+            // Dishe
+            // 
+            this.Dishe.Text = "Блюдо";
+            // 
+            // price
+            // 
+            this.price.Text = "Цена";
+            // 
             // CourierForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -268,6 +293,7 @@
             this.tableLayoutPanel1.ResumeLayout(false);
             this.rightBodyTabel.ResumeLayout(false);
             this.leftBodyTable.ResumeLayout(false);
+            this.tabPage1.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -297,5 +323,8 @@
         protected System.Windows.Forms.TabPage tabPage2;
         protected System.Windows.Forms.TableLayoutPanel rightBodyTabel;
         private System.Windows.Forms.TabPage tabPage3;
+        private System.Windows.Forms.ListView listView1;
+        public System.Windows.Forms.ColumnHeader Dishe;
+        private System.Windows.Forms.ColumnHeader price;
     }
 }

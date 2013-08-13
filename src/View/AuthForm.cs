@@ -73,6 +73,7 @@ namespace TRPO.View
         private void enterButton_Click(object sender, EventArgs e) //Нажатие кнопки 
         {
             loginController.Login();
+            
         }
 
         private void passTextBox_KeyDown(object sender, KeyEventArgs e)
