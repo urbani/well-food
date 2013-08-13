@@ -35,5 +35,25 @@ namespace TRPO.Model
             connector.closeConnection();
             return list;
         }
+        public List<CourierListEntry> getActiveMenu()
+        {
+            List<CourierListEntry> resultList = new List<CourierListEntry>();
+            CourierListEntry tmpDish = new CourierListEntry();
+            connector.openConnection();
+            //TODO сделать в sql вычесление цены продукта (% * себесстоимость (с учетом, того сколько продуката в блюде)
+            OleDbDataReader reader = connector.executeQuery("SELECT d.ID_Dish, d.Name_Dish, d.");
+
+            while (reader.Read())
+            {
+                tmpDish.id = Convert.ToInt32(reader[0]);
+                tmpDish.dishe = reader[1].ToString(); 
+                tmpDish.price = Convert.ToInt32(reader[2]);
+
+                resultList.Add(tmpDish);
+            }
+
+            connector.closeConnection();
+            return resultList;
+        }
     }
 }

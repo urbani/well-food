@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using TRPO.View;
 using TRPO.Model;
+using TRPO.GlobalObj;
 using System.Windows.Forms;
 
 namespace TRPO.Controller
@@ -76,6 +77,12 @@ namespace TRPO.Controller
             view = c;
         }
 
+
+
+
+
     }
+
+
 
 }

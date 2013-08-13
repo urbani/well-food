@@ -11,6 +11,7 @@ using System.Data.OleDb;
 using System.Data.Common;
 using System.Collections;
 using TRPO.Controller;
+using TRPO.GlobalObj;
 
 namespace TRPO.View
 {
@@ -74,15 +75,34 @@ namespace TRPO.View
             clientManagementController.fillEmployList();
             
         }
+
+        public void updateCompanyList()
+        {
+            headerList1.DataSource = null;
+            headerList1.DataSource = clientManagementController.employList;
+        }
+
         public void updateEmployList()
         {
             headerList2.DataSource = null;
             headerList2.DataSource = clientManagementController.employList;
         }
-        public void updateCompanyList()
+
+
+
+        public void updateMenuList(List<CourierListEntry> listDishes)
         {
-            headerList1.DataSource = null;
-            headerList1.DataSource = clientManagementController.employList;
+            menuList.Items.Clear();
+          
+            String[] rawSting;
+
+
+            foreach (CourierListEntry dishWithPrice in listDishes)
+            {
+                rawSting = new String[] { dishWithPrice.dishe, dishWithPrice.price.ToString() };
+                ListViewItem tmp = new ListViewItem(rawSting);
+                menuList.Items.Add(tmp);
+            }
         }
 
 
