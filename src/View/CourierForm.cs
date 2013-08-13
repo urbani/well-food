@@ -18,7 +18,6 @@ namespace TRPO.View
     {
         ClientManagementConroller clientManagementController;
         OrdersConroller ordersController;
-        CurrencyManager currencyManager;
         public CourierForm(ClientManagementConroller cmc, OrdersConroller oc)
         {
             InitializeComponent();
@@ -27,16 +26,15 @@ namespace TRPO.View
             ordersController = oc;
             ordersController.addForm(this);
             clientManagementController.fillCompanyList();
-
-            headerList1.DataSource = clientManagementController.companyList;
             
+            //включаем автозаполнение и подключаем источник данных
+            headerList1.DataSource = clientManagementController.companyList;  
             headerList1.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
             headerList1.AutoCompleteSource = AutoCompleteSource.ListItems;
 
             headerList2.DataSource = clientManagementController.employList;
             headerList2.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
             headerList2.AutoCompleteSource = AutoCompleteSource.ListItems;
-            currencyManager = (CurrencyManager)BindingContext[headerList2.DataSource]; 
 
             
         
@@ -45,7 +43,7 @@ namespace TRPO.View
 
         public void showMsg(String msg, GlobalObj.ErrorLevels el)
         {
-             
+            //throw ("не умею");
         }
 
         public void showMsg(String msg, String header)
@@ -69,43 +67,31 @@ namespace TRPO.View
             clientManagementController.fillEmployList();
         }
 
-        private void s(object sender, EventArgs e)
-        {
 
-        }
-
-        private void headerList2_EnabledChanged(object sender, EventArgs e)
-        {
-            
-        }
-
-        private void headerList2_MouseClick(object sender, MouseEventArgs e)
-        {
-            
-        }
 
         private void headerList1_SelectedIndexChanged(object sender, EventArgs e)
         {
             clientManagementController.fillEmployList();
             
         }
-        public object getCompanyList()
+        public void updateEmployList()
         {
-            return headerList1.Items;
-        }
-        public void getEmployList()
-        {
-
-            //headerList2.DataSource = null;
-            //headerList2.DataSource = clientManagementController.employList;
-           // headerList2.Items.Clear();
+            headerList2.DataSource = null;
             headerList2.DataSource = clientManagementController.employList;
-
-
-           
-
+        }
+        public void updateCompanyList()
+        {
+            headerList1.DataSource = null;
+            headerList1.DataSource = clientManagementController.employList;
         }
 
+
+        private void s(object sender, EventArgs e)
+        {}
+        private void headerList2_EnabledChanged(object sender, EventArgs e)
+        {}
+        private void headerList2_MouseClick(object sender, MouseEventArgs e)
+        {}
 
     }
 

@@ -33,7 +33,8 @@ namespace TRPO.Controller
 
         public void fillEmployList()
         {
-            view.getEmployList();
+            
+            
             employIds.Clear();
             employList.Clear();
             Dictionary<int, String> rawData;
@@ -46,14 +47,14 @@ namespace TRPO.Controller
                 ptr++;
 
             }
-
+            view.updateEmployList();
 
         }
 
         //начальное заполнение формы данными
         public void fillCompanyList()
         {
-            view.getEmployList();
+            
             
             employIds.Clear();
             employList.Clear();
