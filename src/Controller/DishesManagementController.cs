@@ -9,7 +9,7 @@ namespace TRPO.Controller
 {
     public class DishesManagementController
     {
-        IDishViewable view;
+        IDishManagable view;
         User user;
         DishesManager dishesManager;
 
@@ -19,7 +19,7 @@ namespace TRPO.Controller
             dishesManager = new DishesManager();
         }
 
-        public void setForm(IDishViewable f)
+        public void setForm(IDishManagable f)
         {
             view = f;
         }
@@ -28,6 +28,18 @@ namespace TRPO.Controller
         {
             Dish tmpDish = dishesManager.getDish(view.getSelectedDishName());
             view.setDishInfo(tmpDish.Name, tmpDish.DishType, tmpDish.LinkToPhoto, tmpDish.Recipe);
+        }
+
+        public void addReadyDishes()
+        {
+            int readyDishes = view.getReayDishesAmount();
+            String readyDish = view.getSelectedDishName();
+            int changes = dishesManager.addReadyDishes(readyDish, readyDishes);
+
+            if (changes < 0)
+            {
+                System.Diagnostics.Debug.WriteLine("WARNING! При добавлении готовых продуктов поля в базе не изменились!");
+            }
         }
     }
 }

@@ -35,6 +35,7 @@ namespace TRPO.Model
 
                 result.Add(Convert.ToInt32(reader[0]), reader[1].ToString());
             }
+            reader.Close();
             connector.closeConnection();
             return result;
         }
@@ -53,6 +54,7 @@ namespace TRPO.Model
             {
                 result.Add(Convert.ToInt32(reader[0]), reader[1].ToString() + " " + reader[2].ToString() + " " + reader[3].ToString());
             }
+            reader.Close();
 
             connector.closeConnection();
 

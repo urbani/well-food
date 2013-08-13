@@ -40,6 +40,7 @@ namespace TRPO.Model
             {
                 authenticated = password.Equals(reader[0].ToString());//true если пароль в базе такой же как введенный пользователем пароль
             }
+            reader.Close();
             connector.closeConnection();
 
             updateInformation();
@@ -82,6 +83,7 @@ namespace TRPO.Model
 
                    // Console.WriteLine("" + id + " " + name + " " + surname + " " + patronymic + " " + linkToPhoto + " " + role);
                 }
+                reader.Close();
             } else
             {
                 id = -1;

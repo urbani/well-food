@@ -15,7 +15,7 @@ using System.IO;
 
 namespace TRPO.View
 {
-    public partial class ChiefForm : Form, IOrderViewable, IDishViewable
+    public partial class ChiefForm : Form, IOrderViewable, IDishManagable
     {
         OrderCookController ordCookContr;
         DishesManagementController dishesManagementContr;
@@ -28,10 +28,16 @@ namespace TRPO.View
         }
 
         public void updateOrderList(List<ChiefListEntry> list)
-        {
+        {//TODO: отладить изменение количества элементов в заказе
+            int selectedItem = 0;
+            if (listView1.SelectedIndices.Count > 0)
+            {
+                selectedItem = listView1.SelectedIndices[0];
+            }
+
             listView1.Items.Clear();
             String[] s;
-            
+
 
             foreach (ChiefListEntry entry in list)
             {
@@ -40,9 +46,14 @@ namespace TRPO.View
                 listView1.Items.Add(tmp);
             }
 
-            if (listView1.Items.Count > 0) 
+            if (!listView1.Focused || listView1.SelectedItems.Count <= 0)
             {
-                listView1.Items[0].Selected = true;
+                if (listView1.Items.Count <= selectedItem)
+                {
+                    selectedItem = listView1.Items.Count - 1;
+                }
+                this.listView1.Focus();
+                this.listView1.Items[selectedItem].Selected = true;
             }
         }
 
@@ -81,7 +92,6 @@ namespace TRPO.View
             catch (FileNotFoundException ex)
             {
                 dishPicture.Image = null;
-                System.Diagnostics.Debug.WriteLine("WARNING! File with image:" + linkToPh + " of the dish: " + name + " not found!");
             }
         }
 
@@ -94,6 +104,16 @@ namespace TRPO.View
         {
 
         }
-        
+
+        private void readyButton_Click(object sender, EventArgs e)
+        {
+            dishesManagementContr.addReadyDishes();
+            ordCookContr.updateOrderList();
+        }
+
+        public int getReayDishesAmount()
+        {
+            return Convert.ToInt32(readyDishesAmount.Value);
+        }
     }
 }

@@ -40,7 +40,7 @@ namespace TRPO.Model
         public OleDbDataReader executeQuery(String query)
         {
             OleDbDataReader result = null;
-            if (connection.State == ConnectionState.Open)
+            if (connection != null && connection.State == ConnectionState.Open)
             {
                 OleDbCommand objCommand = new OleDbCommand();
                 objCommand.CommandType = CommandType.Text;
@@ -55,6 +55,31 @@ namespace TRPO.Model
             }
             return result;
         }
-        
+
+        //Выполняет UPDATE\DELETE\INSERT. Возвращает количество измененных строк
+        public int executeNonQuery(String query)
+        {
+            int res = 0;
+            if (connection != null && connection.State == ConnectionState.Open)
+            {
+                try
+                {
+                    OleDbCommand objCommand = new OleDbCommand();
+                    objCommand.CommandType = CommandType.Text;
+                    objCommand.CommandText = query;
+                    objCommand.Connection = connection;
+                    res = objCommand.ExecuteNonQuery();
+                }
+                catch (Exception ex)
+                {
+                    System.Diagnostics.Debug.WriteLine("WARNING! Ошибка при выполнении запроса: " + query + ".\n Original error: " + ex.ToString());
+                }
+            }
+            else
+            {
+                System.Diagnostics.Debug.WriteLine("WARNING! Попытка выполнения запроса при отстутствии открытого соединения с базой.");
+            }
+            return res;
+        }
     }
 }

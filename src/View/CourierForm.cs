@@ -23,9 +23,9 @@ namespace TRPO.View
         {
             InitializeComponent();
             clientManagementController = cmc;
-            clientManagementController.addForm(this);
+            //clientManagementController.addForm(this);
             ordersController = oc;
-            ordersController.addForm(this);
+            //ordersController.addForm(this);
             clientManagementController.fillCompList();
         
             //headerList1.Items.Add("Кот котофей");

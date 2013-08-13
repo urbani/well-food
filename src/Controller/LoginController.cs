@@ -66,7 +66,6 @@ namespace TRPO.Controller
                         authView.hideForm();
                         break;
                     case (Roles.Courier):
-
                         ClientManagementConroller cmc = new ClientManagementConroller(user);
                         OrdersConroller oc = new OrdersConroller(user);
                         CourierForm cf = new CourierForm(cmc, oc);
