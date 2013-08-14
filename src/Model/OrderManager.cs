@@ -61,13 +61,14 @@ namespace TRPO.Model
 	                                                                ) AS prices
                                                                 ON 
 	                                                                di.ID_Dish = prices.ID_Dish");
-
+            float percent;
             while (reader.Read())
             {
                 tmpDish.id = Convert.ToInt32(reader[0]);
                 tmpDish.dish = reader[1].ToString(); 
                 //себес * %
-                tmpDish.price = Convert.ToInt32(reader[2]) * ( Convert.ToInt32(reader[3]) / 100);
+                tmpDish.price = Convert.ToSingle(reader[2]) * (Convert.ToSingle(reader[3]) / 100);
+
 
                 resultList.Add(tmpDish);
             }

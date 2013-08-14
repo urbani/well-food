@@ -10,7 +10,7 @@ namespace TRPO.Structures
         
         public int id;
         public String dish;
-        public int price;
+        public float price;
 
 
         public CourierListEntry(int i, String d, int p)
