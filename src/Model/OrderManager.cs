@@ -46,7 +46,7 @@ namespace TRPO.Model
             while (reader.Read())
             {
                 tmpDish.id = Convert.ToInt32(reader[0]);
-                tmpDish.dishe = reader[1].ToString(); 
+                tmpDish.dish = reader[1].ToString(); 
                 tmpDish.price = Convert.ToInt32(reader[2]);
 
                 resultList.Add(tmpDish);

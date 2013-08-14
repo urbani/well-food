@@ -11,7 +11,7 @@ using System.Data.OleDb;
 using System.Data.Common;
 using System.Collections;
 using TRPO.Controller;
-using TRPO.GlobalObj;
+using TRPO.Structures;
 
 namespace TRPO.View
 {
@@ -99,7 +99,7 @@ namespace TRPO.View
 
             foreach (CourierListEntry dishWithPrice in listDishes)
             {
-                rawSting = new String[] { dishWithPrice.dishe, dishWithPrice.price.ToString() };
+                rawSting = new String[] { dishWithPrice.dish, dishWithPrice.price.ToString() };
                 ListViewItem tmp = new ListViewItem(rawSting);
                 menuList.Items.Add(tmp);
             }

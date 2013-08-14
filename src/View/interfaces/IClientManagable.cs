@@ -22,10 +22,10 @@ namespace TRPO.View
         //void clearEmployList();
 
 
-     /// <summary>
-     /// возвращает id текущей компании, если не чего не выбрано, то кидает исключение
-     /// </summary>
-     /// <returns></returns>
-     int getIndexSelectedCompany();
+         /// <summary>
+         /// возвращает id текущей компании, если не чего не выбрано, то кидает исключение
+         /// </summary>
+         /// <returns></returns>
+         int getIndexSelectedCompany();
     }
 }
