@@ -41,13 +41,33 @@ namespace TRPO.Model
             CourierListEntry tmpDish = new CourierListEntry();
             connector.openConnection();
             //TODO сделать в sql вычесление цены продукта (% * себесстоимость (с учетом, того сколько продуката в блюде)
-            OleDbDataReader reader = connector.executeQuery("SELECT d.ID_Dish, d.Name_Dish, d.");
+            OleDbDataReader reader = connector.executeQuery(@"SELECT 
+	                                                                di.ID_Dish, di.Name_Dish, prices.Price, di.Percent 
+                                                                FROM 
+	                                                                Dishes AS di 
+                                                                INNER JOIN
+	                                                                (
+		                                                                SELECT 
+			                                                                pd.ID_Dish, 
+			                                                                SUM(pd.Product_Count * pr.Price) AS Price 
+		                                                                FROM 
+			                                                                Products_Dishes pd 
+		                                                                INNER JOIN 
+			                                                                Products pr 
+		                                                                ON 
+			                                                                pd.ID_Prod = pr.ID_Prod 
+		                                                                GROUP BY 
+			                                                                pd.ID_Dish
+	                                                                ) AS prices
+                                                                ON 
+	                                                                di.ID_Dish = prices.ID_Dish");
 
             while (reader.Read())
             {
                 tmpDish.id = Convert.ToInt32(reader[0]);
                 tmpDish.dish = reader[1].ToString(); 
-                tmpDish.price = Convert.ToInt32(reader[2]);
+                //себес * %
+                tmpDish.price = Convert.ToInt32(reader[2]) * ( Convert.ToInt32(reader[3]) / 100);
 
                 resultList.Add(tmpDish);
             }

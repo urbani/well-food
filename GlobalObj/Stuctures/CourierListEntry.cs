@@ -12,11 +12,13 @@ namespace TRPO.Structures
         public String dish;
         public int price;
 
+
         public CourierListEntry(int i, String d, int p)
         {
             id = i;
             dish = d;
             price = p;
+
         }
     }
 }

@@ -36,6 +36,7 @@ namespace TRPO.View
             headerList2.DataSource = clientManagementController.employList;
             headerList2.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
             headerList2.AutoCompleteSource = AutoCompleteSource.ListItems;
+            ordersController.updateActiveMenu();
 
             
         
@@ -61,7 +62,7 @@ namespace TRPO.View
         }
 
         public void showMenuList(){}
-        public void chowCurMenu(){}
+        public void showCurMenu(){}
 
         private void headerSearchButton2_Click(object sender, EventArgs e)
         {
