@@ -32,13 +32,12 @@ namespace TRPO.Controller
 
         public void addReadyDishes()
         {
-            int readyDishes = view.getReayDishesAmount();
+            int readyDishes = view.getReadyDishesAmount();
             String readyDish = view.getSelectedDishName();
-            int changes = dishesManager.addReadyDishes(readyDish, readyDishes);
-
-            if (changes < 0)
+            int redundantDishes = dishesManager.addReadyDishes(readyDish, readyDishes);
+            if (redundantDishes > 0)
             {
-                System.Diagnostics.Debug.WriteLine("WARNING! При добавлении готовых продуктов поля в базе не изменились!");
+                view.showMsg("Все заказы на " + readyDish + " закрыты. Осталось неучтенных блюд: [" + readyDish + " : " + redundantDishes + "шт.]", GlobalObj.ErrorLevels.Info);
             }
         }
     }
