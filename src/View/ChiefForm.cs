@@ -10,7 +10,7 @@ using System.Data.OleDb;
 using System.Data.Common;
 using System.Collections;
 using TRPO.Controller;
-using TRPO.GlobalObj;
+using TRPO.Structures;
 using System.IO;
 
 namespace TRPO.View

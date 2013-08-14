@@ -7,6 +7,6 @@ namespace TRPO.View
 {
     public interface IOrderViewable : IInterractable
     {
-        void updateOrderList(List<TRPO.GlobalObj.ChiefListEntry> list);
+        void updateOrderList(List<TRPO.Structures.ChiefListEntry> list);
     }
 }

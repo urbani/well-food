@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using TRPO.GlobalObj;
+using TRPO.Structures;
 using System.Data.OleDb;
 
 namespace TRPO.Model
