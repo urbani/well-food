@@ -56,6 +56,7 @@ namespace TRPO.Model
             return result;
         }
 
+        //возвращает число оставшихся блюд
         public int addReadyDishes(String dishName, int amount)
         {
             if ((dishName == "") || (amount <= 0)) 
@@ -71,7 +72,7 @@ namespace TRPO.Model
             int dishesToCookInOrder = -1;
             int dishesReadyInOrder = -1;
             int dishesToCookInOrderLeft = -1;
-            int rowsChanged = -1;
+            int rowsChanged = 0;
             while (amount > 0)
             {
                 reader = connector.executeQuery("SELECT TOP 1 d.ID_Dish, do.ID_Order, do.Dish_Count, do.Ready_Count FROM Dishes d INNER JOIN Dishes_Order do ON d.ID_Dish = do.ID_Dish WHERE do.Dish_Count > do.Ready_Count AND d.Name_Dish = \"" + dishName + "\"");
@@ -83,24 +84,28 @@ namespace TRPO.Model
                     dishesReadyInOrder = Convert.ToInt32(reader[3]);
                     dishesToCookInOrderLeft = dishesToCookInOrder - dishesReadyInOrder;
                 }
+                else
+                {
+                    return amount;
+                }
                 reader.Close(); 
 
                 if (amount >= dishesToCookInOrderLeft)
                 {
-                    rowsChanged = connector.executeNonQuery("UPDATE Dishes_Order AS do SET do.Ready_Count = " + dishesToCookInOrder + " WHERE do.ID_Order = " + currentOrder + "AND do.ID_Dish = " + currentDish);
+                    rowsChanged += connector.executeNonQuery("UPDATE Dishes_Order AS do SET do.Ready_Count = " + dishesToCookInOrder + " WHERE do.ID_Order = " + currentOrder + "AND do.ID_Dish = " + currentDish);
                     amount -= dishesToCookInOrderLeft;
                 }
                 else
                 {
-                    rowsChanged = connector.executeNonQuery("UPDATE Dishes_Order AS do SET do.Ready_Count = " + (amount + dishesReadyInOrder) + " WHERE do.ID_Order = " + currentOrder + "AND do.ID_Dish = " + currentDish);
+                    rowsChanged += connector.executeNonQuery("UPDATE Dishes_Order AS do SET do.Ready_Count = " + (amount + dishesReadyInOrder) + " WHERE do.ID_Order = " + currentOrder + "AND do.ID_Dish = " + currentDish);
                     amount = 0;
                 }
 
             }
                      
             connector.closeConnection();
-            
-            return rowsChanged;
+
+            return amount;
         }
     }
 }

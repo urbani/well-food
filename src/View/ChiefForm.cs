@@ -25,6 +25,7 @@ namespace TRPO.View
             InitializeComponent();
             ordCookContr = occ;
             dishesManagementContr = dmc;
+            setDishInfo("", "", "", "");
         }
 
         public void updateOrderList(List<ChiefListEntry> list)
@@ -46,7 +47,7 @@ namespace TRPO.View
                 listView1.Items.Add(tmp);
             }
 
-            if (!listView1.Focused || listView1.SelectedItems.Count <= 0)
+            if ((listView1.Items.Count > 0) &&(!listView1.Focused || listView1.SelectedItems.Count <= 0))
             {
                 if (listView1.Items.Count <= selectedItem)
                 {
@@ -55,12 +56,22 @@ namespace TRPO.View
                 this.listView1.Focus();
                 this.listView1.Items[selectedItem].Selected = true;
             }
+            dishesManagementContr.updateDishInfo();
         }
 
         public void showMsg(String msg, GlobalObj.ErrorLevels el)
         {
-            toolStripStatusLabel.Text = msg;
-            toolStripStatusLabel.Visible = true;
+            switch (el)
+            {
+                case GlobalObj.ErrorLevels.Critical:
+                    MessageBox.Show(msg);
+                    break;
+                case GlobalObj.ErrorLevels.Info:
+                    toolStripStatusLabel.Text = msg;
+                    toolStripStatusLabel.Visible = true;
+                    break;
+            }
+            
         }
 
         public void showMsg(String msg, String header)
@@ -75,24 +86,20 @@ namespace TRPO.View
 
         public void setDishInfo(String name, String dType, String linkToPh, String rec)
         {
+          
             dishName.Text = name;
             dishTypeLabel.Text = dType;
             receipeText.Text = rec;
-            try
+            if (linkToPh != "" && File.Exists(Properties.Settings.Default.dishesImagesFolderPath + linkToPh))
             {
-                if (linkToPh != "")
-                {
-                    dishPicture.Image = Image.FromFile(Properties.Settings.Default.dishesImagesFolderPath + linkToPh);
-                }
-                else
-                {
-                    dishPicture.Image = null;
-                }
+                    
+                dishPicture.Image = Image.FromFile(Properties.Settings.Default.dishesImagesFolderPath + linkToPh);
             }
-            catch (FileNotFoundException ex)
+            else
             {
                 dishPicture.Image = null;
             }
+
         }
 
         private void listView1_ItemSelectionChanged(object sender, ListViewItemSelectionChangedEventArgs e)
@@ -107,13 +114,28 @@ namespace TRPO.View
 
         private void readyButton_Click(object sender, EventArgs e)
         {
+            toolStripStatusLabel.Visible = false;
             dishesManagementContr.addReadyDishes();
             ordCookContr.updateOrderList();
         }
 
-        public int getReayDishesAmount()
+        public int getReadyDishesAmount()
         {
             return Convert.ToInt32(readyDishesAmount.Value);
+        }
+
+        private void leftBodyTable_Selected(object sender, TabControlEventArgs e)
+        {
+            toolStripStatusLabel.Visible = false;
+        }
+
+        private void readyDishesAmount_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                readyButton_Click(sender, new EventArgs());
+                readyDishesAmount.Focus();
+            }
         }
     }
 }

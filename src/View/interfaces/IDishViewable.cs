@@ -9,6 +9,6 @@ namespace TRPO.View
     {
         String getSelectedDishName();
         void setDishInfo(String name, String dishType, String linkToPhoto, String recipe);
-        int getReayDishesAmount();
+        int getReadyDishesAmount();
     }
 }
