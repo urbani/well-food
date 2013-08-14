@@ -2,26 +2,28 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-
+//using System.Windows.Forms;
 namespace TRPO.View
 {
     public interface IClientManagable : IInterractable
     {
 
         /// <summary>
-        /// задает список компаний из Входящего словаря в выподающий список формы
+        /// сообщает списку компаний, что источник данных обновился
         /// </summary>
         /// <param name="companyList"></param>
-     void setCompanyList(Dictionary<int, String> companyList);//Dictionary<int, String> companyList
+         void updateCompanyList();//Dictionary<int, String> companyList
         /// <summary>
-        /// задает список сотрудников из Входящего словаря в выподающий список формы
+        /// сообщает списку сотрудников, что источник данных обновился
         /// </summary>
         /// <param name="employList"></param>
-     void setEmployList(Dictionary<int, String> employList);
+         void updateEmployList();
+        //void clearCompanyList();
+        //void clearEmployList();
 
 
      /// <summary>
-     /// возвращает id текущей компании, если не чего не выбрано, то -1
+     /// возвращает id текущей компании, если не чего не выбрано, то кидает исключение
      /// </summary>
      /// <returns></returns>
      int getIndexSelectedCompany();
