@@ -37,7 +37,7 @@ namespace TRPO.Controller
             int redundantDishes = dishesManager.addReadyDishes(readyDish, readyDishes);
             if (redundantDishes > 0)
             {
-                view.showMsg("Все заказы на " + readyDish + " закрыты. Осталось неучтенных блюд: [" + readyDish + " : " + redundantDishes + "шт.]", GlobalObj.ErrorLevels.Info);
+                view.showMsg("Все заказы на блюдо [" + readyDish + "] закрыты. Осталось неучтенных блюд: [" + readyDish + " : " + redundantDishes + "шт.]", GlobalObj.ErrorLevels.Info);
             }
         }
     }
