@@ -42,14 +42,14 @@ namespace TRPO.Model
             connector.openConnection();
             //TODO сделать в sql вычесление цены продукта (% * себесстоимость (с учетом, того сколько продуката в блюде)
             OleDbDataReader reader = connector.executeQuery(@"SELECT 
-	                                                                di.ID_Dish, di.Name_Dish, prices.Price, di.Percent 
+	                                                                di.ID_Dish, di.Name_Dish, prices.Price  
                                                                 FROM 
 	                                                                Dishes AS di 
                                                                 INNER JOIN
 	                                                                (
 		                                                                SELECT 
 			                                                                pd.ID_Dish, 
-			                                                                SUM(pd.Product_Count * pr.Price) AS Price 
+			                                                                SUM(pd.Product_Count * pr.Price * (di.Percent / 100) ) AS Price 
 		                                                                FROM 
 			                                                                Products_Dishes pd 
 		                                                                INNER JOIN 
@@ -61,13 +61,12 @@ namespace TRPO.Model
 	                                                                ) AS prices
                                                                 ON 
 	                                                                di.ID_Dish = prices.ID_Dish");
-            float percent;
             while (reader.Read())
             {
                 tmpDish.id = Convert.ToInt32(reader[0]);
                 tmpDish.dish = reader[1].ToString(); 
                 //себес * %
-                tmpDish.price = Convert.ToSingle(reader[2]) * (Convert.ToSingle(reader[3]) / 100);
+                tmpDish.price = Convert.ToSingle(reader[2]);// *(Convert.ToSingle(reader[3]) / 100);
 
 
                 resultList.Add(tmpDish);
