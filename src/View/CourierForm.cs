@@ -96,6 +96,7 @@ namespace TRPO.View
             menuList1.Items.Clear();
             menuList2.Items.Clear();
             menuList3.Items.Clear();
+            menuList4.Items.Clear();
           
             String[] rawSting;
 
@@ -115,6 +116,12 @@ namespace TRPO.View
                     case ("Третье"):
                         menuList3.Items.Add(tmpItem);
                         break;
+                }
+                if (dishWithPrice.isSpecial)
+                {
+                    ListViewItem tmpItem2 = new ListViewItem(rawSting);
+                    menuList4.Items.Add(tmpItem2);
+
                 }
                 
             }
