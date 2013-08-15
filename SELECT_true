@@ -1,0 +1,55 @@
+SELECT 
+    m.ID_dish, jo.price, jo.Name_dish, jo.Dish_Type, m.Is_Special
+FROM 
+    Menu as m
+INNER JOIN
+        (
+        SELECT 
+             di.ID_Dish, 
+             (prices.price*(1 + di.Percent/100)) as price,
+             di.Name_Dish, di.Dish_Type
+        FROM 
+            Dishes AS di 
+        INNER JOIN
+            (
+                SELECT 
+                    pd.ID_Dish, 
+                    SUM(pd.Product_Count * pr.Price) AS Price 
+                FROM 
+                    Products_Dishes pd f
+                INNER JOIN 
+                    Products pr 
+                ON 
+                    pd.ID_Prod = pr.ID_Prod 
+                GROUP BY 
+                    pd.ID_Dish
+            ) AS prices
+        ON 
+            di.ID_Dish = prices.ID_Dish
+        ) as jo
+        ON m.ID_Dish=jo.ID_Dish
+WHERE 
+    m.Date_Menu like("01.09.2013")
+
+----
+
+		SELECT 
+			 di.ID_Dish, prices.price,di.Name_Dish
+		FROM 
+			Dishes AS di 
+		INNER JOIN
+			(
+				SELECT 
+					pd.ID_Dish, 
+					SUM(pd.Product_Count * pr.Price) AS Price 
+				FROM 
+					Products_Dishes pd 
+				INNER JOIN 
+					Products pr 
+				ON 
+					pd.ID_Prod = pr.ID_Prod 
+				GROUP BY 
+					pd.ID_Dish
+			) AS prices
+		ON 
+			di.ID_Dish = prices.ID_Dish
