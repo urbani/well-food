@@ -26,6 +26,9 @@ namespace TRPO.View
             ordCookContr = occ;
             dishesManagementContr = dmc;
             setDishInfo("", "", "", "");
+            createDishConsistanceDataGrid.Rows.Add(2);
+            createDishConsistanceDataGrid.Rows[0].Cells[0].Value = "Картошка";
+            createDishConsistanceDataGrid.Rows[0].Cells[1].Value = 23;
         }
 
         public void updateOrderList(List<ChiefListEntry> list)
@@ -137,5 +140,6 @@ namespace TRPO.View
                 readyDishesAmount.Focus();
             }
         }
+
     }
 }
