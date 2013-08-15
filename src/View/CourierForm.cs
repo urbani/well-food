@@ -12,6 +12,7 @@ using System.Data.Common;
 using System.Collections;
 using TRPO.Controller;
 using TRPO.Structures;
+using TRPO.View;
 
 namespace TRPO.View
 {
@@ -38,9 +39,6 @@ namespace TRPO.View
             headerList2.AutoCompleteSource = AutoCompleteSource.ListItems;
             ordersController.updateActiveMenu();
 
-            
-        
-            //headerList1.Items.Add("Кот котофей");
         }
 
         public void showMsg(String msg, GlobalObj.ErrorLevels el)
@@ -94,9 +92,6 @@ namespace TRPO.View
         public void updateMenuList(List<CourierListEntry> listDishes)
         {
             menuList1.Items.Clear();
-            menuList2.Items.Clear();
-            menuList3.Items.Clear();
-            menuList4.Items.Clear();
           
             String[] rawSting;
 
@@ -104,26 +99,8 @@ namespace TRPO.View
             foreach (CourierListEntry dishWithPrice in listDishes)
             {
                 rawSting = new String[] { dishWithPrice.dish, dishWithPrice.price.ToString() };
-                ListViewItem tmpItem = new ListViewItem(rawSting);
-                switch (dishWithPrice.type)
-                {
-                    case("Первое"):
-                        menuList1.Items.Add(tmpItem);
-                        break;
-                    case ("Второе"):
-                        menuList2.Items.Add(tmpItem);
-                        break;
-                    case ("Третье"):
-                        menuList3.Items.Add(tmpItem);
-                        break;
-                }
-                if (dishWithPrice.isSpecial)
-                {
-                    ListViewItem tmpItem2 = new ListViewItem(rawSting);
-                    menuList4.Items.Add(tmpItem2);
-
-                }
-                
+                ListViewItem tmp = new ListViewItem(rawSting);
+                menuList1.Items.Add(tmp);
             }
         }
 
@@ -138,6 +115,12 @@ namespace TRPO.View
         private void listView1_SelectedIndexChanged(object sender, EventArgs e)
         {
 
+        }
+
+        private void employEditButton_Click(object sender, EventArgs e)
+        {
+            ClientManagerDialog cmd = new ClientManagerDialog();
+            cmd.ShowDialog();
         }
 
     }
