@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using TRPO.View;
 using TRPO.Model;
+using TRPO.Structures;
 
 namespace TRPO.Controller
 {
@@ -27,7 +28,7 @@ namespace TRPO.Controller
         public void updateDishInfo()
         {
             Dish tmpDish = dishesManager.getDish(view.getSelectedDishName());
-            view.setDishInfo(tmpDish.Name, tmpDish.DishType, tmpDish.LinkToPhoto, tmpDish.Recipe);
+            view.setDishInfo(tmpDish);
         }
 
         public void addReadyDishes()

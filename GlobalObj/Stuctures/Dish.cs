@@ -3,11 +3,23 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace TRPO.Model
+namespace TRPO.Structures
 {
     public class Dish
     {
         private int idInDB;
+        private String name;
+        private String linkToPhoto;
+        private String dishType;
+        private int percent;
+        private String recipe;
+        private Dictionary<Product, Double> consistance;
+
+        public Dictionary<Product, Double> Consistance
+        {
+            get { return consistance; }
+            set { consistance = value; }
+        }
 
         public int IdInDB
         {
@@ -15,15 +27,11 @@ namespace TRPO.Model
             set { idInDB = value; }
         }
 
-        private String name;
-
         public String Name
         {
             get { return name; }
             set { name = value; }
         }
-
-        private String linkToPhoto;
 
         public String LinkToPhoto
         {
@@ -31,15 +39,11 @@ namespace TRPO.Model
             set { linkToPhoto = value; }
         }
 
-        private String dishType;
-
         public String DishType
         {
             get { return dishType; }
             set { dishType = value; }
         }
-
-        private int percent;
 
         public int Percent
         {
@@ -47,25 +51,15 @@ namespace TRPO.Model
             set { percent = value; }
         }
 
-        private String recipe;
-
         public String Recipe
         {
             get { return recipe; }
             set { recipe = value; }
         }
 
-        public Dish()
-        {
-            idInDB = -1;
-            name = "";
-            linkToPhoto = "";
-            dishType = "";
-            percent = 0;
-            recipe = "";
-        }
+        public Dish() : this(-1, "", "", "", 0, "", null){}
 
-        public Dish(int i, String n, String l, String d, int p, String r)
+        public Dish(int i, String n, String l, String d, int p, String r, Dictionary<Product, Double> c)
         {
             idInDB = i;
             name = n;
@@ -73,6 +67,7 @@ namespace TRPO.Model
             dishType = d;
             percent = p;
             recipe = r;
+            consistance = c;
         }
 
         public override String ToString() 
@@ -90,8 +85,9 @@ namespace TRPO.Model
             res.Append(percent);
             res.Append("%; Recipe:");
             res.Append(recipe);
-            res.Append(".");
-
+            res.Append("; Consists of ");
+            res.Append(consistance.Count);
+            res.Append(" products.");
             return res.ToString();
         }
     }

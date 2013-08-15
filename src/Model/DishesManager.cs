@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using TRPO.GlobalObj;
 using System.Data.OleDb;
+using TRPO.Structures;
 
 namespace TRPO.Model
 {
@@ -32,6 +33,11 @@ namespace TRPO.Model
                 result.Recipe = reader[5].ToString();
             }
             reader.Close();
+
+            //TODO: result.Consistance filling
+            result.Consistance = null;
+            throw new NotImplementedException();
+
             connector.closeConnection();
             return result;
         }
@@ -52,6 +58,10 @@ namespace TRPO.Model
                 result.Recipe = reader[5].ToString();
             }
             reader.Close();
+            //TODO: result.Consistance filling
+            result.Consistance = null;
+            throw new NotImplementedException();
+
             connector.closeConnection();
             return result;
         }

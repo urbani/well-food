@@ -2,13 +2,14 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using TRPO.Structures;
 
 namespace TRPO.View
 {
     public interface IDishManagable : IInterractable
     {
         String getSelectedDishName();
-        void setDishInfo(String name, String dishType, String linkToPhoto, String recipe);
+        void setDishInfo(Dish dish);
         int getReadyDishesAmount();
     }
 }

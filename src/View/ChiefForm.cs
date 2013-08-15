@@ -25,7 +25,7 @@ namespace TRPO.View
             InitializeComponent();
             ordCookContr = occ;
             dishesManagementContr = dmc;
-            setDishInfo("", "", "", "");
+            setDishInfo(new Dish());
             createDishConsistanceDataGrid.Rows.Add(2);
             createDishConsistanceDataGrid.Rows[0].Cells[0].Value = "Картошка";
             createDishConsistanceDataGrid.Rows[0].Cells[1].Value = 23;
@@ -87,22 +87,24 @@ namespace TRPO.View
             return listView1.SelectedItems.Count > 0 ? listView1.SelectedItems[0].Text : "";
         }
 
-        public void setDishInfo(String name, String dType, String linkToPh, String rec)
+        public void setDishInfo(Dish d)
         {
           
-            dishName.Text = name;
-            dishTypeLabel.Text = dType;
-            receipeText.Text = rec;
-            if (linkToPh != "" && File.Exists(Properties.Settings.Default.dishesImagesFolderPath + linkToPh))
+            dishName.Text = d.Name;
+            dishTypeLabel.Text = d.DishType;
+            receipeText.Text = d.Recipe;
+            if (d.LinkToPhoto != "" && File.Exists(Properties.Settings.Default.dishesImagesFolderPath + d.LinkToPhoto))
             {
-                    
-                dishPicture.Image = Image.FromFile(Properties.Settings.Default.dishesImagesFolderPath + linkToPh);
+
+                dishPicture.Image = Image.FromFile(Properties.Settings.Default.dishesImagesFolderPath + d.LinkToPhoto);
             }
             else
             {
                 dishPicture.Image = null;
             }
 
+            //TODO: dishConsistanceDataGrid = d.Consistance
+            throw new NotImplementedException();
         }
 
         private void listView1_ItemSelectionChanged(object sender, ListViewItemSelectionChangedEventArgs e)
