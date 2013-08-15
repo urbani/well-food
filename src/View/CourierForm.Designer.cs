@@ -34,6 +34,16 @@
             "1"}, -1);
             System.Windows.Forms.ListViewItem listViewItem2 = new System.Windows.Forms.ListViewItem("three");
             System.Windows.Forms.ListViewItem listViewItem3 = new System.Windows.Forms.ListViewItem("two");
+            System.Windows.Forms.ListViewItem listViewItem4 = new System.Windows.Forms.ListViewItem(new string[] {
+            "one",
+            "1"}, -1);
+            System.Windows.Forms.ListViewItem listViewItem5 = new System.Windows.Forms.ListViewItem("three");
+            System.Windows.Forms.ListViewItem listViewItem6 = new System.Windows.Forms.ListViewItem("two");
+            System.Windows.Forms.ListViewItem listViewItem7 = new System.Windows.Forms.ListViewItem(new string[] {
+            "one",
+            "1"}, -1);
+            System.Windows.Forms.ListViewItem listViewItem8 = new System.Windows.Forms.ListViewItem("three");
+            System.Windows.Forms.ListViewItem listViewItem9 = new System.Windows.Forms.ListViewItem("two");
             this.mainTable = new System.Windows.Forms.TableLayoutPanel();
             this.headerTable = new System.Windows.Forms.TableLayoutPanel();
             this.headerLabel1 = new System.Windows.Forms.Label();
@@ -45,21 +55,29 @@
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.rightBodyTabel = new System.Windows.Forms.TableLayoutPanel();
             this.button1 = new System.Windows.Forms.Button();
+            this.label1 = new System.Windows.Forms.Label();
             this.leftBodyTable = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.menuList1 = new System.Windows.Forms.ListView();
+            this.dish = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.price = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.tabPage2 = new System.Windows.Forms.TabPage();
             this.tabPage3 = new System.Windows.Forms.TabPage();
             this.statusStrip = new System.Windows.Forms.StatusStrip();
-            this.menuList = new System.Windows.Forms.ListView();
-            this.dish = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.price = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.label1 = new System.Windows.Forms.Label();
+            this.menuList2 = new System.Windows.Forms.ListView();
+            this.columnHeader1 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader2 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.menuList3 = new System.Windows.Forms.ListView();
+            this.columnHeader3 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader4 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.mainTable.SuspendLayout();
             this.headerTable.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
             this.rightBodyTabel.SuspendLayout();
             this.leftBodyTable.SuspendLayout();
             this.tabPage1.SuspendLayout();
+            this.tabPage2.SuspendLayout();
+            this.tabPage3.SuspendLayout();
             this.SuspendLayout();
             // 
             // mainTable
@@ -214,6 +232,15 @@
             this.button1.Text = "Выполнить";
             this.button1.UseVisualStyleBackColor = true;
             // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(3, 0);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(85, 13);
+            this.label1.TabIndex = 1;
+            this.label1.Text = "Текущий заказ";
+            // 
             // leftBodyTable
             // 
             this.leftBodyTable.Controls.Add(this.tabPage1);
@@ -229,7 +256,7 @@
             // 
             // tabPage1
             // 
-            this.tabPage1.Controls.Add(this.menuList);
+            this.tabPage1.Controls.Add(this.menuList1);
             this.tabPage1.Location = new System.Drawing.Point(4, 33);
             this.tabPage1.Name = "tabPage1";
             this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
@@ -238,8 +265,40 @@
             this.tabPage1.Text = "Первое";
             this.tabPage1.UseVisualStyleBackColor = true;
             // 
+            // menuList1
+            // 
+            this.menuList1.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.dish,
+            this.price});
+            this.menuList1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.menuList1.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.menuList1.FullRowSelect = true;
+            this.menuList1.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.Nonclickable;
+            this.menuList1.Items.AddRange(new System.Windows.Forms.ListViewItem[] {
+            listViewItem1,
+            listViewItem2,
+            listViewItem3});
+            this.menuList1.Location = new System.Drawing.Point(3, 3);
+            this.menuList1.Name = "menuList1";
+            this.menuList1.Size = new System.Drawing.Size(371, 385);
+            this.menuList1.Sorting = System.Windows.Forms.SortOrder.Ascending;
+            this.menuList1.TabIndex = 2;
+            this.menuList1.UseCompatibleStateImageBehavior = false;
+            this.menuList1.View = System.Windows.Forms.View.Details;
+            // 
+            // dish
+            // 
+            this.dish.Text = "Блюдо";
+            this.dish.Width = 291;
+            // 
+            // price
+            // 
+            this.price.Text = "Цена";
+            this.price.Width = 76;
+            // 
             // tabPage2
             // 
+            this.tabPage2.Controls.Add(this.menuList2);
             this.tabPage2.Location = new System.Drawing.Point(4, 33);
             this.tabPage2.Name = "tabPage2";
             this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
@@ -250,6 +309,7 @@
             // 
             // tabPage3
             // 
+            this.tabPage3.Controls.Add(this.menuList3);
             this.tabPage3.Location = new System.Drawing.Point(4, 33);
             this.tabPage3.Name = "tabPage3";
             this.tabPage3.Size = new System.Drawing.Size(377, 391);
@@ -265,45 +325,68 @@
             this.statusStrip.TabIndex = 1;
             this.statusStrip.Text = "statusStrip1";
             // 
-            // menuList
+            // menuList2
             // 
-            this.menuList.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
-            this.dish,
-            this.price});
-            this.menuList.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.menuList.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.menuList.FullRowSelect = true;
-            this.menuList.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.Nonclickable;
-            this.menuList.Items.AddRange(new System.Windows.Forms.ListViewItem[] {
-            listViewItem1,
-            listViewItem2,
-            listViewItem3});
-            this.menuList.Location = new System.Drawing.Point(3, 3);
-            this.menuList.Name = "menuList";
-            this.menuList.Size = new System.Drawing.Size(371, 385);
-            this.menuList.Sorting = System.Windows.Forms.SortOrder.Ascending;
-            this.menuList.TabIndex = 2;
-            this.menuList.UseCompatibleStateImageBehavior = false;
-            this.menuList.View = System.Windows.Forms.View.Details;
+            this.menuList2.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.columnHeader1,
+            this.columnHeader2});
+            this.menuList2.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.menuList2.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.menuList2.FullRowSelect = true;
+            this.menuList2.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.Nonclickable;
+            this.menuList2.Items.AddRange(new System.Windows.Forms.ListViewItem[] {
+            listViewItem4,
+            listViewItem5,
+            listViewItem6});
+            this.menuList2.Location = new System.Drawing.Point(3, 3);
+            this.menuList2.Name = "menuList2";
+            this.menuList2.Size = new System.Drawing.Size(371, 385);
+            this.menuList2.Sorting = System.Windows.Forms.SortOrder.Ascending;
+            this.menuList2.TabIndex = 3;
+            this.menuList2.UseCompatibleStateImageBehavior = false;
+            this.menuList2.View = System.Windows.Forms.View.Details;
+            this.menuList2.SelectedIndexChanged += new System.EventHandler(this.listView1_SelectedIndexChanged);
             // 
-            // dish
+            // columnHeader1
             // 
-            this.dish.Text = "Блюдо";
-            this.dish.Width = 291;
+            this.columnHeader1.Text = "Блюдо";
+            this.columnHeader1.Width = 291;
             // 
-            // price
+            // columnHeader2
             // 
-            this.price.Text = "Цена";
-            this.price.Width = 50;
+            this.columnHeader2.Text = "Цена";
+            this.columnHeader2.Width = 76;
             // 
-            // label1
+            // menuList3
             // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(3, 0);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(85, 13);
-            this.label1.TabIndex = 1;
-            this.label1.Text = "Текущий заказ";
+            this.menuList3.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.columnHeader3,
+            this.columnHeader4});
+            this.menuList3.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.menuList3.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.menuList3.FullRowSelect = true;
+            this.menuList3.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.Nonclickable;
+            this.menuList3.Items.AddRange(new System.Windows.Forms.ListViewItem[] {
+            listViewItem7,
+            listViewItem8,
+            listViewItem9});
+            this.menuList3.Location = new System.Drawing.Point(0, 0);
+            this.menuList3.Name = "menuList3";
+            this.menuList3.Size = new System.Drawing.Size(377, 391);
+            this.menuList3.Sorting = System.Windows.Forms.SortOrder.Ascending;
+            this.menuList3.TabIndex = 3;
+            this.menuList3.UseCompatibleStateImageBehavior = false;
+            this.menuList3.View = System.Windows.Forms.View.Details;
+            // 
+            // columnHeader3
+            // 
+            this.columnHeader3.Text = "Блюдо";
+            this.columnHeader3.Width = 291;
+            // 
+            // columnHeader4
+            // 
+            this.columnHeader4.Text = "Цена";
+            this.columnHeader4.Width = 76;
             // 
             // CourierForm
             // 
@@ -323,6 +406,8 @@
             this.rightBodyTabel.PerformLayout();
             this.leftBodyTable.ResumeLayout(false);
             this.tabPage1.ResumeLayout(false);
+            this.tabPage2.ResumeLayout(false);
+            this.tabPage3.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -353,8 +438,14 @@
         protected System.Windows.Forms.TableLayoutPanel rightBodyTabel;
         private System.Windows.Forms.TabPage tabPage3;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.ListView menuList;
+        private System.Windows.Forms.ListView menuList1;
         private System.Windows.Forms.ColumnHeader dish;
         private System.Windows.Forms.ColumnHeader price;
+        private System.Windows.Forms.ListView menuList2;
+        private System.Windows.Forms.ColumnHeader columnHeader1;
+        private System.Windows.Forms.ColumnHeader columnHeader2;
+        private System.Windows.Forms.ListView menuList3;
+        private System.Windows.Forms.ColumnHeader columnHeader3;
+        private System.Windows.Forms.ColumnHeader columnHeader4;
     }
 }

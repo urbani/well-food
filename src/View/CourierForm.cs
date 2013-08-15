@@ -93,7 +93,9 @@ namespace TRPO.View
 
         public void updateMenuList(List<CourierListEntry> listDishes)
         {
-            menuList.Items.Clear();
+            menuList1.Items.Clear();
+            menuList2.Items.Clear();
+            menuList3.Items.Clear();
           
             String[] rawSting;
 
@@ -101,8 +103,20 @@ namespace TRPO.View
             foreach (CourierListEntry dishWithPrice in listDishes)
             {
                 rawSting = new String[] { dishWithPrice.dish, dishWithPrice.price.ToString() };
-                ListViewItem tmp = new ListViewItem(rawSting);
-                menuList.Items.Add(tmp);
+                ListViewItem tmpItem = new ListViewItem(rawSting);
+                switch (dishWithPrice.type)
+                {
+                    case("Первое"):
+                        menuList1.Items.Add(tmpItem);
+                        break;
+                    case ("Второе"):
+                        menuList2.Items.Add(tmpItem);
+                        break;
+                    case ("Третье"):
+                        menuList3.Items.Add(tmpItem);
+                        break;
+                }
+                
             }
         }
 
@@ -113,6 +127,11 @@ namespace TRPO.View
         {}
         private void headerList2_MouseClick(object sender, MouseEventArgs e)
         {}
+
+        private void listView1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
 
     }
 

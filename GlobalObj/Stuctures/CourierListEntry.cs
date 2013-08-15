@@ -9,15 +9,18 @@ namespace TRPO.Structures
     {
         
         public int id;
-        public String dish;
         public float price;
+        public String dish;
+        public String type;
+        
 
 
-        public CourierListEntry(int i, String d, int p)
+        public CourierListEntry(int i, String d, int p, String type)
         {
             id = i;
             dish = d;
             price = p;
+            this.type = type;
 
         }
     }
