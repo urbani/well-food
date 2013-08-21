@@ -32,16 +32,18 @@ namespace TRPO.Model
                 result.Percent = Convert.ToInt32(reader[4]);
                 result.Recipe = reader[5].ToString();
             }
-            reader.Close();
 
-            //TODO: result.Consistance filling
-            result.Consistance = null;
-            throw new NotImplementedException();
+            reader = connector.executeQuery("SELECT pr.Name_Prod, pd.Product_Count FROM Products_Dishes pd INNER JOIN Products pr ON pd.ID_Prod = pr.ID_Prod WHERE ID_Dish = " + id);
+            while (reader.Read())
+            {
+                result.Consistance.Add(reader[0].ToString(), Convert.ToDouble(reader[1]));
+            }
+
+            reader.Close();
 
             connector.closeConnection();
             return result;
         }
-
 
         public Dish getDish(String name)
         {
@@ -57,10 +59,14 @@ namespace TRPO.Model
                 result.Percent = Convert.ToInt32(reader[4]);
                 result.Recipe = reader[5].ToString();
             }
+
+            reader = connector.executeQuery("SELECT pr.Name_Prod, pd.Product_Count FROM Products_Dishes pd INNER JOIN Products pr ON pd.ID_Prod = pr.ID_Prod WHERE ID_Dish = (SELECT dis.ID_Dish FROM Dishes dis WHERE dis.Name_Dish = \"" + name + "\")");
+            while (reader.Read())
+            {
+                result.Consistance.Add(reader[0].ToString(), Convert.ToDouble(reader[1]));
+            }
+
             reader.Close();
-            //TODO: result.Consistance filling
-            result.Consistance = null;
-            throw new NotImplementedException();
 
             connector.closeConnection();
             return result;
@@ -116,6 +122,40 @@ namespace TRPO.Model
             connector.closeConnection();
 
             return amount;
+        }
+
+        public Dictionary<String, String> getDishNamesWithTypes()
+        {
+            Dictionary<String, String> result = new Dictionary<String, String>();
+            connector.openConnection();
+            OleDbDataReader reader = connector.executeQuery("SELECT d.Name_Dish, d.Dish_Type FROM Dishes as d");
+            while (reader.Read())
+            {
+                result.Add(reader[0].ToString(), reader[1].ToString());
+            }
+
+            reader.Close();
+
+            connector.closeConnection();
+            return result;
+
+        }
+
+
+        internal Dictionary<string, double> getDishContents(String name)
+        {
+            Dictionary<String, double> result = new Dictionary<String, double>();
+            connector.openConnection();
+            OleDbDataReader reader = connector.executeQuery("SELECT p.Name_Prod, j.Product_Count FROM Products p INNER JOIN  (SELECT pd.ID_Prod, pd.Product_Count FROM Products_Dishes AS pd WHERE pd.ID_Dish = (SELECT d.ID_Dish FROM Dishes d WHERE d.Name_Dish = \"" + name + "\")) AS j ON p.ID_Prod = j.ID_Prod");
+            while (reader.Read())
+            {
+                result.Add(reader[0].ToString(), Convert.ToDouble(reader[1]));
+            }
+
+            reader.Close();
+
+            connector.closeConnection();
+            return result;
         }
     }
 }

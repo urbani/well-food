@@ -13,11 +13,13 @@ namespace TRPO.Controller
         IDishManagable view;
         User user;
         DishesManager dishesManager;
+        ProductsManager productManager;
 
         public DishesManagementController(User u)
         {
             user = u;
             dishesManager = new DishesManager();
+            productManager = new ProductsManager();
         }
 
         public void setForm(IDishManagable f)
@@ -40,6 +42,23 @@ namespace TRPO.Controller
             {
                 view.showMsg("Все заказы на блюдо [" + readyDish + "] закрыты. Осталось неучтенных блюд: [" + readyDish + " : " + redundantDishes + "шт.]", GlobalObj.ErrorLevels.Info);
             }
+        }
+
+        public void fillDishProd()
+        {
+            view.setDishesList(dishesManager.getDishNamesWithTypes());
+            view.setProductsList(productManager.getProdNames());
+        }
+
+        public void updateContents()
+        {
+            view.updateContents(dishesManager.getDishContents(view.getSelectedDishName()));
+        }
+
+        internal void updateCreationDishInfo()
+        {
+            Dish tmpDish = dishesManager.getDish(view.getSelectedDishName());
+            view.setCreateDishInfo(tmpDish);
         }
     }
 }

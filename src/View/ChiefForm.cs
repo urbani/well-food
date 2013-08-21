@@ -26,9 +26,7 @@ namespace TRPO.View
             ordCookContr = occ;
             dishesManagementContr = dmc;
             setDishInfo(new Dish());
-            createDishConsistanceDataGrid.Rows.Add(2);
-            createDishConsistanceDataGrid.Rows[0].Cells[0].Value = "Картошка";
-            createDishConsistanceDataGrid.Rows[0].Cells[1].Value = 23;
+
         }
 
         public void updateOrderList(List<ChiefListEntry> list)
@@ -84,7 +82,20 @@ namespace TRPO.View
 
         public String getSelectedDishName()
         {
-            return listView1.SelectedItems.Count > 0 ? listView1.SelectedItems[0].Text : "";
+            String result = "";
+            switch (mainTab.SelectedIndex)
+            {
+                case 0:
+                    result = listView1.SelectedItems.Count > 0 ? listView1.SelectedItems[0].Text : "";
+                    break;
+                case 1:
+                    result = dishesDataGrid.SelectedRows.Count > 0 ? dishesDataGrid.SelectedRows[0].Cells[0].Value.ToString() : "";
+                    break;
+                case 2:
+                    result = "";
+                    break;
+            }
+            return result;
         }
 
         public void setDishInfo(Dish d)
@@ -103,9 +114,76 @@ namespace TRPO.View
                 dishPicture.Image = null;
             }
 
-            //TODO: dishConsistanceDataGrid = d.Consistance
-            throw new NotImplementedException();
+            dishConsistanceDataGrid.Rows.Clear();
+            foreach (KeyValuePair<String, Double> p in d.Consistance)
+            {
+                dishConsistanceDataGrid.Rows.Add(p.Key, p.Value);
+            }
+
         }
+
+        public void setCreateDishInfo(Dish d)
+        {
+
+            createDishName.Text = d.Name;
+            createDishType.Text = d.DishType;
+            createDishRecipe.Text = d.Recipe;
+            if (d.LinkToPhoto != "" && File.Exists(Properties.Settings.Default.dishesImagesFolderPath + d.LinkToPhoto))
+            {
+
+                createDishImage.Image = Image.FromFile(Properties.Settings.Default.dishesImagesFolderPath + d.LinkToPhoto);
+            }
+            else
+            {
+                createDishImage.Image = null;
+            }
+
+            createDishContentsDataGrid.Rows.Clear();
+            foreach (KeyValuePair<String, Double> p in d.Consistance)
+            {
+                createDishContentsDataGrid.Rows.Add(p.Key, p.Value);
+            }
+        }
+
+        public int getReadyDishesAmount()
+        {
+            return Convert.ToInt32(readyDishesAmount.Value);
+        }
+
+        public void setDishesList(Dictionary<String, String> dishesTypes)
+        {
+            dishesDataGrid.Rows.Clear();
+            
+            if (dishesTypes != null && dishesTypes.Count != 0)
+            {
+                foreach (KeyValuePair<String, String> p in dishesTypes)
+                {
+                    dishesDataGrid.Rows.Add(p.Key, p.Value);
+                }
+            }
+        }
+
+        public void setProductsList(List<String> pList)
+        {
+            productsDataGrid.Rows.Clear();
+            if (pList != null && pList.Count != 0)
+            {
+                foreach (String s in pList)
+                {
+                    productsDataGrid.Rows.Add(s);
+                }
+            }
+        }
+
+        public void updateContents(Dictionary<String, Double> cont)
+        {
+            createDishContentsDataGrid.Rows.Clear();
+            foreach(KeyValuePair<String, Double> p in cont)
+            {
+                createDishContentsDataGrid.Rows.Add(p.Key, p.Value);
+            }
+        }
+
 
         private void listView1_ItemSelectionChanged(object sender, ListViewItemSelectionChangedEventArgs e)
         {
@@ -124,14 +202,10 @@ namespace TRPO.View
             ordCookContr.updateOrderList();
         }
 
-        public int getReadyDishesAmount()
-        {
-            return Convert.ToInt32(readyDishesAmount.Value);
-        }
-
-        private void leftBodyTable_Selected(object sender, TabControlEventArgs e)
+        private void mainTab_Selected(object sender, TabControlEventArgs e)
         {
             toolStripStatusLabel.Visible = false;
+            dishesManagementContr.fillDishProd();
         }
 
         private void readyDishesAmount_KeyDown(object sender, KeyEventArgs e)
@@ -141,6 +215,44 @@ namespace TRPO.View
                 readyButton_Click(sender, new EventArgs());
                 readyDishesAmount.Focus();
             }
+        }
+
+        private void dishesDataGrid_SelectionChanged(object sender, EventArgs e)
+        {
+            //dishesManagementContr.updateContents();
+            dishesManagementContr.updateCreationDishInfo();
+        }
+
+        private void createDishCheckBox_CheckedChanged(object sender, EventArgs e)
+        {
+            if (createDishCheckBox.Checked)
+            {
+                tableLayoutPanel5.Enabled = false;
+                createDishButton.Text = "Создать";
+
+                createDishName.Text = "";
+                createDishType.Text = "";
+                createDishRecipe.Text = "";
+                createDishImage.Image = null;
+                createDishContentsDataGrid.Rows.Clear();
+
+                dishesDataGrid.DefaultCellStyle.BackColor = Color.FromArgb(240, 240, 240);
+                dishesDataGrid.DefaultCellStyle.ForeColor = Color.FromArgb(200, 200, 200);
+            }
+            else
+            {
+                tableLayoutPanel5.Enabled = true;
+                createDishButton.Text = "Обновить";
+                dishesManagementContr.updateCreationDishInfo();
+
+                dishesDataGrid.DefaultCellStyle.BackColor = Color.FromArgb(255, 255, 255);
+                dishesDataGrid.DefaultCellStyle.ForeColor = Color.FromArgb(0, 0, 0);
+            }
+        }
+
+        private void createDishButton_Click(object sender, EventArgs e)
+        {
+            throw new NotImplementedException();
         }
 
     }

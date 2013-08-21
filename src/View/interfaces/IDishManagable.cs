@@ -10,6 +10,10 @@ namespace TRPO.View
     {
         String getSelectedDishName();
         void setDishInfo(Dish dish);
+        void setCreateDishInfo(Dish d);
         int getReadyDishesAmount();
+        void setDishesList(Dictionary<String, String> dishesTypes);
+        void setProductsList(List<String> pList);
+        void updateContents(Dictionary<String, Double> cont);
     }
 }

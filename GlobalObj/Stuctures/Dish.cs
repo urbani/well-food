@@ -13,9 +13,9 @@ namespace TRPO.Structures
         private String dishType;
         private int percent;
         private String recipe;
-        private Dictionary<Product, Double> consistance;
+        private Dictionary<String, Double> consistance;
 
-        public Dictionary<Product, Double> Consistance
+        public Dictionary<String, Double> Consistance
         {
             get { return consistance; }
             set { consistance = value; }
@@ -57,9 +57,9 @@ namespace TRPO.Structures
             set { recipe = value; }
         }
 
-        public Dish() : this(-1, "", "", "", 0, "", null){}
+        public Dish() : this(-1, "", "", "", 0, "", new Dictionary<String,Double>()){}
 
-        public Dish(int i, String n, String l, String d, int p, String r, Dictionary<Product, Double> c)
+        public Dish(int i, String n, String l, String d, int p, String r, Dictionary<String, Double> c)
         {
             idInDB = i;
             name = n;
