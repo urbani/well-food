@@ -15,5 +15,9 @@ namespace TRPO.View
         void setDishesList(Dictionary<String, String> dishesTypes);
         void setProductsList(List<String> pList);
         void updateContents(Dictionary<String, Double> cont);
+
+        void addProductToContence(String s, Double d);
+        String getSelectedProductName();
+        Dish getCreatedDish();
     }
 }

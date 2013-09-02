@@ -132,6 +132,7 @@ namespace TRPO.View
             {
 
                 createDishImage.Image = Image.FromFile(Properties.Settings.Default.dishesImagesFolderPath + d.LinkToPhoto);
+                createDishImage.ImageLocation = Properties.Settings.Default.dishesImagesFolderPath + d.LinkToPhoto;
             }
             else
             {
@@ -150,13 +151,13 @@ namespace TRPO.View
             return Convert.ToInt32(readyDishesAmount.Value);
         }
 
-        public void setDishesList(Dictionary<String, String> dishesTypes)
+        public void setDishesList(Dictionary<String, String> dishes)
         {
             dishesDataGrid.Rows.Clear();
-            
-            if (dishesTypes != null && dishesTypes.Count != 0)
+
+            if (dishes != null && dishes.Count != 0)
             {
-                foreach (KeyValuePair<String, String> p in dishesTypes)
+                foreach (KeyValuePair<String, String> p in dishes)
                 {
                     dishesDataGrid.Rows.Add(p.Key, p.Value);
                 }
@@ -238,6 +239,8 @@ namespace TRPO.View
 
                 dishesDataGrid.DefaultCellStyle.BackColor = Color.FromArgb(240, 240, 240);
                 dishesDataGrid.DefaultCellStyle.ForeColor = Color.FromArgb(200, 200, 200);
+                createDishName.ReadOnly = false;
+                createDishName.BackColor = System.Drawing.Color.White;
             }
             else
             {
@@ -247,12 +250,125 @@ namespace TRPO.View
 
                 dishesDataGrid.DefaultCellStyle.BackColor = Color.FromArgb(255, 255, 255);
                 dishesDataGrid.DefaultCellStyle.ForeColor = Color.FromArgb(0, 0, 0);
+                createDishName.ReadOnly = true;
+                createDishName.BackColor = System.Drawing.SystemColors.Control;
             }
         }
 
         private void createDishButton_Click(object sender, EventArgs e)
         {
-            throw new NotImplementedException();
+            if (createDishCheckBox.Checked)
+            {
+                dishesManagementContr.createNewDish();
+            }
+            else
+            {
+                dishesManagementContr.updateDish();
+            }
+        }
+
+        private void createDishImage_Click(object sender, EventArgs e)
+        {// Изменяет изображение блюда
+            OpenFileDialog ofd = new OpenFileDialog();
+            ofd.Filter = "All files (*.*)|*.*";
+            ofd.InitialDirectory = Properties.Settings.Default.dishesImagesFolderPath;
+
+            if (ofd.ShowDialog() == DialogResult.OK)
+            {
+                String fileName = Path.GetFileName(ofd.FileName);
+                if (fileName != "" && File.Exists(Properties.Settings.Default.dishesImagesFolderPath + fileName))
+                {
+                    createDishImage.Image = Image.FromFile(Properties.Settings.Default.dishesImagesFolderPath + fileName);
+                    createDishImage.ImageLocation = Properties.Settings.Default.dishesImagesFolderPath + fileName;
+                }
+                else
+                {
+                    createDishImage.Image = null;
+                    showMsg("Такого файла нет в директории с изображениями: " + Properties.Settings.Default.dishesImagesFolderPath, "Ошибка!");
+                }
+            }
+        }
+
+        private void productsDataGrid_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+        {//Добавить кликнутый продукт к составу
+            dishesManagementContr.addProductToDish();
+        }
+
+        private void createDishContentsDataGrid_KeyDown(object sender, KeyEventArgs e)
+        {//удалить активный продукт из состава
+            if (e.KeyCode == Keys.Delete || e.KeyCode == Keys.Back)
+            {
+                dishesManagementContr.deleteProductFromDish();
+                
+            }
+        }
+
+        public void addProductToContence(String s, Double d)
+        {
+            createDishContentsDataGrid.Rows.Add(s, d);
+        }
+
+        public String getCreationImageLocation()
+        {
+            return Path.GetFileName(createDishImage.ImageLocation);
+        }
+
+        public String getSelectedProductName()
+        {
+            String result = "";
+
+            result = productsDataGrid.SelectedRows.Count > 0 ? productsDataGrid.SelectedRows[0].Cells[0].Value.ToString() : "";
+            return result;
+        }
+
+        public String getCreationDishType()
+        {
+            return createDishType.Text;
+        }
+
+        public String getCreationDishName()
+        {
+            return createDishName.Text;
+        }
+
+        public String getCreationDishReceipe()
+        {
+            return createDishRecipe.Text;
+        }
+
+        public Dictionary<String, Double> getDishConsistance()
+        {
+            Dictionary<String, Double> res = new Dictionary<String, Double>();
+            int i = 0;
+            try
+            {
+                for (i = 0; i < createDishContentsDataGrid.Rows.Count; i++)
+                {
+                    res.Add(createDishContentsDataGrid.Rows[i].Cells[0].Value.ToString(), Convert.ToDouble(createDishContentsDataGrid.Rows[i].Cells[1].Value.ToString()));
+                }
+                return res;
+            }
+            catch (FormatException ex)
+            {
+                showMsg("Неверный формат количества продукта в составе в строке номер " + (i + 1), "Ошибка!");
+                return new Dictionary<String, Double>();
+            }
+            
+        }
+
+        private void ChiefForm_Load(object sender, EventArgs e)
+        {
+            var dishTypes = new string[] { "Первое", "Второе", "Третье" };
+            createDishType.DataSource = dishTypes;
+            createDishType.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
+            createDishType.AutoCompleteSource = AutoCompleteSource.ListItems;
+            createDishType.DropDownStyle = ComboBoxStyle.DropDownList;
+        }
+
+        public Dish getCreatedDish()
+        {
+            Dish res = new Dish(-1, getCreationDishName(), getCreationImageLocation(), getCreationDishType(), -1, getCreationDishReceipe(), getDishConsistance());
+            return res;
         }
 
     }

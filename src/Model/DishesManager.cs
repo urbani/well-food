@@ -141,8 +141,7 @@ namespace TRPO.Model
 
         }
 
-
-        internal Dictionary<string, double> getDishContents(String name)
+        public Dictionary<string, double> getDishContents(String name)
         {
             Dictionary<String, double> result = new Dictionary<String, double>();
             connector.openConnection();
@@ -156,6 +155,31 @@ namespace TRPO.Model
 
             connector.closeConnection();
             return result;
+        }
+
+        public void createNewDish(Dish d)
+        {
+            connector.openConnection();
+            OleDbDataReader reader = connector.executeQuery("SELECT MAX(ID_Dish) FROM Dishes");
+            int lastI = 0;
+            if (reader.Read())
+            {
+               lastI = Convert.ToInt32(reader[0]) + 1;
+            } 
+            connector.executeNonQuery("INSERT INTO Dishes VALUES (" + lastI + ", \"" + d.Name + "\", \"" + d.LinkToPhoto + "\", \"" + d.DishType + "\", " + 30 + ", \"" + d.Recipe + "\")");
+
+            foreach (KeyValuePair<String, Double> p in d.Consistance)
+            {
+                connector.executeNonQuery("INSERT INTO Products_Dishes (ID_Prod, ID_Dish, Product_Count) SELECT p.ID_Prod, " + lastI + ", " + p.Value + " FROM Products p WHERE p.Name_Prod = \"" + p.Key + "\"");
+            }
+            connector.closeConnection();
+        }
+
+        public void updateDish(Dish d)
+        {
+            connector.openConnection();
+            connector.executeNonQuery("UPDATE Dishes AS d SET d.Link_To_Photo = \"" + d.LinkToPhoto + "\", d.Dish_Type = \"" + d.DishType + "\", d.Recipe = \"" + d.Recipe + "\" WHERE d.Name_Dish = \"" + d.Name + "\"");
+            connector.closeConnection();
         }
     }
 }

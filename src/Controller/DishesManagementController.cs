@@ -55,10 +55,34 @@ namespace TRPO.Controller
             view.updateContents(dishesManager.getDishContents(view.getSelectedDishName()));
         }
 
-        internal void updateCreationDishInfo()
+        public void updateCreationDishInfo()
         {
             Dish tmpDish = dishesManager.getDish(view.getSelectedDishName());
             view.setCreateDishInfo(tmpDish);
+        }
+
+        public void createNewDish()
+        {
+            Dish d = view.getCreatedDish();
+            dishesManager.createNewDish(d);
+            view.setDishesList(dishesManager.getDishNamesWithTypes());
+        }
+
+        public void updateDish()
+        {
+            Dish d = view.getCreatedDish();
+            dishesManager.updateDish(d);
+            view.setDishesList(dishesManager.getDishNamesWithTypes());
+        }
+
+        public void addProductToDish()
+        {
+            view.addProductToContence(view.getSelectedProductName(), 1);
+        }
+
+        public void deleteProductFromDish()
+        {
+
         }
     }
 }

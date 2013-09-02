@@ -2,10 +2,6 @@
 {
     partial class ChiefForm
     {
-        /// <summary>
-        /// Required designer variable.
-        /// </summary>
-        protected System.ComponentModel.IContainer components = null;
 
         /// <summary>
         /// Clean up any resources being used.
@@ -28,18 +24,19 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ChiefForm));
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle9 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.ListViewItem listViewItem4 = new System.Windows.Forms.ListViewItem(new string[] {
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle25 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle26 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle27 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.ListViewItem listViewItem13 = new System.Windows.Forms.ListViewItem(new string[] {
             "one",
             "1"}, -1);
-            System.Windows.Forms.ListViewItem listViewItem5 = new System.Windows.Forms.ListViewItem("three");
-            System.Windows.Forms.ListViewItem listViewItem6 = new System.Windows.Forms.ListViewItem("two");
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle10 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle11 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle12 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.ListViewItem listViewItem14 = new System.Windows.Forms.ListViewItem("three");
+            System.Windows.Forms.ListViewItem listViewItem15 = new System.Windows.Forms.ListViewItem("two");
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle28 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle29 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle30 = new System.Windows.Forms.DataGridViewCellStyle();
             this.mainTab = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.tableLayoutPanel3 = new System.Windows.Forms.TableLayoutPanel();
@@ -70,36 +67,42 @@
             this.tableLayoutPanel4 = new System.Windows.Forms.TableLayoutPanel();
             this.splitContainer3 = new System.Windows.Forms.SplitContainer();
             this.tableLayoutPanel5 = new System.Windows.Forms.TableLayoutPanel();
-            this.label5 = new System.Windows.Forms.Label();
             this.dishesDataGrid = new System.Windows.Forms.DataGridView();
             this.dataGridViewTextBoxColumn3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.tableLayoutPanel6 = new System.Windows.Forms.TableLayoutPanel();
+            this.productsDataGrid = new System.Windows.Forms.DataGridView();
+            this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.tableLayoutPanel8 = new System.Windows.Forms.TableLayoutPanel();
-            this.tabPage3 = new System.Windows.Forms.TabPage();
-            this.statusStrip1 = new System.Windows.Forms.StatusStrip();
-            this.toolStripStatusLabel = new System.Windows.Forms.ToolStripStatusLabel();
-            this.createDishCheckBox = new System.Windows.Forms.CheckBox();
             this.tableLayoutPanel9 = new System.Windows.Forms.TableLayoutPanel();
             this.tableLayoutPanel10 = new System.Windows.Forms.TableLayoutPanel();
             this.createDishRecipe = new System.Windows.Forms.RichTextBox();
             this.label4 = new System.Windows.Forms.Label();
             this.tableLayoutPanel11 = new System.Windows.Forms.TableLayoutPanel();
             this.createDishImage = new System.Windows.Forms.PictureBox();
-            this.tableLayoutPanel12 = new System.Windows.Forms.TableLayoutPanel();
-            this.createDishName = new System.Windows.Forms.Label();
-            this.createDishType = new System.Windows.Forms.Label();
             this.tableLayoutPanel13 = new System.Windows.Forms.TableLayoutPanel();
             this.createDishContentsDataGrid = new System.Windows.Forms.DataGridView();
             this.dataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn9 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.label9 = new System.Windows.Forms.Label();
-            this.label7 = new System.Windows.Forms.Label();
             this.tableLayoutPanel14 = new System.Windows.Forms.TableLayoutPanel();
+            this.createDishCheckBox = new System.Windows.Forms.CheckBox();
             this.createDishButton = new System.Windows.Forms.Button();
-            this.tableLayoutPanel6 = new System.Windows.Forms.TableLayoutPanel();
-            this.productsDataGrid = new System.Windows.Forms.DataGridView();
-            this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.label2 = new System.Windows.Forms.Label();
+            this.tabPage3 = new System.Windows.Forms.TabPage();
+            this.statusStrip1 = new System.Windows.Forms.StatusStrip();
+            this.toolStripStatusLabel = new System.Windows.Forms.ToolStripStatusLabel();
+            this.main_dbDataSet = new TRPO.main_dbDataSet();
+            this.dishTypeBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.dish_TypeTableAdapter = new TRPO.main_dbDataSetTableAdapters.Dish_TypeTableAdapter();
+            this.reference5BindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.dishesTableAdapter = new TRPO.main_dbDataSetTableAdapters.DishesTableAdapter();
+            this.maindbDataSetBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.dishTypeBindingSource1 = new System.Windows.Forms.BindingSource(this.components);
+            this.reference5BindingSource1 = new System.Windows.Forms.BindingSource(this.components);
+            this.maindbDataSetBindingSource1 = new System.Windows.Forms.BindingSource(this.components);
+            this.createDishType = new System.Windows.Forms.ComboBox();
+            this.tableLayoutPanel12 = new System.Windows.Forms.TableLayoutPanel();
+            this.createDishName = new System.Windows.Forms.RichTextBox();
             this.mainTab.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.tableLayoutPanel3.SuspendLayout();
@@ -121,18 +124,25 @@
             this.splitContainer3.SuspendLayout();
             this.tableLayoutPanel5.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dishesDataGrid)).BeginInit();
+            this.tableLayoutPanel6.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.productsDataGrid)).BeginInit();
             this.tableLayoutPanel8.SuspendLayout();
-            this.statusStrip1.SuspendLayout();
             this.tableLayoutPanel9.SuspendLayout();
             this.tableLayoutPanel10.SuspendLayout();
             this.tableLayoutPanel11.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.createDishImage)).BeginInit();
-            this.tableLayoutPanel12.SuspendLayout();
             this.tableLayoutPanel13.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.createDishContentsDataGrid)).BeginInit();
             this.tableLayoutPanel14.SuspendLayout();
-            this.tableLayoutPanel6.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.productsDataGrid)).BeginInit();
+            this.statusStrip1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.main_dbDataSet)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dishTypeBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.reference5BindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.maindbDataSetBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dishTypeBindingSource1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.reference5BindingSource1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.maindbDataSetBindingSource1)).BeginInit();
+            this.tableLayoutPanel12.SuspendLayout();
             this.SuspendLayout();
             // 
             // mainTab
@@ -267,6 +277,7 @@
             // 
             // dishPicture
             // 
+            this.dishPicture.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("dishPicture.BackgroundImage")));
             this.dishPicture.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.dishPicture.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dishPicture.Image = ((System.Drawing.Image)(resources.GetObject("dishPicture.Image")));
@@ -336,14 +347,14 @@
             this.dishConsistanceDataGrid.BackgroundColor = System.Drawing.SystemColors.Window;
             this.dishConsistanceDataGrid.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.dishConsistanceDataGrid.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.Sunken;
-            dataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle7.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle7.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            dataGridViewCellStyle7.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle7.SelectionBackColor = System.Drawing.SystemColors.GradientActiveCaption;
-            dataGridViewCellStyle7.SelectionForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle7.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dishConsistanceDataGrid.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle7;
+            dataGridViewCellStyle25.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle25.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle25.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            dataGridViewCellStyle25.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle25.SelectionBackColor = System.Drawing.SystemColors.GradientActiveCaption;
+            dataGridViewCellStyle25.SelectionForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle25.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dishConsistanceDataGrid.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle25;
             this.dishConsistanceDataGrid.ColumnHeadersHeight = 25;
             this.dishConsistanceDataGrid.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
             this.dishConsistanceDataGrid.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
@@ -362,8 +373,8 @@
             // dataGridViewTextBoxColumn7
             // 
             this.dataGridViewTextBoxColumn7.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            dataGridViewCellStyle8.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.dataGridViewTextBoxColumn7.DefaultCellStyle = dataGridViewCellStyle8;
+            dataGridViewCellStyle26.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.dataGridViewTextBoxColumn7.DefaultCellStyle = dataGridViewCellStyle26;
             this.dataGridViewTextBoxColumn7.HeaderText = "Продукт";
             this.dataGridViewTextBoxColumn7.Name = "dataGridViewTextBoxColumn7";
             this.dataGridViewTextBoxColumn7.ReadOnly = true;
@@ -371,8 +382,8 @@
             // dataGridViewTextBoxColumn8
             // 
             this.dataGridViewTextBoxColumn8.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            dataGridViewCellStyle9.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.dataGridViewTextBoxColumn8.DefaultCellStyle = dataGridViewCellStyle9;
+            dataGridViewCellStyle27.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.dataGridViewTextBoxColumn8.DefaultCellStyle = dataGridViewCellStyle27;
             this.dataGridViewTextBoxColumn8.HeaderText = "Количество";
             this.dataGridViewTextBoxColumn8.Name = "dataGridViewTextBoxColumn8";
             this.dataGridViewTextBoxColumn8.ReadOnly = true;
@@ -454,9 +465,9 @@
             this.listView1.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.Nonclickable;
             this.listView1.HideSelection = false;
             this.listView1.Items.AddRange(new System.Windows.Forms.ListViewItem[] {
-            listViewItem4,
-            listViewItem5,
-            listViewItem6});
+            listViewItem13,
+            listViewItem14,
+            listViewItem15});
             this.listView1.Location = new System.Drawing.Point(3, 3);
             this.listView1.MultiSelect = false;
             this.listView1.Name = "listView1";
@@ -537,28 +548,15 @@
             this.tableLayoutPanel5.BackColor = System.Drawing.Color.Transparent;
             this.tableLayoutPanel5.ColumnCount = 1;
             this.tableLayoutPanel5.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel5.Controls.Add(this.label5, 0, 0);
-            this.tableLayoutPanel5.Controls.Add(this.dishesDataGrid, 0, 1);
+            this.tableLayoutPanel5.Controls.Add(this.dishesDataGrid, 0, 0);
             this.tableLayoutPanel5.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel5.Location = new System.Drawing.Point(0, 0);
             this.tableLayoutPanel5.Name = "tableLayoutPanel5";
-            this.tableLayoutPanel5.RowCount = 2;
-            this.tableLayoutPanel5.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 26F));
+            this.tableLayoutPanel5.RowCount = 1;
             this.tableLayoutPanel5.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tableLayoutPanel5.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 667F));
             this.tableLayoutPanel5.Size = new System.Drawing.Size(300, 667);
             this.tableLayoutPanel5.TabIndex = 0;
-            // 
-            // label5
-            // 
-            this.label5.AutoSize = true;
-            this.label5.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
-            this.label5.Location = new System.Drawing.Point(3, 6);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(294, 20);
-            this.label5.TabIndex = 11;
-            this.label5.Text = "Блюда:";
-            this.label5.TextAlign = System.Drawing.ContentAlignment.BottomLeft;
             // 
             // dishesDataGrid
             // 
@@ -574,13 +572,13 @@
             this.dataGridViewTextBoxColumn3,
             this.dataGridViewTextBoxColumn4});
             this.dishesDataGrid.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.dishesDataGrid.Location = new System.Drawing.Point(3, 29);
+            this.dishesDataGrid.Location = new System.Drawing.Point(3, 3);
             this.dishesDataGrid.MultiSelect = false;
             this.dishesDataGrid.Name = "dishesDataGrid";
             this.dishesDataGrid.RowHeadersVisible = false;
             this.dishesDataGrid.RowHeadersWidth = 50;
             this.dishesDataGrid.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dishesDataGrid.Size = new System.Drawing.Size(294, 635);
+            this.dishesDataGrid.Size = new System.Drawing.Size(294, 661);
             this.dishesDataGrid.TabIndex = 10;
             this.dishesDataGrid.SelectionChanged += new System.EventHandler(this.dishesDataGrid_SelectionChanged);
             // 
@@ -601,60 +599,63 @@
             this.dataGridViewTextBoxColumn4.ReadOnly = true;
             this.dataGridViewTextBoxColumn4.Resizable = System.Windows.Forms.DataGridViewTriState.True;
             // 
+            // tableLayoutPanel6
+            // 
+            this.tableLayoutPanel6.ColumnCount = 1;
+            this.tableLayoutPanel6.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tableLayoutPanel6.Controls.Add(this.productsDataGrid, 0, 0);
+            this.tableLayoutPanel6.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tableLayoutPanel6.Location = new System.Drawing.Point(0, 0);
+            this.tableLayoutPanel6.Name = "tableLayoutPanel6";
+            this.tableLayoutPanel6.RowCount = 1;
+            this.tableLayoutPanel6.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tableLayoutPanel6.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 667F));
+            this.tableLayoutPanel6.Size = new System.Drawing.Size(187, 667);
+            this.tableLayoutPanel6.TabIndex = 1;
+            // 
+            // productsDataGrid
+            // 
+            this.productsDataGrid.AllowUserToAddRows = false;
+            this.productsDataGrid.AllowUserToDeleteRows = false;
+            this.productsDataGrid.AllowUserToResizeRows = false;
+            this.productsDataGrid.BackgroundColor = System.Drawing.SystemColors.Window;
+            this.productsDataGrid.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.productsDataGrid.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.Sunken;
+            this.productsDataGrid.ColumnHeadersHeight = 25;
+            this.productsDataGrid.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
+            this.productsDataGrid.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.dataGridViewTextBoxColumn1});
+            this.productsDataGrid.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.productsDataGrid.Location = new System.Drawing.Point(3, 3);
+            this.productsDataGrid.MultiSelect = false;
+            this.productsDataGrid.Name = "productsDataGrid";
+            this.productsDataGrid.RowHeadersVisible = false;
+            this.productsDataGrid.RowHeadersWidth = 50;
+            this.productsDataGrid.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.productsDataGrid.Size = new System.Drawing.Size(181, 661);
+            this.productsDataGrid.TabIndex = 8;
+            this.productsDataGrid.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.productsDataGrid_CellDoubleClick);
+            // 
+            // dataGridViewTextBoxColumn1
+            // 
+            this.dataGridViewTextBoxColumn1.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.dataGridViewTextBoxColumn1.HeaderText = "Продукт";
+            this.dataGridViewTextBoxColumn1.Name = "dataGridViewTextBoxColumn1";
+            this.dataGridViewTextBoxColumn1.ReadOnly = true;
+            // 
             // tableLayoutPanel8
             // 
             this.tableLayoutPanel8.ColumnCount = 1;
             this.tableLayoutPanel8.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel8.Controls.Add(this.label7, 0, 0);
-            this.tableLayoutPanel8.Controls.Add(this.tableLayoutPanel9, 0, 1);
+            this.tableLayoutPanel8.Controls.Add(this.tableLayoutPanel9, 0, 0);
             this.tableLayoutPanel8.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel8.Location = new System.Drawing.Point(500, 3);
             this.tableLayoutPanel8.Name = "tableLayoutPanel8";
-            this.tableLayoutPanel8.RowCount = 2;
-            this.tableLayoutPanel8.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 27F));
+            this.tableLayoutPanel8.RowCount = 1;
             this.tableLayoutPanel8.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tableLayoutPanel8.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 667F));
             this.tableLayoutPanel8.Size = new System.Drawing.Size(491, 667);
             this.tableLayoutPanel8.TabIndex = 1;
-            // 
-            // tabPage3
-            // 
-            this.tabPage3.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.tabPage3.Location = new System.Drawing.Point(4, 25);
-            this.tabPage3.Name = "tabPage3";
-            this.tabPage3.Size = new System.Drawing.Size(1000, 679);
-            this.tabPage3.TabIndex = 2;
-            this.tabPage3.Text = "Создание меню";
-            this.tabPage3.UseVisualStyleBackColor = true;
-            // 
-            // statusStrip1
-            // 
-            this.statusStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.toolStripStatusLabel});
-            this.statusStrip1.Location = new System.Drawing.Point(0, 708);
-            this.statusStrip1.Name = "statusStrip1";
-            this.statusStrip1.Size = new System.Drawing.Size(1008, 22);
-            this.statusStrip1.TabIndex = 1;
-            this.statusStrip1.Text = "statusStrip1";
-            // 
-            // toolStripStatusLabel
-            // 
-            this.toolStripStatusLabel.Name = "toolStripStatusLabel";
-            this.toolStripStatusLabel.Size = new System.Drawing.Size(57, 17);
-            this.toolStripStatusLabel.Text = "Error Text";
-            this.toolStripStatusLabel.Visible = false;
-            // 
-            // createDishCheckBox
-            // 
-            this.createDishCheckBox.AutoSize = true;
-            this.createDishCheckBox.CheckAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.createDishCheckBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Underline);
-            this.createDishCheckBox.Location = new System.Drawing.Point(3, 3);
-            this.createDishCheckBox.Name = "createDishCheckBox";
-            this.createDishCheckBox.Size = new System.Drawing.Size(199, 22);
-            this.createDishCheckBox.TabIndex = 0;
-            this.createDishCheckBox.Text = "Создание нового блюда";
-            this.createDishCheckBox.UseVisualStyleBackColor = true;
-            this.createDishCheckBox.CheckedChanged += new System.EventHandler(this.createDishCheckBox_CheckedChanged);
             // 
             // tableLayoutPanel9
             // 
@@ -665,14 +666,14 @@
             this.tableLayoutPanel9.Controls.Add(this.tableLayoutPanel13, 0, 1);
             this.tableLayoutPanel9.Controls.Add(this.tableLayoutPanel14, 0, 3);
             this.tableLayoutPanel9.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel9.Location = new System.Drawing.Point(3, 30);
+            this.tableLayoutPanel9.Location = new System.Drawing.Point(3, 3);
             this.tableLayoutPanel9.Name = "tableLayoutPanel9";
             this.tableLayoutPanel9.RowCount = 4;
             this.tableLayoutPanel9.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 112F));
             this.tableLayoutPanel9.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.tableLayoutPanel9.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.tableLayoutPanel9.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 39F));
-            this.tableLayoutPanel9.Size = new System.Drawing.Size(485, 634);
+            this.tableLayoutPanel9.Size = new System.Drawing.Size(485, 661);
             this.tableLayoutPanel9.TabIndex = 2;
             // 
             // tableLayoutPanel10
@@ -682,12 +683,12 @@
             this.tableLayoutPanel10.Controls.Add(this.createDishRecipe, 0, 1);
             this.tableLayoutPanel10.Controls.Add(this.label4, 0, 0);
             this.tableLayoutPanel10.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel10.Location = new System.Drawing.Point(3, 356);
+            this.tableLayoutPanel10.Location = new System.Drawing.Point(3, 370);
             this.tableLayoutPanel10.Name = "tableLayoutPanel10";
             this.tableLayoutPanel10.RowCount = 2;
             this.tableLayoutPanel10.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 22F));
             this.tableLayoutPanel10.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel10.Size = new System.Drawing.Size(479, 235);
+            this.tableLayoutPanel10.Size = new System.Drawing.Size(479, 249);
             this.tableLayoutPanel10.TabIndex = 2;
             // 
             // createDishRecipe
@@ -696,8 +697,7 @@
             this.createDishRecipe.Dock = System.Windows.Forms.DockStyle.Fill;
             this.createDishRecipe.Location = new System.Drawing.Point(3, 25);
             this.createDishRecipe.Name = "createDishRecipe";
-            this.createDishRecipe.ReadOnly = true;
-            this.createDishRecipe.Size = new System.Drawing.Size(473, 207);
+            this.createDishRecipe.Size = new System.Drawing.Size(473, 221);
             this.createDishRecipe.TabIndex = 1;
             this.createDishRecipe.Text = resources.GetString("createDishRecipe.Text");
             // 
@@ -728,8 +728,12 @@
             // 
             // createDishImage
             // 
+            this.createDishImage.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
+                        | System.Windows.Forms.AnchorStyles.Left)
+                        | System.Windows.Forms.AnchorStyles.Right)));
+            this.createDishImage.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("createDishImage.BackgroundImage")));
             this.createDishImage.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.createDishImage.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.createDishImage.Cursor = System.Windows.Forms.Cursors.Hand;
             this.createDishImage.Image = ((System.Drawing.Image)(resources.GetObject("createDishImage.Image")));
             this.createDishImage.InitialImage = null;
             this.createDishImage.Location = new System.Drawing.Point(3, 3);
@@ -737,42 +741,7 @@
             this.createDishImage.Size = new System.Drawing.Size(100, 100);
             this.createDishImage.TabIndex = 0;
             this.createDishImage.TabStop = false;
-            // 
-            // tableLayoutPanel12
-            // 
-            this.tableLayoutPanel12.CellBorderStyle = System.Windows.Forms.TableLayoutPanelCellBorderStyle.Inset;
-            this.tableLayoutPanel12.ColumnCount = 1;
-            this.tableLayoutPanel12.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel12.Controls.Add(this.createDishName, 0, 0);
-            this.tableLayoutPanel12.Controls.Add(this.createDishType, 0, 1);
-            this.tableLayoutPanel12.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel12.Location = new System.Drawing.Point(109, 3);
-            this.tableLayoutPanel12.Name = "tableLayoutPanel12";
-            this.tableLayoutPanel12.RowCount = 2;
-            this.tableLayoutPanel12.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 81F));
-            this.tableLayoutPanel12.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 19F));
-            this.tableLayoutPanel12.Size = new System.Drawing.Size(367, 100);
-            this.tableLayoutPanel12.TabIndex = 2;
-            // 
-            // createDishName
-            // 
-            this.createDishName.AutoSize = true;
-            this.createDishName.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.createDishName.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.createDishName.Location = new System.Drawing.Point(5, 2);
-            this.createDishName.Name = "createDishName";
-            this.createDishName.Size = new System.Drawing.Size(357, 76);
-            this.createDishName.TabIndex = 1;
-            this.createDishName.Text = "Борщ по-пацански. Подавать с семками в подогретой барсетке";
-            // 
-            // createDishType
-            // 
-            this.createDishType.AutoSize = true;
-            this.createDishType.Location = new System.Drawing.Point(5, 80);
-            this.createDishType.Name = "createDishType";
-            this.createDishType.Size = new System.Drawing.Size(66, 18);
-            this.createDishType.TabIndex = 2;
-            this.createDishType.Text = "Первое";
+            this.createDishImage.Click += new System.EventHandler(this.createDishImage_Click);
             // 
             // tableLayoutPanel13
             // 
@@ -786,7 +755,7 @@
             this.tableLayoutPanel13.RowCount = 2;
             this.tableLayoutPanel13.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 22F));
             this.tableLayoutPanel13.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel13.Size = new System.Drawing.Size(479, 235);
+            this.tableLayoutPanel13.Size = new System.Drawing.Size(479, 249);
             this.tableLayoutPanel13.TabIndex = 1;
             // 
             // createDishContentsDataGrid
@@ -797,34 +766,36 @@
             this.createDishContentsDataGrid.BackgroundColor = System.Drawing.SystemColors.Window;
             this.createDishContentsDataGrid.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.createDishContentsDataGrid.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.Sunken;
-            dataGridViewCellStyle10.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle10.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle10.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            dataGridViewCellStyle10.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle10.SelectionBackColor = System.Drawing.SystemColors.GradientActiveCaption;
-            dataGridViewCellStyle10.SelectionForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle10.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.createDishContentsDataGrid.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle10;
+            dataGridViewCellStyle28.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle28.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle28.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            dataGridViewCellStyle28.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle28.SelectionBackColor = System.Drawing.SystemColors.GradientActiveCaption;
+            dataGridViewCellStyle28.SelectionForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle28.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.createDishContentsDataGrid.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle28;
             this.createDishContentsDataGrid.ColumnHeadersHeight = 25;
             this.createDishContentsDataGrid.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
             this.createDishContentsDataGrid.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.dataGridViewTextBoxColumn2,
             this.dataGridViewTextBoxColumn9});
             this.createDishContentsDataGrid.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.createDishContentsDataGrid.EditMode = System.Windows.Forms.DataGridViewEditMode.EditOnEnter;
             this.createDishContentsDataGrid.Location = new System.Drawing.Point(3, 25);
             this.createDishContentsDataGrid.MultiSelect = false;
             this.createDishContentsDataGrid.Name = "createDishContentsDataGrid";
             this.createDishContentsDataGrid.RowHeadersVisible = false;
             this.createDishContentsDataGrid.RowHeadersWidth = 50;
             this.createDishContentsDataGrid.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.createDishContentsDataGrid.Size = new System.Drawing.Size(473, 207);
+            this.createDishContentsDataGrid.Size = new System.Drawing.Size(473, 221);
             this.createDishContentsDataGrid.TabIndex = 9;
+            this.createDishContentsDataGrid.KeyDown += new System.Windows.Forms.KeyEventHandler(this.createDishContentsDataGrid_KeyDown);
             // 
             // dataGridViewTextBoxColumn2
             // 
             this.dataGridViewTextBoxColumn2.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            dataGridViewCellStyle11.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.dataGridViewTextBoxColumn2.DefaultCellStyle = dataGridViewCellStyle11;
+            dataGridViewCellStyle29.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.dataGridViewTextBoxColumn2.DefaultCellStyle = dataGridViewCellStyle29;
             this.dataGridViewTextBoxColumn2.HeaderText = "Продукт";
             this.dataGridViewTextBoxColumn2.Name = "dataGridViewTextBoxColumn2";
             this.dataGridViewTextBoxColumn2.ReadOnly = true;
@@ -832,11 +803,10 @@
             // dataGridViewTextBoxColumn9
             // 
             this.dataGridViewTextBoxColumn9.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            dataGridViewCellStyle12.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.dataGridViewTextBoxColumn9.DefaultCellStyle = dataGridViewCellStyle12;
+            dataGridViewCellStyle30.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.dataGridViewTextBoxColumn9.DefaultCellStyle = dataGridViewCellStyle30;
             this.dataGridViewTextBoxColumn9.HeaderText = "Количество";
             this.dataGridViewTextBoxColumn9.Name = "dataGridViewTextBoxColumn9";
-            this.dataGridViewTextBoxColumn9.ReadOnly = true;
             this.dataGridViewTextBoxColumn9.Resizable = System.Windows.Forms.DataGridViewTriState.True;
             // 
             // label9
@@ -849,18 +819,6 @@
             this.label9.TabIndex = 0;
             this.label9.Text = "Состав:";
             // 
-            // label7
-            // 
-            this.label7.AutoSize = true;
-            this.label7.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.label7.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
-            this.label7.Location = new System.Drawing.Point(3, 7);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(485, 20);
-            this.label7.TabIndex = 5;
-            this.label7.Text = "Блюдо:";
-            this.label7.TextAlign = System.Drawing.ContentAlignment.BottomLeft;
-            // 
             // tableLayoutPanel14
             // 
             this.tableLayoutPanel14.ColumnCount = 2;
@@ -869,12 +827,25 @@
             this.tableLayoutPanel14.Controls.Add(this.createDishCheckBox, 0, 0);
             this.tableLayoutPanel14.Controls.Add(this.createDishButton, 1, 0);
             this.tableLayoutPanel14.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel14.Location = new System.Drawing.Point(3, 597);
+            this.tableLayoutPanel14.Location = new System.Drawing.Point(3, 625);
             this.tableLayoutPanel14.Name = "tableLayoutPanel14";
             this.tableLayoutPanel14.RowCount = 1;
             this.tableLayoutPanel14.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel14.Size = new System.Drawing.Size(479, 34);
+            this.tableLayoutPanel14.Size = new System.Drawing.Size(479, 33);
             this.tableLayoutPanel14.TabIndex = 3;
+            // 
+            // createDishCheckBox
+            // 
+            this.createDishCheckBox.AutoSize = true;
+            this.createDishCheckBox.CheckAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.createDishCheckBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Underline);
+            this.createDishCheckBox.Location = new System.Drawing.Point(3, 3);
+            this.createDishCheckBox.Name = "createDishCheckBox";
+            this.createDishCheckBox.Size = new System.Drawing.Size(199, 22);
+            this.createDishCheckBox.TabIndex = 0;
+            this.createDishCheckBox.Text = "Создание нового блюда";
+            this.createDishCheckBox.UseVisualStyleBackColor = true;
+            this.createDishCheckBox.CheckedChanged += new System.EventHandler(this.createDishCheckBox_CheckedChanged);
             // 
             // createDishButton
             // 
@@ -882,67 +853,118 @@
             this.createDishButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F);
             this.createDishButton.Location = new System.Drawing.Point(299, 3);
             this.createDishButton.Name = "createDishButton";
-            this.createDishButton.Size = new System.Drawing.Size(177, 28);
+            this.createDishButton.Size = new System.Drawing.Size(177, 27);
             this.createDishButton.TabIndex = 1;
             this.createDishButton.Text = "Обновить";
             this.createDishButton.UseVisualStyleBackColor = true;
             this.createDishButton.Click += new System.EventHandler(this.createDishButton_Click);
             // 
-            // tableLayoutPanel6
+            // tabPage3
             // 
-            this.tableLayoutPanel6.ColumnCount = 1;
-            this.tableLayoutPanel6.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel6.Controls.Add(this.productsDataGrid, 0, 1);
-            this.tableLayoutPanel6.Controls.Add(this.label2, 0, 0);
-            this.tableLayoutPanel6.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel6.Location = new System.Drawing.Point(0, 0);
-            this.tableLayoutPanel6.Name = "tableLayoutPanel6";
-            this.tableLayoutPanel6.RowCount = 2;
-            this.tableLayoutPanel6.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 26F));
-            this.tableLayoutPanel6.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel6.Size = new System.Drawing.Size(187, 667);
-            this.tableLayoutPanel6.TabIndex = 1;
+            this.tabPage3.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.tabPage3.Location = new System.Drawing.Point(4, 25);
+            this.tabPage3.Name = "tabPage3";
+            this.tabPage3.Size = new System.Drawing.Size(1000, 679);
+            this.tabPage3.TabIndex = 2;
+            this.tabPage3.Text = "Создание меню";
+            this.tabPage3.UseVisualStyleBackColor = true;
             // 
-            // productsDataGrid
+            // statusStrip1
             // 
-            this.productsDataGrid.AllowUserToAddRows = false;
-            this.productsDataGrid.AllowUserToDeleteRows = false;
-            this.productsDataGrid.AllowUserToResizeRows = false;
-            this.productsDataGrid.BackgroundColor = System.Drawing.SystemColors.Window;
-            this.productsDataGrid.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.productsDataGrid.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.Sunken;
-            this.productsDataGrid.ColumnHeadersHeight = 25;
-            this.productsDataGrid.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
-            this.productsDataGrid.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.dataGridViewTextBoxColumn1});
-            this.productsDataGrid.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.productsDataGrid.Location = new System.Drawing.Point(3, 29);
-            this.productsDataGrid.MultiSelect = false;
-            this.productsDataGrid.Name = "productsDataGrid";
-            this.productsDataGrid.RowHeadersVisible = false;
-            this.productsDataGrid.RowHeadersWidth = 50;
-            this.productsDataGrid.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.productsDataGrid.Size = new System.Drawing.Size(181, 635);
-            this.productsDataGrid.TabIndex = 8;
+            this.statusStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.toolStripStatusLabel});
+            this.statusStrip1.Location = new System.Drawing.Point(0, 708);
+            this.statusStrip1.Name = "statusStrip1";
+            this.statusStrip1.Size = new System.Drawing.Size(1008, 22);
+            this.statusStrip1.TabIndex = 1;
+            this.statusStrip1.Text = "statusStrip1";
             // 
-            // dataGridViewTextBoxColumn1
+            // toolStripStatusLabel
             // 
-            this.dataGridViewTextBoxColumn1.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.dataGridViewTextBoxColumn1.HeaderText = "Продукт";
-            this.dataGridViewTextBoxColumn1.Name = "dataGridViewTextBoxColumn1";
-            this.dataGridViewTextBoxColumn1.ReadOnly = true;
+            this.toolStripStatusLabel.Name = "toolStripStatusLabel";
+            this.toolStripStatusLabel.Size = new System.Drawing.Size(57, 17);
+            this.toolStripStatusLabel.Text = "Error Text";
+            this.toolStripStatusLabel.Visible = false;
             // 
-            // label2
+            // main_dbDataSet
             // 
-            this.label2.AutoSize = true;
-            this.label2.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
-            this.label2.Location = new System.Drawing.Point(3, 6);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(181, 20);
-            this.label2.TabIndex = 3;
-            this.label2.Text = "Продукты:";
-            this.label2.TextAlign = System.Drawing.ContentAlignment.BottomLeft;
+            this.main_dbDataSet.DataSetName = "main_dbDataSet";
+            this.main_dbDataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
+            // 
+            // dishTypeBindingSource
+            // 
+            this.dishTypeBindingSource.DataMember = "Dish_Type";
+            this.dishTypeBindingSource.DataSource = this.main_dbDataSet;
+            // 
+            // dish_TypeTableAdapter
+            // 
+            this.dish_TypeTableAdapter.ClearBeforeFill = true;
+            // 
+            // reference5BindingSource
+            // 
+            this.reference5BindingSource.DataMember = "Reference5";
+            this.reference5BindingSource.DataSource = this.dishTypeBindingSource;
+            // 
+            // dishesTableAdapter
+            // 
+            this.dishesTableAdapter.ClearBeforeFill = true;
+            // 
+            // maindbDataSetBindingSource
+            // 
+            this.maindbDataSetBindingSource.DataSource = this.main_dbDataSet;
+            this.maindbDataSetBindingSource.Position = 0;
+            // 
+            // dishTypeBindingSource1
+            // 
+            this.dishTypeBindingSource1.DataMember = "Dish_Type";
+            this.dishTypeBindingSource1.DataSource = this.maindbDataSetBindingSource;
+            // 
+            // reference5BindingSource1
+            // 
+            this.reference5BindingSource1.DataMember = "Reference5";
+            this.reference5BindingSource1.DataSource = this.dishTypeBindingSource1;
+            // 
+            // maindbDataSetBindingSource1
+            // 
+            this.maindbDataSetBindingSource1.DataSource = this.main_dbDataSet;
+            this.maindbDataSetBindingSource1.Position = 0;
+            // 
+            // createDishType
+            // 
+            this.createDishType.DisplayMember = "Type";
+            this.createDishType.FormattingEnabled = true;
+            this.createDishType.Location = new System.Drawing.Point(5, 66);
+            this.createDishType.Name = "createDishType";
+            this.createDishType.Size = new System.Drawing.Size(357, 28);
+            this.createDishType.TabIndex = 4;
+            this.createDishType.ValueMember = "Type";
+            // 
+            // tableLayoutPanel12
+            // 
+            this.tableLayoutPanel12.CellBorderStyle = System.Windows.Forms.TableLayoutPanelCellBorderStyle.Inset;
+            this.tableLayoutPanel12.ColumnCount = 1;
+            this.tableLayoutPanel12.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel12.Controls.Add(this.createDishName, 0, 0);
+            this.tableLayoutPanel12.Controls.Add(this.createDishType, 0, 1);
+            this.tableLayoutPanel12.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tableLayoutPanel12.Location = new System.Drawing.Point(109, 3);
+            this.tableLayoutPanel12.Name = "tableLayoutPanel12";
+            this.tableLayoutPanel12.RowCount = 2;
+            this.tableLayoutPanel12.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 63.2653F));
+            this.tableLayoutPanel12.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 36.7347F));
+            this.tableLayoutPanel12.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+            this.tableLayoutPanel12.Size = new System.Drawing.Size(367, 100);
+            this.tableLayoutPanel12.TabIndex = 2;
+            // 
+            // createDishName
+            // 
+            this.createDishName.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.createDishName.Location = new System.Drawing.Point(5, 5);
+            this.createDishName.Name = "createDishName";
+            this.createDishName.ReadOnly = true;
+            this.createDishName.Size = new System.Drawing.Size(357, 53);
+            this.createDishName.TabIndex = 3;
+            this.createDishName.Text = "Борщ красный как надо";
             // 
             // ChiefForm
             // 
@@ -954,6 +976,7 @@
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "ChiefForm";
             this.Text = "Шеф-повар";
+            this.Load += new System.EventHandler(this.ChiefForm_Load);
             this.mainTab.ResumeLayout(false);
             this.tabPage1.ResumeLayout(false);
             this.tableLayoutPanel3.ResumeLayout(false);
@@ -977,27 +1000,30 @@
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer3)).EndInit();
             this.splitContainer3.ResumeLayout(false);
             this.tableLayoutPanel5.ResumeLayout(false);
-            this.tableLayoutPanel5.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dishesDataGrid)).EndInit();
+            this.tableLayoutPanel6.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.productsDataGrid)).EndInit();
             this.tableLayoutPanel8.ResumeLayout(false);
-            this.tableLayoutPanel8.PerformLayout();
-            this.statusStrip1.ResumeLayout(false);
-            this.statusStrip1.PerformLayout();
             this.tableLayoutPanel9.ResumeLayout(false);
             this.tableLayoutPanel10.ResumeLayout(false);
             this.tableLayoutPanel10.PerformLayout();
             this.tableLayoutPanel11.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.createDishImage)).EndInit();
-            this.tableLayoutPanel12.ResumeLayout(false);
-            this.tableLayoutPanel12.PerformLayout();
             this.tableLayoutPanel13.ResumeLayout(false);
             this.tableLayoutPanel13.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.createDishContentsDataGrid)).EndInit();
             this.tableLayoutPanel14.ResumeLayout(false);
             this.tableLayoutPanel14.PerformLayout();
-            this.tableLayoutPanel6.ResumeLayout(false);
-            this.tableLayoutPanel6.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.productsDataGrid)).EndInit();
+            this.statusStrip1.ResumeLayout(false);
+            this.statusStrip1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.main_dbDataSet)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dishTypeBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.reference5BindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.maindbDataSetBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dishTypeBindingSource1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.reference5BindingSource1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.maindbDataSetBindingSource1)).EndInit();
+            this.tableLayoutPanel12.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -1021,7 +1047,6 @@
         private System.Windows.Forms.TableLayoutPanel dishLayout;
         private System.Windows.Forms.TableLayoutPanel dishLayoutHeader;
         private System.Windows.Forms.PictureBox dishPicture;
-        private System.Windows.Forms.Label dishName;
         private System.Windows.Forms.TableLayoutPanel receipeLayout;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.TableLayoutPanel dishAddLayout;
@@ -1032,7 +1057,6 @@
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel4;
         private System.Windows.Forms.SplitContainer splitContainer3;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel5;
-        private System.Windows.Forms.Label label5;
         private System.Windows.Forms.DataGridView dishesDataGrid;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel8;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
@@ -1049,21 +1073,30 @@
         private System.Windows.Forms.RichTextBox createDishRecipe;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel11;
-        private System.Windows.Forms.PictureBox createDishImage;
-        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel12;
-        private System.Windows.Forms.Label createDishName;
-        private System.Windows.Forms.Label createDishType;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel13;
         private System.Windows.Forms.DataGridView createDishContentsDataGrid;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn2;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn9;
         private System.Windows.Forms.Label label9;
-        private System.Windows.Forms.Label label7;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel14;
         private System.Windows.Forms.Button createDishButton;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel6;
         private System.Windows.Forms.DataGridView productsDataGrid;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn1;
-        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Label dishName;
+        private main_dbDataSet main_dbDataSet;
+        private System.Windows.Forms.BindingSource dishTypeBindingSource;
+        private main_dbDataSetTableAdapters.Dish_TypeTableAdapter dish_TypeTableAdapter;
+        private System.ComponentModel.IContainer components;
+        private System.Windows.Forms.BindingSource reference5BindingSource;
+        private main_dbDataSetTableAdapters.DishesTableAdapter dishesTableAdapter;
+        private System.Windows.Forms.BindingSource dishTypeBindingSource1;
+        private System.Windows.Forms.BindingSource maindbDataSetBindingSource;
+        private System.Windows.Forms.BindingSource reference5BindingSource1;
+        private System.Windows.Forms.BindingSource maindbDataSetBindingSource1;
+        private System.Windows.Forms.PictureBox createDishImage;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn2;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn9;
+        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel12;
+        private System.Windows.Forms.ComboBox createDishType;
+        private System.Windows.Forms.RichTextBox createDishName;
     }
 }
