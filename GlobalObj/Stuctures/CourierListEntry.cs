@@ -9,14 +9,21 @@ namespace TRPO.Structures
     {
         
         public int id;
+        public float price;
         public String dish;
-        public int price;
+        public String type;
+        public bool isSpecial;
+        
 
-        public CourierListEntry(int i, String d, int p)
+
+        public CourierListEntry(int i, String d, int p, String type, bool isSpecial)
         {
             id = i;
             dish = d;
             price = p;
+            this.type = type;
+            this.isSpecial = isSpecial;
+
         }
     }
 }

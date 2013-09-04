@@ -12,6 +12,7 @@ using System.Data.Common;
 using System.Collections;
 using TRPO.Controller;
 using TRPO.Structures;
+using TRPO.View;
 
 namespace TRPO.View
 {
@@ -36,10 +37,8 @@ namespace TRPO.View
             headerList2.DataSource = clientManagementController.employList;
             headerList2.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
             headerList2.AutoCompleteSource = AutoCompleteSource.ListItems;
+            ordersController.updateActiveMenu();
 
-            
-        
-            //headerList1.Items.Add("Кот котофей");
         }
 
         public void showMsg(String msg, GlobalObj.ErrorLevels el)
@@ -61,7 +60,7 @@ namespace TRPO.View
         }
 
         public void showMenuList(){}
-        public void chowCurMenu(){}
+        public void showCurMenu(){}
 
         private void headerSearchButton2_Click(object sender, EventArgs e)
         {
@@ -92,7 +91,7 @@ namespace TRPO.View
 
         public void updateMenuList(List<CourierListEntry> listDishes)
         {
-            menuList.Items.Clear();
+            menuList1.Items.Clear();
           
             String[] rawSting;
 
@@ -101,7 +100,7 @@ namespace TRPO.View
             {
                 rawSting = new String[] { dishWithPrice.dish, dishWithPrice.price.ToString() };
                 ListViewItem tmp = new ListViewItem(rawSting);
-                menuList.Items.Add(tmp);
+                menuList1.Items.Add(tmp);
             }
         }
 
@@ -112,6 +111,17 @@ namespace TRPO.View
         {}
         private void headerList2_MouseClick(object sender, MouseEventArgs e)
         {}
+
+        private void listView1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void employEditButton_Click(object sender, EventArgs e)
+        {
+            ClientManagerDialog cmd = new ClientManagerDialog();
+            cmd.ShowDialog();
+        }
 
     }
 

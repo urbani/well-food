@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using TRPO.Structures;
 using System.Data.OleDb;
+using TRPO.GlobalObj;
 
 namespace TRPO.Model
 {
@@ -42,13 +43,47 @@ namespace TRPO.Model
             CourierListEntry tmpDish = new CourierListEntry();
             connector.openConnection();
             //TODO сделать в sql вычесление цены продукта (% * себесстоимость (с учетом, того сколько продуката в блюде)
-            OleDbDataReader reader = connector.executeQuery("SELECT d.ID_Dish, d.Name_Dish, d.");
-
+            OleDbDataReader reader = connector.executeQuery(@"SELECT 
+                                                                    m.ID_dish, jo.price, jo.Name_dish, jo.Dish_Type, m.Is_Special
+                                                                FROM 
+                                                                    Menu as m
+                                                                INNER JOIN
+                                                                        (
+                                                                        SELECT 
+                                                                             di.ID_Dish, 
+                                                                             (prices.price*(1 + di.Percent/100)) as price,
+                                                                             di.Name_Dish, di.Dish_Type
+                                                                        FROM 
+                                                                            Dishes AS di 
+                                                                        INNER JOIN
+                                                                            (
+                                                                                SELECT 
+                                                                                    pd.ID_Dish, 
+                                                                                    SUM(pd.Product_Count * pr.Price) AS Price 
+                                                                                FROM 
+                                                                                    Products_Dishes pd 
+                                                                                INNER JOIN 
+                                                                                    Products pr 
+                                                                                ON 
+                                                                                    pd.ID_Prod = pr.ID_Prod 
+                                                                                GROUP BY 
+                                                                                    pd.ID_Dish
+                                                                            ) AS prices
+                                                                        ON 
+                                                                            di.ID_Dish = prices.ID_Dish
+                                                                        ) as jo
+                                                                        ON m.ID_Dish=jo.ID_Dish
+                                                                WHERE 
+	                                                            m.Date_Menu like('" + Time.getCurrentTime() + "');");
             while (reader.Read())
             {
                 tmpDish.id = Convert.ToInt32(reader[0]);
-                tmpDish.dish = reader[1].ToString(); 
-                tmpDish.price = Convert.ToInt32(reader[2]);
+                tmpDish.price = Convert.ToSingle(reader[1]);
+                tmpDish.dish = reader[2].ToString();
+                tmpDish.type = reader[3].ToString();
+                tmpDish.isSpecial = Convert.ToBoolean(reader[4]);
+                
+
 
                 resultList.Add(tmpDish);
             }

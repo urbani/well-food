@@ -13,6 +13,7 @@ namespace TRPO.Controller
         //класс над объектом пользователь-сотрудник (ФИО фото роль и т.д.)
         User user; 
         //конструкто, принимаем что
+        OrderManager orderManager = new OrderManager();
         public OrdersConroller(User u)
         {
             user = u;
@@ -23,6 +24,12 @@ namespace TRPO.Controller
         public void addForm(IOrderManagable c)
         {
             view = c;
+        }
+
+        public void updateActiveMenu()
+        {
+            view.updateMenuList(orderManager.getActiveMenu());
+
         }
 
 
