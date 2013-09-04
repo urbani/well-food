@@ -173,6 +173,7 @@ namespace TRPO.View
                 {
                     productsDataGrid.Rows.Add(s);
                 }
+                productsDataGrid.Sort(productsDataGrid.Columns[0], ListSortDirection.Ascending);
             }
         }
 
@@ -235,6 +236,7 @@ namespace TRPO.View
                 createDishType.Text = "";
                 createDishRecipe.Text = "";
                 createDishImage.Image = null;
+                createDishImage.ImageLocation = "";
                 createDishContentsDataGrid.Rows.Clear();
 
                 dishesDataGrid.DefaultCellStyle.BackColor = Color.FromArgb(240, 240, 240);

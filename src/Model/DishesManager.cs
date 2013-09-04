@@ -170,7 +170,7 @@ namespace TRPO.Model
 
             foreach (KeyValuePair<String, Double> p in d.Consistance)
             {
-                connector.executeNonQuery("INSERT INTO Products_Dishes (ID_Prod, ID_Dish, Product_Count) SELECT p.ID_Prod, " + lastI + ", " + p.Value + " FROM Products p WHERE p.Name_Prod = \"" + p.Key + "\"");
+                connector.executeNonQuery("INSERT INTO Products_Dishes (ID_Prod, ID_Dish, Product_Count) SELECT p.ID_Prod, " + lastI + ", " + p.Value.ToString().Replace(",", ".") + " FROM Products p WHERE p.Name_Prod = \"" + p.Key + "\"");
             }
             connector.closeConnection();
         }
@@ -179,6 +179,12 @@ namespace TRPO.Model
         {
             connector.openConnection();
             connector.executeNonQuery("UPDATE Dishes AS d SET d.Link_To_Photo = \"" + d.LinkToPhoto + "\", d.Dish_Type = \"" + d.DishType + "\", d.Recipe = \"" + d.Recipe + "\" WHERE d.Name_Dish = \"" + d.Name + "\"");
+
+            connector.executeNonQuery("DELETE FROM Products_Dishes Where ID_Dish = (SELECT d.ID_Dish FROM Dishes d WHERE Name_Dish = \"" + d.Name + "\")");
+            foreach (KeyValuePair<String, Double> p in d.Consistance)
+            {
+                connector.executeNonQuery("INSERT INTO Products_Dishes (ID_Prod, ID_Dish, Product_Count) SELECT p.ID_Prod, (SELECT d.ID_Dish FROM Dishes d WHERE d.Name_Dish = \"" + d.Name + "\"),  " + p.Value.ToString().Replace(",", ".") + " FROM Products p WHERE p.Name_Prod = \"" + p.Key + "\"");
+            }
             connector.closeConnection();
         }
     }
