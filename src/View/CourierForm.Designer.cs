@@ -192,7 +192,7 @@
             this.headerSearchButton1.Image = ((System.Drawing.Image)(resources.GetObject("headerSearchButton1.Image")));
             this.headerSearchButton1.Location = new System.Drawing.Point(373, 3);
             this.headerSearchButton1.Name = "headerSearchButton1";
-            this.headerSearchButton1.Size = new System.Drawing.Size(37, 35);
+            this.headerSearchButton1.Size = new System.Drawing.Size(37, 34);
             this.headerSearchButton1.TabIndex = 4;
             this.headerSearchButton1.UseVisualStyleBackColor = true;
             // 
@@ -202,7 +202,7 @@
             this.headerSearchButton2.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.headerSearchButton2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.headerSearchButton2.Image = ((System.Drawing.Image)(resources.GetObject("headerSearchButton2.Image")));
-            this.headerSearchButton2.Location = new System.Drawing.Point(373, 45);
+            this.headerSearchButton2.Location = new System.Drawing.Point(373, 44);
             this.headerSearchButton2.Name = "headerSearchButton2";
             this.headerSearchButton2.Size = new System.Drawing.Size(37, 35);
             this.headerSearchButton2.TabIndex = 5;
@@ -220,7 +220,7 @@
             // 
             // employEditButton
             // 
-            this.employEditButton.Location = new System.Drawing.Point(417, 44);
+            this.employEditButton.Location = new System.Drawing.Point(417, 43);
             this.employEditButton.Name = "employEditButton";
             this.employEditButton.Size = new System.Drawing.Size(75, 30);
             this.employEditButton.TabIndex = 7;
@@ -271,8 +271,7 @@
             this.orderMenu.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.orderMenu.FullRowSelect = true;
             this.orderMenu.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.Nonclickable;
-            this.orderMenu.HoverSelection = true;
-            this.orderMenu.ImeMode = System.Windows.Forms.ImeMode.Hiragana;
+            this.orderMenu.ImeMode = System.Windows.Forms.ImeMode.NoControl;
             listViewItem1.StateImageIndex = 0;
             listViewItem2.StateImageIndex = 0;
             listViewItem3.StateImageIndex = 0;
@@ -304,11 +303,11 @@
             this.button1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.button1.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.button1.Location = new System.Drawing.Point(266, 395);
+            this.button1.Location = new System.Drawing.Point(3, 387);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(117, 30);
+            this.button1.Size = new System.Drawing.Size(380, 38);
             this.button1.TabIndex = 0;
-            this.button1.Text = "Выполнить";
+            this.button1.Text = "Провести заказ";
             this.button1.UseVisualStyleBackColor = true;
             // 
             // leftBodyTable
@@ -400,6 +399,7 @@
             this.menuList2.UseCompatibleStateImageBehavior = false;
             this.menuList2.View = System.Windows.Forms.View.Details;
             this.menuList2.SelectedIndexChanged += new System.EventHandler(this.listView1_SelectedIndexChanged);
+            this.menuList2.DoubleClick += new System.EventHandler(this.menuList2_DoubleClick);
             // 
             // columnHeader1
             // 
@@ -441,6 +441,7 @@
             this.menuList3.TabIndex = 3;
             this.menuList3.UseCompatibleStateImageBehavior = false;
             this.menuList3.View = System.Windows.Forms.View.Details;
+            this.menuList3.DoubleClick += new System.EventHandler(this.menuList3_DoubleClick);
             // 
             // columnHeader3
             // 
@@ -482,6 +483,7 @@
             this.menuList4.TabIndex = 4;
             this.menuList4.UseCompatibleStateImageBehavior = false;
             this.menuList4.View = System.Windows.Forms.View.Details;
+            this.menuList4.DoubleClick += new System.EventHandler(this.menuList4_DoubleClick);
             // 
             // columnHeader7
             // 
