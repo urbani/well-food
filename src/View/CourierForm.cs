@@ -92,7 +92,9 @@ namespace TRPO.View
         public void updateMenuList(List<CourierListEntry> listDishes)
         {
             menuList1.Items.Clear();
-          
+            menuList2.Items.Clear();
+            menuList3.Items.Clear();
+            menuList4.Items.Clear();
             String[] rawSting;
 
 
@@ -100,8 +102,28 @@ namespace TRPO.View
             {
                 rawSting = new String[] { dishWithPrice.dish, dishWithPrice.price.ToString() };
                 ListViewItem tmp = new ListViewItem(rawSting);
-                menuList1.Items.Add(tmp);
+                if (dishWithPrice.isSpecial)
+                    menuList4.Items.Add(newElem(rawSting));
+
+                switch (dishWithPrice.type)
+                {
+                    case("Первое"):
+                        menuList1.Items.Add("2", "SSS", 0);
+                        break;
+                    case("Второе"):
+                        menuList2.Items.Add(newElem(rawSting));
+                        break;
+                    case ("Третье"):
+                        menuList3.Items.Add(newElem(rawSting));
+                        break;
+                }
+                
             }
+        }
+        ListViewItem newElem(String[] dish)
+        {
+            return new ListViewItem(dish);
+
         }
 
 
@@ -121,6 +143,26 @@ namespace TRPO.View
         {
             ClientManagerDialog cmd = new ClientManagerDialog();
             cmd.ShowDialog();
+        }
+
+        private void orderMenu_DoubleClick(object sender, EventArgs e) 
+        { 
+            
+        }
+
+
+        private void menuList1_DoubleClick(object sender, EventArgs e)
+        {
+            //String[] temp = new String[2];
+            //String buf = " ";
+            ////String t = new string();
+            //foreach (ListViewItem er in menuList1.SelectedItems)
+            //    buf = er.ToString();
+            //foreach (String t in temp)
+            //    Console.WriteLine(String.Format("{0} ", t));
+            //buf = buf.Substring(15, buf.Length - 16);
+            //orderMenu.Items.Add(buf);
+
         }
 
     }

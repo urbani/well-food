@@ -28,6 +28,7 @@ namespace TRPO.Controller
 
         public void updateActiveMenu()
         {
+
             view.updateMenuList(orderManager.getActiveMenu());
 
         }

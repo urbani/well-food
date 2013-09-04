@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using TRPO.View;
 using TRPO.Model;
+using TRPO.Structures;
 
 namespace TRPO.Controller
 {
@@ -12,6 +13,7 @@ namespace TRPO.Controller
         IDishManagable view;
         User user;
         DishesManager dishesManager;
+        List<CourierListEntry> menuList = new List<CourierListEntry>();
 
         public DishesManagementController(User u)
         {
