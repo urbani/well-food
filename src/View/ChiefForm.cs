@@ -16,16 +16,18 @@ using TRPO.GlobalObj;
 
 namespace TRPO.View
 {
-    public partial class ChiefForm : Form, IOrderViewable, IDishManagable
+    public partial class ChiefForm : Form, IOrderViewable, IDishManagable, IMenuManagable
     {
         OrderCookController ordCookContr;
         DishesManagementController dishesManagementContr;
+        MenuManagementConroller menuController;
 
-        public ChiefForm(OrderCookController occ, DishesManagementController dmc)
+        public ChiefForm(OrderCookController occ, DishesManagementController dmc, MenuManagementConroller mmc)
         {
             InitializeComponent();
             ordCookContr = occ;
             dishesManagementContr = dmc;
+            menuController = mmc;
             setDishInfo(new Dish());
             
         }
@@ -123,7 +125,6 @@ namespace TRPO.View
 
         }
 
-
         public void setDishesList(Dictionary<String, String> dishes)
         {
             switch (mainTab.SelectedIndex)
@@ -216,6 +217,121 @@ namespace TRPO.View
             createDishContentsDataGrid.Rows.Add(s, d);
         }
 
+        public void addDishToMenu1(String dish)
+        {
+            dataGridView1.Rows.Add(dish);
+        }
+
+        public void addDishToMenu2(String dish)
+        {
+            dataGridView2.Rows.Add(dish);
+        }
+
+        public void addDishToMenu3(String dish)
+        {
+            dataGridView3.Rows.Add(dish);
+        }
+
+        public void addDishToSpecialMenu(String dish)
+        {
+            dataGridView4.Rows.Add(dish);
+        }
+
+        public void clearMenu()
+        {
+            dataGridView1.Rows.Clear();
+            dataGridView2.Rows.Clear();
+            dataGridView3.Rows.Clear();
+            dataGridView4.Rows.Clear();
+            complexDishCheckbox.Checked = false;
+        }
+
+        public TRPO.Structures.Menu getCreatedMenu()
+        {
+            List<String> menu1 = new List<String>();
+            List<String> menu2 = new List<String>();
+            List<String> menu3 = new List<String>();
+            List<String> specialMenu = new List<String>();
+            foreach (DataGridViewRow r in dataGridView1.Rows)
+            {
+                menu1.Add(r.Cells[0].Value.ToString());
+            }
+            foreach (DataGridViewRow r in dataGridView2.Rows)
+            {
+                menu2.Add(r.Cells[0].Value.ToString());
+            }
+            foreach (DataGridViewRow r in dataGridView3.Rows)
+            {
+                menu3.Add(r.Cells[0].Value.ToString());
+            }
+            foreach (DataGridViewRow r in dataGridView4.Rows)
+            {
+                specialMenu.Add(r.Cells[0].Value.ToString());
+            }
+
+            TRPO.Structures.Menu m = new TRPO.Structures.Menu(menu1, menu2, menu3, specialMenu, dateTimePicker.Value);
+
+            return m;
+        }
+
+        public bool inMenu1(String dishName)
+        {
+            bool res = false;
+            foreach (DataGridViewRow r in dataGridView1.Rows)
+            {
+                if (r.Cells[0].Value.ToString() == dishName)
+                {
+                    res = true;
+                }
+            }
+            return res;
+        }
+
+        public bool inMenu2(String dishName)
+        {
+            bool res = false;
+            foreach (DataGridViewRow r in dataGridView2.Rows)
+            {
+                if (r.Cells[0].Value.ToString() == dishName)
+                {
+                    res = true;
+                }
+            }
+            return res;
+        }
+
+        public bool inMenu3(String dishName)
+        {
+            bool res = false;
+            foreach (DataGridViewRow r in dataGridView3.Rows)
+            {
+                if (r.Cells[0].Value.ToString() == dishName)
+                {
+                    res = true;
+                }
+            }
+            return res;
+        }
+
+
+        public bool inSpecialMenu(String dishName)
+        {
+            bool res = false;
+            foreach (DataGridViewRow r in dataGridView4.Rows)
+            {
+                if (r.Cells[0].Value.ToString() == dishName)
+                {
+                    res = true;
+                }
+            }
+            return res;
+        }
+
+        public bool addingToCompexMenu()
+        {
+            return complexDishCheckbox.Checked;
+        }
+
         public int getReadyDishesAmount()
         {
             return Convert.ToInt32(readyDishesAmount.Value);
@@ -233,26 +349,29 @@ namespace TRPO.View
                     result = dishesDataGrid.SelectedRows.Count > 0 ? dishesDataGrid.SelectedRows[0].Cells[0].Value.ToString() : "";
                     break;
                 case 2:
-                    if (menuCreationDishes.Focused)
+                    if (dataGridView1.Focused)
                     {
-                        result = menuCreationDishes.SelectedRows.Count > 0 ? menuCreationDishes.SelectedRows[0].Cells[0].Value.ToString() : "";
-                    } else
-                        if (dataGridView1.Focused)
+                        result = dataGridView1.SelectedRows.Count > 0 ? dataGridView1.SelectedRows[0].Cells[0].Value.ToString() : "";
+                    }
+                    else
+                        if (dataGridView2.Focused)
                         {
-                            result = dataGridView1.SelectedRows.Count > 0 ? dataGridView1.SelectedRows[0].Cells[0].Value.ToString() : "";
-                        } else
-                            if (dataGridView2.Focused)
+                            result = dataGridView2.SelectedRows.Count > 0 ? dataGridView2.SelectedRows[0].Cells[0].Value.ToString() : "";
+                        }
+                        else
+                            if (dataGridView3.Focused)
                             {
-                                result = dataGridView2.SelectedRows.Count > 0 ? dataGridView2.SelectedRows[0].Cells[0].Value.ToString() : "";
-                            } else
-                                if (dataGridView3.Focused)
+                                result = dataGridView3.SelectedRows.Count > 0 ? dataGridView3.SelectedRows[0].Cells[0].Value.ToString() : "";
+                            }
+                            else
+                                if (dataGridView4.Focused)
                                 {
-                                    result = dataGridView3.SelectedRows.Count > 0 ? dataGridView3.SelectedRows[0].Cells[0].Value.ToString() : "";
-                                } else
-                                    if (dataGridView4.Focused)
-                                    {
-                                        result = dataGridView4.SelectedRows.Count > 0 ? dataGridView4.SelectedRows[0].Cells[0].Value.ToString() : "";
-                                    }
+                                    result = dataGridView4.SelectedRows.Count > 0 ? dataGridView4.SelectedRows[0].Cells[0].Value.ToString() : "";
+                                } 
+                                else
+                                {
+                                    result = menuCreationDishes.SelectedRows.Count > 0 ? menuCreationDishes.SelectedRows[0].Cells[0].Value.ToString() : "";
+                                }
                     
                     break;
             }
@@ -486,6 +605,61 @@ namespace TRPO.View
         private void dishesDataGrid_SelectionChanged_1(object sender, EventArgs e)
         {
             dishesManagementContr.updateCreationDishInfo();
+        }
+
+        private void menuCreationDishes_CellMouseDoubleClick(object sender, DataGridViewCellMouseEventArgs e)
+        {
+            menuController.addDish();
+        }
+
+        private void checkBox1_CheckedChanged(object sender, EventArgs e)
+        {
+            switch (complexDishCheckbox.CheckState)
+            {
+                case CheckState.Checked:
+                    tableLayoutPanel19.Enabled = false;
+
+                    dataGridView1.DefaultCellStyle.BackColor = Color.FromArgb(240, 240, 240);
+                    dataGridView1.DefaultCellStyle.ForeColor = Color.FromArgb(200, 200, 200);
+                    dataGridView2.DefaultCellStyle.BackColor = Color.FromArgb(240, 240, 240);
+                    dataGridView2.DefaultCellStyle.ForeColor = Color.FromArgb(200, 200, 200);
+                    dataGridView3.DefaultCellStyle.BackColor = Color.FromArgb(240, 240, 240);
+                    dataGridView3.DefaultCellStyle.ForeColor = Color.FromArgb(200, 200, 200);
+                    break;
+                case CheckState.Unchecked:
+                    tableLayoutPanel19.Enabled = true;
+
+                    dataGridView1.DefaultCellStyle.BackColor = Color.FromArgb(255, 255, 255);
+                    dataGridView1.DefaultCellStyle.ForeColor = Color.FromArgb(0, 0, 0);
+                    dataGridView2.DefaultCellStyle.BackColor = Color.FromArgb(255, 255, 255);
+                    dataGridView2.DefaultCellStyle.ForeColor = Color.FromArgb(0, 0, 0);
+                    dataGridView3.DefaultCellStyle.BackColor = Color.FromArgb(255, 255, 255);
+                    dataGridView3.DefaultCellStyle.ForeColor = Color.FromArgb(0, 0, 0);
+                    break;
+            }
+            
+            
+            //TODO создание комплексного меню. деактивируются другие поля
+        }
+
+        private void menuCreationDishes_KeyDown(object sender, KeyEventArgs e)
+        {
+            if ((e.KeyCode == Keys.Enter) || (e.KeyCode == Keys.Space))
+            {
+                if (complexDishCheckbox.Checked)
+                {
+                    this.addDishToSpecialMenu(this.getSelectedDishName());
+                }
+                else
+                {
+                    menuController.addDish();
+                }
+            }
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            menuController.addMenu();
         }
     }
 }

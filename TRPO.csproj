@@ -52,6 +52,7 @@
   <ItemGroup>
     <Compile Include="GlobalObj\ErrorLevels.cs" />
     <Compile Include="GlobalObj\Structures\ChiefListEntry.cs" />
+    <Compile Include="GlobalObj\Structures\Menu.cs" />
     <Compile Include="GlobalObj\Structures\CourierListEntry.cs" />
     <Compile Include="GlobalObj\Structures\Dish.cs" />
     <Compile Include="GlobalObj\Time.cs" />
@@ -63,11 +64,13 @@
       <DependentUpon>Settings.settings</DependentUpon>
     </Compile>
     <Compile Include="src\Controller\ClientManagementConroller.cs" />
+    <Compile Include="src\Controller\MenuManagementConroller.cs" />
     <Compile Include="src\Controller\DishesManagementController.cs" />
     <Compile Include="src\Controller\LoginController.cs" />
     <Compile Include="src\Controller\OrderCookController.cs" />
     <Compile Include="src\Controller\OrdersConroller.cs" />
     <Compile Include="src\Model\ClientManager.cs" />
+    <Compile Include="src\Model\MenuManager.cs" />
     <Compile Include="src\Model\DBConnector.cs" />
     <Compile Include="src\Model\DishesManager.cs" />
     <Compile Include="src\Model\OrderManager.cs" />
@@ -110,6 +113,7 @@
     <Compile Include="src\View\CourierForm.Designer.cs">
       <DependentUpon>CourierForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="src\View\interfaces\IMenuManagable.cs" />
     <Compile Include="src\View\interfaces\IAuthentification.cs" />
     <Compile Include="src\View\interfaces\IClientManagable.cs" />
     <Compile Include="src\View\interfaces\IDishManagable.cs" />
