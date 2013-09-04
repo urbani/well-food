@@ -39,7 +39,7 @@ namespace TRPO.View
             headerList2.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
             headerList2.AutoCompleteSource = AutoCompleteSource.ListItems;
             ordersController.updateActiveMenu();
-            orderMenu.Items.Clear();
+            buyOrderMenu.Items.Clear();
         }
 
         public void showMsg(String msg, GlobalObj.ErrorLevels el)
@@ -148,7 +148,7 @@ namespace TRPO.View
 
         private void orderMenu_DoubleClick(object sender, EventArgs e) 
         {
-            orderMenu.Items.RemoveAt(orderMenu.SelectedIndices[0]);
+            buyOrderMenu.Items.RemoveAt(buyOrderMenu.SelectedIndices[0]);
         }
 
 
@@ -159,7 +159,7 @@ namespace TRPO.View
             dishEnty.Text = menuList1.SelectedItems[0].Text;
             priceEntry.Text = menuList1.SelectedItems[0].SubItems[1].Text;
             dishEnty.SubItems.Add(priceEntry);
-            orderMenu.Items.Add(dishEnty);
+            buyOrderMenu.Items.Add(dishEnty);
         }
 
         private void menuList2_DoubleClick(object sender, EventArgs e)
@@ -169,7 +169,7 @@ namespace TRPO.View
             dishEnty.Text = menuList2.SelectedItems[0].Text;
             priceEntry.Text = menuList2.SelectedItems[0].SubItems[1].Text;
             dishEnty.SubItems.Add(priceEntry);
-            orderMenu.Items.Add(dishEnty);
+            buyOrderMenu.Items.Add(dishEnty);
         }
 
         private void menuList3_DoubleClick(object sender, EventArgs e)
@@ -179,7 +179,7 @@ namespace TRPO.View
             dishEnty.Text = menuList3.SelectedItems[0].Text;
             priceEntry.Text = menuList3.SelectedItems[0].SubItems[1].Text;
             dishEnty.SubItems.Add(priceEntry);
-            orderMenu.Items.Add(dishEnty);
+            buyOrderMenu.Items.Add(dishEnty);
         }
 
         private void menuList4_DoubleClick(object sender, EventArgs e)
@@ -189,7 +189,12 @@ namespace TRPO.View
             dishEnty.Text = menuList4.SelectedItems[0].Text;
             priceEntry.Text = menuList4.SelectedItems[0].SubItems[1].Text;
             dishEnty.SubItems.Add(priceEntry);
-            orderMenu.Items.Add(dishEnty);
+            buyOrderMenu.Items.Add(dishEnty);
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+
         }
 
     }
