@@ -43,38 +43,39 @@ namespace TRPO.Model
             CourierListEntry tmpDish = new CourierListEntry();
             connector.openConnection();
             //TODO сделать в sql вычесление цены продукта (% * себесстоимость (с учетом, того сколько продуката в блюде)
-            OleDbDataReader reader = connector.executeQuery(@"SELECT 
-                                                                    m.ID_dish, jo.price, jo.Name_dish, jo.Dish_Type, m.Is_Special
-                                                                FROM 
-                                                                    Menu as m
-                                                                INNER JOIN
-                                                                        (
-                                                                        SELECT 
-                                                                             di.ID_Dish, 
-                                                                             (prices.price*(1 + di.Percent/100)) as price,
-                                                                             di.Name_Dish, di.Dish_Type
-                                                                        FROM 
-                                                                            Dishes AS di 
-                                                                        INNER JOIN
-                                                                            (
-                                                                                SELECT 
-                                                                                    pd.ID_Dish, 
-                                                                                    SUM(pd.Product_Count * pr.Price) AS Price 
-                                                                                FROM 
-                                                                                    Products_Dishes pd 
-                                                                                INNER JOIN 
-                                                                                    Products pr 
-                                                                                ON 
-                                                                                    pd.ID_Prod = pr.ID_Prod 
-                                                                                GROUP BY 
-                                                                                    pd.ID_Dish
-                                                                            ) AS prices
-                                                                        ON 
-                                                                            di.ID_Dish = prices.ID_Dish
-                                                                        ) as jo
-                                                                        ON m.ID_Dish=jo.ID_Dish
-                                                                WHERE 
-	                                                            m.Date_Menu like('" + Time.getCurrentTime() + "');");
+            OleDbDataReader reader = connector.executeQuery(@"
+                SELECT 
+                    m.ID_dish, jo.price, jo.Name_dish, jo.Dish_Type, m.Is_Special
+                FROM 
+                    Menu as m
+                INNER JOIN
+                        (
+                        SELECT 
+                                di.ID_Dish, 
+                                (prices.price*(1 + di.Percent/100)) as price,
+                                di.Name_Dish, di.Dish_Type
+                        FROM 
+                            Dishes AS di 
+                        INNER JOIN
+                            (
+                                SELECT 
+                                    pd.ID_Dish, 
+                                    SUM(pd.Product_Count * pr.Price) AS Price 
+                                FROM 
+                                    Products_Dishes pd 
+                                INNER JOIN 
+                                    Products pr 
+                                ON 
+                                    pd.ID_Prod = pr.ID_Prod 
+                                GROUP BY 
+                                    pd.ID_Dish
+                            ) AS prices
+                        ON 
+                            di.ID_Dish = prices.ID_Dish
+                        ) as jo
+                        ON m.ID_Dish=jo.ID_Dish
+                WHERE 
+	            m.Date_Menu like('" + Time.getCurrentTime() + "');");
             while (reader.Read())
             {
                 tmpDish.id = Convert.ToInt32(reader[0]);
