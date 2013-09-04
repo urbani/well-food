@@ -147,8 +147,8 @@ namespace TRPO.View
         }
 
         private void orderMenu_DoubleClick(object sender, EventArgs e) 
-        { 
-            
+        {
+            orderMenu.Items.RemoveAt(orderMenu.SelectedIndices[0]);
         }
 
 

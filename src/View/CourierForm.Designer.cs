@@ -271,8 +271,7 @@
             this.orderMenu.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.orderMenu.FullRowSelect = true;
             this.orderMenu.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.Nonclickable;
-            this.orderMenu.HoverSelection = true;
-            this.orderMenu.ImeMode = System.Windows.Forms.ImeMode.Hiragana;
+            this.orderMenu.ImeMode = System.Windows.Forms.ImeMode.NoControl;
             listViewItem1.StateImageIndex = 0;
             listViewItem2.StateImageIndex = 0;
             listViewItem3.StateImageIndex = 0;
