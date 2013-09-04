@@ -192,7 +192,7 @@
             this.headerSearchButton1.Image = ((System.Drawing.Image)(resources.GetObject("headerSearchButton1.Image")));
             this.headerSearchButton1.Location = new System.Drawing.Point(373, 3);
             this.headerSearchButton1.Name = "headerSearchButton1";
-            this.headerSearchButton1.Size = new System.Drawing.Size(37, 35);
+            this.headerSearchButton1.Size = new System.Drawing.Size(37, 34);
             this.headerSearchButton1.TabIndex = 4;
             this.headerSearchButton1.UseVisualStyleBackColor = true;
             // 
@@ -202,7 +202,7 @@
             this.headerSearchButton2.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.headerSearchButton2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.headerSearchButton2.Image = ((System.Drawing.Image)(resources.GetObject("headerSearchButton2.Image")));
-            this.headerSearchButton2.Location = new System.Drawing.Point(373, 45);
+            this.headerSearchButton2.Location = new System.Drawing.Point(373, 44);
             this.headerSearchButton2.Name = "headerSearchButton2";
             this.headerSearchButton2.Size = new System.Drawing.Size(37, 35);
             this.headerSearchButton2.TabIndex = 5;
@@ -220,7 +220,7 @@
             // 
             // employEditButton
             // 
-            this.employEditButton.Location = new System.Drawing.Point(417, 44);
+            this.employEditButton.Location = new System.Drawing.Point(417, 43);
             this.employEditButton.Name = "employEditButton";
             this.employEditButton.Size = new System.Drawing.Size(75, 30);
             this.employEditButton.TabIndex = 7;
@@ -304,11 +304,11 @@
             this.button1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.button1.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.button1.Location = new System.Drawing.Point(266, 395);
+            this.button1.Location = new System.Drawing.Point(3, 387);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(117, 30);
+            this.button1.Size = new System.Drawing.Size(380, 38);
             this.button1.TabIndex = 0;
-            this.button1.Text = "Выполнить";
+            this.button1.Text = "Провести заказ";
             this.button1.UseVisualStyleBackColor = true;
             // 
             // leftBodyTable
