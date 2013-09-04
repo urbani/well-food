@@ -28,7 +28,7 @@ namespace TRPO.Controller
         }
 
         public void updateDishInfo()
-        {
+        {//TODO: Проверка хватает ли продуктов для приготовления заказа
             Dish tmpDish = dishesManager.getDish(view.getSelectedDishName());
             view.setDishInfo(tmpDish);
         }
@@ -58,7 +58,7 @@ namespace TRPO.Controller
         public void updateCreationDishInfo()
         {
             Dish tmpDish = dishesManager.getDish(view.getSelectedDishName());
-            view.setCreateDishInfo(tmpDish);
+            view.setDishInfo(tmpDish);
         }
 
         public void createNewDish()
