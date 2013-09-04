@@ -95,5 +95,9 @@ namespace TRPO.Controller
             dishesManager.deleteProductFromDish(view.getSelectedDishName(), view.getSelectedContenceName());
             updateContents();
         }
+        public void checkoutOrder()
+        {
+            
+        }
     }
 }

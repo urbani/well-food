@@ -66,6 +66,10 @@
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage6 = new System.Windows.Forms.TabPage();
             this.tabPage5 = new System.Windows.Forms.TabPage();
+            this.toolStripStatusLabel1 = new System.Windows.Forms.ToolStripStatusLabel();
+            this.listView1 = new System.Windows.Forms.ListView();
+            this.columnHeader9 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader10 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.mainTable.SuspendLayout();
             this.headerTable.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
@@ -75,7 +79,9 @@
             this.tabPage2.SuspendLayout();
             this.tabPage3.SuspendLayout();
             this.tabPage4.SuspendLayout();
+            this.statusStrip.SuspendLayout();
             this.tabControl1.SuspendLayout();
+            this.tabPage6.SuspendLayout();
             this.tabPage5.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -91,7 +97,7 @@
             this.mainTable.RowCount = 2;
             this.mainTable.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 90F));
             this.mainTable.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 62.13097F));
-            this.mainTable.Size = new System.Drawing.Size(789, 530);
+            this.mainTable.Size = new System.Drawing.Size(789, 524);
             this.mainTable.TabIndex = 0;
             // 
             // headerTable
@@ -161,6 +167,7 @@
             this.headerList2.Name = "headerList2";
             this.headerList2.Size = new System.Drawing.Size(258, 28);
             this.headerList2.TabIndex = 3;
+            this.headerList2.SelectedIndexChanged += new System.EventHandler(this.headerList2_SelectedIndexChanged);
             this.headerList2.EnabledChanged += new System.EventHandler(this.headerList2_EnabledChanged);
             this.headerList2.MouseClick += new System.Windows.Forms.MouseEventHandler(this.headerList2_MouseClick);
             // 
@@ -211,8 +218,8 @@
             // tableLayoutPanel1
             // 
             this.tableLayoutPanel1.ColumnCount = 2;
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 54.1507F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 45.8493F));
             this.tableLayoutPanel1.Controls.Add(this.rightBodyTabel, 0, 0);
             this.tableLayoutPanel1.Controls.Add(this.leftBodyTable, 0, 0);
             this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -220,7 +227,7 @@
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
             this.tableLayoutPanel1.RowCount = 1;
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(783, 434);
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(783, 428);
             this.tableLayoutPanel1.TabIndex = 4;
             // 
             // rightBodyTabel
@@ -232,13 +239,13 @@
             this.rightBodyTabel.Controls.Add(this.tabControl1, 0, 0);
             this.rightBodyTabel.Controls.Add(this.button1, 0, 1);
             this.rightBodyTabel.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.rightBodyTabel.Location = new System.Drawing.Point(394, 3);
+            this.rightBodyTabel.Location = new System.Drawing.Point(427, 3);
             this.rightBodyTabel.Name = "rightBodyTabel";
             this.rightBodyTabel.RowCount = 2;
             this.rightBodyTabel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 41.97531F));
             this.rightBodyTabel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 44F));
             this.rightBodyTabel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.rightBodyTabel.Size = new System.Drawing.Size(386, 428);
+            this.rightBodyTabel.Size = new System.Drawing.Size(353, 422);
             this.rightBodyTabel.TabIndex = 5;
             // 
             // buyOrderMenu
@@ -247,14 +254,13 @@
             this.buyOrderMenu.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this.columnHeader5,
             this.columnHeader6});
-            this.buyOrderMenu.Dock = System.Windows.Forms.DockStyle.Fill;
             this.buyOrderMenu.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.buyOrderMenu.FullRowSelect = true;
             this.buyOrderMenu.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.Nonclickable;
             this.buyOrderMenu.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.buyOrderMenu.Location = new System.Drawing.Point(3, 3);
+            this.buyOrderMenu.Location = new System.Drawing.Point(2, 0);
             this.buyOrderMenu.Name = "buyOrderMenu";
-            this.buyOrderMenu.Size = new System.Drawing.Size(366, 335);
+            this.buyOrderMenu.Size = new System.Drawing.Size(338, 356);
             this.buyOrderMenu.Sorting = System.Windows.Forms.SortOrder.Ascending;
             this.buyOrderMenu.TabIndex = 3;
             this.buyOrderMenu.UseCompatibleStateImageBehavior = false;
@@ -276,9 +282,9 @@
             this.button1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.button1.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.button1.Location = new System.Drawing.Point(3, 387);
+            this.button1.Location = new System.Drawing.Point(3, 381);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(380, 38);
+            this.button1.Size = new System.Drawing.Size(347, 38);
             this.button1.TabIndex = 0;
             this.button1.Text = "Провести заказ";
             this.button1.UseVisualStyleBackColor = true;
@@ -295,7 +301,7 @@
             this.leftBodyTable.Location = new System.Drawing.Point(3, 3);
             this.leftBodyTable.Name = "leftBodyTable";
             this.leftBodyTable.SelectedIndex = 0;
-            this.leftBodyTable.Size = new System.Drawing.Size(385, 428);
+            this.leftBodyTable.Size = new System.Drawing.Size(418, 422);
             this.leftBodyTable.TabIndex = 4;
             // 
             // tabPage1
@@ -304,7 +310,7 @@
             this.tabPage1.Location = new System.Drawing.Point(4, 33);
             this.tabPage1.Name = "tabPage1";
             this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage1.Size = new System.Drawing.Size(377, 391);
+            this.tabPage1.Size = new System.Drawing.Size(410, 385);
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "Первое";
             this.tabPage1.UseVisualStyleBackColor = true;
@@ -320,11 +326,12 @@
             this.menuList1.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.Nonclickable;
             this.menuList1.Location = new System.Drawing.Point(3, 3);
             this.menuList1.Name = "menuList1";
-            this.menuList1.Size = new System.Drawing.Size(371, 385);
+            this.menuList1.Size = new System.Drawing.Size(404, 379);
             this.menuList1.Sorting = System.Windows.Forms.SortOrder.Ascending;
             this.menuList1.TabIndex = 2;
             this.menuList1.UseCompatibleStateImageBehavior = false;
             this.menuList1.View = System.Windows.Forms.View.Details;
+            this.menuList1.SelectedIndexChanged += new System.EventHandler(this.menuList1_SelectedIndexChanged);
             this.menuList1.DoubleClick += new System.EventHandler(this.menuList1_DoubleClick);
             // 
             // dish
@@ -343,7 +350,7 @@
             this.tabPage2.Location = new System.Drawing.Point(4, 33);
             this.tabPage2.Name = "tabPage2";
             this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage2.Size = new System.Drawing.Size(377, 391);
+            this.tabPage2.Size = new System.Drawing.Size(410, 385);
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "Второе";
             this.tabPage2.UseVisualStyleBackColor = true;
@@ -359,7 +366,7 @@
             this.menuList2.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.Nonclickable;
             this.menuList2.Location = new System.Drawing.Point(3, 3);
             this.menuList2.Name = "menuList2";
-            this.menuList2.Size = new System.Drawing.Size(371, 385);
+            this.menuList2.Size = new System.Drawing.Size(404, 379);
             this.menuList2.Sorting = System.Windows.Forms.SortOrder.Ascending;
             this.menuList2.TabIndex = 3;
             this.menuList2.UseCompatibleStateImageBehavior = false;
@@ -382,7 +389,7 @@
             this.tabPage3.Controls.Add(this.menuList3);
             this.tabPage3.Location = new System.Drawing.Point(4, 33);
             this.tabPage3.Name = "tabPage3";
-            this.tabPage3.Size = new System.Drawing.Size(377, 391);
+            this.tabPage3.Size = new System.Drawing.Size(410, 385);
             this.tabPage3.TabIndex = 2;
             this.tabPage3.Text = "Третье";
             this.tabPage3.UseVisualStyleBackColor = true;
@@ -398,7 +405,7 @@
             this.menuList3.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.Nonclickable;
             this.menuList3.Location = new System.Drawing.Point(0, 0);
             this.menuList3.Name = "menuList3";
-            this.menuList3.Size = new System.Drawing.Size(377, 391);
+            this.menuList3.Size = new System.Drawing.Size(410, 385);
             this.menuList3.Sorting = System.Windows.Forms.SortOrder.Ascending;
             this.menuList3.TabIndex = 3;
             this.menuList3.UseCompatibleStateImageBehavior = false;
@@ -420,9 +427,9 @@
             this.tabPage4.Controls.Add(this.menuList4);
             this.tabPage4.Location = new System.Drawing.Point(4, 33);
             this.tabPage4.Name = "tabPage4";
-            this.tabPage4.Size = new System.Drawing.Size(377, 391);
+            this.tabPage4.Size = new System.Drawing.Size(410, 385);
             this.tabPage4.TabIndex = 3;
-            this.tabPage4.Text = "Бизнес-ланс";
+            this.tabPage4.Text = "Комплексный обед";
             this.tabPage4.UseVisualStyleBackColor = true;
             // 
             // menuList4
@@ -436,7 +443,7 @@
             this.menuList4.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.Nonclickable;
             this.menuList4.Location = new System.Drawing.Point(0, 0);
             this.menuList4.Name = "menuList4";
-            this.menuList4.Size = new System.Drawing.Size(377, 391);
+            this.menuList4.Size = new System.Drawing.Size(410, 385);
             this.menuList4.Sorting = System.Windows.Forms.SortOrder.Ascending;
             this.menuList4.TabIndex = 4;
             this.menuList4.UseCompatibleStateImageBehavior = false;
@@ -455,9 +462,11 @@
             // 
             // statusStrip
             // 
-            this.statusStrip.Location = new System.Drawing.Point(0, 530);
+            this.statusStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.toolStripStatusLabel1});
+            this.statusStrip.Location = new System.Drawing.Point(0, 524);
             this.statusStrip.Name = "statusStrip";
-            this.statusStrip.Size = new System.Drawing.Size(789, 22);
+            this.statusStrip.Size = new System.Drawing.Size(789, 28);
             this.statusStrip.TabIndex = 1;
             this.statusStrip.Text = "statusStrip1";
             // 
@@ -470,15 +479,16 @@
             this.tabControl1.Location = new System.Drawing.Point(3, 3);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(380, 378);
+            this.tabControl1.Size = new System.Drawing.Size(347, 372);
             this.tabControl1.TabIndex = 5;
             // 
             // tabPage6
             // 
-            this.tabPage6.Location = new System.Drawing.Point(4, 22);
+            this.tabPage6.Controls.Add(this.listView1);
+            this.tabPage6.Location = new System.Drawing.Point(4, 33);
             this.tabPage6.Name = "tabPage6";
             this.tabPage6.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage6.Size = new System.Drawing.Size(372, 352);
+            this.tabPage6.Size = new System.Drawing.Size(339, 335);
             this.tabPage6.TabIndex = 1;
             this.tabPage6.Text = "Выдача Заказа";
             this.tabPage6.UseVisualStyleBackColor = true;
@@ -489,10 +499,46 @@
             this.tabPage5.Location = new System.Drawing.Point(4, 33);
             this.tabPage5.Name = "tabPage5";
             this.tabPage5.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage5.Size = new System.Drawing.Size(372, 341);
+            this.tabPage5.Size = new System.Drawing.Size(339, 335);
             this.tabPage5.TabIndex = 0;
             this.tabPage5.Text = "Новый заказ";
             this.tabPage5.UseVisualStyleBackColor = true;
+            // 
+            // toolStripStatusLabel1
+            // 
+            this.toolStripStatusLabel1.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Underline, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.toolStripStatusLabel1.ForeColor = System.Drawing.Color.DarkRed;
+            this.toolStripStatusLabel1.Name = "toolStripStatusLabel1";
+            this.toolStripStatusLabel1.Size = new System.Drawing.Size(69, 23);
+            this.toolStripStatusLabel1.Text = "Готово";
+            // 
+            // listView1
+            // 
+            this.listView1.Activation = System.Windows.Forms.ItemActivation.OneClick;
+            this.listView1.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.columnHeader9,
+            this.columnHeader10});
+            this.listView1.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.listView1.FullRowSelect = true;
+            this.listView1.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.Nonclickable;
+            this.listView1.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.listView1.Location = new System.Drawing.Point(0, 0);
+            this.listView1.Name = "listView1";
+            this.listView1.Size = new System.Drawing.Size(338, 345);
+            this.listView1.Sorting = System.Windows.Forms.SortOrder.Ascending;
+            this.listView1.TabIndex = 4;
+            this.listView1.UseCompatibleStateImageBehavior = false;
+            this.listView1.View = System.Windows.Forms.View.Details;
+            // 
+            // columnHeader9
+            // 
+            this.columnHeader9.Text = "Блюдо";
+            this.columnHeader9.Width = 255;
+            // 
+            // columnHeader10
+            // 
+            this.columnHeader10.Text = "Цена";
+            this.columnHeader10.Width = 76;
             // 
             // CourierForm
             // 
@@ -514,7 +560,10 @@
             this.tabPage2.ResumeLayout(false);
             this.tabPage3.ResumeLayout(false);
             this.tabPage4.ResumeLayout(false);
+            this.statusStrip.ResumeLayout(false);
+            this.statusStrip.PerformLayout();
             this.tabControl1.ResumeLayout(false);
+            this.tabPage6.ResumeLayout(false);
             this.tabPage5.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -566,5 +615,9 @@
         private System.Windows.Forms.TabControl tabControl1;
         private System.Windows.Forms.TabPage tabPage5;
         private System.Windows.Forms.TabPage tabPage6;
+        private System.Windows.Forms.ToolStripStatusLabel toolStripStatusLabel1;
+        private System.Windows.Forms.ListView listView1;
+        private System.Windows.Forms.ColumnHeader columnHeader9;
+        private System.Windows.Forms.ColumnHeader columnHeader10;
     }
 }
