@@ -294,8 +294,8 @@
             this.tableLayoutPanel2.Location = new System.Drawing.Point(109, 3);
             this.tableLayoutPanel2.Name = "tableLayoutPanel2";
             this.tableLayoutPanel2.RowCount = 2;
-            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 81F));
-            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 19F));
+            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 74.4898F));
+            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 25.5102F));
             this.tableLayoutPanel2.Size = new System.Drawing.Size(367, 100);
             this.tableLayoutPanel2.TabIndex = 2;
             // 
@@ -306,16 +306,16 @@
             this.dishName.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.dishName.Location = new System.Drawing.Point(5, 2);
             this.dishName.Name = "dishName";
-            this.dishName.Size = new System.Drawing.Size(357, 76);
+            this.dishName.Size = new System.Drawing.Size(357, 70);
             this.dishName.TabIndex = 1;
             this.dishName.Text = "Борщ по-пацански. Подавать с семками в подогретой барсетке";
             // 
             // dishTypeLabel
             // 
             this.dishTypeLabel.AutoSize = true;
-            this.dishTypeLabel.Location = new System.Drawing.Point(5, 80);
+            this.dishTypeLabel.Location = new System.Drawing.Point(5, 74);
             this.dishTypeLabel.Name = "dishTypeLabel";
-            this.dishTypeLabel.Size = new System.Drawing.Size(66, 18);
+            this.dishTypeLabel.Size = new System.Drawing.Size(66, 20);
             this.dishTypeLabel.TabIndex = 2;
             this.dishTypeLabel.Text = "Первое";
             // 

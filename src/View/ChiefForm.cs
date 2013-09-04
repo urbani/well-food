@@ -394,17 +394,22 @@ namespace TRPO.View
 
         private void productsDataGrid_KeyPress(object sender, KeyPressEventArgs e)
         {
-            e.KeyChar = Char.ToUpper(e.KeyChar);
-            
-            for (int i = 0; i < productsDataGrid.Rows.Count; i++)
+            if ((e.KeyChar > 'а' && e.KeyChar < 'я') || (e.KeyChar > 'А' && e.KeyChar < 'Я'))
             {
+                e.KeyChar = Char.ToUpper(e.KeyChar);
 
-                if (Char.ToUpper(productsDataGrid.Rows[i].Cells[0].Value.ToString()[0]) == e.KeyChar)
+                for (int i = 0; i < productsDataGrid.Rows.Count; i++)
                 {
-                    productsDataGrid.Rows[i].Selected = true;
-                    productsDataGrid.FirstDisplayedScrollingRowIndex = i;
-                    i = productsDataGrid.Rows.Count;
+
+                    if (Char.ToUpper(productsDataGrid.Rows[i].Cells[0].Value.ToString()[0]) == e.KeyChar)
+                    {
+                        productsDataGrid.Rows[i].Selected = true;
+                        productsDataGrid.CurrentCell = productsDataGrid.Rows[i].Cells[0];
+                        productsDataGrid.FirstDisplayedScrollingRowIndex = i;
+                        i = productsDataGrid.Rows.Count;
+                    }
                 }
+
             }
         }
     }
