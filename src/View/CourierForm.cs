@@ -162,6 +162,12 @@ namespace TRPO.View
             //    Console.WriteLine(String.Format("{0} ", t));
             //buf = buf.Substring(15, buf.Length - 16);
             //orderMenu.Items.Add(buf);
+            ListViewItem dish = new ListViewItem();
+            ListViewItem.ListViewSubItem price = new ListViewItem.ListViewSubItem();
+            dish = menuList1.SelectedItems[0];
+            price = menuList1.SelectedItems[0].SubItems[0];
+            dish.SubItems.Add(price);
+            orderMenu.Items.Add(dish);
 
         }
 
