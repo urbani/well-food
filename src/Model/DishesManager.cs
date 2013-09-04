@@ -157,22 +157,32 @@ namespace TRPO.Model
             return result;
         }
 
-        public void createNewDish(Dish d)
+        public void deleteProductFromDish(String dishName, String prodName)
         {
             connector.openConnection();
-            OleDbDataReader reader = connector.executeQuery("SELECT MAX(ID_Dish) FROM Dishes");
-            int lastI = 0;
-            if (reader.Read())
-            {
-               lastI = Convert.ToInt32(reader[0]) + 1;
-            } 
-            connector.executeNonQuery("INSERT INTO Dishes VALUES (" + lastI + ", \"" + d.Name + "\", \"" + d.LinkToPhoto + "\", \"" + d.DishType + "\", " + 30 + ", \"" + d.Recipe + "\")");
-
-            foreach (KeyValuePair<String, Double> p in d.Consistance)
-            {
-                connector.executeNonQuery("INSERT INTO Products_Dishes (ID_Prod, ID_Dish, Product_Count) SELECT p.ID_Prod, " + lastI + ", " + p.Value.ToString().Replace(",", ".") + " FROM Products p WHERE p.Name_Prod = \"" + p.Key + "\"");
-            }
+            connector.executeNonQuery("DELETE FROM Products_Dishes pd WHERE pd.ID_Dish = (SELECT d.ID_Dish FROM Dishes d WHERE d.Name_Dish=\"" + dishName + "\") AND pd.ID_Prod = (SELECT p.ID_Prod FROM Products p WHERE p.Name_Prod = \"" + prodName + "\")");
             connector.closeConnection();
+        }
+
+        public void createNewDish(Dish d)
+        {
+            if (d.Name != "")
+            {
+                connector.openConnection();
+                OleDbDataReader reader = connector.executeQuery("SELECT MAX(ID_Dish) FROM Dishes");
+                int lastI = 0;
+                if (reader.Read())
+                {
+                    lastI = Convert.ToInt32(reader[0]) + 1;
+                }
+                connector.executeNonQuery("INSERT INTO Dishes VALUES (" + lastI + ", \"" + d.Name + "\", \"" + d.LinkToPhoto + "\", \"" + d.DishType + "\", " + 30 + ", \"" + d.Recipe + "\")");
+
+                foreach (KeyValuePair<String, Double> p in d.Consistance)
+                {
+                    connector.executeNonQuery("INSERT INTO Products_Dishes (ID_Prod, ID_Dish, Product_Count) SELECT p.ID_Prod, " + lastI + ", " + p.Value.ToString().Replace(",", ".") + " FROM Products p WHERE p.Name_Prod = \"" + p.Key + "\"");
+                }
+                connector.closeConnection();
+            }
         }
 
         public void updateDish(Dish d)

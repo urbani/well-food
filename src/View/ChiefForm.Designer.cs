@@ -71,8 +71,10 @@
             this.dataGridViewTextBoxColumn3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.tableLayoutPanel6 = new System.Windows.Forms.TableLayoutPanel();
+            this.tableLayoutPanel7 = new System.Windows.Forms.TableLayoutPanel();
             this.productsDataGrid = new System.Windows.Forms.DataGridView();
             this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.addProdButton = new System.Windows.Forms.Button();
             this.tableLayoutPanel8 = new System.Windows.Forms.TableLayoutPanel();
             this.tableLayoutPanel9 = new System.Windows.Forms.TableLayoutPanel();
             this.tableLayoutPanel10 = new System.Windows.Forms.TableLayoutPanel();
@@ -120,6 +122,7 @@
             this.tableLayoutPanel5.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dishesDataGrid)).BeginInit();
             this.tableLayoutPanel6.SuspendLayout();
+            this.tableLayoutPanel7.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.productsDataGrid)).BeginInit();
             this.tableLayoutPanel8.SuspendLayout();
             this.tableLayoutPanel9.SuspendLayout();
@@ -595,7 +598,7 @@
             // 
             this.tableLayoutPanel6.ColumnCount = 1;
             this.tableLayoutPanel6.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel6.Controls.Add(this.productsDataGrid, 0, 0);
+            this.tableLayoutPanel6.Controls.Add(this.tableLayoutPanel7, 0, 0);
             this.tableLayoutPanel6.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel6.Location = new System.Drawing.Point(0, 0);
             this.tableLayoutPanel6.Name = "tableLayoutPanel6";
@@ -604,6 +607,21 @@
             this.tableLayoutPanel6.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 667F));
             this.tableLayoutPanel6.Size = new System.Drawing.Size(187, 667);
             this.tableLayoutPanel6.TabIndex = 1;
+            // 
+            // tableLayoutPanel7
+            // 
+            this.tableLayoutPanel7.ColumnCount = 1;
+            this.tableLayoutPanel7.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tableLayoutPanel7.Controls.Add(this.productsDataGrid, 0, 0);
+            this.tableLayoutPanel7.Controls.Add(this.addProdButton, 0, 1);
+            this.tableLayoutPanel7.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tableLayoutPanel7.Location = new System.Drawing.Point(3, 3);
+            this.tableLayoutPanel7.Name = "tableLayoutPanel7";
+            this.tableLayoutPanel7.RowCount = 2;
+            this.tableLayoutPanel7.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tableLayoutPanel7.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 40F));
+            this.tableLayoutPanel7.Size = new System.Drawing.Size(181, 661);
+            this.tableLayoutPanel7.TabIndex = 0;
             // 
             // productsDataGrid
             // 
@@ -618,15 +636,18 @@
             this.productsDataGrid.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.dataGridViewTextBoxColumn1});
             this.productsDataGrid.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.productsDataGrid.EditMode = System.Windows.Forms.DataGridViewEditMode.EditProgrammatically;
             this.productsDataGrid.Location = new System.Drawing.Point(3, 3);
             this.productsDataGrid.MultiSelect = false;
             this.productsDataGrid.Name = "productsDataGrid";
+            this.productsDataGrid.ReadOnly = true;
             this.productsDataGrid.RowHeadersVisible = false;
             this.productsDataGrid.RowHeadersWidth = 50;
             this.productsDataGrid.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.productsDataGrid.Size = new System.Drawing.Size(181, 661);
+            this.productsDataGrid.Size = new System.Drawing.Size(175, 615);
             this.productsDataGrid.TabIndex = 8;
             this.productsDataGrid.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.productsDataGrid_CellDoubleClick);
+            this.productsDataGrid.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.productsDataGrid_KeyPress);
             // 
             // dataGridViewTextBoxColumn1
             // 
@@ -634,6 +655,17 @@
             this.dataGridViewTextBoxColumn1.HeaderText = "Продукт";
             this.dataGridViewTextBoxColumn1.Name = "dataGridViewTextBoxColumn1";
             this.dataGridViewTextBoxColumn1.ReadOnly = true;
+            // 
+            // addProdButton
+            // 
+            this.addProdButton.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.addProdButton.Location = new System.Drawing.Point(3, 624);
+            this.addProdButton.Name = "addProdButton";
+            this.addProdButton.Size = new System.Drawing.Size(175, 34);
+            this.addProdButton.TabIndex = 9;
+            this.addProdButton.Text = "Добавить продукт";
+            this.addProdButton.UseVisualStyleBackColor = true;
+            this.addProdButton.Click += new System.EventHandler(this.addProdButton_Click);
             // 
             // tableLayoutPanel8
             // 
@@ -879,7 +911,7 @@
             // createDishButton
             // 
             this.createDishButton.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.createDishButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F);
+            this.createDishButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.createDishButton.Location = new System.Drawing.Point(299, 3);
             this.createDishButton.Name = "createDishButton";
             this.createDishButton.Size = new System.Drawing.Size(177, 27);
@@ -959,6 +991,7 @@
             this.tableLayoutPanel5.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dishesDataGrid)).EndInit();
             this.tableLayoutPanel6.ResumeLayout(false);
+            this.tableLayoutPanel7.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.productsDataGrid)).EndInit();
             this.tableLayoutPanel8.ResumeLayout(false);
             this.tableLayoutPanel9.ResumeLayout(false);
@@ -1047,5 +1080,7 @@
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel12;
         private System.Windows.Forms.ComboBox createDishType;
         private System.Windows.Forms.RichTextBox createDishName;
+        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel7;
+        private System.Windows.Forms.Button addProdButton;
     }
 }

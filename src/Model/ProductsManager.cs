@@ -30,5 +30,32 @@ namespace TRPO.Model
             connector.closeConnection();
             return result;
         }
+
+        public void addProduct(String prodName)
+        {
+            connector.openConnection();
+
+            int lastID = 0;
+            OleDbDataReader reader = connector.executeQuery("SELECT MAX(ID_Prod) FROM Products");
+            if (reader.Read())
+            {
+                lastID = Convert.ToInt32(reader[0]);
+            }
+
+            connector.executeNonQuery("INSERT INTO Products VALUES (" + (lastID + 1) + ", \"" + prodName+ "\", -1)");
+            connector.closeConnection();
+        }
+
+        public void addProduct(String prodName, Double price)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void deleteProduct(String prodName)
+        {
+            connector.openConnection();
+            connector.executeNonQuery("DELETE FROM Products Where ID_Prod = (SELECT ID_Prod FROM Products WHERE Name_Prod = \"" + prodName + "\")");
+            connector.closeConnection();
+        }
     }
 }

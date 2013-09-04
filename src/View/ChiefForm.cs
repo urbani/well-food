@@ -137,6 +137,7 @@ namespace TRPO.View
             else
             {
                 createDishImage.Image = null;
+                createDishImage.ImageLocation = "";
             }
 
             createDishContentsDataGrid.Rows.Clear();
@@ -174,6 +175,7 @@ namespace TRPO.View
                     productsDataGrid.Rows.Add(s);
                 }
                 productsDataGrid.Sort(productsDataGrid.Columns[0], ListSortDirection.Ascending);
+                productsDataGrid.Rows[0].Selected= true;
             }
         }
 
@@ -301,7 +303,6 @@ namespace TRPO.View
             if (e.KeyCode == Keys.Delete || e.KeyCode == Keys.Back)
             {
                 dishesManagementContr.deleteProductFromDish();
-                
             }
         }
 
@@ -320,6 +321,14 @@ namespace TRPO.View
             String result = "";
 
             result = productsDataGrid.SelectedRows.Count > 0 ? productsDataGrid.SelectedRows[0].Cells[0].Value.ToString() : "";
+            return result;
+        }
+
+        public String getSelectedContenceName()
+        {
+            String result = "";
+
+            result = createDishContentsDataGrid.SelectedRows.Count > 0 ? createDishContentsDataGrid.SelectedRows[0].Cells[0].Value.ToString() : "";
             return result;
         }
 
@@ -373,5 +382,30 @@ namespace TRPO.View
             return res;
         }
 
+        private void addProdButton_Click(object sender, EventArgs e)
+        {
+            dishesManagementContr.addProduct();
+        }
+
+        public String getAddingProductName()
+        {
+            return Microsoft.VisualBasic.Interaction.InputBox("Введите название продукта:", "Добавление продукта", "", -1, -1);
+        }
+
+        private void productsDataGrid_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            e.KeyChar = Char.ToUpper(e.KeyChar);
+            
+            for (int i = 0; i < productsDataGrid.Rows.Count; i++)
+            {
+
+                if (Char.ToUpper(productsDataGrid.Rows[i].Cells[0].Value.ToString()[0]) == e.KeyChar)
+                {
+                    productsDataGrid.Rows[i].Selected = true;
+                    productsDataGrid.FirstDisplayedScrollingRowIndex = i;
+                    i = productsDataGrid.Rows.Count;
+                }
+            }
+        }
     }
 }

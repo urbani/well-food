@@ -18,6 +18,8 @@ namespace TRPO.View
 
         void addProductToContence(String s, Double d);
         String getSelectedProductName();
+        String getSelectedContenceName();
         Dish getCreatedDish();
+        String getAddingProductName();
     }
 }

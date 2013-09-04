@@ -80,9 +80,20 @@ namespace TRPO.Controller
             view.addProductToContence(view.getSelectedProductName(), 1);
         }
 
+        public void addProduct()
+        {
+            String addingProdName = view.getAddingProductName();
+            if (addingProdName != "")
+            {
+                productManager.addProduct(addingProdName);
+                view.setProductsList(productManager.getProdNames());
+            }
+        }
+
         public void deleteProductFromDish()
         {
-
+            dishesManager.deleteProductFromDish(view.getSelectedDishName(), view.getSelectedContenceName());
+            updateContents();
         }
     }
 }
