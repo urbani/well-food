@@ -108,7 +108,7 @@ namespace TRPO.View
                 switch (dishWithPrice.type)
                 {
                     case("Первое"):
-                        menuList1.Items.Add("2", "SSS", 0);
+                        menuList1.Items.Add(newElem(rawSting));
                         break;
                     case("Второе"):
                         menuList2.Items.Add(newElem(rawSting));
@@ -153,15 +153,6 @@ namespace TRPO.View
 
         private void menuList1_DoubleClick(object sender, EventArgs e)
         {
-            //String[] temp = new String[2];
-            //String buf = " ";
-            ////String t = new string();
-            //foreach (ListViewItem er in menuList1.SelectedItems)
-            //    buf = er.ToString();
-            //foreach (String t in temp)
-            //    Console.WriteLine(String.Format("{0} ", t));
-            //buf = buf.Substring(15, buf.Length - 16);
-            //orderMenu.Items.Add(buf);
             ListViewItem dish = new ListViewItem();
             ListViewItem.ListViewSubItem price = new ListViewItem.ListViewSubItem();
             dish = menuList1.SelectedItems[0];
