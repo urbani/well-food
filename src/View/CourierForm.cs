@@ -20,6 +20,7 @@ namespace TRPO.View
     {
         ClientManagementConroller clientManagementController;
         OrdersConroller ordersController;
+
         public CourierForm(ClientManagementConroller cmc, OrdersConroller oc)
         {
             InitializeComponent();
@@ -38,7 +39,7 @@ namespace TRPO.View
             headerList2.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
             headerList2.AutoCompleteSource = AutoCompleteSource.ListItems;
             ordersController.updateActiveMenu();
-
+            orderMenu.Items.Clear();
         }
 
         public void showMsg(String msg, GlobalObj.ErrorLevels el)
@@ -153,13 +154,42 @@ namespace TRPO.View
 
         private void menuList1_DoubleClick(object sender, EventArgs e)
         {
-            ListViewItem dish = new ListViewItem();
-            ListViewItem.ListViewSubItem price = new ListViewItem.ListViewSubItem();
-            dish = menuList1.SelectedItems[0];
-            price = menuList1.SelectedItems[0].SubItems[0];
-            dish.SubItems.Add(price);
-            orderMenu.Items.Add(dish);
+            ListViewItem dishEnty = new ListViewItem();
+            ListViewItem.ListViewSubItem priceEntry = new ListViewItem.ListViewSubItem();
+            dishEnty.Text = menuList1.SelectedItems[0].Text;
+            priceEntry.Text = menuList1.SelectedItems[0].SubItems[1].Text;
+            dishEnty.SubItems.Add(priceEntry);
+            orderMenu.Items.Add(dishEnty);
+        }
 
+        private void menuList2_DoubleClick(object sender, EventArgs e)
+        {
+            ListViewItem dishEnty = new ListViewItem();
+            ListViewItem.ListViewSubItem priceEntry = new ListViewItem.ListViewSubItem();
+            dishEnty.Text = menuList2.SelectedItems[0].Text;
+            priceEntry.Text = menuList2.SelectedItems[0].SubItems[1].Text;
+            dishEnty.SubItems.Add(priceEntry);
+            orderMenu.Items.Add(dishEnty);
+        }
+
+        private void menuList3_DoubleClick(object sender, EventArgs e)
+        {
+            ListViewItem dishEnty = new ListViewItem();
+            ListViewItem.ListViewSubItem priceEntry = new ListViewItem.ListViewSubItem();
+            dishEnty.Text = menuList3.SelectedItems[0].Text;
+            priceEntry.Text = menuList3.SelectedItems[0].SubItems[1].Text;
+            dishEnty.SubItems.Add(priceEntry);
+            orderMenu.Items.Add(dishEnty);
+        }
+
+        private void menuList4_DoubleClick(object sender, EventArgs e)
+        {
+            ListViewItem dishEnty = new ListViewItem();
+            ListViewItem.ListViewSubItem priceEntry = new ListViewItem.ListViewSubItem();
+            dishEnty.Text = menuList4.SelectedItems[0].Text;
+            priceEntry.Text = menuList4.SelectedItems[0].SubItems[1].Text;
+            dishEnty.SubItems.Add(priceEntry);
+            orderMenu.Items.Add(dishEnty);
         }
 
     }
