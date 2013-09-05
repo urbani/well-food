@@ -821,9 +821,9 @@
             // 
             // createDishImage
             // 
-            this.createDishImage.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-                        | System.Windows.Forms.AnchorStyles.Left)
-                        | System.Windows.Forms.AnchorStyles.Right)));
+            this.createDishImage.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.createDishImage.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("createDishImage.BackgroundImage")));
             this.createDishImage.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.createDishImage.Cursor = System.Windows.Forms.Cursors.Hand;
