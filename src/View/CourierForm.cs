@@ -142,19 +142,25 @@ namespace TRPO.View
                 rawSting = new String[] { dishWithPrice.dish, dishWithPrice.price.ToString() };
                 ListViewItem tmp = new ListViewItem(rawSting);
                 if (dishWithPrice.isSpecial)
-                    menuList4.Items.Add(newElem(rawSting));
-
-                switch (dishWithPrice.type)
                 {
-                    case("Первое"):
-                        menuList1.Items.Add(newElem(rawSting));
-                        break;
-                    case("Второе"):
-                        menuList2.Items.Add(newElem(rawSting));
-                        break;
-                    case ("Третье"):
-                        menuList3.Items.Add(newElem(rawSting));
-                        break;
+                    menuList4.Items.Add(newElem(rawSting));
+                }
+                else
+                {
+
+
+                    switch (dishWithPrice.type)
+                    {
+                        case ("Первое"):
+                            menuList1.Items.Add(newElem(rawSting));
+                            break;
+                        case ("Второе"):
+                            menuList2.Items.Add(newElem(rawSting));
+                            break;
+                        case ("Третье"):
+                            menuList3.Items.Add(newElem(rawSting));
+                            break;
+                    }
                 }
                 
             }
