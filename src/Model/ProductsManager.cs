@@ -34,15 +34,30 @@ namespace TRPO.Model
 
         public List<ProductListEntry> getProductsLeft()
         {
-            List<ProductListEntry> result = new List<ProductListEntry>();
+            Dictionary<String, Double> productsIn = new Dictionary<String, Double>();
+            Dictionary<String, Double> productsOut = new Dictionary<String, Double>();
             connector.openConnection();
-            OleDbDataReader reader = connector.executeQuery("SELECT p.Name_Prod, 3 FROM Products as p");
+            OleDbDataReader reader;
+            reader = connector.executeQuery("SELECT pr.Name_Prod, SUM(pi.Amount) FROM Prod_in pi INNER JOIN Products pr ON pi.ID_Prod = pr.ID_Prod GROUP BY pr.Name_Prod");
             while (reader.Read())
             {
-                result.Add(new ProductListEntry(reader[0].ToString(), Convert.ToDouble(reader[1].ToString())));
+                productsIn.Add(reader[0].ToString(), Convert.ToDouble(reader[1].ToString()));
             }
 
+            reader = connector.executeQuery("SELECT pr.Name_Prod, SUM(po.Amount) FROM Prod_out po INNER JOIN Products pr ON po.ID_Prod = pr.ID_Prod GROUP BY pr.Name_Prod");
+            while (reader.Read())
+            {
+                productsOut.Add(reader[0].ToString(), Convert.ToDouble(reader[1].ToString()));
+            }
+            
             reader.Close();
+
+            List<ProductListEntry> result = new List<ProductListEntry>();
+            foreach (KeyValuePair<String, Double> e in productsIn)
+            {
+                result.Add(new ProductListEntry(e.Key, e.Value - (productsOut.ContainsKey(e.Key) ? productsOut[e.Key] : 0 )));
+            }
+
 
             connector.closeConnection();
             return result;
