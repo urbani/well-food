@@ -200,7 +200,7 @@ namespace TRPO.View
 
         private void employEditButton_Click(object sender, EventArgs e)
         {
-            ClientManagerDialog cmd = new ClientManagerDialog();
+            ClientManagerDialog cmd = new ClientManagerDialog("1","b","c","d");
             cmd.ShowDialog();
         }
 
