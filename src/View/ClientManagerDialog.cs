@@ -11,11 +11,22 @@ namespace TRPO.View
 {
     public partial class ClientManagerDialog : Form
     {
+        String name, company, surname, patronikName;
+
         public ClientManagerDialog()
         {
             InitializeComponent();
+            
         }
 
+        public ClientManagerDialog(String name, String company, String surname, String patronikName) : this()
+        {//1
+            nameEntry.Text = name;
+            companyEntry.Text = company;
+            surnameEntry.Text = surname;
+            patronimicEntry.Text = patronikName;
+
+        }
 
         private void ClientCompanyManagerDialog_Load(object sender, EventArgs e)
         {
@@ -34,7 +45,8 @@ namespace TRPO.View
 
         private void okButton_Click(object sender, EventArgs e)
         {
-            //actions
+           
+
             this.Close();
 
 
