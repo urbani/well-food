@@ -20,7 +20,7 @@ namespace TRPO.View
         }
 
         public ClientManagerDialog(String name, String company, String surname, String patronikName) : this()
-        {
+        {//1
             nameEntry.Text = name;
             companyEntry.Text = company;
             surnameEntry.Text = surname;
