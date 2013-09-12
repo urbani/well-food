@@ -10,15 +10,15 @@ namespace TRPO.Structures
         List<String> menu1;
         List<String> menu2;
         List<String> menu3;
-        List<String> specialMenu;
+        bool isSpecialMenu;
         DateTime menuDate;
 
-        public Menu(List<String> m1, List<String> m2, List<String> m3, List<String> sm, DateTime date)
+        public Menu(List<String> m1, List<String> m2, List<String> m3, bool sm, DateTime date)
         {
             menu1 = m1;
             menu2 = m2;
             menu3 = m3;
-            specialMenu = sm;
+            isSpecialMenu = sm;
             menuDate = date;
         }
 
@@ -27,10 +27,10 @@ namespace TRPO.Structures
             get { return menuDate; }
             set { menuDate = value; }
         }
-        public List<String> SpecialMenu
+        public bool IsSpecialMenu
         {
-            get { return specialMenu; }
-            set { specialMenu = value; }
+            get { return isSpecialMenu; }
+            set { isSpecialMenu = value; }
         }
         public List<String> Menu3
         {

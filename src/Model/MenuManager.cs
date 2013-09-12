@@ -21,22 +21,20 @@ namespace TRPO.Model
         {
             connector.openConnection();
             int changes = 0;
+            String IsSpecial = menu.IsSpecialMenu ? "TRUE" : "FALSE";
             foreach (String dishName in menu.Menu1)
             {
-                changes += connector.executeNonQuery("INSERT INTO Menu (ID_Dish, Date_Menu, Is_Special) SELECT d.ID_Dish, \"" + menu.MenuDate.ToShortDateString() + "\", FALSE FROM Dishes d WHERE Name_Dish = \"" + dishName + "\"");
+                changes += connector.executeNonQuery("INSERT INTO Menu (ID_Dish, Date_Menu, Is_Special) SELECT d.ID_Dish, \"" + menu.MenuDate.ToShortDateString() + "\", " + IsSpecial + " FROM Dishes d WHERE Name_Dish = \"" + dishName + "\"");
             }
             foreach (String dishName in menu.Menu2)
             {
-                changes += connector.executeNonQuery("INSERT INTO Menu (ID_Dish, Date_Menu, Is_Special) SELECT d.ID_Dish, \"" + menu.MenuDate.ToShortDateString() + "\", FALSE FROM Dishes d WHERE Name_Dish = \"" + dishName + "\"");
+                changes += connector.executeNonQuery("INSERT INTO Menu (ID_Dish, Date_Menu, Is_Special) SELECT d.ID_Dish, \"" + menu.MenuDate.ToShortDateString() + "\", " + IsSpecial + " FROM Dishes d WHERE Name_Dish = \"" + dishName + "\"");
             }
             foreach (String dishName in menu.Menu3)
             {
-                changes += connector.executeNonQuery("INSERT INTO Menu (ID_Dish, Date_Menu, Is_Special) SELECT d.ID_Dish, \"" + menu.MenuDate.ToShortDateString() + "\", FALSE FROM Dishes d WHERE Name_Dish = \"" + dishName + "\"");
+                changes += connector.executeNonQuery("INSERT INTO Menu (ID_Dish, Date_Menu, Is_Special) SELECT d.ID_Dish, \"" + menu.MenuDate.ToShortDateString() + "\", " + IsSpecial + " FROM Dishes d WHERE Name_Dish = \"" + dishName + "\"");
             }
-            foreach (String dishName in menu.SpecialMenu)
-            {
-                changes += connector.executeNonQuery("INSERT INTO Menu (ID_Dish, Date_Menu, Is_Special) SELECT d.ID_Dish, \"" + menu.MenuDate.ToShortDateString() + "\", TRUE FROM Dishes d WHERE Name_Dish = \"" + dishName + "\"");
-            }
+           
             connector.closeConnection();
             return changes;
         }

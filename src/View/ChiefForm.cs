@@ -232,9 +232,9 @@ namespace TRPO.View
             dataGridView3.Rows.Add(dish);
         }
 
-        public void addDishToSpecialMenu(String dish)
+        public void addDishToSpecialMenu(String dish, String type)
         {
-            dataGridView4.Rows.Add(dish);
+            dataGridView4.Rows.Add(dish, type);
         }
 
         public void clearMenu()
@@ -248,29 +248,50 @@ namespace TRPO.View
 
         public TRPO.Structures.Menu getCreatedMenu()
         {
-            List<String> menu1 = new List<String>();
-            List<String> menu2 = new List<String>();
-            List<String> menu3 = new List<String>();
-            List<String> specialMenu = new List<String>();
-            foreach (DataGridViewRow r in dataGridView1.Rows)
+            TRPO.Structures.Menu m;
+            if (!complexDishCheckbox.Checked)
             {
-                menu1.Add(r.Cells[0].Value.ToString());
+                List<String> menu1 = new List<String>();
+                List<String> menu2 = new List<String>();
+                List<String> menu3 = new List<String>();
+                foreach (DataGridViewRow r in dataGridView1.Rows)
+                {
+                    menu1.Add(r.Cells[0].Value.ToString());
+                }
+                foreach (DataGridViewRow r in dataGridView2.Rows)
+                {
+                    menu2.Add(r.Cells[0].Value.ToString());
+                }
+                foreach (DataGridViewRow r in dataGridView3.Rows)
+                {
+                    menu3.Add(r.Cells[0].Value.ToString());
+                }
+                m = new TRPO.Structures.Menu(menu1, menu2, menu3, false, dateTimePicker.Value);
             }
-            foreach (DataGridViewRow r in dataGridView2.Rows)
+            else
             {
-                menu2.Add(r.Cells[0].Value.ToString());
-            }
-            foreach (DataGridViewRow r in dataGridView3.Rows)
-            {
-                menu3.Add(r.Cells[0].Value.ToString());
-            }
-            foreach (DataGridViewRow r in dataGridView4.Rows)
-            {
-                specialMenu.Add(r.Cells[0].Value.ToString());
-            }
+                List<String> menu1 = new List<String>();
+                List<String> menu2 = new List<String>();
+                List<String> menu3 = new List<String>();
+                foreach (DataGridViewRow r in dataGridView4.Rows)
+                {
+                    switch (r.Cells[1].Value.ToString())
+                    {
+                        case "Первое":
+                            menu1.Add(r.Cells[0].Value.ToString());
+                            break;
+                        case "Второе":
+                            menu2.Add(r.Cells[0].Value.ToString());
+                            break;
+                        case "Третье":
+                            menu3.Add(r.Cells[0].Value.ToString());
+                            break;
+                    }
+                    
+                }
 
-            TRPO.Structures.Menu m = new TRPO.Structures.Menu(menu1, menu2, menu3, specialMenu, dateTimePicker.Value);
-
+                m = new TRPO.Structures.Menu(menu1, menu2, menu3, true, dateTimePicker.Value);
+            }
             return m;
         }
 
@@ -327,7 +348,7 @@ namespace TRPO.View
             return res;
         }
 
-        public bool addingToCompexMenu()
+        public bool addingToComplexMenu()
         {
             return complexDishCheckbox.Checked;
         }
@@ -373,6 +394,44 @@ namespace TRPO.View
                                     result = menuCreationDishes.SelectedRows.Count > 0 ? menuCreationDishes.SelectedRows[0].Cells[0].Value.ToString() : "";
                                 }
                     
+                    break;
+            }
+            return result;
+        }
+
+        public String getSelectedDishType()
+        {
+            String result = "";
+            switch (mainTab.SelectedIndex)
+            {
+                case 0:
+                    break;
+                case 1:
+                    break;
+                case 2:
+                    if (dataGridView1.Focused)
+                    {
+
+                    }
+                    else
+                        if (dataGridView2.Focused)
+                        {
+
+                        }
+                        else
+                            if (dataGridView3.Focused)
+                            {
+
+                            }
+                            else
+                                if (dataGridView4.Focused)
+                                {
+                                    result = dataGridView4.SelectedRows.Count > 0 ? dataGridView4.SelectedRows[0].Cells[1].Value.ToString() : "";
+                                }
+                                else
+                                {
+                                    result = menuCreationDishes.SelectedRows.Count > 0 ? menuCreationDishes.SelectedRows[0].Cells[1].Value.ToString() : "";
+                                }
                     break;
             }
             return result;
@@ -648,7 +707,7 @@ namespace TRPO.View
             {
                 if (complexDishCheckbox.Checked)
                 {
-                    this.addDishToSpecialMenu(this.getSelectedDishName());
+                    this.addDishToSpecialMenu(this.getSelectedDishName(), getSelectedDishType());
                 }
                 else
                 {
@@ -660,6 +719,31 @@ namespace TRPO.View
         private void button1_Click(object sender, EventArgs e)
         {
             menuController.addMenu();
+        }
+
+        private void createDishContentsDataGrid_MouseDoubleClick(object sender, MouseEventArgs e)
+        {
+            dishesManagementContr.deleteProductFromDish();
+        }
+
+        private void dataGridView1_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+        {
+            dataGridView1.Rows.Remove(dataGridView1.SelectedRows[0]);
+        }
+
+        private void dataGridView2_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+        {
+            dataGridView2.Rows.Remove(dataGridView2.SelectedRows[0]);
+        }
+
+        private void dataGridView3_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+        {
+            dataGridView3.Rows.Remove(dataGridView3.SelectedRows[0]);
+        }
+
+        private void dataGridView4_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+        {
+            dataGridView4.Rows.Remove(dataGridView4.SelectedRows[0]);
         }
     }
 }

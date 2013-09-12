@@ -48,7 +48,7 @@ namespace TRPO.Controller
         {
             String dishName = view.getSelectedDishName();
             String type = menuManager.getDishType(dishName);
-            if (!view.addingToCompexMenu())
+            if (!view.addingToComplexMenu())
             {
                 switch (type)
                 {
@@ -68,7 +68,8 @@ namespace TRPO.Controller
             {
                 if (!view.inSpecialMenu(dishName))
                 {
-                    view.addDishToSpecialMenu(dishName);
+                    String dishtype = view.getSelectedDishType();
+                    view.addDishToSpecialMenu(dishName, dishtype);
                 }
             }
             

@@ -22,4 +22,4 @@ obj/
 
 
 #Allow files
-!bin/Debug/SQL_Editor.exe
+!SQL_Editor.exe

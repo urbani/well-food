@@ -11,13 +11,14 @@ namespace TRPO.View
         void clearMenu();
         Menu getCreatedMenu();
         String getSelectedDishName();
+        String getSelectedDishType();
 
         void addDishToMenu1(String dish);
         void addDishToMenu2(String dish);
         void addDishToMenu3(String dish);
-        void addDishToSpecialMenu(String dish);
+        void addDishToSpecialMenu(String dish, String type);
 
-        bool addingToCompexMenu();
+        bool addingToComplexMenu();
         bool inMenu1(String dish);
         bool inMenu2(String dish);
         bool inMenu3(String dish);
