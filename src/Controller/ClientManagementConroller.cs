@@ -15,7 +15,7 @@ namespace TRPO.Controller
         //класс над объектом пользователь-сотрудник (ФИО фото роль и т.д.)
         User user;
         private ClientManager clientManager;
-
+        ClientManagerDialog cmd;
         Dictionary<int, int> companyIds = new Dictionary<int,int>();
         public List<string> companyList = new List<string>();
 
@@ -31,6 +31,10 @@ namespace TRPO.Controller
             clientManager = new ClientManager();
  
         }
+
+        /// <summary>
+        /// окнструктор для использования в диалоге
+        /// </summary>
 
         public void fillEmployList()
         {
@@ -75,6 +79,28 @@ namespace TRPO.Controller
         public void addForm(IClientManagable c)
         {
             view = c;
+        }
+
+        public void createEmployeDialog()
+        {
+            DialogController dialogConroller = new DialogController();
+            //if(Equals(cmd,null))
+            cmd = new ClientManagerDialog(dialogConroller);
+            dialogConroller.addForm(cmd);
+
+
+            cmd.ShowDialog();
+        }
+
+        /// <summary>
+        /// заполняет форму
+        /// </summary>
+        public void fillEmployDialog()
+        {
+            //clientManager
+            
+
+
         }
 
 

@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using TRPO.View;
 using TRPO.Model;
+using TRPO.Structures;
 
 namespace TRPO.Controller
 {
@@ -28,8 +29,41 @@ namespace TRPO.Controller
 
         public void updateActiveMenu()
         {
+            List<CourierListEntry> menuList =  orderManager.getActiveMenu();
+            String[] rawSting;
+            List<List<String[]>> fillMenuList = new List<List<string[]>>();
+            fillMenuList.Add(new List<string[]>());
+            fillMenuList.Add(new List<string[]>());
+            fillMenuList.Add(new List<string[]>());
+            fillMenuList.Add(new List<string[]>());
+            foreach (CourierListEntry entry in menuList)
+            {
+                rawSting = new String[] { entry.dish, entry.price.ToString() };
 
-            view.updateMenuList(orderManager.getActiveMenu());
+                if (entry.isSpecial)
+                {
+                    fillMenuList[3].Add(rawSting);
+                }
+                else
+                {
+
+
+                    switch (entry.type)
+                    {
+                        case ("Первое"):
+                            fillMenuList[0].Add(rawSting);
+                            break;
+                        case ("Второе"):
+                            fillMenuList[1].Add(rawSting);
+                            break;
+                        case ("Третье"):
+                            fillMenuList[2].Add(rawSting);
+                            break;
+                    }
+                }
+            }
+            view.updateMenuList(menuList1, menuList2, menuList3, menuList4);
+           
 
         }
 

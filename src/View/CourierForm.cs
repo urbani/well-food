@@ -25,7 +25,8 @@ namespace TRPO.View
         /// продолжить ли выполнение операции или сбросить?
         /// </summary>
         bool tryContinue = false;
-        bool notSetEmploy = false;
+        
+
 
         public CourierForm(ClientManagementConroller cmc, OrdersConroller oc)
         {
@@ -128,47 +129,25 @@ namespace TRPO.View
 
 
 
-        public void updateMenuList(List<CourierListEntry> listDishes)
+        public void updateMenuList(List<CourierListEntry> menuList1_, List<CourierListEntry> menuList2_, List<CourierListEntry> menuList3_,
+            List<CourierListEntry> menuList4_)
         {
             menuList1.Items.Clear();
             menuList2.Items.Clear();
             menuList3.Items.Clear();
             menuList4.Items.Clear();
-            String[] rawSting;
-
-
-            foreach (CourierListEntry dishWithPrice in listDishes)
+            menuList4.Items.Clear();
+            
+            foreach (String entry in menuList)
             {
-                rawSting = new String[] { dishWithPrice.dish, dishWithPrice.price.ToString() };
-                ListViewItem tmp = new ListViewItem(rawSting);
-                if (dishWithPrice.isSpecial)
-                {
-                    menuList4.Items.Add(newElem(rawSting));
-                }
-                else
-                {
-
-
-                    switch (dishWithPrice.type)
-                    {
-                        case ("Первое"):
-                            menuList1.Items.Add(newElem(rawSting));
-                            break;
-                        case ("Второе"):
-                            menuList2.Items.Add(newElem(rawSting));
-                            break;
-                        case ("Третье"):
-                            menuList3.Items.Add(newElem(rawSting));
-                            break;
-                    }
-                }
-                
+                menuList4.Items.Add(entry);
             }
+ 
         }
         ListViewItem newElem(String[] dish)
         {
             return new ListViewItem(dish);
-
+            
         }
 
         void positivStatusHandler(String messege="Готово")
@@ -200,8 +179,8 @@ namespace TRPO.View
 
         private void employEditButton_Click(object sender, EventArgs e)
         {
-            ClientManagerDialog cmd = new ClientManagerDialog("1","b","c","d");
-            cmd.ShowDialog();
+
+            clientManagementController.createEmployeDialog();
         }
 
         private void orderMenu_DoubleClick(object sender, EventArgs e) 

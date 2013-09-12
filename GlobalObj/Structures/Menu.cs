@@ -20,6 +20,7 @@ namespace TRPO.Structures
             menu3 = m3;
             isSpecialMenu = sm;
             menuDate = date;
+            
         }
 
         public DateTime MenuDate

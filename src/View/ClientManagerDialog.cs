@@ -6,12 +6,14 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
+using TRPO.Controller;
 
 namespace TRPO.View
 {
     public partial class ClientManagerDialog : Form
     {
         String name, company, surname, patronikName;
+        DialogController dialogController;
 
         public ClientManagerDialog()
         {
@@ -19,12 +21,22 @@ namespace TRPO.View
             
         }
 
-        public ClientManagerDialog(String name, String company, String surname, String patronikName) : this()
+        /// <summary>
+        /// конструктор при открытии формы
+        /// </summary>
+        /// <param name="name"></param>
+        /// <param name="company"></param>
+        /// <param name="surname"></param>
+        /// <param name="patronikName"></param>
+        /// //, String name, String company, String surname, String patronikName
+        public ClientManagerDialog(DialogController dialogController)
         {//1
-            nameEntry.Text = name;
-            companyEntry.Text = company;
-            surnameEntry.Text = surname;
-            patronimicEntry.Text = patronikName;
+            //dialogController.
+            //this.dialogController = dialogController;
+            //nameEntry.Text = name;
+            //companyEntry.Text = company;
+            //surnameEntry.Text = surname;
+            //patronimicEntry.Text = patronikName;
 
         }
 

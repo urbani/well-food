@@ -72,6 +72,7 @@
       <DependentUpon>Settings.settings</DependentUpon>
     </Compile>
     <Compile Include="src\Controller\ClientManagementConroller.cs" />
+    <Compile Include="src\Controller\DialogController.cs" />
     <Compile Include="src\Controller\MenuManagementConroller.cs" />
     <Compile Include="src\Controller\DishesManagementController.cs" />
     <Compile Include="src\Controller\LoginController.cs" />
@@ -122,6 +123,7 @@
     <Compile Include="src\View\CourierForm.Designer.cs">
       <DependentUpon>CourierForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="src\View\interfaces\IDialog.cs" />
     <Compile Include="src\View\interfaces\IMenuManagable.cs" />
     <Compile Include="src\View\interfaces\IAuthentification.cs" />
     <Compile Include="src\View\interfaces\IClientManagable.cs" />
