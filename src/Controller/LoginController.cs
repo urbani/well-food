@@ -62,7 +62,9 @@ namespace TRPO.Controller
                         authView.hideForm();
                         break;
                     case (Roles.Manager):
-                        ManagerForm mf = new ManagerForm();
+                        ProductsManagementController pm = new ProductsManagementController(user);
+                        ManagerForm mf = new ManagerForm(pm);
+                        pm.setForm(mf);
                         mf.FormClosed += new FormClosedEventHandler(showAuthForm);
                         mf.Show();
                         authView.hideForm();

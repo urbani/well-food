@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Data.OleDb;
+using TRPO.Structures;
 
 namespace TRPO.Model
 {
@@ -23,6 +24,22 @@ namespace TRPO.Model
             while (reader.Read())
             {
                 result.Add(reader[0].ToString());
+            }
+
+            reader.Close();
+
+            connector.closeConnection();
+            return result;
+        }
+
+        public List<ProductListEntry> getProductsLeft()
+        {
+            List<ProductListEntry> result = new List<ProductListEntry>();
+            connector.openConnection();
+            OleDbDataReader reader = connector.executeQuery("SELECT p.Name_Prod, 3 FROM Products as p");
+            while (reader.Read())
+            {
+                result.Add(new ProductListEntry(reader[0].ToString(), Convert.ToDouble(reader[1].ToString())));
             }
 
             reader.Close();

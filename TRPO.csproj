@@ -62,6 +62,7 @@
     <Compile Include="GlobalObj\Structures\Menu.cs" />
     <Compile Include="GlobalObj\Structures\CourierListEntry.cs" />
     <Compile Include="GlobalObj\Structures\Dish.cs" />
+    <Compile Include="GlobalObj\Structures\ProductListEntry.cs" />
     <Compile Include="GlobalObj\Time.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -76,6 +77,7 @@
     <Compile Include="src\Controller\LoginController.cs" />
     <Compile Include="src\Controller\OrderCookController.cs" />
     <Compile Include="src\Controller\OrdersConroller.cs" />
+    <Compile Include="src\Controller\ProductsManagementController.cs" />
     <Compile Include="src\Model\ClientManager.cs" />
     <Compile Include="src\Model\MenuManager.cs" />
     <Compile Include="src\Model\DBConnector.cs" />
@@ -127,6 +129,7 @@
     <Compile Include="src\View\interfaces\IInterractable.cs" />
     <Compile Include="src\View\interfaces\IOrderManagable.cs" />
     <Compile Include="src\View\interfaces\IOrderViewable.cs" />
+    <Compile Include="src\View\interfaces\IProductManagable.cs" />
     <Compile Include="src\View\ManagerForm.cs">
       <SubType>Form</SubType>
     </Compile>

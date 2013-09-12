@@ -11,18 +11,48 @@ using System.Data.OleDb;
 using System.Data.Common;
 using System.Collections;
 using Microsoft.Office.Interop.Excel;
+using TRPO.Controller;
+using TRPO.Structures;
 
 namespace TRPO.View
 {
     //	получение сведений о количестве продуктов на складе 
     //	формирование списка продуктов для закупки на основании сделанных заказов
 
-    public partial class ManagerForm : Form
+    public partial class ManagerForm : Form, IProductManagable
     {
-
-        public ManagerForm()
+        ProductsManagementController prodController;
+        public ManagerForm(ProductsManagementController p)
         {
             InitializeComponent();
+            prodController = p;
+        }
+
+        public void showMsg(String msg, GlobalObj.ErrorLevels el)
+        {
+            switch (el)
+            {
+                case GlobalObj.ErrorLevels.Critical:
+                    MessageBox.Show(msg);
+                    break;
+                case GlobalObj.ErrorLevels.Info:
+                    statusStrip1.Text = msg;
+                    statusStrip1.Visible = true;
+                    break;
+            }
+        }
+
+        public void showMsg(String msg, String header)
+        {
+            MessageBox.Show(msg, header);
+        }
+
+        public void setProductsList(List<ProductListEntry> plist)
+        {
+            foreach (ProductListEntry p in plist)
+            {
+                storeDataGrid.Rows.Add(p.name, p.count);
+            }
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -45,6 +75,11 @@ namespace TRPO.View
             }
 
             ExcelApp.Visible = true;*/
+        }
+
+        private void ManagerForm_Load(object sender, EventArgs e)
+        {
+            prodController.updateProductsList();
         }
         
     }
