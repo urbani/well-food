@@ -51,16 +51,20 @@ namespace TRPO.Controller
                     case (Roles.Chief):
                         OrderCookController occ = new OrderCookController(user);
                         DishesManagementController dmc = new DishesManagementController(user);
-                        ChiefForm chief = new ChiefForm(occ, dmc);
+                        MenuManagementConroller mmc = new MenuManagementConroller(user);
+                        ChiefForm chief = new ChiefForm(occ, dmc, mmc);
                         occ.setForm(chief);
                         dmc.setForm(chief);
+                        mmc.setForm(chief);
                         occ.updateOrderList();
                         chief.FormClosed += new FormClosedEventHandler(showAuthForm);
                         chief.Show();
                         authView.hideForm();
                         break;
                     case (Roles.Manager):
-                        ManagerForm mf = new ManagerForm();
+                        ProductsManagementController pm = new ProductsManagementController(user);
+                        ManagerForm mf = new ManagerForm(pm);
+                        pm.setForm(mf);
                         mf.FormClosed += new FormClosedEventHandler(showAuthForm);
                         mf.Show();
                         authView.hideForm();

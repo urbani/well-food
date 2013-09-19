@@ -7,10 +7,6 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 
-using System.Data.Linq;
-using System.Data.Linq.Mapping;
-
-
 namespace TRPO.View
 {
     public partial class ClientManagerDialog : Form
@@ -18,19 +14,9 @@ namespace TRPO.View
         public ClientManagerDialog()
         {
             InitializeComponent();
-
-            // Use a connection string.
-            DataContext db = new DataContext(Properties.Settings.Default.db_path);
-
-
-
-
         }
 
-        public ClientManagerDialog(int EmployId)
-        {
-            InitializeComponent();
-        }
+
         private void ClientCompanyManagerDialog_Load(object sender, EventArgs e)
         {
 
@@ -54,8 +40,4 @@ namespace TRPO.View
 
         }
     }
-
-
-        
-    
 }
