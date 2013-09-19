@@ -26,6 +26,10 @@ namespace TRPO.View
         /// </summary>
         bool tryContinue = false;
         bool notSetEmploy = false;
+        DialogResult notifyValue=DialogResult.Yes;
+        int lastEmployIndex = 0;
+        int lastCompanyIndex = 0;
+        bool systemChange = false;
 
         public CourierForm(ClientManagementConroller cmc, OrdersConroller oc)
         {
@@ -46,12 +50,22 @@ namespace TRPO.View
             headerList2.AutoCompleteSource = AutoCompleteSource.ListItems;
             ordersController.updateActiveMenu();
             buyOrderMenu.Items.Clear();
+
+
+
+        }
+        public void showMsg(String msg, GlobalObj.ErrorLevels levels)
+        {
+            MessageBoxButtons butttons = MessageBoxButtons.YesNo;
+            String titile;
+            if (levels == GlobalObj.ErrorLevels.Info)
+                titile = "Уведомление";
+            else
+                titile = "Ошибка";
+            notifyValue = MessageBox.Show(msg, titile, butttons);
         }
 
-        public void showMsg(String msg, GlobalObj.ErrorLevels el)
-        {
-            //throw ("не умею");
-        }
+
 
         public void showMsg(String msg, String header)
         {
@@ -73,45 +87,64 @@ namespace TRPO.View
         {
             clientManagementController.fillEmployList();
         }
-
-        bool handlerEmployChange()
+        /// <summary>
+        /// продолжить выполнение запроса, в случае если заполнены уже часть заказа?
+        /// </summary>
+        /// <returns></returns>
+        bool requestFromContinue()
         {
 
-            if (buyOrderMenu.Items.Count != 0)
+            showMsg("выбрано несколько блюд, сбросить список и продолжить?", GlobalObj.ErrorLevels.Info);
+            if (notifyValue == DialogResult.Yes)
             {
-                if (tryContinue)
-                {
-                    buyOrderMenu.Items.Clear();
-                    tryContinue = false;
-                    return true;
-                }
-                else
-                {
-                    tryContinue = true;
-                    negativeStatusHandler("выбрано несколько блюд, сбросить список и продолжить?");
-                    return false;
-                }
+                handlerContinueChoose();
+                return true;
             }
-            
-            return true;
+            else
+                return false;
+        }
+        /// <summary>
+        /// обрабочик смены клиенты
+        /// </summary>
+        void handlerContinueChoose()
+        {
+            buyOrderMenu.Items.Clear();
         }
 
         private void headerList1_SelectedIndexChanged(object sender, EventArgs e)
         {
 
-            if (headerList2.SelectedItem != null)
+            if (headerList2.SelectedItem != null && buyOrderMenu.Items.Count!=0)
             {
-                positivStatusHandler();
-                handlerEmployChange();
+                if (requestFromContinue())
+                {
+                    
+                    return;
+                }
+                
             }
+            positivStatusHandler();
             clientManagementController.fillEmployList();
+            if (buyOrderMenu.Items.Count != 0)
+            {
+                headerList1.SelectedIndex = lastCompanyIndex;
+                lastCompanyIndex = headerList1.SelectedIndex;
+            }
             
         }
 
         private void headerList2_SelectedIndexChanged(object sender, EventArgs e)
         {
+            if (buyOrderMenu.Items.Count != 0  && headerList2.SelectedIndex == lastEmployIndex)
+                if (requestFromContinue())
+                    return;
             positivStatusHandler();
-            handlerEmployChange();
+            if (buyOrderMenu.Items.Count != 0)
+            {
+                headerList2.SelectedIndex = lastEmployIndex;
+                lastEmployIndex = headerList2.SelectedIndex;
+            }
+            
         }
 
         public void updateCompanyList()
@@ -180,7 +213,9 @@ namespace TRPO.View
 
         void negativeStatusHandler(String messege = "Что-то пошло не так")
         {
+
             messege = "Ошибка: " + messege;
+            
             toolStripStatusLabel1.Text = messege;
             toolStripStatusLabel1.ForeColor = Color.DarkRed;
         }
@@ -256,6 +291,11 @@ namespace TRPO.View
         }
 
         private void menuList1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void CourierForm_Load(object sender, EventArgs e)
         {
 
         }
