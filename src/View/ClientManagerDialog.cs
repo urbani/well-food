@@ -21,20 +21,7 @@ namespace TRPO.View
 
             // Use a connection string.
             DataContext db = new DataContext(Properties.Settings.Default.db_path);
-            
-            // Get a typed table to run queries.
-            Table<Employee> Customers = db.GetTable<Employee>();
-            // Query for customers who have placed orders.
-            //var custQuery =
-            //    from cust in Employee
-            //    where cust.Orders.Any()
-            //    select cust;
 
-            //foreach (Customer cust in custQuery)
-            //{
-            //    Console.WriteLine("ID={0}, City={1}", cust.CustomerID,
-            //        cust.City);
-            //}
 
 
 
@@ -68,36 +55,6 @@ namespace TRPO.View
         }
     }
 
-
-    [Table(Name = "Employee")]  //Свойство Name задает имя таблицы в базе данных.
-    public class Employee
-    {
-        [Column(IsPrimaryKey = true, Storage = "ID_Emp")]
-        public string ID_Emp;
-        
-
-
-        
-
-
-        [Column(Storage = "Name_Emp")]
-        public string Name_Emp;
-
-
-    }
-        //public string City
-        //{
-        //    get
-        //    {
-        //        return this._City;
-        //    }
-        //    set
-        //    {
-        //        this._City=value;
-        //    }
-        //}
-
-        //    }
 
         
     
