@@ -5,8 +5,13 @@
 *.exe
 
 # Visual studio files
+*.csproj
+*.suo
+*.sln
 *.csproj.user
 app.config
+Resources.Designer.cs
+Settings.Designer.cs
 
 # Visual Studio db files
 *.laccdb
@@ -22,4 +27,4 @@ obj/
 
 
 #Allow files
-!SQL_Editor.exe
+!SQL Editor.exe

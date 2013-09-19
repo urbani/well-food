@@ -9,13 +9,7 @@ namespace TRPO.GlobalObj
     {
        public static String getCurrentTime()
        {
-
-           //Удобное использование времени
-           //DateTime.Parse("01.09.2013").ToLongDateString();
-           //DateTime.Parse("01.09.2013").AddDays(1);
-           //Сегодня: DateTime.Now.ToShortDateString();
-           
-           return DateTime.Parse("01.09.2013").ToShortDateString();
+           return "01.09.2013";
        }
     }
 }

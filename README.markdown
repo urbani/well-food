@@ -6,10 +6,10 @@
 Такой комментарий появится в списке задач(смотри выше).
  
 
-Мария Дедова	rainy92@mail.ru
+MaryDedova	rainy92@mail.ru
 
-nik				nikallass@yandex.ru
+nikallass	nikallass@yandex.ru
 
-vatslav			vatslav.dovnar@gmail.com
+vatslav		vatslav.dovnar@gmail.com
 
-Мария Михайлова
+niks

@@ -36,7 +36,6 @@ namespace TRPO.Model
             connector.closeConnection();
             return list;
         }
-
         public List<CourierListEntry> getActiveMenu()
         {
             List<CourierListEntry> resultList = new List<CourierListEntry>();
@@ -52,7 +51,7 @@ namespace TRPO.Model
                         (
                         SELECT 
                                 di.ID_Dish, 
-                                (prices.price*(1 + di.Percent/100)/100) as price,
+                                (prices.price*(1 + di.Percent/100)) as price,
                                 di.Name_Dish, di.Dish_Type
                         FROM 
                             Dishes AS di 

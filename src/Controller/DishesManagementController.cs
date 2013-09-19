@@ -13,13 +13,12 @@ namespace TRPO.Controller
         IDishManagable view;
         User user;
         DishesManager dishesManager;
-        ProductsManager productManager;
+        List<CourierListEntry> menuList = new List<CourierListEntry>();
 
         public DishesManagementController(User u)
         {
             user = u;
             dishesManager = new DishesManager();
-            productManager = new ProductsManager();
         }
 
         public void setForm(IDishManagable f)
@@ -28,76 +27,21 @@ namespace TRPO.Controller
         }
 
         public void updateDishInfo()
-        {//TODO: Проверка хватает ли продуктов для приготовления заказа
+        {
             Dish tmpDish = dishesManager.getDish(view.getSelectedDishName());
-            view.setDishInfo(tmpDish);
+            view.setDishInfo(tmpDish.Name, tmpDish.DishType, tmpDish.LinkToPhoto, tmpDish.Recipe);
         }
 
         public void addReadyDishes()
         {
-            int readyDishes = view.getReadyDishesAmount();
+            int readyDishes = view.getReayDishesAmount();
             String readyDish = view.getSelectedDishName();
-            int redundantDishes = dishesManager.addReadyDishes(readyDish, readyDishes);
-            if (redundantDishes > 0)
+            int changes = dishesManager.addReadyDishes(readyDish, readyDishes);
+
+            if (changes < 0)
             {
-                view.showMsg("Все заказы на блюдо [" + readyDish + "] закрыты. Осталось неучтенных блюд: [" + readyDish + " : " + redundantDishes + "шт.]", GlobalObj.ErrorLevels.Info);
+                System.Diagnostics.Debug.WriteLine("WARNING! При добавлении готовых продуктов поля в базе не изменились!");
             }
-        }
-
-        public void fillDishProd()
-        {
-            view.setDishesList(dishesManager.getDishNamesWithTypes());
-            view.setProductsList(productManager.getProdNames());
-        }
-
-        public void updateContents()
-        {
-            view.updateContents(dishesManager.getDishContents(view.getSelectedDishName()));
-        }
-
-        public void updateCreationDishInfo()
-        {
-            Dish tmpDish = dishesManager.getDish(view.getSelectedDishName());
-            view.setDishInfo(tmpDish);
-        }
-
-        public void createNewDish()
-        {
-            Dish d = view.getCreatedDish();
-            dishesManager.createNewDish(d);
-            view.setDishesList(dishesManager.getDishNamesWithTypes());
-        }
-
-        public void updateDish()
-        {
-            Dish d = view.getCreatedDish();
-            dishesManager.updateDish(d);
-            view.setDishesList(dishesManager.getDishNamesWithTypes());
-        }
-
-        public void addProductToDish()
-        {
-            view.addProductToContence(view.getSelectedProductName(), 1);
-        }
-
-        public void addProduct()
-        {
-            String addingProdName = view.getAddingProductName();
-            if (addingProdName != "")
-            {
-                productManager.addProduct(addingProdName);
-                view.setProductsList(productManager.getProdNames());
-            }
-        }
-
-        public void deleteProductFromDish()
-        {
-            dishesManager.deleteProductFromDish(view.getSelectedDishName(), view.getSelectedContenceName());
-            updateContents();
-        }
-        public void checkoutOrder()
-        {
-            
         }
     }
 }

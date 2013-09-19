@@ -61,27 +61,5 @@ namespace TRPO.Model
             return result;
         }
 
-        public List<String> getEmployWithCompany(int idEmploy)
-        {
-            List<String> result = new List<string>();
-            connector.openConnection();
-            OleDbDataReader reader = connector.executeQuery("SELECT id_comp,Name_comp,  surname, name_emp, patronymic FROM Employee as empl INNER JOIN Company as c ON c.ID_Comp=empl.Company WHERE empl.ID_Emp=" + idEmploy.ToString());
-
-            while (reader.Read())
-            { //id_comp,Name_comp,  surname, name_emp, patronymic
-                result.Add(reader[0].ToString());
-                result.Add(reader[1].ToString());
-                result.Add(reader[2].ToString());
-                result.Add(reader[3].ToString());
-                result.Add(reader[4].ToString());
-            }
-            reader.Close();
-
-            connector.closeConnection();
-
-            return result;
-
-        }
-
     }
 }

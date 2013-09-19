@@ -29,6 +29,31 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(CourierForm));
+            System.Windows.Forms.ListViewItem listViewItem1 = new System.Windows.Forms.ListViewItem(new string[] {
+            "one",
+            "1"}, -1);
+            System.Windows.Forms.ListViewItem listViewItem2 = new System.Windows.Forms.ListViewItem("three");
+            System.Windows.Forms.ListViewItem listViewItem3 = new System.Windows.Forms.ListViewItem("two");
+            System.Windows.Forms.ListViewItem listViewItem4 = new System.Windows.Forms.ListViewItem(new string[] {
+            "one",
+            "1"}, -1);
+            System.Windows.Forms.ListViewItem listViewItem5 = new System.Windows.Forms.ListViewItem("three");
+            System.Windows.Forms.ListViewItem listViewItem6 = new System.Windows.Forms.ListViewItem("two");
+            System.Windows.Forms.ListViewItem listViewItem7 = new System.Windows.Forms.ListViewItem(new string[] {
+            "one",
+            "1"}, -1);
+            System.Windows.Forms.ListViewItem listViewItem8 = new System.Windows.Forms.ListViewItem("three");
+            System.Windows.Forms.ListViewItem listViewItem9 = new System.Windows.Forms.ListViewItem("two");
+            System.Windows.Forms.ListViewItem listViewItem10 = new System.Windows.Forms.ListViewItem(new string[] {
+            "one",
+            "1"}, -1);
+            System.Windows.Forms.ListViewItem listViewItem11 = new System.Windows.Forms.ListViewItem("three");
+            System.Windows.Forms.ListViewItem listViewItem12 = new System.Windows.Forms.ListViewItem("two");
+            System.Windows.Forms.ListViewItem listViewItem13 = new System.Windows.Forms.ListViewItem(new string[] {
+            "one",
+            "1"}, -1);
+            System.Windows.Forms.ListViewItem listViewItem14 = new System.Windows.Forms.ListViewItem("three");
+            System.Windows.Forms.ListViewItem listViewItem15 = new System.Windows.Forms.ListViewItem("two");
             this.mainTable = new System.Windows.Forms.TableLayoutPanel();
             this.headerTable = new System.Windows.Forms.TableLayoutPanel();
             this.headerLabel1 = new System.Windows.Forms.Label();
@@ -41,15 +66,9 @@
             this.employEditButton = new System.Windows.Forms.Button();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.rightBodyTabel = new System.Windows.Forms.TableLayoutPanel();
-            this.tabControl1 = new System.Windows.Forms.TabControl();
-            this.tabPage5 = new System.Windows.Forms.TabPage();
-            this.buyOrderMenu = new System.Windows.Forms.ListView();
+            this.orderMenu = new System.Windows.Forms.ListView();
             this.columnHeader5 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader6 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.tabPage6 = new System.Windows.Forms.TabPage();
-            this.listView1 = new System.Windows.Forms.ListView();
-            this.columnHeader9 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.columnHeader10 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.button1 = new System.Windows.Forms.Button();
             this.leftBodyTable = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
@@ -69,20 +88,15 @@
             this.columnHeader7 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader8 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.statusStrip = new System.Windows.Forms.StatusStrip();
-            this.toolStripStatusLabel1 = new System.Windows.Forms.ToolStripStatusLabel();
             this.mainTable.SuspendLayout();
             this.headerTable.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
             this.rightBodyTabel.SuspendLayout();
-            this.tabControl1.SuspendLayout();
-            this.tabPage5.SuspendLayout();
-            this.tabPage6.SuspendLayout();
             this.leftBodyTable.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.tabPage2.SuspendLayout();
             this.tabPage3.SuspendLayout();
             this.tabPage4.SuspendLayout();
-            this.statusStrip.SuspendLayout();
             this.SuspendLayout();
             // 
             // mainTable
@@ -97,7 +111,7 @@
             this.mainTable.RowCount = 2;
             this.mainTable.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 90F));
             this.mainTable.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 62.13097F));
-            this.mainTable.Size = new System.Drawing.Size(799, 533);
+            this.mainTable.Size = new System.Drawing.Size(789, 530);
             this.mainTable.TabIndex = 0;
             // 
             // headerTable
@@ -119,9 +133,9 @@
             this.headerTable.Location = new System.Drawing.Point(3, 3);
             this.headerTable.Name = "headerTable";
             this.headerTable.RowCount = 2;
-            this.headerTable.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 48.80952F));
-            this.headerTable.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 51.19048F));
-            this.headerTable.Size = new System.Drawing.Size(793, 84);
+            this.headerTable.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 44.04762F));
+            this.headerTable.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 55.95238F));
+            this.headerTable.Size = new System.Drawing.Size(783, 84);
             this.headerTable.TabIndex = 2;
             // 
             // headerLabel1
@@ -129,7 +143,7 @@
             this.headerLabel1.Anchor = System.Windows.Forms.AnchorStyles.Right;
             this.headerLabel1.AutoSize = true;
             this.headerLabel1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.headerLabel1.Location = new System.Drawing.Point(19, 10);
+            this.headerLabel1.Location = new System.Drawing.Point(19, 8);
             this.headerLabel1.Name = "headerLabel1";
             this.headerLabel1.Size = new System.Drawing.Size(84, 20);
             this.headerLabel1.TabIndex = 0;
@@ -140,7 +154,7 @@
             this.headerLabel2.Anchor = System.Windows.Forms.AnchorStyles.Right;
             this.headerLabel2.AutoSize = true;
             this.headerLabel2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.headerLabel2.Location = new System.Drawing.Point(3, 52);
+            this.headerLabel2.Location = new System.Drawing.Point(3, 50);
             this.headerLabel2.Name = "headerLabel2";
             this.headerLabel2.Size = new System.Drawing.Size(100, 20);
             this.headerLabel2.TabIndex = 1;
@@ -151,9 +165,9 @@
             this.headerList1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.headerList1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.headerList1.FormattingEnabled = true;
-            this.headerList1.Location = new System.Drawing.Point(109, 6);
+            this.headerList1.Location = new System.Drawing.Point(109, 4);
             this.headerList1.Name = "headerList1";
-            this.headerList1.Size = new System.Drawing.Size(262, 28);
+            this.headerList1.Size = new System.Drawing.Size(258, 28);
             this.headerList1.TabIndex = 2;
             this.headerList1.SelectedIndexChanged += new System.EventHandler(this.headerList1_SelectedIndexChanged);
             this.headerList1.EnabledChanged += new System.EventHandler(this.s);
@@ -163,11 +177,10 @@
             this.headerList2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.headerList2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.headerList2.FormattingEnabled = true;
-            this.headerList2.Location = new System.Drawing.Point(109, 48);
+            this.headerList2.Location = new System.Drawing.Point(109, 46);
             this.headerList2.Name = "headerList2";
-            this.headerList2.Size = new System.Drawing.Size(262, 28);
+            this.headerList2.Size = new System.Drawing.Size(258, 28);
             this.headerList2.TabIndex = 3;
-            this.headerList2.SelectedIndexChanged += new System.EventHandler(this.headerList2_SelectedIndexChanged);
             this.headerList2.EnabledChanged += new System.EventHandler(this.headerList2_EnabledChanged);
             this.headerList2.MouseClick += new System.Windows.Forms.MouseEventHandler(this.headerList2_MouseClick);
             // 
@@ -177,9 +190,9 @@
             this.headerSearchButton1.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.headerSearchButton1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.headerSearchButton1.Image = ((System.Drawing.Image)(resources.GetObject("headerSearchButton1.Image")));
-            this.headerSearchButton1.Location = new System.Drawing.Point(377, 3);
+            this.headerSearchButton1.Location = new System.Drawing.Point(373, 3);
             this.headerSearchButton1.Name = "headerSearchButton1";
-            this.headerSearchButton1.Size = new System.Drawing.Size(37, 34);
+            this.headerSearchButton1.Size = new System.Drawing.Size(37, 30);
             this.headerSearchButton1.TabIndex = 4;
             this.headerSearchButton1.UseVisualStyleBackColor = true;
             // 
@@ -189,7 +202,7 @@
             this.headerSearchButton2.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.headerSearchButton2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.headerSearchButton2.Image = ((System.Drawing.Image)(resources.GetObject("headerSearchButton2.Image")));
-            this.headerSearchButton2.Location = new System.Drawing.Point(377, 44);
+            this.headerSearchButton2.Location = new System.Drawing.Point(373, 42);
             this.headerSearchButton2.Name = "headerSearchButton2";
             this.headerSearchButton2.Size = new System.Drawing.Size(37, 35);
             this.headerSearchButton2.TabIndex = 5;
@@ -198,7 +211,7 @@
             // 
             // companyEditButton
             // 
-            this.companyEditButton.Location = new System.Drawing.Point(421, 3);
+            this.companyEditButton.Location = new System.Drawing.Point(417, 3);
             this.companyEditButton.Name = "companyEditButton";
             this.companyEditButton.Size = new System.Drawing.Size(75, 30);
             this.companyEditButton.TabIndex = 6;
@@ -207,9 +220,9 @@
             // 
             // employEditButton
             // 
-            this.employEditButton.Location = new System.Drawing.Point(421, 43);
+            this.employEditButton.Location = new System.Drawing.Point(417, 39);
             this.employEditButton.Name = "employEditButton";
-            this.employEditButton.Size = new System.Drawing.Size(75, 30);
+            this.employEditButton.Size = new System.Drawing.Size(75, 35);
             this.employEditButton.TabIndex = 7;
             this.employEditButton.Text = "изменить";
             this.employEditButton.UseVisualStyleBackColor = true;
@@ -218,8 +231,8 @@
             // tableLayoutPanel1
             // 
             this.tableLayoutPanel1.ColumnCount = 2;
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 54.1507F));
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 45.8493F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.tableLayoutPanel1.Controls.Add(this.rightBodyTabel, 0, 0);
             this.tableLayoutPanel1.Controls.Add(this.leftBodyTable, 0, 0);
             this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -227,7 +240,7 @@
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
             this.tableLayoutPanel1.RowCount = 1;
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(793, 437);
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(783, 434);
             this.tableLayoutPanel1.TabIndex = 4;
             // 
             // rightBodyTabel
@@ -236,59 +249,45 @@
             this.rightBodyTabel.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.rightBodyTabel.ColumnCount = 1;
             this.rightBodyTabel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 58.68545F));
-            this.rightBodyTabel.Controls.Add(this.tabControl1, 0, 0);
+            this.rightBodyTabel.Controls.Add(this.orderMenu, 0, 0);
             this.rightBodyTabel.Controls.Add(this.button1, 0, 1);
             this.rightBodyTabel.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.rightBodyTabel.Location = new System.Drawing.Point(432, 3);
+            this.rightBodyTabel.Location = new System.Drawing.Point(394, 3);
             this.rightBodyTabel.Name = "rightBodyTabel";
             this.rightBodyTabel.RowCount = 2;
             this.rightBodyTabel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 41.97531F));
             this.rightBodyTabel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 44F));
             this.rightBodyTabel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.rightBodyTabel.Size = new System.Drawing.Size(358, 431);
+            this.rightBodyTabel.Size = new System.Drawing.Size(386, 428);
             this.rightBodyTabel.TabIndex = 5;
             // 
-            // tabControl1
+            // orderMenu
             // 
-            this.tabControl1.Controls.Add(this.tabPage5);
-            this.tabControl1.Controls.Add(this.tabPage6);
-            this.tabControl1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tabControl1.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.tabControl1.Location = new System.Drawing.Point(3, 3);
-            this.tabControl1.Name = "tabControl1";
-            this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(352, 381);
-            this.tabControl1.TabIndex = 5;
-            // 
-            // tabPage5
-            // 
-            this.tabPage5.Controls.Add(this.buyOrderMenu);
-            this.tabPage5.Location = new System.Drawing.Point(4, 33);
-            this.tabPage5.Name = "tabPage5";
-            this.tabPage5.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage5.Size = new System.Drawing.Size(344, 344);
-            this.tabPage5.TabIndex = 0;
-            this.tabPage5.Text = "Новый заказ";
-            this.tabPage5.UseVisualStyleBackColor = true;
-            // 
-            // buyOrderMenu
-            // 
-            this.buyOrderMenu.Activation = System.Windows.Forms.ItemActivation.OneClick;
-            this.buyOrderMenu.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.orderMenu.Activation = System.Windows.Forms.ItemActivation.OneClick;
+            this.orderMenu.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this.columnHeader5,
             this.columnHeader6});
-            this.buyOrderMenu.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.buyOrderMenu.FullRowSelect = true;
-            this.buyOrderMenu.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.Nonclickable;
-            this.buyOrderMenu.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.buyOrderMenu.Location = new System.Drawing.Point(2, 0);
-            this.buyOrderMenu.Name = "buyOrderMenu";
-            this.buyOrderMenu.Size = new System.Drawing.Size(338, 356);
-            this.buyOrderMenu.Sorting = System.Windows.Forms.SortOrder.Ascending;
-            this.buyOrderMenu.TabIndex = 3;
-            this.buyOrderMenu.UseCompatibleStateImageBehavior = false;
-            this.buyOrderMenu.View = System.Windows.Forms.View.Details;
-            this.buyOrderMenu.DoubleClick += new System.EventHandler(this.orderMenu_DoubleClick);
+            this.orderMenu.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.orderMenu.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.orderMenu.FullRowSelect = true;
+            this.orderMenu.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.Nonclickable;
+            this.orderMenu.HoverSelection = true;
+            this.orderMenu.ImeMode = System.Windows.Forms.ImeMode.Hiragana;
+            listViewItem1.StateImageIndex = 0;
+            listViewItem2.StateImageIndex = 0;
+            listViewItem3.StateImageIndex = 0;
+            this.orderMenu.Items.AddRange(new System.Windows.Forms.ListViewItem[] {
+            listViewItem1,
+            listViewItem2,
+            listViewItem3});
+            this.orderMenu.Location = new System.Drawing.Point(3, 3);
+            this.orderMenu.Name = "orderMenu";
+            this.orderMenu.Size = new System.Drawing.Size(380, 378);
+            this.orderMenu.Sorting = System.Windows.Forms.SortOrder.Ascending;
+            this.orderMenu.TabIndex = 3;
+            this.orderMenu.UseCompatibleStateImageBehavior = false;
+            this.orderMenu.View = System.Windows.Forms.View.Details;
+            this.orderMenu.DoubleClick += new System.EventHandler(this.orderMenu_DoubleClick);
             // 
             // columnHeader5
             // 
@@ -300,57 +299,17 @@
             this.columnHeader6.Text = "Цена";
             this.columnHeader6.Width = 76;
             // 
-            // tabPage6
-            // 
-            this.tabPage6.Controls.Add(this.listView1);
-            this.tabPage6.Location = new System.Drawing.Point(4, 33);
-            this.tabPage6.Name = "tabPage6";
-            this.tabPage6.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage6.Size = new System.Drawing.Size(339, 335);
-            this.tabPage6.TabIndex = 1;
-            this.tabPage6.Text = "Выдача Заказа";
-            this.tabPage6.UseVisualStyleBackColor = true;
-            // 
-            // listView1
-            // 
-            this.listView1.Activation = System.Windows.Forms.ItemActivation.OneClick;
-            this.listView1.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
-            this.columnHeader9,
-            this.columnHeader10});
-            this.listView1.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.listView1.FullRowSelect = true;
-            this.listView1.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.Nonclickable;
-            this.listView1.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.listView1.Location = new System.Drawing.Point(0, 0);
-            this.listView1.Name = "listView1";
-            this.listView1.Size = new System.Drawing.Size(338, 345);
-            this.listView1.Sorting = System.Windows.Forms.SortOrder.Ascending;
-            this.listView1.TabIndex = 4;
-            this.listView1.UseCompatibleStateImageBehavior = false;
-            this.listView1.View = System.Windows.Forms.View.Details;
-            // 
-            // columnHeader9
-            // 
-            this.columnHeader9.Text = "Блюдо";
-            this.columnHeader9.Width = 255;
-            // 
-            // columnHeader10
-            // 
-            this.columnHeader10.Text = "Цена";
-            this.columnHeader10.Width = 76;
-            // 
             // button1
             // 
-            this.button1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.button1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.button1.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.button1.Location = new System.Drawing.Point(3, 390);
+            this.button1.Location = new System.Drawing.Point(266, 395);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(352, 38);
+            this.button1.Size = new System.Drawing.Size(117, 30);
             this.button1.TabIndex = 0;
-            this.button1.Text = "Провести заказ";
+            this.button1.Text = "Выполнить";
             this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // leftBodyTable
             // 
@@ -358,12 +317,12 @@
             this.leftBodyTable.Controls.Add(this.tabPage2);
             this.leftBodyTable.Controls.Add(this.tabPage3);
             this.leftBodyTable.Controls.Add(this.tabPage4);
-            this.leftBodyTable.Dock = System.Windows.Forms.DockStyle.Top;
+            this.leftBodyTable.Dock = System.Windows.Forms.DockStyle.Fill;
             this.leftBodyTable.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.leftBodyTable.Location = new System.Drawing.Point(3, 3);
             this.leftBodyTable.Name = "leftBodyTable";
             this.leftBodyTable.SelectedIndex = 0;
-            this.leftBodyTable.Size = new System.Drawing.Size(423, 422);
+            this.leftBodyTable.Size = new System.Drawing.Size(385, 428);
             this.leftBodyTable.TabIndex = 4;
             // 
             // tabPage1
@@ -372,7 +331,7 @@
             this.tabPage1.Location = new System.Drawing.Point(4, 33);
             this.tabPage1.Name = "tabPage1";
             this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage1.Size = new System.Drawing.Size(415, 385);
+            this.tabPage1.Size = new System.Drawing.Size(377, 391);
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "Первое";
             this.tabPage1.UseVisualStyleBackColor = true;
@@ -386,15 +345,17 @@
             this.menuList1.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.menuList1.FullRowSelect = true;
             this.menuList1.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.Nonclickable;
+            this.menuList1.Items.AddRange(new System.Windows.Forms.ListViewItem[] {
+            listViewItem4,
+            listViewItem5,
+            listViewItem6});
             this.menuList1.Location = new System.Drawing.Point(3, 3);
             this.menuList1.Name = "menuList1";
-            this.menuList1.Size = new System.Drawing.Size(409, 379);
+            this.menuList1.Size = new System.Drawing.Size(371, 385);
             this.menuList1.Sorting = System.Windows.Forms.SortOrder.Ascending;
             this.menuList1.TabIndex = 2;
             this.menuList1.UseCompatibleStateImageBehavior = false;
             this.menuList1.View = System.Windows.Forms.View.Details;
-            this.menuList1.SelectedIndexChanged += new System.EventHandler(this.menuList1_SelectedIndexChanged);
-            this.menuList1.DoubleClick += new System.EventHandler(this.menuList1_DoubleClick);
             // 
             // dish
             // 
@@ -412,7 +373,7 @@
             this.tabPage2.Location = new System.Drawing.Point(4, 33);
             this.tabPage2.Name = "tabPage2";
             this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage2.Size = new System.Drawing.Size(410, 385);
+            this.tabPage2.Size = new System.Drawing.Size(377, 391);
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "Второе";
             this.tabPage2.UseVisualStyleBackColor = true;
@@ -426,15 +387,18 @@
             this.menuList2.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.menuList2.FullRowSelect = true;
             this.menuList2.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.Nonclickable;
+            this.menuList2.Items.AddRange(new System.Windows.Forms.ListViewItem[] {
+            listViewItem7,
+            listViewItem8,
+            listViewItem9});
             this.menuList2.Location = new System.Drawing.Point(3, 3);
             this.menuList2.Name = "menuList2";
-            this.menuList2.Size = new System.Drawing.Size(404, 379);
+            this.menuList2.Size = new System.Drawing.Size(371, 385);
             this.menuList2.Sorting = System.Windows.Forms.SortOrder.Ascending;
             this.menuList2.TabIndex = 3;
             this.menuList2.UseCompatibleStateImageBehavior = false;
             this.menuList2.View = System.Windows.Forms.View.Details;
             this.menuList2.SelectedIndexChanged += new System.EventHandler(this.listView1_SelectedIndexChanged);
-            this.menuList2.DoubleClick += new System.EventHandler(this.menuList2_DoubleClick);
             // 
             // columnHeader1
             // 
@@ -451,7 +415,7 @@
             this.tabPage3.Controls.Add(this.menuList3);
             this.tabPage3.Location = new System.Drawing.Point(4, 33);
             this.tabPage3.Name = "tabPage3";
-            this.tabPage3.Size = new System.Drawing.Size(410, 385);
+            this.tabPage3.Size = new System.Drawing.Size(377, 391);
             this.tabPage3.TabIndex = 2;
             this.tabPage3.Text = "Третье";
             this.tabPage3.UseVisualStyleBackColor = true;
@@ -465,14 +429,17 @@
             this.menuList3.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.menuList3.FullRowSelect = true;
             this.menuList3.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.Nonclickable;
+            this.menuList3.Items.AddRange(new System.Windows.Forms.ListViewItem[] {
+            listViewItem10,
+            listViewItem11,
+            listViewItem12});
             this.menuList3.Location = new System.Drawing.Point(0, 0);
             this.menuList3.Name = "menuList3";
-            this.menuList3.Size = new System.Drawing.Size(410, 385);
+            this.menuList3.Size = new System.Drawing.Size(377, 391);
             this.menuList3.Sorting = System.Windows.Forms.SortOrder.Ascending;
             this.menuList3.TabIndex = 3;
             this.menuList3.UseCompatibleStateImageBehavior = false;
             this.menuList3.View = System.Windows.Forms.View.Details;
-            this.menuList3.DoubleClick += new System.EventHandler(this.menuList3_DoubleClick);
             // 
             // columnHeader3
             // 
@@ -489,9 +456,9 @@
             this.tabPage4.Controls.Add(this.menuList4);
             this.tabPage4.Location = new System.Drawing.Point(4, 33);
             this.tabPage4.Name = "tabPage4";
-            this.tabPage4.Size = new System.Drawing.Size(410, 385);
+            this.tabPage4.Size = new System.Drawing.Size(377, 391);
             this.tabPage4.TabIndex = 3;
-            this.tabPage4.Text = "Комплексный обед";
+            this.tabPage4.Text = "Бизнес-ланс";
             this.tabPage4.UseVisualStyleBackColor = true;
             // 
             // menuList4
@@ -503,14 +470,17 @@
             this.menuList4.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.menuList4.FullRowSelect = true;
             this.menuList4.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.Nonclickable;
+            this.menuList4.Items.AddRange(new System.Windows.Forms.ListViewItem[] {
+            listViewItem13,
+            listViewItem14,
+            listViewItem15});
             this.menuList4.Location = new System.Drawing.Point(0, 0);
             this.menuList4.Name = "menuList4";
-            this.menuList4.Size = new System.Drawing.Size(410, 385);
+            this.menuList4.Size = new System.Drawing.Size(377, 391);
             this.menuList4.Sorting = System.Windows.Forms.SortOrder.Ascending;
             this.menuList4.TabIndex = 4;
             this.menuList4.UseCompatibleStateImageBehavior = false;
             this.menuList4.View = System.Windows.Forms.View.Details;
-            this.menuList4.DoubleClick += new System.EventHandler(this.menuList4_DoubleClick);
             // 
             // columnHeader7
             // 
@@ -524,27 +494,17 @@
             // 
             // statusStrip
             // 
-            this.statusStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.toolStripStatusLabel1});
-            this.statusStrip.Location = new System.Drawing.Point(0, 533);
+            this.statusStrip.Location = new System.Drawing.Point(0, 530);
             this.statusStrip.Name = "statusStrip";
-            this.statusStrip.Size = new System.Drawing.Size(799, 24);
+            this.statusStrip.Size = new System.Drawing.Size(789, 22);
             this.statusStrip.TabIndex = 1;
             this.statusStrip.Text = "statusStrip1";
-            // 
-            // toolStripStatusLabel1
-            // 
-            this.toolStripStatusLabel1.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Underline, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.toolStripStatusLabel1.ForeColor = System.Drawing.Color.DarkRed;
-            this.toolStripStatusLabel1.Name = "toolStripStatusLabel1";
-            this.toolStripStatusLabel1.Size = new System.Drawing.Size(60, 19);
-            this.toolStripStatusLabel1.Text = "Готово";
             // 
             // CourierForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(799, 557);
+            this.ClientSize = new System.Drawing.Size(789, 552);
             this.Controls.Add(this.mainTable);
             this.Controls.Add(this.statusStrip);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
@@ -555,16 +515,11 @@
             this.headerTable.PerformLayout();
             this.tableLayoutPanel1.ResumeLayout(false);
             this.rightBodyTabel.ResumeLayout(false);
-            this.tabControl1.ResumeLayout(false);
-            this.tabPage5.ResumeLayout(false);
-            this.tabPage6.ResumeLayout(false);
             this.leftBodyTable.ResumeLayout(false);
             this.tabPage1.ResumeLayout(false);
             this.tabPage2.ResumeLayout(false);
             this.tabPage3.ResumeLayout(false);
             this.tabPage4.ResumeLayout(false);
-            this.statusStrip.ResumeLayout(false);
-            this.statusStrip.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -603,7 +558,7 @@
         private System.Windows.Forms.ListView menuList3;
         private System.Windows.Forms.ColumnHeader columnHeader3;
         private System.Windows.Forms.ColumnHeader columnHeader4;
-        private System.Windows.Forms.ListView buyOrderMenu;
+        private System.Windows.Forms.ListView orderMenu;
         private System.Windows.Forms.ColumnHeader columnHeader5;
         private System.Windows.Forms.ColumnHeader columnHeader6;
         private System.Windows.Forms.Button companyEditButton;
@@ -612,12 +567,5 @@
         private System.Windows.Forms.ListView menuList4;
         private System.Windows.Forms.ColumnHeader columnHeader7;
         private System.Windows.Forms.ColumnHeader columnHeader8;
-        private System.Windows.Forms.TabControl tabControl1;
-        private System.Windows.Forms.TabPage tabPage5;
-        private System.Windows.Forms.TabPage tabPage6;
-        private System.Windows.Forms.ToolStripStatusLabel toolStripStatusLabel1;
-        private System.Windows.Forms.ListView listView1;
-        private System.Windows.Forms.ColumnHeader columnHeader9;
-        private System.Windows.Forms.ColumnHeader columnHeader10;
     }
 }

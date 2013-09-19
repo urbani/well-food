@@ -6,40 +6,44 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
-using TRPO.Controller;
+
+using System.Data.Linq;
+using System.Data.Linq.Mapping;
+
 
 namespace TRPO.View
 {
     public partial class ClientManagerDialog : Form
     {
-        String name, company, surname, patronikName;
-        DialogController dialogController;
-
         public ClientManagerDialog()
         {
             InitializeComponent();
+
+            // Use a connection string.
+            DataContext db = new DataContext(Properties.Settings.Default.db_path);
             
-        }
+            // Get a typed table to run queries.
+            Table<Employee> Customers = db.GetTable<Employee>();
+            // Query for customers who have placed orders.
+            //var custQuery =
+            //    from cust in Employee
+            //    where cust.Orders.Any()
+            //    select cust;
 
-        /// <summary>
-        /// конструктор при открытии формы
-        /// </summary>
-        /// <param name="name"></param>
-        /// <param name="company"></param>
-        /// <param name="surname"></param>
-        /// <param name="patronikName"></param>
-        /// //, String name, String company, String surname, String patronikName
-        public ClientManagerDialog(DialogController dialogController)
-        {//1
-            //dialogController.
-            //this.dialogController = dialogController;
-            //nameEntry.Text = name;
-            //companyEntry.Text = company;
-            //surnameEntry.Text = surname;
-            //patronimicEntry.Text = patronikName;
+            //foreach (Customer cust in custQuery)
+            //{
+            //    Console.WriteLine("ID={0}, City={1}", cust.CustomerID,
+            //        cust.City);
+            //}
+
+
 
         }
 
+        public ClientManagerDialog(int EmployId)
+        {
+            InitializeComponent();
+        }
         private void ClientCompanyManagerDialog_Load(object sender, EventArgs e)
         {
 
@@ -57,11 +61,44 @@ namespace TRPO.View
 
         private void okButton_Click(object sender, EventArgs e)
         {
-           
-
+            //actions
             this.Close();
 
 
         }
     }
+
+
+    [Table(Name = "Employee")]  //Свойство Name задает имя таблицы в базе данных.
+    public class Employee
+    {
+        [Column(IsPrimaryKey = true, Storage = "ID_Emp")]
+        public string ID_Emp;
+        
+
+
+        
+
+
+        [Column(Storage = "Name_Emp")]
+        public string Name_Emp;
+
+
+    }
+        //public string City
+        //{
+        //    get
+        //    {
+        //        return this._City;
+        //    }
+        //    set
+        //    {
+        //        this._City=value;
+        //    }
+        //}
+
+        //    }
+
+        
+    
 }
