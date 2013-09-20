@@ -84,6 +84,11 @@ namespace TRPO.View
                 loginController.Login();
 		    }
         }
+
+        private void loginTextBox_TextChanged(object sender, EventArgs e)
+        {
+
+        }
         
     }
 }

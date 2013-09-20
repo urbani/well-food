@@ -26,6 +26,10 @@ namespace TRPO.View
         /// </summary>
         bool tryContinue = false;
         bool notSetEmploy = false;
+        DialogResult notifyValue=DialogResult.Yes;
+        int lastEmployIndex = 0;
+        int lastCompanyIndex = 0;
+        bool systemChange = false;
 
         public CourierForm(ClientManagementConroller cmc, OrdersConroller oc)
         {
@@ -46,12 +50,22 @@ namespace TRPO.View
             headerList2.AutoCompleteSource = AutoCompleteSource.ListItems;
             ordersController.updateActiveMenu();
             buyOrderMenu.Items.Clear();
+
+
+
+        }
+        public void showMsg(String msg, GlobalObj.ErrorLevels levels)
+        {
+            MessageBoxButtons butttons = MessageBoxButtons.YesNo;
+            String titile;
+            if (levels == GlobalObj.ErrorLevels.Info)
+                titile = "Уведомление";
+            else
+                titile = "Ошибка";
+            notifyValue = MessageBox.Show(msg, titile, butttons);
         }
 
-        public void showMsg(String msg, GlobalObj.ErrorLevels el)
-        {
-            //throw ("не умею");
-        }
+
 
         public void showMsg(String msg, String header)
         {
@@ -73,46 +87,79 @@ namespace TRPO.View
         {
             clientManagementController.fillEmployList();
         }
-
-        bool handlerEmployChange()
+        /// <summary>
+        /// продолжить выполнение запроса, в случае если заполнены уже часть заказа?
+        /// </summary>
+        /// <returns></returns>
+        bool requestFromContinue()
         {
 
+            showMsg("выбрано несколько блюд, сбросить список и продолжить?", GlobalObj.ErrorLevels.Info);
+            if (notifyValue == DialogResult.Yes)
+            {
+                handlerContinueChoose();
+                return true;
+            }
+            else
+                return false;
+        }
+        /// <summary>
+        /// обрабочик смены клиенты
+        /// </summary>
+        void handlerContinueChoose()
+        {
+            buyOrderMenu.Items.Clear();
+        }
+
+        private void headerList1_SelectionChangeCommitted(object sender, EventArgs e)
+        {
+            
+
+        }
+        private void headerList2_MouseClick(object sender, MouseEventArgs e) {}
+
+        private void headerList2_SelectionChangeCommitted(object sender, EventArgs e)
+        {
             if (buyOrderMenu.Items.Count != 0)
             {
-                if (tryContinue)
+                if (requestFromContinue())
                 {
                     buyOrderMenu.Items.Clear();
-                    tryContinue = false;
-                    return true;
                 }
                 else
                 {
-                    tryContinue = true;
-                    negativeStatusHandler("выбрано несколько блюд, сбросить список и продолжить?");
-                    return false;
+                    headerList2.SelectedIndex = lastEmployIndex;
                 }
             }
-            
-            return true;
+            lastEmployIndex = headerList2.SelectedIndex;
         }
 
-        private void headerList1_SelectedIndexChanged(object sender, EventArgs e)
+        private void headerList1_SelectedIndexChanged(object sender, EventArgs e) 
         {
-
-            if (headerList2.SelectedItem != null)
+            if (systemChange)
             {
-                positivStatusHandler();
-                handlerEmployChange();
+                systemChange = false;
+                return;
             }
-            clientManagementController.fillEmployList();
-            
+            if (buyOrderMenu.Items.Count == 0)
+                clientManagementController.fillEmployList();
+            else
+            {
+                if (requestFromContinue())
+                {
+                    buyOrderMenu.Items.Clear();
+                    clientManagementController.fillEmployList();
+                }
+                else
+                {
+                    systemChange = true;
+                    headerList1.SelectedIndex = lastCompanyIndex;
+                }
+            }
+            lastCompanyIndex = headerList1.SelectedIndex;
         }
 
-        private void headerList2_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            positivStatusHandler();
-            handlerEmployChange();
-        }
+        private void headerList2_SelectedIndexChanged(object sender, EventArgs e) { }
 
         public void updateCompanyList()
         {
@@ -180,7 +227,9 @@ namespace TRPO.View
 
         void negativeStatusHandler(String messege = "Что-то пошло не так")
         {
+
             messege = "Ошибка: " + messege;
+            
             toolStripStatusLabel1.Text = messege;
             toolStripStatusLabel1.ForeColor = Color.DarkRed;
         }
@@ -188,10 +237,7 @@ namespace TRPO.View
         {}
         private void headerList2_EnabledChanged(object sender, EventArgs e)
         {}
-        private void headerList2_MouseClick(object sender, MouseEventArgs e)
-        {
-            //positivStatusHandler();
-        }
+
 
         private void listView1_SelectedIndexChanged(object sender, EventArgs e)
         {
@@ -259,6 +305,15 @@ namespace TRPO.View
         {
 
         }
+
+        private void CourierForm_Load(object sender, EventArgs e)
+        {
+
+        }
+
+       
+
+
 
 
 

@@ -32,6 +32,7 @@ namespace TRPO.View
             
         }
 
+
         public void showMsg(String msg, GlobalObj.ErrorLevels el)
         {
             switch (el)
@@ -50,6 +51,7 @@ namespace TRPO.View
         public void showMsg(String msg, String header)
         {
             MessageBox.Show(msg, header);
+            
         }
 
         public void setDishInfo(Dish d)

@@ -156,6 +156,7 @@
             this.headerList1.Size = new System.Drawing.Size(262, 28);
             this.headerList1.TabIndex = 2;
             this.headerList1.SelectedIndexChanged += new System.EventHandler(this.headerList1_SelectedIndexChanged);
+            this.headerList1.SelectionChangeCommitted += new System.EventHandler(this.headerList1_SelectionChangeCommitted);
             this.headerList1.EnabledChanged += new System.EventHandler(this.s);
             // 
             // headerList2
@@ -168,6 +169,7 @@
             this.headerList2.Size = new System.Drawing.Size(262, 28);
             this.headerList2.TabIndex = 3;
             this.headerList2.SelectedIndexChanged += new System.EventHandler(this.headerList2_SelectedIndexChanged);
+            this.headerList2.SelectionChangeCommitted += new System.EventHandler(this.headerList2_SelectionChangeCommitted);
             this.headerList2.EnabledChanged += new System.EventHandler(this.headerList2_EnabledChanged);
             this.headerList2.MouseClick += new System.Windows.Forms.MouseEventHandler(this.headerList2_MouseClick);
             // 
@@ -306,7 +308,7 @@
             this.tabPage6.Location = new System.Drawing.Point(4, 33);
             this.tabPage6.Name = "tabPage6";
             this.tabPage6.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage6.Size = new System.Drawing.Size(339, 335);
+            this.tabPage6.Size = new System.Drawing.Size(344, 344);
             this.tabPage6.TabIndex = 1;
             this.tabPage6.Text = "Выдача Заказа";
             this.tabPage6.UseVisualStyleBackColor = true;
@@ -412,7 +414,7 @@
             this.tabPage2.Location = new System.Drawing.Point(4, 33);
             this.tabPage2.Name = "tabPage2";
             this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage2.Size = new System.Drawing.Size(410, 385);
+            this.tabPage2.Size = new System.Drawing.Size(415, 385);
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "Второе";
             this.tabPage2.UseVisualStyleBackColor = true;
@@ -451,7 +453,7 @@
             this.tabPage3.Controls.Add(this.menuList3);
             this.tabPage3.Location = new System.Drawing.Point(4, 33);
             this.tabPage3.Name = "tabPage3";
-            this.tabPage3.Size = new System.Drawing.Size(410, 385);
+            this.tabPage3.Size = new System.Drawing.Size(415, 385);
             this.tabPage3.TabIndex = 2;
             this.tabPage3.Text = "Третье";
             this.tabPage3.UseVisualStyleBackColor = true;
@@ -489,7 +491,7 @@
             this.tabPage4.Controls.Add(this.menuList4);
             this.tabPage4.Location = new System.Drawing.Point(4, 33);
             this.tabPage4.Name = "tabPage4";
-            this.tabPage4.Size = new System.Drawing.Size(410, 385);
+            this.tabPage4.Size = new System.Drawing.Size(415, 385);
             this.tabPage4.TabIndex = 3;
             this.tabPage4.Text = "Комплексный обед";
             this.tabPage4.UseVisualStyleBackColor = true;
@@ -550,6 +552,7 @@
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "CourierForm";
             this.Text = "Курьер";
+            this.Load += new System.EventHandler(this.CourierForm_Load);
             this.mainTable.ResumeLayout(false);
             this.headerTable.ResumeLayout(false);
             this.headerTable.PerformLayout();
