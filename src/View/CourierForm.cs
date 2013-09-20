@@ -111,41 +111,55 @@ namespace TRPO.View
             buyOrderMenu.Items.Clear();
         }
 
-        private void headerList1_SelectedIndexChanged(object sender, EventArgs e)
+        private void headerList1_SelectionChangeCommitted(object sender, EventArgs e)
         {
+            
 
-            if (headerList2.SelectedItem != null && buyOrderMenu.Items.Count!=0)
+        }
+        private void headerList2_MouseClick(object sender, MouseEventArgs e) {}
+
+        private void headerList2_SelectionChangeCommitted(object sender, EventArgs e)
+        {
+            if (buyOrderMenu.Items.Count != 0)
             {
                 if (requestFromContinue())
                 {
-                    
-                    return;
+                    buyOrderMenu.Items.Clear();
                 }
-                
+                else
+                {
+                    headerList2.SelectedIndex = lastEmployIndex;
+                }
             }
-            positivStatusHandler();
-            clientManagementController.fillEmployList();
-            if (buyOrderMenu.Items.Count != 0)
-            {
-                headerList1.SelectedIndex = lastCompanyIndex;
-                lastCompanyIndex = headerList1.SelectedIndex;
-            }
-            
+            lastEmployIndex = headerList2.SelectedIndex;
         }
 
-        private void headerList2_SelectedIndexChanged(object sender, EventArgs e)
+        private void headerList1_SelectedIndexChanged(object sender, EventArgs e) 
         {
-            if (buyOrderMenu.Items.Count != 0  && headerList2.SelectedIndex == lastEmployIndex)
-                if (requestFromContinue())
-                    return;
-            positivStatusHandler();
-            if (buyOrderMenu.Items.Count != 0)
+            if (systemChange)
             {
-                headerList2.SelectedIndex = lastEmployIndex;
-                lastEmployIndex = headerList2.SelectedIndex;
+                systemChange = false;
+                return;
             }
-            
+            if (buyOrderMenu.Items.Count == 0)
+                clientManagementController.fillEmployList();
+            else
+            {
+                if (requestFromContinue())
+                {
+                    buyOrderMenu.Items.Clear();
+                    clientManagementController.fillEmployList();
+                }
+                else
+                {
+                    systemChange = true;
+                    headerList1.SelectedIndex = lastCompanyIndex;
+                }
+            }
+            lastCompanyIndex = headerList1.SelectedIndex;
         }
+
+        private void headerList2_SelectedIndexChanged(object sender, EventArgs e) { }
 
         public void updateCompanyList()
         {
@@ -223,10 +237,7 @@ namespace TRPO.View
         {}
         private void headerList2_EnabledChanged(object sender, EventArgs e)
         {}
-        private void headerList2_MouseClick(object sender, MouseEventArgs e)
-        {
-            //positivStatusHandler();
-        }
+
 
         private void listView1_SelectedIndexChanged(object sender, EventArgs e)
         {
@@ -299,6 +310,10 @@ namespace TRPO.View
         {
 
         }
+
+       
+
+
 
 
 

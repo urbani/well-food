@@ -156,6 +156,7 @@
             this.headerList1.Size = new System.Drawing.Size(262, 28);
             this.headerList1.TabIndex = 2;
             this.headerList1.SelectedIndexChanged += new System.EventHandler(this.headerList1_SelectedIndexChanged);
+            this.headerList1.SelectionChangeCommitted += new System.EventHandler(this.headerList1_SelectionChangeCommitted);
             this.headerList1.EnabledChanged += new System.EventHandler(this.s);
             // 
             // headerList2
@@ -168,6 +169,7 @@
             this.headerList2.Size = new System.Drawing.Size(262, 28);
             this.headerList2.TabIndex = 3;
             this.headerList2.SelectedIndexChanged += new System.EventHandler(this.headerList2_SelectedIndexChanged);
+            this.headerList2.SelectionChangeCommitted += new System.EventHandler(this.headerList2_SelectionChangeCommitted);
             this.headerList2.EnabledChanged += new System.EventHandler(this.headerList2_EnabledChanged);
             this.headerList2.MouseClick += new System.Windows.Forms.MouseEventHandler(this.headerList2_MouseClick);
             // 
