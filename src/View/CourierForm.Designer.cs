@@ -73,6 +73,8 @@
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.splitContRightHorizontal = new System.Windows.Forms.SplitContainer();
+            this.splitContainerOnTab2 = new System.Windows.Forms.SplitContainer();
+            this.button2 = new System.Windows.Forms.Button();
             this.mainTable.SuspendLayout();
             this.headerTable.SuspendLayout();
             this.rightBodyTabel.SuspendLayout();
@@ -97,6 +99,10 @@
             this.splitContRightHorizontal.Panel1.SuspendLayout();
             this.splitContRightHorizontal.Panel2.SuspendLayout();
             this.splitContRightHorizontal.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.splitContainerOnTab2)).BeginInit();
+            this.splitContainerOnTab2.Panel1.SuspendLayout();
+            this.splitContainerOnTab2.Panel2.SuspendLayout();
+            this.splitContainerOnTab2.SuspendLayout();
             this.SuspendLayout();
             // 
             // mainTable
@@ -261,11 +267,11 @@
             // 
             // tabPage6
             // 
-            this.tabPage6.Controls.Add(this.listView1);
+            this.tabPage6.Controls.Add(this.splitContainerOnTab2);
             this.tabPage6.Location = new System.Drawing.Point(4, 33);
             this.tabPage6.Name = "tabPage6";
             this.tabPage6.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage6.Size = new System.Drawing.Size(668, 392);
+            this.tabPage6.Size = new System.Drawing.Size(976, 606);
             this.tabPage6.TabIndex = 1;
             this.tabPage6.Text = "Выдача Заказа";
             this.tabPage6.UseVisualStyleBackColor = true;
@@ -276,13 +282,14 @@
             this.listView1.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this.columnHeader9,
             this.columnHeader10});
+            this.listView1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.listView1.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.listView1.FullRowSelect = true;
             this.listView1.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.Nonclickable;
             this.listView1.ImeMode = System.Windows.Forms.ImeMode.NoControl;
             this.listView1.Location = new System.Drawing.Point(0, 0);
             this.listView1.Name = "listView1";
-            this.listView1.Size = new System.Drawing.Size(338, 345);
+            this.listView1.Size = new System.Drawing.Size(738, 600);
             this.listView1.Sorting = System.Windows.Forms.SortOrder.Ascending;
             this.listView1.TabIndex = 4;
             this.listView1.UseCompatibleStateImageBehavior = false;
@@ -291,7 +298,7 @@
             // columnHeader9
             // 
             this.columnHeader9.Text = "Блюдо";
-            this.columnHeader9.Width = 255;
+            this.columnHeader9.Width = 658;
             // 
             // columnHeader10
             // 
@@ -606,6 +613,35 @@
             this.splitContRightHorizontal.SplitterDistance = 515;
             this.splitContRightHorizontal.TabIndex = 4;
             // 
+            // splitContainerOnTab2
+            // 
+            this.splitContainerOnTab2.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.splitContainerOnTab2.FixedPanel = System.Windows.Forms.FixedPanel.Panel2;
+            this.splitContainerOnTab2.Location = new System.Drawing.Point(3, 3);
+            this.splitContainerOnTab2.Name = "splitContainerOnTab2";
+            // 
+            // splitContainerOnTab2.Panel1
+            // 
+            this.splitContainerOnTab2.Panel1.Controls.Add(this.listView1);
+            // 
+            // splitContainerOnTab2.Panel2
+            // 
+            this.splitContainerOnTab2.Panel2.Controls.Add(this.button2);
+            this.splitContainerOnTab2.Size = new System.Drawing.Size(970, 600);
+            this.splitContainerOnTab2.SplitterDistance = 738;
+            this.splitContainerOnTab2.TabIndex = 5;
+            // 
+            // button2
+            // 
+            this.button2.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.button2.Font = new System.Drawing.Font("Microsoft Sans Serif", 24F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.button2.Location = new System.Drawing.Point(0, 0);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(228, 600);
+            this.button2.TabIndex = 0;
+            this.button2.Text = "Выдать заказ";
+            this.button2.UseVisualStyleBackColor = true;
+            // 
             // CourierForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -642,6 +678,10 @@
             this.splitContRightHorizontal.Panel2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContRightHorizontal)).EndInit();
             this.splitContRightHorizontal.ResumeLayout(false);
+            this.splitContainerOnTab2.Panel1.ResumeLayout(false);
+            this.splitContainerOnTab2.Panel2.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.splitContainerOnTab2)).EndInit();
+            this.splitContainerOnTab2.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -698,5 +738,7 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.SplitContainer splitContRightHorizontal;
+        private System.Windows.Forms.SplitContainer splitContainerOnTab2;
+        private System.Windows.Forms.Button button2;
     }
 }
