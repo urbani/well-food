@@ -17,6 +17,7 @@ namespace TRPO.View
         /// <returns></returns>
         List<ListViewItem> getOrderMenu();
         void clearOrderMenu();
+        int getEmplId();
 
     
     }

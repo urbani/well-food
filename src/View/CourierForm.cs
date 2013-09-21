@@ -52,7 +52,12 @@ namespace TRPO.View
         }
         public void showMsg(String msg, GlobalObj.ErrorLevels levels)
         {
-            MessageBoxButtons butttons = MessageBoxButtons.YesNo;
+            showMsg(msg, levels);
+        }
+
+        public void showMsg(String msg, GlobalObj.ErrorLevels levels, MessageBoxButtons buttons = MessageBoxButtons.OK)
+        {
+            ;
             String titile;
             if (levels == GlobalObj.ErrorLevels.Info)
                 titile = "Уведомление";
@@ -60,7 +65,9 @@ namespace TRPO.View
                 titile = "Ошибка";
             else
                 throw new NotImplementedException("showMsg courier не предвиденный ErrorLevel");
-            notifyValue = MessageBox.Show(msg, titile, butttons);
+            
+            notifyValue = MessageBox.Show(msg, titile);
+
         }
 
         public void showMsg(String msg, String header)
@@ -292,6 +299,15 @@ namespace TRPO.View
         public void clearOrderMenu()
         {
             buyOrderMenu.Items.Clear();
+        }
+        public int getEmplId()
+        {
+            if (Equals(null,headerList2.SelectedIndex))
+            {
+                showMsg("Выбирите сотрудника", ErrorLevels.Info, MessageBoxButtons.OK);
+                return -1;
+            }
+            return headerList2.SelectedIndex;
         }
 
 

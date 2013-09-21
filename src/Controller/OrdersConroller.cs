@@ -58,10 +58,13 @@ namespace TRPO.Controller
 
         public void checkoutOrder()
         {
-            List<CourierListEntry> order = new List<CourierListEntry>();
+            List<int> order = new List<int>();
             foreach (ListViewItem entry in view.getOrderMenu())
-                order.Add(findDishInMenu(entry));
+                order.Add(findDishInMenu(entry).id);
             //TODO make checkout
+            int empl_id = view.getEmplId();
+            orderManager.checkoutOrder(empl_id, order);
+           
             view.clearOrderMenu();
 
         }

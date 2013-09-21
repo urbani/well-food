@@ -92,5 +92,9 @@ namespace TRPO.Model
             connector.closeConnection();
             return resultList;
         }
+        public void checkoutOrder(int id_empl, List<int> dishesList)
+        {
+
+        }
     }
 }
