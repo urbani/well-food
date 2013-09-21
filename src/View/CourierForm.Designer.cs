@@ -72,7 +72,7 @@
             this.splitContainerVertical = new System.Windows.Forms.SplitContainer();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
-            this.splitContainer1 = new System.Windows.Forms.SplitContainer();
+            this.splitContRightHorizontal = new System.Windows.Forms.SplitContainer();
             this.mainTable.SuspendLayout();
             this.headerTable.SuspendLayout();
             this.rightBodyTabel.SuspendLayout();
@@ -86,17 +86,17 @@
             this.tabPage1.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainerHorizontal)).BeginInit();
-            this.splitContainer1.Panel1.SuspendLayout();
-            this.splitContainer1.Panel2.SuspendLayout();
+            this.splitContainerHorizontal.Panel1.SuspendLayout();
+            this.splitContainerHorizontal.Panel2.SuspendLayout();
             this.splitContainerHorizontal.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainerVertical)).BeginInit();
             this.splitContainerVertical.Panel1.SuspendLayout();
             this.splitContainerVertical.Panel2.SuspendLayout();
             this.splitContainerVertical.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
-            this.splitContainer1.Panel1.SuspendLayout();
-            this.splitContainer1.Panel2.SuspendLayout();
-            this.splitContainer1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.splitContRightHorizontal)).BeginInit();
+            this.splitContRightHorizontal.Panel1.SuspendLayout();
+            this.splitContRightHorizontal.Panel2.SuspendLayout();
+            this.splitContRightHorizontal.SuspendLayout();
             this.SuspendLayout();
             // 
             // mainTable
@@ -354,7 +354,7 @@
             // columnHeader7
             // 
             this.columnHeader7.Text = "Блюдо";
-            this.columnHeader7.Width = 291;
+            this.columnHeader7.Width = 520;
             // 
             // columnHeader8
             // 
@@ -472,12 +472,12 @@
             // dish
             // 
             this.dish.Text = "Блюдо";
-            this.dish.Width = 291;
+            this.dish.Width = 545;
             // 
             // price
             // 
             this.price.Text = "Цена";
-            this.price.Width = 76;
+            this.price.Width = 48;
             // 
             // buyOrderMenu
             // 
@@ -502,12 +502,12 @@
             // columnHeader5
             // 
             this.columnHeader5.Text = "Блюдо";
-            this.columnHeader5.Width = 291;
+            this.columnHeader5.Width = 301;
             // 
             // columnHeader6
             // 
             this.columnHeader6.Text = "Цена";
-            this.columnHeader6.Width = 76;
+            this.columnHeader6.Width = 48;
             // 
             // tableLayoutPanel1
             // 
@@ -542,11 +542,11 @@
             // 
             // splitContainerHorizontal.Panel1
             // 
-            this.splitContainer1.Panel1.Controls.Add(this.splitContainerVertical);
+            this.splitContainerHorizontal.Panel1.Controls.Add(this.splitContainerVertical);
             // 
             // splitContainerHorizontal.Panel2
             // 
-            this.splitContainer1.Panel2.Controls.Add(this.button1);
+            this.splitContainerHorizontal.Panel2.Controls.Add(this.button1);
             this.splitContainerHorizontal.Size = new System.Drawing.Size(970, 600);
             this.splitContainerHorizontal.SplitterDistance = 548;
             this.splitContainerHorizontal.TabIndex = 7;
@@ -563,7 +563,7 @@
             // 
             // splitContainerVertical.Panel2
             // 
-            this.splitContainerVertical.Panel2.Controls.Add(this.splitContainer1);
+            this.splitContainerVertical.Panel2.Controls.Add(this.splitContRightHorizontal);
             this.splitContainerVertical.Size = new System.Drawing.Size(970, 548);
             this.splitContainerVertical.SplitterDistance = 611;
             this.splitContainerVertical.TabIndex = 5;
@@ -586,25 +586,25 @@
             this.label2.TabIndex = 4;
             this.label2.Text = "0 руб.";
             // 
-            // splitContainer1
+            // splitContRightHorizontal
             // 
-            this.splitContainer1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.splitContainer1.FixedPanel = System.Windows.Forms.FixedPanel.Panel2;
-            this.splitContainer1.Location = new System.Drawing.Point(0, 0);
-            this.splitContainer1.Name = "splitContainer1";
-            this.splitContainer1.Orientation = System.Windows.Forms.Orientation.Horizontal;
+            this.splitContRightHorizontal.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.splitContRightHorizontal.FixedPanel = System.Windows.Forms.FixedPanel.Panel2;
+            this.splitContRightHorizontal.Location = new System.Drawing.Point(0, 0);
+            this.splitContRightHorizontal.Name = "splitContRightHorizontal";
+            this.splitContRightHorizontal.Orientation = System.Windows.Forms.Orientation.Horizontal;
             // 
-            // splitContainer1.Panel1
+            // splitContRightHorizontal.Panel1
             // 
-            this.splitContainer1.Panel1.Controls.Add(this.buyOrderMenu);
+            this.splitContRightHorizontal.Panel1.Controls.Add(this.buyOrderMenu);
             // 
-            // splitContainer1.Panel2
+            // splitContRightHorizontal.Panel2
             // 
-            this.splitContainer1.Panel2.Controls.Add(this.label2);
-            this.splitContainer1.Panel2.Controls.Add(this.label1);
-            this.splitContainer1.Size = new System.Drawing.Size(355, 548);
-            this.splitContainer1.SplitterDistance = 515;
-            this.splitContainer1.TabIndex = 4;
+            this.splitContRightHorizontal.Panel2.Controls.Add(this.label2);
+            this.splitContRightHorizontal.Panel2.Controls.Add(this.label1);
+            this.splitContRightHorizontal.Size = new System.Drawing.Size(355, 548);
+            this.splitContRightHorizontal.SplitterDistance = 515;
+            this.splitContRightHorizontal.TabIndex = 4;
             // 
             // CourierForm
             // 
@@ -629,19 +629,19 @@
             this.tabPage2.ResumeLayout(false);
             this.tabPage1.ResumeLayout(false);
             this.tableLayoutPanel1.ResumeLayout(false);
-            this.splitContainer1.Panel1.ResumeLayout(false);
-            this.splitContainer1.Panel2.ResumeLayout(false);
+            this.splitContainerHorizontal.Panel1.ResumeLayout(false);
+            this.splitContainerHorizontal.Panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.splitContainerHorizontal)).EndInit();
             this.splitContainerHorizontal.ResumeLayout(false);
             this.splitContainerVertical.Panel1.ResumeLayout(false);
             this.splitContainerVertical.Panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.splitContainerVertical)).EndInit();
             this.splitContainerVertical.ResumeLayout(false);
-            this.splitContainer1.Panel1.ResumeLayout(false);
-            this.splitContainer1.Panel2.ResumeLayout(false);
-            this.splitContainer1.Panel2.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).EndInit();
-            this.splitContainer1.ResumeLayout(false);
+            this.splitContRightHorizontal.Panel1.ResumeLayout(false);
+            this.splitContRightHorizontal.Panel2.ResumeLayout(false);
+            this.splitContRightHorizontal.Panel2.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.splitContRightHorizontal)).EndInit();
+            this.splitContRightHorizontal.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -697,6 +697,6 @@
         private System.Windows.Forms.SplitContainer splitContainerVertical;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.SplitContainer splitContainer1;
+        private System.Windows.Forms.SplitContainer splitContRightHorizontal;
     }
 }
