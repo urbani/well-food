@@ -218,21 +218,8 @@ namespace TRPO.View
 
         }
 
-        void positivStatusHandler(String messege="Готово")
-        {
-            messege = "Состояние: " + messege;
-            toolStripStatusLabel1.Text = messege;
-            toolStripStatusLabel1.ForeColor = Color.Black;
-        }
 
-        void negativeStatusHandler(String messege = "Что-то пошло не так")
-        {
 
-            messege = "Ошибка: " + messege;
-            
-            toolStripStatusLabel1.Text = messege;
-            toolStripStatusLabel1.ForeColor = Color.DarkRed;
-        }
         private void s(object sender, EventArgs e)
         {}
         private void headerList2_EnabledChanged(object sender, EventArgs e)
@@ -259,7 +246,8 @@ namespace TRPO.View
         {
             if (headerList2.SelectedItem == null)
             {
-                negativeStatusHandler("Выбирите пожалуйста сотрудника");
+                ///TODO: mind this
+                //negativeStatusHandler("Выбирите пожалуйста сотрудника");
                 return;
             }
             ListViewItem dishEnty = new ListViewItem();
@@ -268,7 +256,7 @@ namespace TRPO.View
             priceEntry.Text = curList.SelectedItems[0].SubItems[1].Text;
             dishEnty.SubItems.Add(priceEntry);
             buyOrderMenu.Items.Add(dishEnty);
-            positivStatusHandler();
+
         }
 
         private void menuList1_DoubleClick(object sender, EventArgs e)
