@@ -487,7 +487,7 @@ namespace TRPO.View
                 }
                 return res;
             }
-            catch (FormatException ex)
+            catch (FormatException)
             {
                 showMsg("Неверный формат количества продукта в составе в строке номер " + (i + 1), "Ошибка!");
                 return new Dictionary<String, Double>();

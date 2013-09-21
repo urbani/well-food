@@ -13,23 +13,19 @@ using System.Collections;
 using TRPO.Controller;
 using TRPO.Structures;
 using TRPO.View;
-
+using TRPO.GlobalObj;
 namespace TRPO.View
 {
     public partial class CourierForm : Form, IClientManagable, IOrderManagable
     {
         ClientManagementConroller clientManagementController;
         OrdersConroller ordersController;
-        ListView curList = new ListView();
-        /// <summary>
-        /// продолжить ли выполнение операции или сбросить?
-        /// </summary>
-        bool tryContinue = false;
-        bool notSetEmploy = false;
+        ListView curList = new ListView(); //список указателей на меню (1,2,3,ланч) - для упрощения управления
         DialogResult notifyValue=DialogResult.Yes;
-        int lastEmployIndex = 0;
+        int lastEmployIndex = 0; 
         int lastCompanyIndex = 0;
-        bool systemChange = false;
+        bool systemChange = false; //флаг изменение списка прозошло в системых целях (не по вызову пользователя)
+        DishesTypes curTypeMenu;
 
         public CourierForm(ClientManagementConroller cmc, OrdersConroller oc)
         {
@@ -60,12 +56,12 @@ namespace TRPO.View
             String titile;
             if (levels == GlobalObj.ErrorLevels.Info)
                 titile = "Уведомление";
-            else
+            else if (levels == GlobalObj.ErrorLevels.Info)
                 titile = "Ошибка";
+            else
+                throw new NotImplementedException("showMsg courier не предвиденный ErrorLevel");
             notifyValue = MessageBox.Show(msg, titile, butttons);
         }
-
-
 
         public void showMsg(String msg, String header)
         {
@@ -80,8 +76,8 @@ namespace TRPO.View
             return headerList1.SelectedIndex;
         }
 
-        public void showMenuList(){}
-        public void showCurMenu(){}
+        public void showMenuList(){throw new NotImplementedException();}
+        public void showCurMenu() { throw new NotImplementedException(); }
 
         private void headerSearchButton2_Click(object sender, EventArgs e)
         {
@@ -111,12 +107,6 @@ namespace TRPO.View
             buyOrderMenu.Items.Clear();
         }
 
-        private void headerList1_SelectionChangeCommitted(object sender, EventArgs e)
-        {
-            
-
-        }
-        private void headerList2_MouseClick(object sender, MouseEventArgs e) {}
 
         private void headerList2_SelectionChangeCommitted(object sender, EventArgs e)
         {
@@ -174,7 +164,10 @@ namespace TRPO.View
         }
 
 
-
+        /// <summary>
+        /// обновление доступного меню
+        /// </summary>
+        /// <param name="listDishes"></param>
         public void updateMenuList(List<CourierListEntry> listDishes)
         {
             menuList1.Items.Clear();
@@ -183,14 +176,18 @@ namespace TRPO.View
             menuList4.Items.Clear();
             String[] rawSting;
 
-
+            
+            int ptr = 0;
+            //listDishes[0].id = 2;
             foreach (CourierListEntry dishWithPrice in listDishes)
             {
                 rawSting = new String[] { dishWithPrice.dish, dishWithPrice.price.ToString() };
+               // dishWithPrice.id = 2;
                 ListViewItem tmp = new ListViewItem(rawSting);
                 if (dishWithPrice.isSpecial)
                 {
-                    menuList4.Items.Add(newElem(rawSting));
+                    
+                    menuList4.Items.Add(tmp);
                 }
                 else
                 {
@@ -199,37 +196,24 @@ namespace TRPO.View
                     switch (dishWithPrice.type)
                     {
                         case ("Первое"):
-                            menuList1.Items.Add(newElem(rawSting));
+                            menuList1.Items.Add(tmp);
                             break;
                         case ("Второе"):
-                            menuList2.Items.Add(newElem(rawSting));
+                            menuList2.Items.Add(tmp);
                             break;
                         case ("Третье"):
-                            menuList3.Items.Add(newElem(rawSting));
+                            menuList3.Items.Add(tmp);
                             break;
                     }
                 }
-                
+                ptr ++;
             }
         }
-        ListViewItem newElem(String[] dish)
-        {
-            return new ListViewItem(dish);
-
-        }
 
 
 
-        private void s(object sender, EventArgs e)
-        {}
-        private void headerList2_EnabledChanged(object sender, EventArgs e)
-        {}
 
 
-        private void listView1_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
-        }
 
         private void employEditButton_Click(object sender, EventArgs e)
         {
@@ -240,14 +224,25 @@ namespace TRPO.View
         private void orderMenu_DoubleClick(object sender, EventArgs e) 
         {
             buyOrderMenu.Items.RemoveAt(buyOrderMenu.SelectedIndices[0]);
+            
         }
+
+        public List<ListViewItem> getOrderMenu()
+        {
+            List<ListViewItem> result = new List<ListViewItem>();
+            foreach (ListViewItem entry in buyOrderMenu.Items)
+            {
+                result.Add(entry);
+            }
+            return result;
+        }
+
+
 
         void handlerMenuList_DoubleClick()
         {
             if (headerList2.SelectedItem == null)
             {
-                ///TODO: mind this
-                //negativeStatusHandler("Выбирите пожалуйста сотрудника");
                 return;
             }
             ListViewItem dishEnty = new ListViewItem();
@@ -256,11 +251,14 @@ namespace TRPO.View
             priceEntry.Text = curList.SelectedItems[0].SubItems[1].Text;
             dishEnty.SubItems.Add(priceEntry);
             buyOrderMenu.Items.Add(dishEnty);
+            
+            
 
         }
 
         private void menuList1_DoubleClick(object sender, EventArgs e)
         {
+            curTypeMenu = DishesTypes.Первое;
             curList = menuList1;
             handlerMenuList_DoubleClick();
 
@@ -268,38 +266,34 @@ namespace TRPO.View
 
         private void menuList2_DoubleClick(object sender, EventArgs e)
         {
+            curTypeMenu = DishesTypes.Второе;
             curList = menuList2;
             handlerMenuList_DoubleClick();
         }
 
         private void menuList3_DoubleClick(object sender, EventArgs e)
         {
+            curTypeMenu = DishesTypes.Третье;
             curList = menuList3;
             handlerMenuList_DoubleClick();
         }
 
         private void menuList4_DoubleClick(object sender, EventArgs e)
         {
+            curTypeMenu = DishesTypes.Бизнесс;
             curList = menuList4;
             handlerMenuList_DoubleClick();
         }
 
         private void button1_Click(object sender, EventArgs e)
         {
-
+            ordersController.checkoutOrder();
         }
-
-        private void menuList1_SelectedIndexChanged(object sender, EventArgs e)
+        public void clearOrderMenu()
         {
-
+            buyOrderMenu.Items.Clear();
         }
 
-        private void CourierForm_Load(object sender, EventArgs e)
-        {
-
-        }
-
-       
 
 
 
@@ -307,15 +301,5 @@ namespace TRPO.View
 
     }
 
-    public struct ClientData
-    {
-        public int id;
-        public String data;
-        public ClientData(int id_, String data_)
-        {
-            id = id_;
-            data = data_;
 
-        }
-    }
 }

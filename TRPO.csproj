@@ -57,8 +57,10 @@
     </Content>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="GlobalObj\dishesTypes.cs" />
     <Compile Include="GlobalObj\ErrorLevels.cs" />
     <Compile Include="GlobalObj\Structures\ChiefListEntry.cs" />
+    <Compile Include="GlobalObj\Structures\orderColletion.cs" />
     <Compile Include="GlobalObj\Structures\Menu.cs" />
     <Compile Include="GlobalObj\Structures\CourierListEntry.cs" />
     <Compile Include="GlobalObj\Structures\Dish.cs" />
