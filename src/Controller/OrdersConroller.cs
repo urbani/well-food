@@ -89,7 +89,7 @@ namespace TRPO.Controller
         public OrdersConroller(User u)
         {
             user = u;
-
+            
          //TODO:
          //в загловок имя, роль
         }
@@ -97,7 +97,7 @@ namespace TRPO.Controller
         public void addForm(IOrderManagable c)
         {
             view = c;
-            
+
             view.setWindowTitile(TRPOGlobal.makeTitle(user));
             
         }
@@ -122,7 +122,13 @@ namespace TRPO.Controller
 
         public void checkoutOrder()
         {
-            orderManager.checkoutOrder(view.getEmplId(), currentOrder);
+            int changes = orderManager.checkoutOrder(view.getEmplId(), currentOrder);
+            if (changes < currentOrder.Count)
+            {
+                view.showMsg(String.Format("Ошибка было сделано {0} изменений за место {1}", changes, currentOrder.Count), ErrorLevels.Critical);
+
+                return;
+            }
            
             view.clearOrderMenu();
 

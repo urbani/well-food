@@ -52,7 +52,7 @@ namespace TRPO.View
         }
         public void showMsg(String msg, GlobalObj.ErrorLevels levels)
         {
-            showMsg(msg, levels);
+            showMsg(msg, levels, MessageBoxButtons.OK);
         }
 
         public void showMsg(String msg, GlobalObj.ErrorLevels levels, MessageBoxButtons buttons = MessageBoxButtons.OK)
@@ -61,7 +61,7 @@ namespace TRPO.View
             String titile;
             if (levels == GlobalObj.ErrorLevels.Info)
                 titile = "Уведомление";
-            else if (levels == GlobalObj.ErrorLevels.Info)
+            else if (levels == GlobalObj.ErrorLevels.Critical)
                 titile = "Ошибка";
             else
                 throw new NotImplementedException("showMsg courier не предвиденный ErrorLevel");

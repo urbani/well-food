@@ -97,10 +97,11 @@ namespace TRPO.Model
         /// </summary>
         /// <param name="id_empl"></param>
         /// <param name="orderList"></param>
-        public void checkoutOrder(int id_empl, List<orderEnrty> orderList)
+        public int checkoutOrder(int id_empl, List<orderEnrty> orderList)
         {
+            int timesChanges = 0;
             connector.openConnection();
-            connector.executeNonQuery(String.Format("INSERT INTO Orders VALUES ({0},  1)", id_empl));
+            timesChanges+= connector.executeNonQuery(String.Format("INSERT INTO Orders VALUES ({0},  1)", id_empl));
             OleDbDataReader reader = connector.executeQuery(String.Format("SELECT MAX(o.id_ord) AS curOrdId FROM Orders AS o"));
             int idOrd=0;   
             int ptr =0;
@@ -113,11 +114,12 @@ namespace TRPO.Model
             }
             foreach(orderEnrty dish in orderList)
             {
-                connector.executeNonQuery(String.Format("INSERT INTO Dishes_Order VALUES ({0},  {1} , {2}, 0", dish.id, idOrd, dish.Count));
+                timesChanges += connector.executeNonQuery(String.Format("INSERT INTO Dishes_Order VALUES ({0},  {1} , {2}, 0", dish.id, idOrd, dish.Count));
 
             }
 
             connector.closeConnection();
+            return timesChanges;
         }
     }
 }
