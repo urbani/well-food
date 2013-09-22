@@ -230,12 +230,10 @@ namespace TRPO.View
 
         private void orderMenu_DoubleClick(object sender, EventArgs e) 
         {
-            String t = buyOrderMenu.SelectedItems[0].Text;
-            String t2 = buyOrderMenu.SelectedItems[0].SubItems[1].Text;
             ordersController.removeDishFromOrder(buyOrderMenu.SelectedItems[0].Text, Convert.ToSingle(buyOrderMenu.SelectedItems[0].SubItems[1].Text));
             buyOrderMenu.Items.Clear();
             buyOrderMenu.Items.AddRange(ordersController.getOrderMenuForView());
-            
+            changeTotalLabel(ordersController.getTotalPrice());
         }
 
         public List<ListViewItem> getOrderMenu()
@@ -247,7 +245,10 @@ namespace TRPO.View
             }
             return result;
         }
-
+        void changeTotalLabel(float total)
+        {
+            totalLabel.Text = String.Format("{0} руб.", total);
+        }
 
         /// <summary>
         /// обработчик добавления новго элемента в список покупок
@@ -263,6 +264,7 @@ namespace TRPO.View
 
             buyOrderMenu.Items.Clear();
             buyOrderMenu.Items.AddRange(ordersController.getOrderMenuForView());
+            changeTotalLabel(ordersController.getTotalPrice());
 
             
             
@@ -274,7 +276,7 @@ namespace TRPO.View
             curTypeMenu = DishesTypes.Первое;
             curList = menuList1;
             handlerMenuList_DoubleClick();
-
+            
         }
 
         private void menuList2_DoubleClick(object sender, EventArgs e)

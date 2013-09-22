@@ -140,6 +140,15 @@ namespace TRPO.Controller
 
         }
 
+        public float getTotalPrice()
+        {
+            float total = 0;
+            foreach (orderEnrty entry in currentOrder)
+            {
+                total += entry.Cost;
+            }
+            return total;
+        }
 
     }
 }

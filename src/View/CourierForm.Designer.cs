@@ -66,7 +66,7 @@
             this.buyOrderMenu = new System.Windows.Forms.ListView();
             this.column1 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.column2 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.sumLabel = new System.Windows.Forms.Label();
+            this.totalLabel = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.button1 = new System.Windows.Forms.Button();
             this.tabPage6 = new System.Windows.Forms.TabPage();
@@ -504,7 +504,7 @@
             // 
             // splitContRightHorizontal.Panel2
             // 
-            this.splitContRightHorizontal.Panel2.Controls.Add(this.sumLabel);
+            this.splitContRightHorizontal.Panel2.Controls.Add(this.totalLabel);
             this.splitContRightHorizontal.Panel2.Controls.Add(this.label1);
             this.splitContRightHorizontal.Size = new System.Drawing.Size(355, 548);
             this.splitContRightHorizontal.SplitterDistance = 515;
@@ -540,14 +540,14 @@
             this.column2.Text = "Стоимость";
             this.column2.Width = 95;
             // 
-            // sumLabel
+            // totalLabel
             // 
-            this.sumLabel.AutoSize = true;
-            this.sumLabel.Location = new System.Drawing.Point(67, 2);
-            this.sumLabel.Name = "sumLabel";
-            this.sumLabel.Size = new System.Drawing.Size(61, 24);
-            this.sumLabel.TabIndex = 4;
-            this.sumLabel.Text = "0 руб.";
+            this.totalLabel.AutoSize = true;
+            this.totalLabel.Location = new System.Drawing.Point(67, 2);
+            this.totalLabel.Name = "totalLabel";
+            this.totalLabel.Size = new System.Drawing.Size(61, 24);
+            this.totalLabel.TabIndex = 4;
+            this.totalLabel.Text = "0 руб.";
             // 
             // label1
             // 
@@ -735,7 +735,7 @@
         private System.Windows.Forms.ColumnHeader columnHeader10;
         private System.Windows.Forms.SplitContainer splitContainerHorizontal;
         private System.Windows.Forms.SplitContainer splitContainerVertical;
-        private System.Windows.Forms.Label sumLabel;
+        private System.Windows.Forms.Label totalLabel;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.SplitContainer splitContRightHorizontal;
         private System.Windows.Forms.SplitContainer splitContainerOnTab2;
