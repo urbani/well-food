@@ -97,7 +97,8 @@ namespace TRPO.Controller
         public void addForm(IOrderManagable c)
         {
             view = c;
-            view.setWindowTitile(user.name, user.surname, user.patronymic, user.linkToPhoto);
+            
+            view.setWindowTitile(TRPOGlobal.makeTitle(user));
             
         }
         /// <summary>

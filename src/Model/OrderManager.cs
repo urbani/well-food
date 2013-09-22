@@ -75,7 +75,7 @@ namespace TRPO.Model
                         ) as jo
                         ON m.ID_Dish=jo.ID_Dish
                 WHERE 
-	            m.Date_Menu like('" + Time.getCurrentTime() + "');");
+	            m.Date_Menu like('" + TRPOGlobal.getCurrentTime() + "');");
             while (reader.Read())
             {
                 tmpDish.id = Convert.ToInt32(reader[0]);
