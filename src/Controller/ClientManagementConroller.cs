@@ -30,6 +30,12 @@ namespace TRPO.Controller
  
         }
 
+        public int getEmployId()
+        {
+
+            return employIds[view.getIndexSelectedEmploy()];
+        }
+
         public void fillEmployList()
         {
             

@@ -27,5 +27,6 @@ namespace TRPO.View
          /// </summary>
          /// <returns></returns>
          int getIndexSelectedCompany();
+         int getIndexSelectedEmploy();
     }
 }

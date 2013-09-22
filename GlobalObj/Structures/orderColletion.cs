@@ -66,7 +66,7 @@ namespace TRPO.Structures
             this.cost = entry.Cost;
             this.count = entry.Count;
             this.price = this.cost / this.count;
-            id = 0;
+            this.id = entry.id;
         }
 
         public void changeOf(int off = 1)

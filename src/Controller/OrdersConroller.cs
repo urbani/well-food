@@ -122,6 +122,7 @@ namespace TRPO.Controller
 
         public void checkoutOrder()
         {
+            int t = view.getEmplId();
             int changes = orderManager.checkoutOrder(view.getEmplId(), currentOrder);
             if (changes < currentOrder.Count)
             {

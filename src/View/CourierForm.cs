@@ -66,7 +66,7 @@ namespace TRPO.View
             else
                 throw new NotImplementedException("showMsg courier не предвиденный ErrorLevel");
             
-            notifyValue = MessageBox.Show(msg, titile);
+            notifyValue = MessageBox.Show(msg, titile, buttons);
 
         }
 
@@ -97,7 +97,7 @@ namespace TRPO.View
         bool requestFromContinue()
         {
 
-            showMsg("выбрано несколько блюд, сбросить список и продолжить?", GlobalObj.ErrorLevels.Info);
+            showMsg("выбрано несколько блюд, сбросить список и продолжить?", GlobalObj.ErrorLevels.Info, MessageBoxButtons.OKCancel);
             if (notifyValue == DialogResult.Yes)
             {
                 handlerContinueChoose();
@@ -315,12 +315,17 @@ namespace TRPO.View
                 showMsg("Выбирите сотрудника", ErrorLevels.Info, MessageBoxButtons.OK);
                 return -1;
             }
-            return headerList2.SelectedIndex;
+            return clientManagementController.getEmployId();
         }
 
         public void setWindowTitile(String title)
         {
             this.Text = title;
+        }
+
+        public int getIndexSelectedEmploy()
+        {
+            return headerList2.SelectedIndex;
         }
 
 
