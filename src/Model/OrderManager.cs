@@ -92,9 +92,32 @@ namespace TRPO.Model
             connector.closeConnection();
             return resultList;
         }
-        public void checkoutOrder(int id_empl, List<int> dishesList)
+        /// <summary>
+        /// провести заказ
+        /// </summary>
+        /// <param name="id_empl"></param>
+        /// <param name="orderList"></param>
+        public void checkoutOrder(int id_empl, List<orderEnrty> orderList)
         {
+            connector.openConnection();
+            connector.executeNonQuery(String.Format("INSERT INTO Orders VALUES ({0},  1)", id_empl));
+            OleDbDataReader reader = connector.executeQuery(String.Format("SELECT MAX(o.id_ord) AS curOrdId FROM Orders AS o"));
+            int idOrd=0;   
+            int ptr =0;
+            while (reader.Read())
+            {
+                idOrd = Convert.ToInt32(reader[0]);
+                if (ptr>1)
+                    throw new SystemException();
+                ptr ++;
+            }
+            foreach(orderEnrty dish in orderList)
+            {
+                connector.executeNonQuery(String.Format("INSERT INTO Dishes_Order VALUES ({0},  {1} , {2}, 0", dish.id, idOrd, dish.Count));
 
+            }
+
+            connector.closeConnection();
         }
     }
 }

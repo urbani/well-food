@@ -39,7 +39,7 @@ namespace TRPO.Controller
                     return;
                 }
             }
-            currentOrder.Add(new orderEnrty(dish, price));
+            currentOrder.Add(new orderEnrty(dish, price,findIdDish(dish)));
         }
 
         /// <summary>
@@ -103,30 +103,23 @@ namespace TRPO.Controller
         /// </summary>
         /// <param name="dishEnty"></param>
         /// <returns></returns>
-        CourierListEntry findDishInMenu(ListViewItem dishEnty)
+        int findIdDish(String dish)
         {
             
             //ищем  номер текущего блюда в списке всех блюд на сегодня
             foreach (CourierListEntry entry in currentMenu)
             {
-                if (entry.dish == dishEnty.Text)
+                if (entry.dish == dish)
                 {
-                    return entry;
+                    return entry.id;
                 }
             }
             throw new ArgumentException();
-            return new CourierListEntry();
         }
 
         public void checkoutOrder()
         {
-            List<int> order = new List<int>();
-            //добавляем id-шники в список
-            foreach (ListViewItem entry in view.getOrderMenu())
-                order.Add(findDishInMenu(entry).id);
-            //TODO make checkout
-            int empl_id = view.getEmplId();
-            orderManager.checkoutOrder(empl_id, order);
+            orderManager.checkoutOrder(view.getEmplId(), currentOrder);
            
             view.clearOrderMenu();
 

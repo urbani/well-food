@@ -18,14 +18,38 @@ namespace TRPO.Structures
         
         int count; //количество
         public int Count { get { return count; } }
+
+        public int id;
         //полный конструктор
+        public orderEnrty(String dish, float price, float cost, int count, int id)
+        {
+            this.dish = dish;
+            this.price = price;
+            this.cost = cost;
+            this.count = count;
+            this.id = id;
+        }
+
+
         public orderEnrty(String dish, float price, float cost, int count)
         {
             this.dish=dish;
             this.price=price;
             this.cost=cost;
             this.count=count;
+            id = 0;
         }
+
+        //конструктор ноого объекта, когда больше не чего не знаем/не нужно
+        public orderEnrty(String dish, float price, int id)
+        {
+            this.dish = dish;
+            this.price = price;
+            this.cost = price;
+            this.count = 1;
+            this.id = id;
+        }
+
         //конструктор ноого объекта, когда больше не чего не знаем/не нужно
         public orderEnrty(String dish, float price)
         {
@@ -33,6 +57,7 @@ namespace TRPO.Structures
             this.price = price;
             this.cost = price;
             this.count = 1;
+            id = 0;
         }
         //конструктор копии
         public orderEnrty(orderEnrty entry)
@@ -41,6 +66,7 @@ namespace TRPO.Structures
             this.cost = entry.Cost;
             this.count = entry.Count;
             this.price = this.cost / this.count;
+            id = 0;
         }
 
         public void changeOf(int off = 1)
@@ -62,4 +88,6 @@ namespace TRPO.Structures
         
 
     }
+
+
 }
