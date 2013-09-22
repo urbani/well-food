@@ -112,9 +112,11 @@ namespace TRPO.Model
                     throw new SystemException();
                 ptr ++;
             }
+            connector.closeConnection();
+            connector.openConnection();
             foreach(orderEnrty dish in orderList)
             {
-                timesChanges += connector.executeNonQuery(String.Format("INSERT INTO Dishes_Order VALUES ({0},  {1} , {2}, 0", dish.id, idOrd, dish.Count));
+                timesChanges += connector.executeNonQuery(String.Format("INSERT INTO Dishes_Order VALUES (\"{0}\",  \"{1}\" , \"{2}\", \"0\"", dish.id, idOrd, dish.Count));
 
             }
 
