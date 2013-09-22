@@ -54,12 +54,17 @@ namespace TRPO.Controller
                 if (currentOrder[i].Dish == dish)
                 {
                     orderEnrty temp = new orderEnrty(currentOrder[i]);
-                    temp.decreament();
-                    currentOrder[i] = temp;
+                    if (temp.Count == 1)
+                        currentOrder.Remove(new orderEnrty(dish, price));
+                    else
+                    {
+                        temp.decreament();
+                        currentOrder[i] = temp;
+                    }
                     return;
                 }
             }
-            currentOrder.Remove(new orderEnrty(dish, price));
+            
         }
         /// <summary>
         /// возвращает список блюд выбранных для заказа, подготовленный для добавление в листВью

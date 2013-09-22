@@ -230,7 +230,9 @@ namespace TRPO.View
 
         private void orderMenu_DoubleClick(object sender, EventArgs e) 
         {
-            ordersController.removeDishFromOrder(buyOrderMenu.SelectedItems[0].Text, Convert.ToSingle(buyOrderMenu.SelectedItems[1].SubItems[1].Text));
+            String t = buyOrderMenu.SelectedItems[0].Text;
+            String t2 = buyOrderMenu.SelectedItems[0].SubItems[1].Text;
+            ordersController.removeDishFromOrder(buyOrderMenu.SelectedItems[0].Text, Convert.ToSingle(buyOrderMenu.SelectedItems[0].SubItems[1].Text));
             buyOrderMenu.Items.Clear();
             buyOrderMenu.Items.AddRange(ordersController.getOrderMenuForView());
             
