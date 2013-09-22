@@ -89,6 +89,7 @@ namespace TRPO.Controller
         public OrdersConroller(User u)
         {
             user = u;
+
          //TODO:
          //в загловок имя, роль
         }
@@ -96,6 +97,7 @@ namespace TRPO.Controller
         public void addForm(IOrderManagable c)
         {
             view = c;
+            view.setWindowTitile(user.name, user.surname, user.patronymic, user.linkToPhoto);
             
         }
         /// <summary>

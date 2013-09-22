@@ -318,6 +318,10 @@ namespace TRPO.View
             return headerList2.SelectedIndex;
         }
 
+        public void setWindowTitile(String name, String surname, String patronymic, String linkToPhoto)
+        {
+            this.Text = String.Format("Курьер - {0} {1} {2}", surname, name , patronymic);
+        }
 
 
 

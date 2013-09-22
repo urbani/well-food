@@ -18,6 +18,7 @@ namespace TRPO.View
         List<ListViewItem> getOrderMenu();
         void clearOrderMenu();
         int getEmplId();
+        void setWindowTitile(String name, String surname, String patronymic, String linkToPhoto);
 
     
     }
