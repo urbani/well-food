@@ -51,7 +51,7 @@ namespace TRPO.Model
                 INNER JOIN
                         (
                         SELECT 
-                                di.ID_Dish, 
+                                di.ID_Dish,
                                 (prices.price*(1 + di.Percent/100)/100) as price,
                                 di.Name_Dish, di.Dish_Type
                         FROM 

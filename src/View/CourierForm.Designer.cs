@@ -64,9 +64,9 @@
             this.columnHeader8 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.splitContRightHorizontal = new System.Windows.Forms.SplitContainer();
             this.buyOrderMenu = new System.Windows.Forms.ListView();
-            this.columnHeader5 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.columnHeader6 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.label2 = new System.Windows.Forms.Label();
+            this.column1 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.column2 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.sumLabel = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.button1 = new System.Windows.Forms.Button();
             this.tabPage6 = new System.Windows.Forms.TabPage();
@@ -75,6 +75,7 @@
             this.columnHeader9 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader10 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.button2 = new System.Windows.Forms.Button();
+            this.column3 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.mainTable.SuspendLayout();
             this.headerTable.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
@@ -503,7 +504,7 @@
             // 
             // splitContRightHorizontal.Panel2
             // 
-            this.splitContRightHorizontal.Panel2.Controls.Add(this.label2);
+            this.splitContRightHorizontal.Panel2.Controls.Add(this.sumLabel);
             this.splitContRightHorizontal.Panel2.Controls.Add(this.label1);
             this.splitContRightHorizontal.Size = new System.Drawing.Size(355, 548);
             this.splitContRightHorizontal.SplitterDistance = 515;
@@ -511,10 +512,10 @@
             // 
             // buyOrderMenu
             // 
-            this.buyOrderMenu.Activation = System.Windows.Forms.ItemActivation.OneClick;
             this.buyOrderMenu.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
-            this.columnHeader5,
-            this.columnHeader6});
+            this.column1,
+            this.column2,
+            this.column3});
             this.buyOrderMenu.Dock = System.Windows.Forms.DockStyle.Fill;
             this.buyOrderMenu.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.buyOrderMenu.FullRowSelect = true;
@@ -529,24 +530,24 @@
             this.buyOrderMenu.View = System.Windows.Forms.View.Details;
             this.buyOrderMenu.DoubleClick += new System.EventHandler(this.orderMenu_DoubleClick);
             // 
-            // columnHeader5
+            // column1
             // 
-            this.columnHeader5.Text = "Блюдо";
-            this.columnHeader5.Width = 301;
+            this.column1.Text = "Блюдо";
+            this.column1.Width = 156;
             // 
-            // columnHeader6
+            // column2
             // 
-            this.columnHeader6.Text = "Цена";
-            this.columnHeader6.Width = 48;
+            this.column2.Text = "Стоимость";
+            this.column2.Width = 95;
             // 
-            // label2
+            // sumLabel
             // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(67, 2);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(61, 24);
-            this.label2.TabIndex = 4;
-            this.label2.Text = "0 руб.";
+            this.sumLabel.AutoSize = true;
+            this.sumLabel.Location = new System.Drawing.Point(67, 2);
+            this.sumLabel.Name = "sumLabel";
+            this.sumLabel.Size = new System.Drawing.Size(61, 24);
+            this.sumLabel.TabIndex = 4;
+            this.sumLabel.Text = "0 руб.";
             // 
             // label1
             // 
@@ -637,6 +638,11 @@
             this.button2.Text = "Выдать заказ";
             this.button2.UseVisualStyleBackColor = true;
             // 
+            // column3
+            // 
+            this.column3.Text = "Количество";
+            this.column3.Width = 98;
+            // 
             // CourierForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -721,18 +727,19 @@
         private System.Windows.Forms.ColumnHeader columnHeader7;
         private System.Windows.Forms.ColumnHeader columnHeader8;
         private System.Windows.Forms.ListView buyOrderMenu;
-        private System.Windows.Forms.ColumnHeader columnHeader5;
-        private System.Windows.Forms.ColumnHeader columnHeader6;
+        private System.Windows.Forms.ColumnHeader column1;
+        private System.Windows.Forms.ColumnHeader column2;
         private System.Windows.Forms.TabPage tabPage6;
         private System.Windows.Forms.ListView listView1;
         private System.Windows.Forms.ColumnHeader columnHeader9;
         private System.Windows.Forms.ColumnHeader columnHeader10;
         private System.Windows.Forms.SplitContainer splitContainerHorizontal;
         private System.Windows.Forms.SplitContainer splitContainerVertical;
-        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Label sumLabel;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.SplitContainer splitContRightHorizontal;
         private System.Windows.Forms.SplitContainer splitContainerOnTab2;
         private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.ColumnHeader column3;
     }
 }

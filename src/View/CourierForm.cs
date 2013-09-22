@@ -230,7 +230,9 @@ namespace TRPO.View
 
         private void orderMenu_DoubleClick(object sender, EventArgs e) 
         {
-            buyOrderMenu.Items.RemoveAt(buyOrderMenu.SelectedIndices[0]);
+            ordersController.removeDishFromOrder(buyOrderMenu.SelectedItems[0].Text, Convert.ToSingle(buyOrderMenu.SelectedItems[1].SubItems[1].Text));
+            buyOrderMenu.Items.Clear();
+            buyOrderMenu.Items.AddRange(ordersController.getOrderMenuForView());
             
         }
 
@@ -245,19 +247,21 @@ namespace TRPO.View
         }
 
 
-
+        /// <summary>
+        /// обработчик добавления новго элемента в список покупок
+        /// </summary>
         void handlerMenuList_DoubleClick()
         {
+
             if (headerList2.SelectedItem == null)
             {
                 return;
             }
-            ListViewItem dishEnty = new ListViewItem();
-            ListViewItem.ListViewSubItem priceEntry = new ListViewItem.ListViewSubItem();
-            dishEnty.Text = curList.SelectedItems[0].Text;
-            priceEntry.Text = curList.SelectedItems[0].SubItems[1].Text;
-            dishEnty.SubItems.Add(priceEntry);
-            buyOrderMenu.Items.Add(dishEnty);
+            ordersController.addDishToOrder(curList.SelectedItems[0].Text, Convert.ToSingle(curList.SelectedItems[0].SubItems[1].Text));
+
+            buyOrderMenu.Items.Clear();
+            buyOrderMenu.Items.AddRange(ordersController.getOrderMenuForView());
+
             
             
 

@@ -1,0 +1,13 @@
+select  all from fishes and dish order
+
+SELECT * FROM Dishes AS D JOIN (SELECT * FROM Dishes_Order) as  do ON D.ID_Dish=do.ID_Dish
+
+полнгый селект из 3 таблиц заказ:
+SELECT * FROM Dishes AS D JOIN (SELECT * FROM Dishes_Order) as  do ON D.ID_Dish=do.ID_Dish JOIN (SELECT * FROM Orders) AS o  ON o.ID_Emp = do.ID_Dish
+
+Company, Surname, Name_emp, patronymic
+
+
+
+insert employs:
+INSERT INTO Employee VALUES (1, 'Иванов', 'Иван', 'Иваныч') 
