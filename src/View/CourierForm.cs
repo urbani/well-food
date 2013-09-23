@@ -25,7 +25,7 @@ namespace TRPO.View
         int lastEmployIndex = 0; 
         int lastCompanyIndex = 0;
         bool systemChange = false; //флаг изменение списка прозошло в системых целях (не по вызову пользователя)
-        DishesTypes curTypeMenu;
+        DishesTypes curTypeMenu; //если подчеркивает зеленым - то это чушь
 
         public CourierForm(ClientManagementConroller cmc, OrdersConroller oc)
         {

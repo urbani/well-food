@@ -76,6 +76,8 @@
             this.columnHeader10 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.button2 = new System.Windows.Forms.Button();
             this.column3 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.label2 = new System.Windows.Forms.Label();
+            this.label3 = new System.Windows.Forms.Label();
             this.mainTable.SuspendLayout();
             this.headerTable.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
@@ -504,6 +506,8 @@
             // 
             // splitContRightHorizontal.Panel2
             // 
+            this.splitContRightHorizontal.Panel2.Controls.Add(this.label3);
+            this.splitContRightHorizontal.Panel2.Controls.Add(this.label2);
             this.splitContRightHorizontal.Panel2.Controls.Add(this.totalLabel);
             this.splitContRightHorizontal.Panel2.Controls.Add(this.label1);
             this.splitContRightHorizontal.Size = new System.Drawing.Size(355, 548);
@@ -586,6 +590,7 @@
             this.splitContainerOnTab2.FixedPanel = System.Windows.Forms.FixedPanel.Panel2;
             this.splitContainerOnTab2.Location = new System.Drawing.Point(3, 3);
             this.splitContainerOnTab2.Name = "splitContainerOnTab2";
+            this.splitContainerOnTab2.Orientation = System.Windows.Forms.Orientation.Horizontal;
             // 
             // splitContainerOnTab2.Panel1
             // 
@@ -595,7 +600,7 @@
             // 
             this.splitContainerOnTab2.Panel2.Controls.Add(this.button2);
             this.splitContainerOnTab2.Size = new System.Drawing.Size(970, 600);
-            this.splitContainerOnTab2.SplitterDistance = 738;
+            this.splitContainerOnTab2.SplitterDistance = 530;
             this.splitContainerOnTab2.TabIndex = 5;
             // 
             // listView1
@@ -611,7 +616,7 @@
             this.listView1.ImeMode = System.Windows.Forms.ImeMode.NoControl;
             this.listView1.Location = new System.Drawing.Point(0, 0);
             this.listView1.Name = "listView1";
-            this.listView1.Size = new System.Drawing.Size(738, 600);
+            this.listView1.Size = new System.Drawing.Size(970, 530);
             this.listView1.Sorting = System.Windows.Forms.SortOrder.Ascending;
             this.listView1.TabIndex = 4;
             this.listView1.UseCompatibleStateImageBehavior = false;
@@ -633,7 +638,7 @@
             this.button2.Font = new System.Drawing.Font("Microsoft Sans Serif", 24F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.button2.Location = new System.Drawing.Point(0, 0);
             this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(228, 600);
+            this.button2.Size = new System.Drawing.Size(970, 66);
             this.button2.TabIndex = 0;
             this.button2.Text = "Выдать заказ";
             this.button2.UseVisualStyleBackColor = true;
@@ -642,6 +647,26 @@
             // 
             this.column3.Text = "Количество";
             this.column3.Width = 98;
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(146, 2);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(113, 24);
+            this.label2.TabIndex = 6;
+            this.label2.Text = "Состояние:";
+            this.label2.Visible = false;
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(255, 2);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(106, 24);
+            this.label3.TabIndex = 7;
+            this.label3.Text = "нет заказа";
+            this.label3.Visible = false;
             // 
             // CourierForm
             // 
@@ -741,5 +766,7 @@
         private System.Windows.Forms.SplitContainer splitContainerOnTab2;
         private System.Windows.Forms.Button button2;
         private System.Windows.Forms.ColumnHeader column3;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Label label2;
     }
 }

@@ -11,6 +11,7 @@ namespace TRPO.Model
     {
         private OleDbConnection connection = null;
         private static string m_CONN_STR = Properties.Settings.Default.main_dbConnectionString;// "Provider=Microsoft.ACE.OLEDB.12.0;Data Source={0}";
+        int softStack = 0;//сколько раз был вызван мегкий openCoennection
 
         public DBConnector()
         {
@@ -21,8 +22,14 @@ namespace TRPO.Model
         /// <summary>
         /// Открывает соединение с базой
         /// </summary>
-        public void openConnection()  
+        public void openConnection(bool soft=false)  
         {
+            if (soft && connectIsOpen())
+            {
+                softStack++;
+                return;
+            }
+            //по логике вещей должна быть проверка ConnectionState.Opened! хотя это не так
             if ((connection != null) && (connection.State == ConnectionState.Closed))
             {
                 connection.Open();
@@ -32,9 +39,16 @@ namespace TRPO.Model
         /// <summary>
         /// Закрывает соединение с базой
         /// </summary>
- 
-        public void closeConnection()
+
+        public void closeConnection(bool soft = false)
         {
+            if (soft && softStack!=0)
+            {
+                //выполниться только в случае ошибки, вообще connect всегда должен закрывать hard closeConnection
+                softStack--;
+                return;
+ 
+            }
             if ((connection != null) && (connection.State != ConnectionState.Closed))
             {
                 connection.Close();
@@ -45,7 +59,7 @@ namespace TRPO.Model
         /// открыто ли соединение с бд?
         /// </summary>
         /// <returns></returns>
-        public bool connectIsOpen()
+        bool connectIsOpen()
         {
             if (connection.State == ConnectionState.Open)
                 return true;
