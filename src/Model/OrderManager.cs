@@ -95,19 +95,19 @@ namespace TRPO.Model
         /// <summary>
         /// провести заказ
         /// </summary>
-        /// <param name="id_empl"></param>
-        /// <param name="orderList"></param>
+        /// <param name="id_empl">id клиента</param>
+        /// <param name="orderList">список блюд в заказе</param>
         public int checkoutOrder(int id_empl, List<orderEnrty> orderList)
         {
             int timesChanges = 0;
             connector.openConnection();
             
 
-            int idOrd = selectOpenOrderFromEmloy(id_empl);
+            int idOrd = getOpenOrderFromEmloy(id_empl);
             if (idOrd == -1)
             {
                 connector.executeNonQuery(String.Format("INSERT INTO Orders (ID_Emp, Status) VALUES ({0},  1)", id_empl));
-                idOrd = selectOpenOrderFromEmloy(id_empl);
+                idOrd = getOpenOrderFromEmloy(id_empl);
 
             }
 
@@ -122,14 +122,38 @@ namespace TRPO.Model
         }
 
         /// <summary>
+        /// выдает в заказ(откр. или закрытый) занесенный в БД по id клиента
+        /// </summary>
+        /// <param name="emplId">id клиента</param>
+        /// <param name="readyOrder">заказ открыт?</param>
+        /// <returns></returns>
+        public List<orderEnrty> getOrder(int emplId, bool readyOrder = true)
+        {
+            List<orderEnrty> order = new List<orderEnrty>();
+            connector.openConnection();
+            OleDbDataReader reader = connector.executeQuery(String.Format(@"SELECT do.ID_Dish, o.Status, o.ID_Emp FROM Orders AS o JOIN (SELECT do.ID_Dish, do.ID_Order, do.Dish_Count, do.Ready_Count FROM Dishes_Order AS do ) AS do ON o.ID_Ord=do.ID_Order 
+WHERE o.Status=1 AND do.Dish_Count!=do.Ready_Count AND o.ID_Emp={0}",emplId));
+            while(reader.Read())
+            {
+
+            }
+
+
+            connector.closeConnection();
+            return order;
+        }
+
+
+        /// <summary>
         /// сообщает № открытого заказа по ID клиента
         /// </summary>
         /// <param name="emlId"></param>
         /// <returns></returns>
-        private int selectOpenOrderFromEmloy(int emlId)
+        private int getOpenOrderFromEmloy(int emlId, bool status=true)
         {
+            int intFormStatus = status?1:0;
             connector.openConnection(true);
-            OleDbDataReader reader = connector.executeQuery(String.Format("SELECT id_ord FROM Orders WHERE id_emp={0} AND Status=1",emlId));
+            OleDbDataReader reader = connector.executeQuery(String.Format("SELECT id_ord FROM Orders WHERE id_emp={0} AND Status={1}",emlId,intFormStatus));
             int id_ord = -1;
             while (reader.Read())
             {

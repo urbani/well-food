@@ -11,3 +11,20 @@ Company, Surname, Name_emp, patronymic
 
 insert employs:
 INSERT INTO Employee VALUES (1, 'Иванов', 'Иван', 'Иваныч') 
+
+---
+insert orders+
+INSERT INTO Orders (ID_Emp, Status) VALUES (2,  1)
+
+insert into dish_orders
+INSERT INTO Dishes_Order (Id_dish, id_order, dish_count, ready_count) VALUES (4,11, 1,0)
+
+INSERT INTO Company ValueS("ООО парнокопотный")
+INSERT INTO Company (Name_Comp)  Values ("ООО парнокопотный")
+
+INSERT INTO Dishes_Order (Id_dish, id_order, dish_count, ready_count) VALUES (4,5, 1,0)
+
+
+sql-запрос который работает в ms sql server и не работает в access:
+SELECT do.ID_Dish, o.Status FROM Orders AS o JOIN (SELECT do.ID_Dish, do.ID_Order, do.Dish_Count, do.Ready_Count FROM Dishes_Order AS do ) AS do ON o.ID_Ord=do.ID_Order 
+WHERE o.Status=1 AND do.Dish_Count=do.Ready_Count
