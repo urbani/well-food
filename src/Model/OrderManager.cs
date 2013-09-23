@@ -112,9 +112,10 @@ namespace TRPO.Model
                     throw new SystemException();
                 ptr ++;
             }
+            idOrd--; //КАК ТАК?! почему запрос возвращает значение на 1 больше чем на самом деле????
             foreach(orderEnrty dish in orderList)
             {
-                timesChanges += connector.executeNonQuery(String.Format("INSERT INTO Dishes_Order (Id_dish, id_order, dish_count, ready_count) VALUES ({0},  {1} , {2}, 0", dish.id, idOrd, dish.Count));
+                timesChanges += connector.executeNonQuery(String.Format("INSERT INTO Dishes_Order (Id_dish, id_order, dish_count, ready_count) VALUES ({0},  {1} , {2}, 0)", dish.id, idOrd, dish.Count));
 
             }
 
