@@ -6,6 +6,9 @@ using System.Windows.Forms;
 
 namespace TRPO.Structures
 {
+    /// <summary>
+    /// системное представление записи о блюде добовляемом в заказ
+    /// </summary>
     public struct orderEnrty
     {
         String dish; //название
@@ -84,10 +87,24 @@ namespace TRPO.Structures
         {
             changeOf(-1);
         }
-
-        
-
     }
 
+    /// <summary>
+    /// системное представление о блюде из заказа
+    /// </summary>
+    public struct orderCheckoutEnry
+    {
+        public int dishId;
+        public int dishCount;
+        public int readyCount;
+        public String dish;
+        public orderCheckoutEnry(int dishId, int dishCount, int readyCount, String dish)
+        {
+            this.dish = dish;
+            this.dishCount = dishCount;
+            this.dishId = dishId;
+            this.readyCount = readyCount;
+        }
+    }
 
 }
