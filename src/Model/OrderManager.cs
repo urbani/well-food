@@ -101,26 +101,36 @@ namespace TRPO.Model
         {
             int timesChanges = 0;
             connector.openConnection();
-            timesChanges += connector.executeNonQuery(String.Format("INSERT INTO Orders (ID_Emp, Status) VALUES ({0},  1)", id_empl));
-            OleDbDataReader reader = connector.executeQuery(String.Format("SELECT MAX(o.id_ord) AS curOrdId FROM Orders AS o"));
-            int idOrd=0;   
-            int ptr =0;
-            while (reader.Read())
-            {
-                idOrd = Convert.ToInt32(reader[0]);
-                if (ptr>1)
-                    throw new SystemException();
-                ptr ++;
-            }
-            idOrd--; //КАК ТАК?! почему запрос возвращает значение на 1 больше чем на самом деле????
+            
+
+            int idOrd = selectOpenOrderFromEmloy(id_empl);
+            if (idOrd==-1)
+                connector.executeNonQuery(String.Format("INSERT INTO Orders (ID_Emp, Status) VALUES ({0},  1)", id_empl));
+
+            
             foreach(orderEnrty dish in orderList)
             {
                 timesChanges += connector.executeNonQuery(String.Format("INSERT INTO Dishes_Order (Id_dish, id_order, dish_count, ready_count) VALUES ({0},  {1} , {2}, 0)", dish.id, idOrd, dish.Count));
 
             }
-
             connector.closeConnection();
             return timesChanges;
+        }
+
+        private int selectOpenOrderFromEmloy(int emlId)
+        {
+            bool connedBeOpened = connector.connectIsOpen();
+            if (!connedBeOpened)
+                connector.openConnection();
+            OleDbDataReader reader = connector.executeQuery(String.Format("SELECT id_ord FROM Orders WHERE id_emp={0} AND Status=1",emlId));
+            int id_ord = -1;
+            while (reader.Read())
+            {
+                id_ord = Convert.ToInt32(reader[0]);
+            }
+            if (!connedBeOpened)
+                connector.closeConnection();
+            return id_ord;
         }
     }
 }

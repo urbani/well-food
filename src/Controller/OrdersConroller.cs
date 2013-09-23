@@ -55,7 +55,7 @@ namespace TRPO.Controller
                 {
                     orderEnrty temp = new orderEnrty(currentOrder[i]);
                     if (temp.Count == 1)
-                        currentOrder.Remove(new orderEnrty(dish, price));
+                        currentOrder.Remove(temp);
                     else
                     {
                         temp.decreament();
@@ -122,16 +122,19 @@ namespace TRPO.Controller
 
         public void checkoutOrder()
         {
-            const int offSet = 1; //+1 от insert`а в orders
-            int changes = orderManager.checkoutOrder(view.getEmplId(), currentOrder);
-            if (changes < currentOrder.Count + offSet) 
+            try
             {
-                view.showMsg(String.Format("Ошибка было сделано {0} изменений за место {1}", changes, currentOrder.Count + offSet), ErrorLevels.Critical);
-
-                return;
+                orderManager.checkoutOrder(view.getEmplId(), currentOrder);
+                view.clearOrderMenu();
             }
+            catch (ApplicationException ex)
+            { 
+                view.showMsg(ex.ToString(), ErrorLevels.Critical); 
+            }
+
+          
            
-            view.clearOrderMenu();
+            
 
         }
         

@@ -18,7 +18,9 @@ namespace TRPO.Model
             connection = new OleDbConnection(connStr);
         }
 
-        // Открывает соединение с базой
+        /// <summary>
+        /// Открывает соединение с базой
+        /// </summary>
         public void openConnection()  
         {
             if ((connection != null) && (connection.State == ConnectionState.Closed))
@@ -27,7 +29,10 @@ namespace TRPO.Model
             }
         }
 
-        // Закрывает соединение с базой
+        /// <summary>
+        /// Закрывает соединение с базой
+        /// </summary>
+ 
         public void closeConnection()
         {
             if ((connection != null) && (connection.State != ConnectionState.Closed))
@@ -36,7 +41,23 @@ namespace TRPO.Model
             }
         }
 
-        // Выполняет переданный SQL запрос
+        /// <summary>
+        /// открыто ли соединение с бд?
+        /// </summary>
+        /// <returns></returns>
+        public bool connectIsOpen()
+        {
+            if (connection.State == ConnectionState.Open)
+                return true;
+            else
+                return false;
+        }
+
+        /// <summary>
+        /// Выполняет переданный SQL запрос (SELECT)
+        /// </summary>
+        /// <param name="query"></param>
+        /// <returns></returns>
         public OleDbDataReader executeQuery(String query)
         {
             OleDbDataReader result = null;
@@ -51,12 +72,16 @@ namespace TRPO.Model
             }
             else
             {
-                System.Diagnostics.Debug.WriteLine("WARNING! Попытка выполнения запроса при отстутствии открытого соединения с базой.");
+                throw new ApplicationException("Попытка выполнения запроса при отстутствии открытого соединения с базой.");
             }
             return result;
         }
 
-        //Выполняет UPDATE\DELETE\INSERT. Возвращает количество измененных строк
+        /// <summary>
+        /// Выполняет UPDATE\DELETE\INSERT. Возвращает количество измененных строк
+        /// </summary>
+        /// <param name="query"></param>
+        /// <returns></returns>
         public int executeNonQuery(String query)
         {
             int res = 0;
@@ -70,14 +95,15 @@ namespace TRPO.Model
                     objCommand.Connection = connection;
                     res = objCommand.ExecuteNonQuery();
                 }
-                catch (Exception ex)
+                catch (OleDbException ex)
                 {
-                    System.Diagnostics.Debug.WriteLine("WARNING! Ошибка при выполнении запроса: " + query + ".\n Original error: " + ex.ToString());
+                    connection.Close(); //думаю, правильно в случае чего закрывать соединение тут, что бы не где об этом не заморачиваться
+                    throw new ApplicationException(String.Format("Ошибка при выполнении запроса: {0}.\n Original error: {1}",query, ex.ToString() ));
                 }
             }
             else
             {
-                System.Diagnostics.Debug.WriteLine("WARNING! Попытка выполнения запроса при отстутствии открытого соединения с базой.");
+                throw new ApplicationException("Попытка выполнения запроса при отстутствии открытого соединения с базой.");
             }
             return res;
         }
