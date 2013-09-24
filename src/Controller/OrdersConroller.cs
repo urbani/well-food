@@ -87,10 +87,8 @@ namespace TRPO.Controller
         /// <summary>
         /// обработчик выдачи заказа
         /// </summary>
-        public void viewReadyOrder()
+        public void updatePlacedOrderMenu()
         {
-            if (view.getEmplId() == clientId)
-                return;
             clientId = view.getEmplId();
             List<orderEnrty> placedOrderList = new List<orderEnrty>();
             placedOrderList = orderManager.getPlacedOrder(clientId, true);

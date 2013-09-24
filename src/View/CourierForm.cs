@@ -126,7 +126,7 @@ namespace TRPO.View
         {
             if (tabControl1.SelectedIndex == 1)
             {
-                ordersController.viewReadyOrder();
+                ordersController.updatePlacedOrderMenu();
             }
         }
 
@@ -138,22 +138,22 @@ namespace TRPO.View
             ordersController.clientId = getEmplId(true);
             ordersController.updateActiveMenu();
             ordersController.updateOrderMenu();
+            ordersController.updatePlacedOrderMenu();
         }
 
         private void headerList1_SelectedIndexChanged(object sender, EventArgs e) 
         {
-            if (systemChange)
-            {
-                systemChange = false;
-                return;
-            }
+            //if (systemChange)
+            //{
+            //    systemChange = false;
+            //    return;
+            //}
             clientManagementController.fillEmployList();
 
             ordersController.clientId = getEmplId(true);
             ordersController.updateOrderMenu();
+            ordersController.updatePlacedOrderMenu();
         }
-
-        private void headerList2_SelectedIndexChanged(object sender, EventArgs e) { }
 
         public void updateCompanyList()
         {
