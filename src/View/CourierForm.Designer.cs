@@ -190,7 +190,6 @@
             this.headerList2.Name = "headerList2";
             this.headerList2.Size = new System.Drawing.Size(347, 28);
             this.headerList2.TabIndex = 3;
-            this.headerList2.SelectedIndexChanged += new System.EventHandler(this.headerList2_SelectedIndexChanged);
             this.headerList2.SelectionChangeCommitted += new System.EventHandler(this.headerList2_SelectionChangeCommitted);
             // 
             // headerSearchButton1

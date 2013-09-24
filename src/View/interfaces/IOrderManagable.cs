@@ -9,17 +9,34 @@ namespace TRPO.View
 {
     public interface IOrderManagable : IInterractable
     {
+        /// <summary>
+        /// обновляет меню в табе "новый заказ"
+        /// </summary>
+        /// <param name="listDishes"></param>
         void updateMenuList(List<CourierListEntry> listDishes);
+
+        /// <summary>
+        /// обновляет блюда выбранные для заказа текущим клинтом
+        /// </summary>
+        /// <param name="dishesInOrder"></param>
+        void updateOrderMenu(ListViewItem[] dishesInOrder);
+
+        /// <summary>
+        /// обновляет  список блюд приготовленных для текущего клиента
+        /// </summary>
+        /// <param name="viewPlacedOrder"></param>
+        void updatePlacedOrderMenu(ListViewItem[] viewPlacedOrder);
 
         /// <summary>
         /// возвращает список блюд, выбранных клиентов. Первый id - id-клиента
         /// </summary>
         /// <returns></returns>
         List<ListViewItem> getOrderMenu();
+        
         void clearOrderMenu();
-        int getEmplId();
+        int getEmplId(bool silent=false);
         void setWindowTitile(String Title);
-        void updatePlacedOrderMenu(ListViewItem[] viewPlacedOrder);
+
 
     
     }

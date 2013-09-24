@@ -17,12 +17,27 @@ namespace TRPO.Controller
         IOrderManagable view;
         //класс над объектом пользователь-сотрудник (ФИО фото роль и т.д.)
         User user;
-        int clientId = -1; //id-клиента с которым мы рабдотали в предывдущий раз
+        public int clientId { get; set; } //id-клиента с которым мы рабдотали в предывдущий раз
         
         public List<CourierListEntry> currentMenu = new List<CourierListEntry>(); //текущее меню в системном виде
-        List<orderEnrty> currentOrder = new List<orderEnrty>(); //текущий заказ в системном виде
+        Dictionary<int, List<orderEnrty>> currentOrderList = new Dictionary<int, List<orderEnrty>>();
+        //List<orderEnrty> currentOrder = new List<orderEnrty>(); //текущий заказ в системном виде
+        List<orderEnrty> currentOrder 
+        {
+            get 
+            {
+                if (currentOrderList.ContainsKey(clientId))
+                    return currentOrderList[clientId];
+                else
+                {
+                    currentOrderList.Add(clientId, new List<orderEnrty>());
+                    return currentOrderList[clientId];
+                }
+            } 
+            set { value = currentOrderList[clientId]; } 
+        }
         OrderManager orderManager = new OrderManager(); //модель курьера
-
+        
         /// <summary>
         /// добавление блюда во внутренний список заказа
         /// </summary>
@@ -40,6 +55,7 @@ namespace TRPO.Controller
                     return;
                 }
             }
+            
             currentOrder.Add(new orderEnrty(dish, price,findIdDish(dish)));
         }
 
@@ -99,7 +115,7 @@ namespace TRPO.Controller
         /// возвращает список блюд выбранных для заказа, подготовленный для добавление в листВью
         /// </summary>
         /// <returns></returns>
-        public ListViewItem[] getOrderMenuForView()
+        public void updateOrderMenu()
         {
             ListViewItem[] viewOrder = new ListViewItem[currentOrder.Count];
             int ptr = 0;
@@ -112,13 +128,14 @@ namespace TRPO.Controller
                 viewOrder[ptr] = temp ;
                 ptr++;
             }
-            return viewOrder;
+
+            view.updateOrderMenu(viewOrder);
         }
 
         public OrdersConroller(User u)
         {
             user = u;
-            
+            clientId = -1;
          //TODO:
          //в загловок имя, роль
         }
@@ -167,7 +184,9 @@ namespace TRPO.Controller
 
         }
         
-
+        /// <summary>
+        /// обновлет во view теущиий список блюд в меню
+        /// </summary>
         public void updateActiveMenu()
         {
             currentMenu = orderManager.getActiveMenu();
