@@ -334,8 +334,20 @@ namespace TRPO.View
 
         public void updatePlacedOrderMenu(ListViewItem[] orderArr)
         {
+            placedOrderMenu.Items.Clear();
             placedOrderMenu.Items.AddRange(orderArr);
         }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        public void updatePlaceOrderTotalPrice(float totalPrice)
+        {
+            placedOrderTotalSum.Text = String.Format("{0} руб", totalPrice);
+        }
+
 
 
 

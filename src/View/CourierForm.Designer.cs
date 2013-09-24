@@ -79,6 +79,12 @@
             this.columnHeader10 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.button2 = new System.Windows.Forms.Button();
             this.columnHeader5 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.splitContaintBottom = new System.Windows.Forms.SplitContainer();
+            this.label4 = new System.Windows.Forms.Label();
+            this.label5 = new System.Windows.Forms.Label();
+            this.placedStatusOrder = new System.Windows.Forms.Label();
+            this.placedOrderTotalSum = new System.Windows.Forms.Label();
+            this.columnHeader6 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.mainTable.SuspendLayout();
             this.headerTable.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
@@ -107,6 +113,10 @@
             this.splitContainerOnTab2.Panel1.SuspendLayout();
             this.splitContainerOnTab2.Panel2.SuspendLayout();
             this.splitContainerOnTab2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.splitContaintBottom)).BeginInit();
+            this.splitContaintBottom.Panel1.SuspendLayout();
+            this.splitContaintBottom.Panel2.SuspendLayout();
+            this.splitContaintBottom.SuspendLayout();
             this.SuspendLayout();
             // 
             // mainTable
@@ -624,7 +634,7 @@
             // 
             // splitContainerOnTab2.Panel2
             // 
-            this.splitContainerOnTab2.Panel2.Controls.Add(this.button2);
+            this.splitContainerOnTab2.Panel2.Controls.Add(this.splitContaintBottom);
             this.splitContainerOnTab2.Size = new System.Drawing.Size(970, 600);
             this.splitContainerOnTab2.SplitterDistance = 530;
             this.splitContainerOnTab2.TabIndex = 5;
@@ -635,7 +645,8 @@
             this.placedOrderMenu.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this.columnHeader9,
             this.columnHeader10,
-            this.columnHeader5});
+            this.columnHeader5,
+            this.columnHeader6});
             this.placedOrderMenu.Dock = System.Windows.Forms.DockStyle.Fill;
             this.placedOrderMenu.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.placedOrderMenu.FullRowSelect = true;
@@ -665,15 +676,78 @@
             this.button2.Font = new System.Drawing.Font("Microsoft Sans Serif", 24F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.button2.Location = new System.Drawing.Point(0, 0);
             this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(970, 66);
+            this.button2.Size = new System.Drawing.Size(767, 66);
             this.button2.TabIndex = 0;
             this.button2.Text = "Выдать заказ";
             this.button2.UseVisualStyleBackColor = true;
+            this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
             // columnHeader5
             // 
             this.columnHeader5.Text = "Количество";
             this.columnHeader5.Width = 119;
+            // 
+            // splitContaintBottom
+            // 
+            this.splitContaintBottom.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.splitContaintBottom.FixedPanel = System.Windows.Forms.FixedPanel.Panel1;
+            this.splitContaintBottom.Location = new System.Drawing.Point(0, 0);
+            this.splitContaintBottom.Name = "splitContaintBottom";
+            // 
+            // splitContaintBottom.Panel1
+            // 
+            this.splitContaintBottom.Panel1.Controls.Add(this.placedOrderTotalSum);
+            this.splitContaintBottom.Panel1.Controls.Add(this.placedStatusOrder);
+            this.splitContaintBottom.Panel1.Controls.Add(this.label5);
+            this.splitContaintBottom.Panel1.Controls.Add(this.label4);
+            // 
+            // splitContaintBottom.Panel2
+            // 
+            this.splitContaintBottom.Panel2.Controls.Add(this.button2);
+            this.splitContaintBottom.Size = new System.Drawing.Size(970, 66);
+            this.splitContaintBottom.SplitterDistance = 199;
+            this.splitContaintBottom.TabIndex = 1;
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(6, 0);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(77, 24);
+            this.label4.TabIndex = 0;
+            this.label4.Text = "Статус:";
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(6, 42);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(73, 24);
+            this.label5.TabIndex = 1;
+            this.label5.Text = "Сумма:";
+            // 
+            // placedStatusOrder
+            // 
+            this.placedStatusOrder.AutoSize = true;
+            this.placedStatusOrder.Location = new System.Drawing.Point(85, 0);
+            this.placedStatusOrder.Name = "placedStatusOrder";
+            this.placedStatusOrder.Size = new System.Drawing.Size(106, 24);
+            this.placedStatusOrder.TabIndex = 2;
+            this.placedStatusOrder.Text = "нет заказа";
+            // 
+            // placedOrderTotalSum
+            // 
+            this.placedOrderTotalSum.AutoSize = true;
+            this.placedOrderTotalSum.Location = new System.Drawing.Point(85, 42);
+            this.placedOrderTotalSum.Name = "placedOrderTotalSum";
+            this.placedOrderTotalSum.Size = new System.Drawing.Size(56, 24);
+            this.placedOrderTotalSum.TabIndex = 3;
+            this.placedOrderTotalSum.Text = "0 руб";
+            // 
+            // columnHeader6
+            // 
+            this.columnHeader6.Text = "Цена за 1 блюдо";
+            this.columnHeader6.Width = 131;
             // 
             // CourierForm
             // 
@@ -714,6 +788,11 @@
             this.splitContainerOnTab2.Panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.splitContainerOnTab2)).EndInit();
             this.splitContainerOnTab2.ResumeLayout(false);
+            this.splitContaintBottom.Panel1.ResumeLayout(false);
+            this.splitContaintBottom.Panel1.PerformLayout();
+            this.splitContaintBottom.Panel2.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.splitContaintBottom)).EndInit();
+            this.splitContaintBottom.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -776,5 +855,11 @@
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.ColumnHeader columnHeader5;
+        private System.Windows.Forms.SplitContainer splitContaintBottom;
+        private System.Windows.Forms.Label placedOrderTotalSum;
+        private System.Windows.Forms.Label placedStatusOrder;
+        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.ColumnHeader columnHeader6;
     }
 }

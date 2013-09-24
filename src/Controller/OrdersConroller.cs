@@ -15,24 +15,21 @@ namespace TRPO.Controller
     public class OrdersConroller
     {
         IOrderManagable view;
-        //класс над объектом пользователь-сотрудник (ФИО фото роль и т.д.)
-        User user;
+        User user; //класс над объектом пользователь-сотрудник (ФИО фото роль и т.д.)
         public int clientId { get; set; } //id-клиента с которым мы рабдотали в предывдущий раз
         
         public List<CourierListEntry> currentMenu = new List<CourierListEntry>(); //текущее меню в системном виде
         Dictionary<int, List<orderEnrty>> currentOrderList = new Dictionary<int, List<orderEnrty>>();
         //List<orderEnrty> currentOrder = new List<orderEnrty>(); //текущий заказ в системном виде
+        //геттеры и сеттеры творят чудеса!!!
         List<orderEnrty> currentOrder 
         {
             get 
             {
-                if (currentOrderList.ContainsKey(clientId))
-                    return currentOrderList[clientId];
-                else
-                {
+                if (!currentOrderList.ContainsKey(clientId))
                     currentOrderList.Add(clientId, new List<orderEnrty>());
-                    return currentOrderList[clientId];
-                }
+                 return currentOrderList[clientId];
+                
             } 
             set { value = currentOrderList[clientId]; } 
         }
@@ -56,7 +53,7 @@ namespace TRPO.Controller
                 }
             }
             
-            currentOrder.Add(new orderEnrty(dish, price,findIdDish(dish)));
+            currentOrder.Add(new orderEnrty(dish, price, 1, findIdDish(dish)));
         }
 
         /// <summary>
@@ -95,17 +92,21 @@ namespace TRPO.Controller
             ListViewItem[] viewOrder = new ListViewItem[placedOrderList.Count];
 
             int ptr = 0;
+            float totalPrice = 0;
             ListViewItem temp = new ListViewItem();
             foreach (orderEnrty entry in placedOrderList)
             {
                 temp = new ListViewItem(entry.Dish);
                 temp.SubItems.Add(entry.Cost.ToString());
                 temp.SubItems.Add(entry.Count.ToString());
+                temp.SubItems.Add(entry.Price.ToString());
                 viewOrder[ptr] = temp;
                 ptr++;
+                totalPrice += entry.Cost;
             }
 
             view.updatePlacedOrderMenu(viewOrder);
+            view.updatePlaceOrderTotalPrice(totalPrice);
         }
 
 
@@ -174,11 +175,7 @@ namespace TRPO.Controller
             catch (ApplicationException ex)
             { 
                 view.showMsg(ex.ToString(), ErrorLevels.Critical); 
-            }
-
-          
-           
-            
+            }  
 
         }
         
@@ -192,6 +189,10 @@ namespace TRPO.Controller
 
         }
 
+        /// <summary>
+        /// возвращает сумму заказа
+        /// </summary>
+        /// <returns></returns>
         public float getTotalPrice()
         {
             float total = 0;

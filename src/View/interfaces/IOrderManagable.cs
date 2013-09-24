@@ -28,11 +28,19 @@ namespace TRPO.View
         void updatePlacedOrderMenu(ListViewItem[] viewPlacedOrder);
 
         /// <summary>
+        /// обновляет итоговую сумму сделанного заказа
+        /// </summary>
+        /// <param name="totalPrice"></param>
+        void updatePlaceOrderTotalPrice(float totalPrice);
+        
+        /// <summary>
         /// возвращает список блюд, выбранных клиентов. Первый id - id-клиента
         /// </summary>
         /// <returns></returns>
         List<ListViewItem> getOrderMenu();
         
+
+
         void clearOrderMenu();
         int getEmplId(bool silent=false);
         void setWindowTitile(String Title);

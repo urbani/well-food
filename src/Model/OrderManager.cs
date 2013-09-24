@@ -143,7 +143,7 @@ namespace TRPO.Model
             {
                 id = Convert.ToInt32(reader[0]);
                 count = Convert.ToInt32(reader[1]);
-                order.Add(new orderEnrty(getDishName(id), getPriceByDishId(id), id, count));
+                order.Add(new orderEnrty(getDishName(id), getPriceByDishId(id), count, id));
             }
             
 
@@ -207,6 +207,7 @@ namespace TRPO.Model
             while (reader.Read())
             {
                 price = Convert.ToInt32(reader[0]);
+                break;
             }
 
             connector.closeConnection(true);
