@@ -80,6 +80,8 @@ namespace TRPO.View
         private void ManagerForm_Load(object sender, EventArgs e)
         {
             prodController.updateProductsList();
+            storeDataGrid.Sort(storeDataGrid.Columns[0], ListSortDirection.Ascending);
+            storeDataGrid.Rows[0].Selected = true;
         }
         
     }
