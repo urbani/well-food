@@ -24,6 +24,7 @@ namespace TRPO.View
         DialogResult notifyValue=DialogResult.Yes;
         int lastEmployIndex = 0; 
         int lastCompanyIndex = 0;
+        delegate void proprietyEvent();
         bool systemChange = false; //флаг изменение списка прозошло в системых целях (не по вызову пользователя)
         DishesTypes curTypeMenu; //если подчеркивает зеленым - то это чушь
 
@@ -75,7 +76,11 @@ namespace TRPO.View
             MessageBox.Show(msg, header);
         }
 
-
+        void handlerNewOrderEvent(proprietyEvent func, int tabIndex)
+        {
+            if (tabControl1.SelectedIndex==tabIndex || tabIndex==-1)
+                func();
+        }
 
 
         public int getIndexSelectedCompany()
@@ -114,6 +119,17 @@ namespace TRPO.View
             buyOrderMenu.Items.Clear();
         }
 
+        /// <summary>
+        /// обработчик вызова(вызывать или нет?) viewReadyOrder
+        /// </summary>
+        void callHandlerViewReadyOrder()
+        {
+            if (tabControl1.SelectedIndex == 1)
+            {
+                ordersController.viewReadyOrder();
+            }
+        }
+
 
         private void headerList2_SelectionChangeCommitted(object sender, EventArgs e)
         {
@@ -129,7 +145,7 @@ namespace TRPO.View
                 }
             }
             lastEmployIndex = headerList2.SelectedIndex;
-            //MessageBox.Show(tabControl1.SelectedIndex.ToString());
+            callHandlerViewReadyOrder();
         }
 
         private void headerList1_SelectedIndexChanged(object sender, EventArgs e) 
@@ -155,6 +171,7 @@ namespace TRPO.View
                 }
             }
             lastCompanyIndex = headerList1.SelectedIndex;
+            callHandlerViewReadyOrder();
         }
 
         private void headerList2_SelectedIndexChanged(object sender, EventArgs e) { }
@@ -331,7 +348,7 @@ namespace TRPO.View
 
         private void tabControl1_SelectedIndexChanged(object sender, EventArgs e)
         {
-            ordersController.handlerViewReadyOrder();
+            
         }
 
         public void updatePlacedOrderMenu(ListViewItem[] orderArr)

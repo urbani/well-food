@@ -71,7 +71,7 @@ namespace TRPO.Controller
         /// <summary>
         /// обработчик выдачи заказа
         /// </summary>
-        public void handlerViewReadyOrder()
+        public void viewReadyOrder()
         {
             if (view.getEmplId() == clientId)
                 return;

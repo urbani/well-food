@@ -10,7 +10,7 @@ namespace TRPO.View
     public interface IOrderManagable : IInterractable
     {
         void updateMenuList(List<CourierListEntry> listDishes);
-        void showCurMenu();
+
         /// <summary>
         /// возвращает список блюд, выбранных клиентов. Первый id - id-клиента
         /// </summary>
