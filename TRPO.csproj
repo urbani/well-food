@@ -57,8 +57,10 @@
     </Content>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="GlobalObj\dishesTypes.cs" />
     <Compile Include="GlobalObj\ErrorLevels.cs" />
     <Compile Include="GlobalObj\Structures\ChiefListEntry.cs" />
+    <Compile Include="GlobalObj\Structures\orderColletion.cs" />
     <Compile Include="GlobalObj\Structures\Menu.cs" />
     <Compile Include="GlobalObj\Structures\CourierListEntry.cs" />
     <Compile Include="GlobalObj\Structures\Dish.cs" />
@@ -147,12 +149,14 @@
     <EmbeddedResource Include="Properties\Resources.resx" />
     <EmbeddedResource Include="src\View\AdminForm.resx">
       <DependentUpon>AdminForm.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="src\View\AuthForm.resx">
       <DependentUpon>AuthForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="src\View\ChiefForm.resx">
       <DependentUpon>ChiefForm.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="src\View\ClientManagerDialog.resx">
       <DependentUpon>ClientManagerDialog.cs</DependentUpon>
@@ -165,6 +169,7 @@
     </EmbeddedResource>
     <EmbeddedResource Include="src\View\ManagerForm.resx">
       <DependentUpon>ManagerForm.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSHARP.Targets" />

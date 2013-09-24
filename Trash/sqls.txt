@@ -1,0 +1,38 @@
+select  all from fishes and dish order
+
+SELECT * FROM Dishes AS D JOIN (SELECT * FROM Dishes_Order) as  do ON D.ID_Dish=do.ID_Dish
+
+полнгый селект из 3 таблиц заказ:
+SELECT * FROM Dishes AS D JOIN (SELECT * FROM Dishes_Order) as  do ON D.ID_Dish=do.ID_Dish JOIN (SELECT * FROM Orders) AS o  ON o.ID_Emp = do.ID_Dish
+
+Company, Surname, Name_emp, patronymic
+
+
+
+insert employs:
+INSERT INTO Employee VALUES (1, 'Иванов', 'Иван', 'Иваныч') 
+
+---
+insert orders+
+INSERT INTO Orders (ID_Emp, Status) VALUES (2,  1)
+
+insert into dish_orders
+INSERT INTO Dishes_Order (Id_dish, id_order, dish_count, ready_count) VALUES (4,11, 1,0)
+
+INSERT INTO Company ValueS("ООО парнокопотный")
+INSERT INTO Company (Name_Comp)  Values ("ООО парнокопотный")
+
+INSERT INTO Dishes_Order (Id_dish, id_order, dish_count, ready_count) VALUES (4,5, 1,0)
+
+
+sql-запрос который работает в ms sql server и не работает в access:
+SELECT do.ID_Dish, o.Status, o.ID_Emp FROM Orders AS o JOIN (SELECT do.ID_Dish, do.ID_Order, do.Dish_Count, do.Ready_Count FROM Dishes_Order AS do ) AS do ON o.ID_Ord=do.ID_Order 
+WHERE o.Status=1 AND do.Dish_Count!=do.Ready_Count AND o.ID_Emp=2
+
+simple sql который не пашет в access
+SELECT * FROM Orders AS o JOIN (SELECT * FROM Dishes_Order ) AS do ON o.ID_Ord=do.ID_Order 
+
+адптируем нужный запрос под аксес:
+SELECT do.ID_dish, do.dish_count, do.ready_count, d.Name_Dish FROM Orders AS o INNER JOIN (SELECT do.ID_Dish, do.ID_Order, do.Dish_Count, do.Ready_Count FROM Dishes_Order AS do ) AS do 
+	ON o.ID_Ord=do.ID_Order INNER JOIN (SELECT d.Name_Dish, d.ID_Dish FROM Dishes AS d) AS d ON d.ID_Dish=do.ID_Dish
+WHERE o.Status=1 AND do.Dish_Count<>do.Ready_Count AND o.ID_Emp=2 

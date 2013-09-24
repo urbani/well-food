@@ -13,6 +13,7 @@ namespace TRPO.Structures
         public String dish;
         public String type;
         public bool isSpecial;
+
         
 
 

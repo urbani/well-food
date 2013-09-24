@@ -51,7 +51,7 @@ namespace TRPO.Model
                 INNER JOIN
                         (
                         SELECT 
-                                di.ID_Dish, 
+                                di.ID_Dish,
                                 (prices.price*(1 + di.Percent/100)/100) as price,
                                 di.Name_Dish, di.Dish_Type
                         FROM 
@@ -75,7 +75,7 @@ namespace TRPO.Model
                         ) as jo
                         ON m.ID_Dish=jo.ID_Dish
                 WHERE 
-	            m.Date_Menu like('" + Time.getCurrentTime() + "');");
+	            m.Date_Menu like('" + TRPOGlobal.getCurrentTime() + "');");
             while (reader.Read())
             {
                 tmpDish.id = Convert.ToInt32(reader[0]);
@@ -91,6 +91,117 @@ namespace TRPO.Model
 
             connector.closeConnection();
             return resultList;
+        }
+        /// <summary>
+        /// провести заказ
+        /// </summary>
+        /// <param name="id_empl">id клиента</param>
+        /// <param name="orderList">список блюд в заказе</param>
+        public int checkoutOrder(int id_empl, List<orderEnrty> orderList)
+        {
+            int timesChanges = 0;
+            connector.openConnection();
+            
+
+            int idOrd = getOpenOrderFromEmloy(id_empl);
+            if (idOrd == -1)
+            {
+                connector.executeNonQuery(String.Format("INSERT INTO Orders (ID_Emp, Status) VALUES ({0},  1)", id_empl));
+                idOrd = getOpenOrderFromEmloy(id_empl);
+
+            }
+
+            
+            foreach(orderEnrty dish in orderList)
+            {
+                timesChanges += connector.executeNonQuery(String.Format("INSERT INTO Dishes_Order (Id_dish, id_order, dish_count, ready_count) VALUES ({0},  {1} , {2}, 0)", dish.id, idOrd, dish.Count));
+
+            }
+            connector.closeConnection();
+            return timesChanges;
+        }
+
+        /// <summary>
+        /// выдает в заказ(откр. или закрытый) занесенный в БД по id клиента
+        /// </summary>
+        /// <param name="emplId">id клиента</param>
+        /// <param name="readyOrder">заказ открыт?</param>
+        /// <returns></returns>
+        public List<orderEnrty> getOrder(int emplId, bool readyOrder = true)
+        {
+            List<orderEnrty> order = new List<orderEnrty>();
+            connector.openConnection();
+            OleDbDataReader reader = connector.executeQuery(String.Format(@"SELECT do.ID_Dish, o.Status, o.ID_Emp FROM Orders AS o JOIN (SELECT do.ID_Dish, do.ID_Order, do.Dish_Count, do.Ready_Count FROM Dishes_Order AS do ) AS do ON o.ID_Ord=do.ID_Order 
+WHERE o.Status=1 AND do.Dish_Count!=do.Ready_Count AND o.ID_Emp={0}",emplId));
+            while(reader.Read())
+            {
+
+            }
+
+
+            connector.closeConnection();
+            return order;
+        }
+
+
+        /// <summary>
+        /// сообщает № открытого заказа по ID клиента
+        /// </summary>
+        /// <param name="emlId"></param>
+        /// <returns></returns>
+        private int getOpenOrderFromEmloy(int emlId, bool status=true)
+        {
+            int intFormStatus = status?1:0;
+            connector.openConnection(true);
+            OleDbDataReader reader = connector.executeQuery(String.Format("SELECT id_ord FROM Orders WHERE id_emp={0} AND Status={1}",emlId,intFormStatus));
+            int id_ord = -1;
+            while (reader.Read())
+            {
+                id_ord = Convert.ToInt32(reader[0]);
+            }
+            connector.closeConnection(true);
+            return id_ord;
+        }
+
+        /// <summary>
+        /// сообщает цену блюда по его ID
+        /// </summary>
+        /// <param name="dishId"></param>
+        /// <returns></returns>
+        float getPriceByDishId(int dishId)
+        {
+            connector.openConnection(true);
+            float price = 0;
+            OleDbDataReader reader = connector.executeQuery(String.Format(@"
+                SELECT 
+                        (prices.price*(1 + di.Percent/100)/100) as price
+
+                FROM 
+                    Dishes AS di 
+                INNER JOIN
+                    (
+                        SELECT 
+                            pd.ID_Dish, 
+                            SUM(pd.Product_Count * pr.Price) AS Price 
+                        FROM 
+                            Products_Dishes pd 
+                        INNER JOIN 
+                            Products pr 
+                        ON 
+                            pd.ID_Prod = pr.ID_Prod 
+                        GROUP BY 
+                            pd.ID_Dish
+                    ) AS prices
+                ON 
+                    di.ID_Dish = prices.ID_Dish
+                WHERE di.Id_dish={0}", dishId));
+            while (reader.Read())
+            {
+                price = Convert.ToInt32(reader[0]);
+            }
+
+            connector.closeConnection(true);
+            return price;
         }
     }
 }
