@@ -16,20 +16,24 @@ namespace TRPO.Controller
         User user;
         private ClientManager clientManager;
 
-        Dictionary<int, int> companyIds = new Dictionary<int,int>();
-        public List<string> companyList = new List<string>();
+        public Dictionary<int, int> companyIds = new Dictionary<int, int>(); //храним id`шники - № в списки - id - в базе
+        public List<string> companyList = new List<string>(); //название компании, для вывода в списке
 
-        Dictionary<int, int> employIds  = new Dictionary<int, int>();
+        public Dictionary<int, int> employIds = new Dictionary<int, int>();
         public List<string> employList = new List<string>();
-        //CurrencyManager currencyManager= (CurrencyManager)this.BindingContext[listBox.DataSource]; 
-
-        
+ 
         public ClientManagementConroller(User u)
         {
             
             user = u;
             clientManager = new ClientManager();
  
+        }
+
+        public int getEmployId()
+        {
+
+            return employIds[view.getIndexSelectedEmploy()];
         }
 
         public void fillEmployList()
@@ -72,9 +76,9 @@ namespace TRPO.Controller
             }
         }
 
-        public void addForm(IClientManagable c)
+        public void addForm(IClientManagable somethingView)
         {
-            view = c;
+            view = somethingView;
         }
 
 

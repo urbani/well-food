@@ -8,13 +8,21 @@ namespace TRPO.Model
 {
     public class User
     {
-        private int id;
-        private String name;
-        private String surname;
-        private String patronymic;
-        public Roles role;
+        private int Id;
+        private String Name;
+        private String Surname;
+        private String Patronymic;
+        private Roles Role;
+        private String LinkToPhoto;
 
-        private String linkToPhoto;
+        public String name { get { return Name; } }
+        public String surname { get { return Surname; } }
+        public String patronymic { get { return Patronymic; } }
+        public int id { get { return Id; } }
+        public Roles role { get { return Role; } }
+        public String linkToPhoto;
+
+        
 
         private bool authenticated;
 
@@ -60,24 +68,24 @@ namespace TRPO.Model
                 
                 while (reader.Read())
                 {
-                    id = Convert.ToInt32(reader[0]);
-                    name = reader[1].ToString();
-                    surname = reader[2].ToString();
-                    patronymic = reader[3].ToString();
-                    linkToPhoto = reader[4].ToString();
+                    Id = Convert.ToInt32(reader[0]);
+                    Name = reader[1].ToString();
+                    Surname = reader[2].ToString();
+                    Patronymic = reader[3].ToString();
+                    LinkToPhoto = reader[4].ToString();
                     switch(reader[5].ToString())
                     {
                         case ("Administrator"):
-                            role = Roles.Administrator;
+                            Role = Roles.Administrator;
                             break;
                         case ("Chief"):
-                            role = Roles.Chief;
+                            Role = Roles.Chief;
                             break;
                         case ("Manager"):
-                            role = Roles.Manager;
+                            Role = Roles.Manager;
                             break;
                         case ("Courier"):
-                            role = Roles.Courier;
+                            Role = Roles.Courier;
                             break;
                     }
 
@@ -86,12 +94,12 @@ namespace TRPO.Model
                 reader.Close();
             } else
             {
-                id = -1;
-                name = null;
-                surname = null;
-                patronymic = null;
-                role = Roles.Unnown;
-                linkToPhoto = null;
+                Id = -1;
+                Name = null;
+                Surname = null;
+                Patronymic = null;
+                Role = Roles.Unnown;
+                LinkToPhoto = null;
             }
         }
 
