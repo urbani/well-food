@@ -127,16 +127,25 @@ namespace TRPO.Model
         /// <param name="emplId">id клиента</param>
         /// <param name="readyOrder">заказ открыт?</param>
         /// <returns></returns>
-        public List<orderEnrty> getOrder(int emplId, bool readyOrder = true)
+        public List<orderEnrty> getPlacedOrder(int emplId, bool readyOrder = true)
         {
+            readyOrder = false;
+            String readyOrderSymbol = readyOrder ? "=" : "<>"; //должны ли все блюда в заказе быть выполнены
             List<orderEnrty> order = new List<orderEnrty>();
             connector.openConnection();
-            OleDbDataReader reader = connector.executeQuery(String.Format(@"SELECT do.ID_Dish, o.Status, o.ID_Emp FROM Orders AS o JOIN (SELECT do.ID_Dish, do.ID_Order, do.Dish_Count, do.Ready_Count FROM Dishes_Order AS do ) AS do ON o.ID_Ord=do.ID_Order 
-WHERE o.Status=1 AND do.Dish_Count!=do.Ready_Count AND o.ID_Emp={0}",emplId));
+            List<int> dishIdsList = new List<int>();
+            OleDbDataReader reader = connector.executeQuery(String.Format(@"SELECT do.ID_Dish, do.Dish_Count FROM Orders AS o INNER JOIN 
+                (SELECT do.ID_Dish, do.ID_Order, do.Dish_Count, do.Ready_Count FROM Dishes_Order AS do ) AS do ON o.ID_Ord=do.ID_Order 
+                WHERE o.Status=1 AND do.Dish_Count{1}do.Ready_Count AND o.ID_Emp={0}", emplId,readyOrderSymbol));
+            int id=0;
+            int count=0;
             while(reader.Read())
             {
-
+                id = Convert.ToInt32(reader[0]);
+                count = Convert.ToInt32(reader[1]);
+                order.Add(new orderEnrty(getDishName(id), getPriceByDishId(id), id, count));
             }
+            
 
 
             connector.closeConnection();
@@ -202,6 +211,25 @@ WHERE o.Status=1 AND do.Dish_Count!=do.Ready_Count AND o.ID_Emp={0}",emplId));
 
             connector.closeConnection(true);
             return price;
+        }
+
+        /// <summary>
+        /// возвращает название блюда, по его ID
+        /// </summary>
+        /// <param name="dishId"></param>
+        /// <returns></returns>
+        String getDishName(int dishId)
+        {
+            String dishName="";
+            connector.openConnection(true);
+            OleDbDataReader reader = connector.executeQuery(String.Format(@"SELECT name_dish FROM dishes WHERE id_dish={0}", dishId));
+            while (reader.Read())
+            {
+                dishName = Convert.ToString(reader[0]);
+            }
+            connector.closeConnection(true);
+            return dishName;
+
         }
     }
 }

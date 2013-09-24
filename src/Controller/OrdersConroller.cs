@@ -16,7 +16,8 @@ namespace TRPO.Controller
     {
         IOrderManagable view;
         //класс над объектом пользователь-сотрудник (ФИО фото роль и т.д.)
-        User user; 
+        User user;
+        int clientId = -1; //id-клиента с которым мы рабдотали в предывдущий раз
         
         public List<CourierListEntry> currentMenu = new List<CourierListEntry>(); //текущее меню в системном виде
         List<orderEnrty> currentOrder = new List<orderEnrty>(); //текущий заказ в системном виде
@@ -66,6 +67,34 @@ namespace TRPO.Controller
             }
             
         }
+
+        /// <summary>
+        /// обработчик выдачи заказа
+        /// </summary>
+        public void handlerViewReadyOrder()
+        {
+            if (view.getEmplId() == clientId)
+                return;
+            clientId = view.getEmplId();
+            List<orderEnrty> placedOrderList = new List<orderEnrty>();
+            placedOrderList = orderManager.getPlacedOrder(clientId, true);
+            ListViewItem[] viewOrder = new ListViewItem[placedOrderList.Count];
+
+            int ptr = 0;
+            ListViewItem temp = new ListViewItem();
+            foreach (orderEnrty entry in placedOrderList)
+            {
+                temp = new ListViewItem(entry.Dish);
+                temp.SubItems.Add(entry.Cost.ToString());
+                temp.SubItems.Add(entry.Count.ToString());
+                viewOrder[ptr] = temp;
+                ptr++;
+            }
+
+            view.updatePlacedOrderMenu(viewOrder);
+        }
+
+
         /// <summary>
         /// возвращает список блюд выбранных для заказа, подготовленный для добавление в листВью
         /// </summary>

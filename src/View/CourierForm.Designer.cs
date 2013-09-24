@@ -66,18 +66,19 @@
             this.buyOrderMenu = new System.Windows.Forms.ListView();
             this.column1 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.column2 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.column3 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.label3 = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
             this.totalLabel = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.button1 = new System.Windows.Forms.Button();
             this.tabPage6 = new System.Windows.Forms.TabPage();
             this.splitContainerOnTab2 = new System.Windows.Forms.SplitContainer();
-            this.listView1 = new System.Windows.Forms.ListView();
+            this.placedOrderMenu = new System.Windows.Forms.ListView();
             this.columnHeader9 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader10 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.button2 = new System.Windows.Forms.Button();
-            this.column3 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.label2 = new System.Windows.Forms.Label();
-            this.label3 = new System.Windows.Forms.Label();
+            this.columnHeader5 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.mainTable.SuspendLayout();
             this.headerTable.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
@@ -276,6 +277,7 @@
             this.tabControl1.SelectedIndex = 0;
             this.tabControl1.Size = new System.Drawing.Size(984, 643);
             this.tabControl1.TabIndex = 5;
+            this.tabControl1.SelectedIndexChanged += new System.EventHandler(this.tabControl1_SelectedIndexChanged);
             // 
             // tabPage5
             // 
@@ -544,6 +546,31 @@
             this.column2.Text = "Стоимость";
             this.column2.Width = 95;
             // 
+            // column3
+            // 
+            this.column3.Text = "Количество";
+            this.column3.Width = 98;
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(255, 2);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(106, 24);
+            this.label3.TabIndex = 7;
+            this.label3.Text = "нет заказа";
+            this.label3.Visible = false;
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(146, 2);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(113, 24);
+            this.label2.TabIndex = 6;
+            this.label2.Text = "Состояние:";
+            this.label2.Visible = false;
+            // 
             // totalLabel
             // 
             this.totalLabel.AutoSize = true;
@@ -594,7 +621,7 @@
             // 
             // splitContainerOnTab2.Panel1
             // 
-            this.splitContainerOnTab2.Panel1.Controls.Add(this.listView1);
+            this.splitContainerOnTab2.Panel1.Controls.Add(this.placedOrderMenu);
             // 
             // splitContainerOnTab2.Panel2
             // 
@@ -603,24 +630,25 @@
             this.splitContainerOnTab2.SplitterDistance = 530;
             this.splitContainerOnTab2.TabIndex = 5;
             // 
-            // listView1
+            // placedOrderMenu
             // 
-            this.listView1.Activation = System.Windows.Forms.ItemActivation.OneClick;
-            this.listView1.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.placedOrderMenu.Activation = System.Windows.Forms.ItemActivation.OneClick;
+            this.placedOrderMenu.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this.columnHeader9,
-            this.columnHeader10});
-            this.listView1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.listView1.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.listView1.FullRowSelect = true;
-            this.listView1.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.Nonclickable;
-            this.listView1.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.listView1.Location = new System.Drawing.Point(0, 0);
-            this.listView1.Name = "listView1";
-            this.listView1.Size = new System.Drawing.Size(970, 530);
-            this.listView1.Sorting = System.Windows.Forms.SortOrder.Ascending;
-            this.listView1.TabIndex = 4;
-            this.listView1.UseCompatibleStateImageBehavior = false;
-            this.listView1.View = System.Windows.Forms.View.Details;
+            this.columnHeader10,
+            this.columnHeader5});
+            this.placedOrderMenu.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.placedOrderMenu.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.placedOrderMenu.FullRowSelect = true;
+            this.placedOrderMenu.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.Nonclickable;
+            this.placedOrderMenu.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.placedOrderMenu.Location = new System.Drawing.Point(0, 0);
+            this.placedOrderMenu.Name = "placedOrderMenu";
+            this.placedOrderMenu.Size = new System.Drawing.Size(970, 530);
+            this.placedOrderMenu.Sorting = System.Windows.Forms.SortOrder.Ascending;
+            this.placedOrderMenu.TabIndex = 4;
+            this.placedOrderMenu.UseCompatibleStateImageBehavior = false;
+            this.placedOrderMenu.View = System.Windows.Forms.View.Details;
             // 
             // columnHeader9
             // 
@@ -629,8 +657,8 @@
             // 
             // columnHeader10
             // 
-            this.columnHeader10.Text = "Цена";
-            this.columnHeader10.Width = 76;
+            this.columnHeader10.Text = "Стоиомсть";
+            this.columnHeader10.Width = 103;
             // 
             // button2
             // 
@@ -643,30 +671,10 @@
             this.button2.Text = "Выдать заказ";
             this.button2.UseVisualStyleBackColor = true;
             // 
-            // column3
+            // columnHeader5
             // 
-            this.column3.Text = "Количество";
-            this.column3.Width = 98;
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(146, 2);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(113, 24);
-            this.label2.TabIndex = 6;
-            this.label2.Text = "Состояние:";
-            this.label2.Visible = false;
-            // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(255, 2);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(106, 24);
-            this.label3.TabIndex = 7;
-            this.label3.Text = "нет заказа";
-            this.label3.Visible = false;
+            this.columnHeader5.Text = "Количество";
+            this.columnHeader5.Width = 119;
             // 
             // CourierForm
             // 
@@ -755,7 +763,7 @@
         private System.Windows.Forms.ColumnHeader column1;
         private System.Windows.Forms.ColumnHeader column2;
         private System.Windows.Forms.TabPage tabPage6;
-        private System.Windows.Forms.ListView listView1;
+        private System.Windows.Forms.ListView placedOrderMenu;
         private System.Windows.Forms.ColumnHeader columnHeader9;
         private System.Windows.Forms.ColumnHeader columnHeader10;
         private System.Windows.Forms.SplitContainer splitContainerHorizontal;
@@ -768,5 +776,6 @@
         private System.Windows.Forms.ColumnHeader column3;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.ColumnHeader columnHeader5;
     }
 }

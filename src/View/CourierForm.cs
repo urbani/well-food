@@ -129,6 +129,7 @@ namespace TRPO.View
                 }
             }
             lastEmployIndex = headerList2.SelectedIndex;
+            //MessageBox.Show(tabControl1.SelectedIndex.ToString());
         }
 
         private void headerList1_SelectedIndexChanged(object sender, EventArgs e) 
@@ -326,6 +327,16 @@ namespace TRPO.View
         public int getIndexSelectedEmploy()
         {
             return headerList2.SelectedIndex;
+        }
+
+        private void tabControl1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            ordersController.handlerViewReadyOrder();
+        }
+
+        public void updatePlacedOrderMenu(ListViewItem[] orderArr)
+        {
+            placedOrderMenu.Items.AddRange(orderArr);
         }
 
 

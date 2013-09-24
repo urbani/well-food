@@ -19,6 +19,7 @@ namespace TRPO.View
         void clearOrderMenu();
         int getEmplId();
         void setWindowTitile(String Title);
+        void updatePlacedOrderMenu(ListViewItem[] viewPlacedOrder);
 
     
     }
