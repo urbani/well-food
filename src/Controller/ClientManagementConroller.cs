@@ -32,8 +32,13 @@ namespace TRPO.Controller
 
         public int getEmployId()
         {
+            //TODO отладить: при смени компании где-то вызывается этот код
+            int index = view.getIndexSelectedEmploy();
+            if (employIds.ContainsKey(index))
+                return employIds[index];
+            else 
+                return -1;
 
-            return employIds[view.getIndexSelectedEmploy()];
         }
 
         public void fillEmployList()

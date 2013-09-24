@@ -190,6 +190,7 @@
             this.headerList1.Size = new System.Drawing.Size(347, 28);
             this.headerList1.TabIndex = 2;
             this.headerList1.SelectedIndexChanged += new System.EventHandler(this.headerList1_SelectedIndexChanged);
+            this.headerList1.SelectionChangeCommitted += new System.EventHandler(this.headerList1_SelectionChangeCommitted);
             // 
             // headerList2
             // 

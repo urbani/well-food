@@ -33,6 +33,10 @@ namespace TRPO.Controller
             } 
             set { value = currentOrderList[clientId]; } 
         }
+
+        List<orderEnrty> placedOrderList = new List<orderEnrty>(); //выполненный заказ текущего клиента
+        
+
         OrderManager orderManager = new OrderManager(); //модель курьера
         
         /// <summary>
@@ -87,7 +91,7 @@ namespace TRPO.Controller
         public void updatePlacedOrderMenu()
         {
             clientId = view.getEmplId();
-            List<orderEnrty> placedOrderList = new List<orderEnrty>();
+            
             placedOrderList = orderManager.getPlacedOrder(clientId, true);
             ListViewItem[] viewOrder = new ListViewItem[placedOrderList.Count];
 
@@ -107,6 +111,8 @@ namespace TRPO.Controller
 
             view.updatePlacedOrderMenu(viewOrder);
             view.updatePlaceOrderTotalPrice(totalPrice);
+            String status = (placedOrderList.Count > 0) ? "Выполнен" : "Нет заказа";
+            view.updatePlecedStatusOrder(status);
         }
 
 
@@ -165,11 +171,11 @@ namespace TRPO.Controller
             throw new ArgumentException();
         }
 
-        public void checkoutOrder()
+        public void createOrder()
         {
             try
             {
-                orderManager.checkoutOrder(view.getEmplId(), currentOrder);
+                orderManager.createOrder(view.getEmplId(), currentOrder);
                 view.clearOrderMenu();
             }
             catch (ApplicationException ex)
@@ -201,6 +207,13 @@ namespace TRPO.Controller
                 total += entry.Cost;
             }
             return total;
+        }
+
+        public void checkoutOrder()
+        {
+            if (placedOrderList.Count == 0)
+                return;
+
         }
 
     }

@@ -140,19 +140,20 @@ namespace TRPO.View
             ordersController.updateOrderMenu();
             ordersController.updatePlacedOrderMenu();
         }
+        private void headerList1_SelectionChangeCommitted(object sender, EventArgs e)
+        {
+
+        }
 
         private void headerList1_SelectedIndexChanged(object sender, EventArgs e) 
         {
-            //if (systemChange)
-            //{
-            //    systemChange = false;
-            //    return;
-            //}
             clientManagementController.fillEmployList();
-
-            ordersController.clientId = getEmplId(true);
+            try { ordersController.clientId = getEmplId(true); }
+            catch (KeyNotFoundException) { }
+            
             ordersController.updateOrderMenu();
             ordersController.updatePlacedOrderMenu();
+
         }
 
         public void updateCompanyList()
@@ -300,7 +301,7 @@ namespace TRPO.View
 
         private void button1_Click(object sender, EventArgs e)
         {
-            ordersController.checkoutOrder();
+            ordersController.createOrder();
         }
         public void clearOrderMenu()
         {
@@ -324,6 +325,7 @@ namespace TRPO.View
 
         public int getIndexSelectedEmploy()
         {
+            int t = headerList2.SelectedIndex;
             return headerList2.SelectedIndex;
         }
 
@@ -346,6 +348,11 @@ namespace TRPO.View
         public void updatePlaceOrderTotalPrice(float totalPrice)
         {
             placedOrderTotalSum.Text = String.Format("{0} руб", totalPrice);
+        }
+
+        public void updatePlecedStatusOrder(String statusMsg)
+        {
+            placedStatusOrder.Text = statusMsg;
         }
 
 

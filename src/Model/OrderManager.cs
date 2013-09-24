@@ -97,12 +97,10 @@ namespace TRPO.Model
         /// </summary>
         /// <param name="id_empl">id клиента</param>
         /// <param name="orderList">список блюд в заказе</param>
-        public int checkoutOrder(int id_empl, List<orderEnrty> orderList)
+        public int createOrder(int id_empl, List<orderEnrty> orderList)
         {
             int timesChanges = 0;
             connector.openConnection();
-            
-
             int idOrd = getOpenOrderFromEmloy(id_empl);
             if (idOrd == -1)
             {
@@ -110,8 +108,6 @@ namespace TRPO.Model
                 idOrd = getOpenOrderFromEmloy(id_empl);
 
             }
-
-            
             foreach(orderEnrty dish in orderList)
             {
                 timesChanges += connector.executeNonQuery(String.Format("INSERT INTO Dishes_Order (Id_dish, id_order, dish_count, ready_count) VALUES ({0},  {1} , {2}, 0)", dish.id, idOrd, dish.Count));
@@ -122,14 +118,13 @@ namespace TRPO.Model
         }
 
         /// <summary>
-        /// выдает в заказ(откр. или закрытый) занесенный в БД по id клиента
+        /// выдает заказ занесенный в БД по id клиента и "статусу" заказа (вып. || не вып.)
         /// </summary>
         /// <param name="emplId">id клиента</param>
         /// <param name="readyOrder">заказ открыт?</param>
         /// <returns></returns>
         public List<orderEnrty> getPlacedOrder(int emplId, bool readyOrder = true)
         {
-            readyOrder = false;
             String readyOrderSymbol = readyOrder ? "=" : "<>"; //должны ли все блюда в заказе быть выполнены
             List<orderEnrty> order = new List<orderEnrty>();
             connector.openConnection();
@@ -154,7 +149,7 @@ namespace TRPO.Model
 
 
         /// <summary>
-        /// сообщает № открытого заказа по ID клиента
+        /// сообщает № заказа по ID клиента и статусу заказа
         /// </summary>
         /// <param name="emlId"></param>
         /// <returns></returns>
@@ -231,6 +226,28 @@ namespace TRPO.Model
             connector.closeConnection(true);
             return dishName;
 
+        }
+
+        public void checkoutOrder(int emplId)
+        {
+
+        }
+
+        bool orderIsReadyAndOpen(int emplId)
+        {
+            connector.openConnection(true);
+            int ptr = 0;
+            OleDbDataReader reader = connector.executeQuery(String.Format(@"SELECT id_ord FROM Orders AS o INNER JOIN 
+                (SELECT do.ID_Dish, do.ID_Order, do.Dish_Count, do.Ready_Count FROM Dishes_Order AS do ) AS do ON o.ID_Ord=do.ID_Order 
+                WHERE o.Status=1 AND do.Dish_Count=do.Ready_Count AND o.ID_Emp={0}",emplId));
+            while (reader.Read())
+            {
+                ptr++;
+            }
+            if (ptr > 0)
+                return true;
+            else 
+                return false;
         }
     }
 }

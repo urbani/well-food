@@ -32,7 +32,12 @@ namespace TRPO.View
         /// </summary>
         /// <param name="totalPrice"></param>
         void updatePlaceOrderTotalPrice(float totalPrice);
-        
+
+        /// <summary>
+        /// обновляет статус зделанного заказа во view
+        /// </summary>
+        /// <param name="statusMsg"></param>
+        void updatePlecedStatusOrder(String statusMsg);
         /// <summary>
         /// возвращает список блюд, выбранных клиентов. Первый id - id-клиента
         /// </summary>
