@@ -24,7 +24,7 @@ namespace TRPO.Model
             while (reader.Read())
             {
                 result.Add(reader[0].ToString());
-            }
+             }
 
             reader.Close();
 
