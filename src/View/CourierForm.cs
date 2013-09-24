@@ -342,7 +342,7 @@ namespace TRPO.View
 
         private void button2_Click(object sender, EventArgs e)
         {
-
+            ordersController.checkoutOrder();
         }
 
         public void updatePlaceOrderTotalPrice(float totalPrice)

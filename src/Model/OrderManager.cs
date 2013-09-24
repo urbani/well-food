@@ -228,26 +228,37 @@ namespace TRPO.Model
 
         }
 
-        public void checkoutOrder(int emplId)
-        {
-
-        }
-
-        bool orderIsReadyAndOpen(int emplId)
+        public bool checkoutOrder(int emplId)
         {
             connector.openConnection(true);
-            int ptr = 0;
+            int orderId= getOrderId(emplId, true);
+            int result;
+            result = connector.executeNonQuery(String.Format(@"UPDATE Orders SET status=2 WHERE id_ord={0}", orderId));
+            if (result > 0)
+                return true;
+            else
+                return false;
+        }
+
+        /// <summary>
+        /// сообщает id заказа (выполненного или не выполненного)
+        /// </summary>
+        /// <param name="emplId"></param>
+        /// <returns></returns>
+        int getOrderId(int emplId, bool ready=true)
+        {
+            connector.openConnection(true);
+            int id = -1;
+            String readySymbol = ready ? "=" : "<>";
             OleDbDataReader reader = connector.executeQuery(String.Format(@"SELECT id_ord FROM Orders AS o INNER JOIN 
                 (SELECT do.ID_Dish, do.ID_Order, do.Dish_Count, do.Ready_Count FROM Dishes_Order AS do ) AS do ON o.ID_Ord=do.ID_Order 
-                WHERE o.Status=1 AND do.Dish_Count=do.Ready_Count AND o.ID_Emp={0}",emplId));
+                WHERE o.Status=1 AND do.Dish_Count{1}do.Ready_Count AND o.ID_Emp={0}",emplId, readySymbol));
             while (reader.Read())
             {
-                ptr++;
+                id=Convert.ToInt32(reader[0]);
             }
-            if (ptr > 0)
-                return true;
-            else 
-                return false;
+            connector.closeConnection(true);
+            return id;
         }
     }
 }

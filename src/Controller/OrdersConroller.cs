@@ -111,7 +111,7 @@ namespace TRPO.Controller
 
             view.updatePlacedOrderMenu(viewOrder);
             view.updatePlaceOrderTotalPrice(totalPrice);
-            String status = (placedOrderList.Count > 0) ? "Выполнен" : "Нет заказа";
+            String status = (placedOrderList.Count > 0) ? "Открыт" : "Нет заказа";
             view.updatePlecedStatusOrder(status);
         }
 
@@ -213,6 +213,16 @@ namespace TRPO.Controller
         {
             if (placedOrderList.Count == 0)
                 return;
+            bool result = orderManager.checkoutOrder(clientId);
+            if (result)
+            {
+                updatePlacedOrderMenu();
+                view.updatePlecedStatusOrder("Выполнен");
+            }
+            else
+                view.showMsg("Не удалось провести заказ", ErrorLevels.Info);
+
+
 
         }
 
