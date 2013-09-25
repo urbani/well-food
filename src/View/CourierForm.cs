@@ -184,13 +184,8 @@ namespace TRPO.View
             foreach (int i in Enumerable.Range(0, listViewList.Count))
             {
                 listViewList[i].Items.Clear();
-                
+                listViewList[i].Items.AddRange(listDishes[i]);
             }
-
-            menuList1.Items.AddRange(listDishes[0]);
-            menuList2.Items.AddRange(listDishes[1]);
-            menuList3.Items.AddRange(listDishes[2]);
-            menuList4.Items.AddRange(listDishes[3]);
         }
 
 
@@ -209,7 +204,7 @@ namespace TRPO.View
 
         private void orderMenu_DoubleClick(object sender, EventArgs e) 
         {
-            ordersController.removeDishFromOrder(buyOrderMenu.SelectedItems[0].Text, Convert.ToSingle(buyOrderMenu.SelectedItems[0].SubItems[1].Text));
+            ordersController.removeDishFromOrder();
             ordersController.updateOrderMenu();
             changeTotalLabel(ordersController.getTotalPrice());
         }
@@ -241,7 +236,7 @@ namespace TRPO.View
                 return;
             }
             ordersController.dishindex = curList.SelectedIndices[0];
-            ordersController.addDishToOrder(curList.SelectedItems[0].Text, Convert.ToSingle(curList.SelectedItems[0].SubItems[1].Text));
+            ordersController.addDishToOrder();
 
             ordersController.updateOrderMenu();
             changeTotalLabel(ordersController.getTotalPrice());
@@ -253,6 +248,7 @@ namespace TRPO.View
 
         private void menuList1_DoubleClick(object sender, EventArgs e)
         {
+            ordersController.dishindex = buyOrderMenu.SelectedIndices[0];
             curTypeMenu = DishesTypes.Первое;
             curList = menuList1;
             handlerMenuList_DoubleClick();

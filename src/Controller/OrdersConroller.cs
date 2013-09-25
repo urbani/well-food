@@ -60,11 +60,10 @@ namespace TRPO.Controller
         /// </summary>
         /// <param name="dish"></param>
         /// <param name="price"></param>
-        public void addDishToOrder(String dish, float price)
+        public void addDishToOrder()
         {
 
             int index = view.getIndexSelectedDish();
-            //currentMenu[index].
             foreach (int i in Enumerable.Range(0, currentOrder.Count))
             {
                 if (currentOrder[i].id == currentMenu[dishindex].id)
@@ -83,11 +82,11 @@ namespace TRPO.Controller
         /// </summary>
         /// <param name="dish"></param>
         /// <param name="price"></param>
-        public void removeDishFromOrder(String dish, float price)
+        public void removeDishFromOrder()
         {
             foreach (int i in Enumerable.Range(0, currentOrder.Count))
             {
-                if (currentOrder[i].Dish == dish)
+                if (currentOrder[i].id == currentMenu[dishindex].id)
                 {
                     orderEnrty temp = new orderEnrty(currentOrder[i]);
                     if (temp.Count == 1)
