@@ -138,7 +138,7 @@ namespace TRPO.Model
             {
                 id = Convert.ToInt32(reader[0]);
                 count = Convert.ToInt32(reader[1]);
-                order.Add(new orderEnrty(getDishName(id), getPriceByDishId(id), count, id,reader[2].ToString()));
+                order.Add(new orderEnrty(getDishName(id), getPriceByDishId(id), count, id,getLinkToPhoto(id)));
             }
             
 
@@ -259,6 +259,21 @@ namespace TRPO.Model
             }
             connector.closeConnection(true);
             return id;
+        }
+
+
+        String getLinkToPhoto(int idDish)
+        {
+            connector.openConnection(true);
+            String link = "";
+            OleDbDataReader reader = connector.executeQuery(String.Format(@"SELECT Link_To_Photo FROM Dishes WHERE ID_Dish={0}", idDish));
+            while (reader.Read())
+            {
+                link = reader[0].ToString();
+            }
+            connector.closeConnection(true);
+            return link;
+            
         }
     }
 }
