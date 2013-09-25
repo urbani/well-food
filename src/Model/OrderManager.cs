@@ -138,7 +138,7 @@ namespace TRPO.Model
             {
                 id = Convert.ToInt32(reader[0]);
                 count = Convert.ToInt32(reader[1]);
-                order.Add(new orderEnrty(getDishName(id), getPriceByDishId(id), count, id));
+                order.Add(new orderEnrty(getDishName(id), getPriceByDishId(id), count, id,reader[2].ToString()));
             }
             
 

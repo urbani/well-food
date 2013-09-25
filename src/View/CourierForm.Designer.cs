@@ -77,14 +77,14 @@
             this.placedOrderMenu = new System.Windows.Forms.ListView();
             this.columnHeader9 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader10 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.button2 = new System.Windows.Forms.Button();
             this.columnHeader5 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.splitContaintBottom = new System.Windows.Forms.SplitContainer();
-            this.label4 = new System.Windows.Forms.Label();
-            this.label5 = new System.Windows.Forms.Label();
-            this.placedStatusOrder = new System.Windows.Forms.Label();
-            this.placedOrderTotalSum = new System.Windows.Forms.Label();
             this.columnHeader6 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.splitContaintBottom = new System.Windows.Forms.SplitContainer();
+            this.placedOrderTotalSum = new System.Windows.Forms.Label();
+            this.placedStatusOrder = new System.Windows.Forms.Label();
+            this.label5 = new System.Windows.Forms.Label();
+            this.label4 = new System.Windows.Forms.Label();
+            this.button2 = new System.Windows.Forms.Button();
             this.mainTable.SuspendLayout();
             this.headerTable.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
@@ -349,6 +349,7 @@
             this.leftBodyTable.SelectedIndex = 0;
             this.leftBodyTable.Size = new System.Drawing.Size(611, 548);
             this.leftBodyTable.TabIndex = 4;
+            this.leftBodyTable.SelectedIndexChanged += new System.EventHandler(this.leftBodyTable_SelectedIndexChanged);
             // 
             // tabPage1
             // 
@@ -606,7 +607,7 @@
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(970, 48);
             this.button1.TabIndex = 6;
-            this.button1.Text = "Провести заказ";
+            this.button1.Text = "Открыть заказ";
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
@@ -671,22 +672,15 @@
             this.columnHeader10.Text = "Стоиомсть";
             this.columnHeader10.Width = 103;
             // 
-            // button2
-            // 
-            this.button2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.button2.Font = new System.Drawing.Font("Microsoft Sans Serif", 24F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.button2.Location = new System.Drawing.Point(0, 0);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(767, 66);
-            this.button2.TabIndex = 0;
-            this.button2.Text = "Выдать заказ";
-            this.button2.UseVisualStyleBackColor = true;
-            this.button2.Click += new System.EventHandler(this.button2_Click);
-            // 
             // columnHeader5
             // 
             this.columnHeader5.Text = "Количество";
             this.columnHeader5.Width = 119;
+            // 
+            // columnHeader6
+            // 
+            this.columnHeader6.Text = "Цена за 1 блюдо";
+            this.columnHeader6.Width = 131;
             // 
             // splitContaintBottom
             // 
@@ -709,23 +703,14 @@
             this.splitContaintBottom.SplitterDistance = 199;
             this.splitContaintBottom.TabIndex = 1;
             // 
-            // label4
+            // placedOrderTotalSum
             // 
-            this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(6, 0);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(77, 24);
-            this.label4.TabIndex = 0;
-            this.label4.Text = "Статус:";
-            // 
-            // label5
-            // 
-            this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(6, 42);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(73, 24);
-            this.label5.TabIndex = 1;
-            this.label5.Text = "Сумма:";
+            this.placedOrderTotalSum.AutoSize = true;
+            this.placedOrderTotalSum.Location = new System.Drawing.Point(85, 42);
+            this.placedOrderTotalSum.Name = "placedOrderTotalSum";
+            this.placedOrderTotalSum.Size = new System.Drawing.Size(56, 24);
+            this.placedOrderTotalSum.TabIndex = 3;
+            this.placedOrderTotalSum.Text = "0 руб";
             // 
             // placedStatusOrder
             // 
@@ -736,19 +721,35 @@
             this.placedStatusOrder.TabIndex = 2;
             this.placedStatusOrder.Text = "нет заказа";
             // 
-            // placedOrderTotalSum
+            // label5
             // 
-            this.placedOrderTotalSum.AutoSize = true;
-            this.placedOrderTotalSum.Location = new System.Drawing.Point(85, 42);
-            this.placedOrderTotalSum.Name = "placedOrderTotalSum";
-            this.placedOrderTotalSum.Size = new System.Drawing.Size(56, 24);
-            this.placedOrderTotalSum.TabIndex = 3;
-            this.placedOrderTotalSum.Text = "0 руб";
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(6, 42);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(73, 24);
+            this.label5.TabIndex = 1;
+            this.label5.Text = "Сумма:";
             // 
-            // columnHeader6
+            // label4
             // 
-            this.columnHeader6.Text = "Цена за 1 блюдо";
-            this.columnHeader6.Width = 131;
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(6, 0);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(77, 24);
+            this.label4.TabIndex = 0;
+            this.label4.Text = "Статус:";
+            // 
+            // button2
+            // 
+            this.button2.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.button2.Font = new System.Drawing.Font("Microsoft Sans Serif", 24F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.button2.Location = new System.Drawing.Point(0, 0);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(767, 66);
+            this.button2.TabIndex = 0;
+            this.button2.Text = "Выдать заказ";
+            this.button2.UseVisualStyleBackColor = true;
+            this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
             // CourierForm
             // 

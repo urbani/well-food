@@ -13,7 +13,7 @@ namespace TRPO.View
         /// обновляет меню в табе "новый заказ"
         /// </summary>
         /// <param name="listDishes"></param>
-        void updateMenuList(List<CourierListEntry> listDishes);
+        void updateMenuList(List<ListViewItem[]> listViewDishes);
 
         /// <summary>
         /// обновляет блюда выбранные для заказа текущим клинтом
@@ -42,9 +42,8 @@ namespace TRPO.View
         /// возвращает список блюд, выбранных клиентов. Первый id - id-клиента
         /// </summary>
         /// <returns></returns>
-        List<ListViewItem> getOrderMenu();
-        
-
+        int getSelectedDishType();
+        int getIndexSelectedDish();
 
         void clearOrderMenu();
         int getEmplId(bool silent=false);

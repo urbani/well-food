@@ -17,8 +17,17 @@ namespace TRPO.Controller
         IOrderManagable view;
         User user; //класс над объектом пользователь-сотрудник (ФИО фото роль и т.д.)
         public int clientId { get; set; } //id-клиента с которым мы рабдотали в предывдущий раз
+        public int typeIndex = 0;
+        public int dishindex = 0;
         
-        public List<CourierListEntry> currentMenu = new List<CourierListEntry>(); //текущее меню в системном виде
+
+        Dictionary<int, List<CourierListEntry>> currentMenuList = new Dictionary<int, List<CourierListEntry>>();
+        public List<CourierListEntry> currentMenu
+        {
+            get { return currentMenuList[typeIndex]; }
+            set { value = currentMenuList[typeIndex]; }
+        }
+
         Dictionary<int, List<orderEnrty>> currentOrderList = new Dictionary<int, List<orderEnrty>>();
         //List<orderEnrty> currentOrder = new List<orderEnrty>(); //текущий заказ в системном виде
         //геттеры и сеттеры творят чудеса!!!
@@ -46,9 +55,12 @@ namespace TRPO.Controller
         /// <param name="price"></param>
         public void addDishToOrder(String dish, float price)
         {
-            foreach (int i in Enumerable.Range(0,currentOrder.Count))
+
+            int index = view.getIndexSelectedDish();
+            //currentMenu[index].
+            foreach (int i in Enumerable.Range(0, currentOrder.Count))
             {
-                if (currentOrder[i].Dish == dish)
+                if (currentOrder[i].id == currentMenu[dishindex].id)
                 {
                     orderEnrty temp = new orderEnrty(currentOrder[i]);
                     temp.inreament();
@@ -56,8 +68,29 @@ namespace TRPO.Controller
                     return;
                 }
             }
+            currentOrder.Add(currentMenu[dishindex].ToOrderEntry());
+
+            //List<CourierListEntry> t = currentMenuList[view.getSelectedDishType()];
+            //List<orderEnrty> t2 = currentOrderList[1];
+            //foreach (CourierListEntry entry in currentMenuList[view.getSelectedDishType()])
+            //{
+            //    if(entry.id==view.
+            //}
+
+
             
-            currentOrder.Add(new orderEnrty(dish, price, 1, findIdDish(dish)));
+            //foreach (int i in Enumerable.Range(0,currentOrder.Count))
+            //{
+            //    if (currentOrder[i].id == view.)
+            //    {
+            //        orderEnrty temp = new orderEnrty(currentOrder[i]);
+            //        temp.inreament();
+            //        currentOrder[i] = temp;
+            //        return;
+            //    }
+            //}
+            
+            //currentOrder.Add(new orderEnrty(dish, price, 1, findIdDish(dish)));
         }
 
         /// <summary>
@@ -122,27 +155,17 @@ namespace TRPO.Controller
         /// <returns></returns>
         public void updateOrderMenu()
         {
-            ListViewItem[] viewOrder = new ListViewItem[currentOrder.Count];
-            int ptr = 0;
-            ListViewItem temp = new ListViewItem();
-            foreach (orderEnrty entry in currentOrder)
-            {
-                temp = new ListViewItem(entry.Dish);
-                temp.SubItems.Add(entry.Cost.ToString());
-                temp.SubItems.Add(entry.Count.ToString());
-                viewOrder[ptr] = temp ;
-                ptr++;
-            }
-
-            view.updateOrderMenu(viewOrder);
+            view.updateOrderMenu(Convertor.orderListToViewArr(currentOrder));
         }
 
         public OrdersConroller(User u)
         {
             user = u;
             clientId = -1;
-         //TODO:
-         //в загловок имя, роль
+            //создаем индекс во внутреннем представлении меню
+
+
+
         }
 
         public void addForm(IOrderManagable c)
@@ -190,8 +213,8 @@ namespace TRPO.Controller
         /// </summary>
         public void updateActiveMenu()
         {
-            currentMenu = orderManager.getActiveMenu();
-            view.updateMenuList(currentMenu);
+            currentMenuList = Convertor.dishListToMenuList(orderManager.getActiveMenu());
+            view.updateMenuList(Convertor.menuDictToViewArr(currentMenuList));
 
         }
 
