@@ -20,13 +20,13 @@ namespace TRPO.Structures
             get
             {
                 if (isSpecial)
-                    return 3;
+                    return 4;
                 else if (type == DishesTypes.Первое.ToString())
-                    return 0;
-                else if (type == DishesTypes.Второе.ToString())
                     return 1;
-                else if (type == DishesTypes.Третье.ToString())
+                else if (type == DishesTypes.Второе.ToString())
                     return 2;
+                else if (type == DishesTypes.Третье.ToString())
+                    return 3;
                 else
                     throw new ArgumentException("courier list enry error type");
             }

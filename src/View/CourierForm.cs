@@ -186,10 +186,11 @@ namespace TRPO.View
                 listViewList[i].Items.Clear();
                 
             }
-            listViewList[0].Items.AddRange(listDishes[1]);
-            listViewList[1].Items.AddRange(listDishes[2]);
-            listViewList[2].Items.AddRange(listDishes[3]);
-            listViewList[3].Items.AddRange(listDishes[4]);
+
+            menuList1.Items.AddRange(listDishes[0]);
+            menuList2.Items.AddRange(listDishes[1]);
+            menuList3.Items.AddRange(listDishes[2]);
+            menuList4.Items.AddRange(listDishes[3]);
         }
 
 
