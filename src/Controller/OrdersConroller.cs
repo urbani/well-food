@@ -15,13 +15,30 @@ namespace TRPO.Controller
     public class OrdersConroller
     {
         IOrderManagable view;
-        //класс над объектом пользователь-сотрудник (ФИО фото роль и т.д.)
-        User user; 
+        User user; //класс над объектом пользователь-сотрудник (ФИО фото роль и т.д.)
+        public int clientId { get; set; } //id-клиента с которым мы рабдотали в предывдущий раз
         
         public List<CourierListEntry> currentMenu = new List<CourierListEntry>(); //текущее меню в системном виде
-        List<orderEnrty> currentOrder = new List<orderEnrty>(); //текущий заказ в системном виде
-        OrderManager orderManager = new OrderManager(); //модель курьера
+        Dictionary<int, List<orderEnrty>> currentOrderList = new Dictionary<int, List<orderEnrty>>();
+        //List<orderEnrty> currentOrder = new List<orderEnrty>(); //текущий заказ в системном виде
+        //геттеры и сеттеры творят чудеса!!!
+        List<orderEnrty> currentOrder 
+        {
+            get 
+            {
+                if (!currentOrderList.ContainsKey(clientId))
+                    currentOrderList.Add(clientId, new List<orderEnrty>());
+                 return currentOrderList[clientId];
+                
+            } 
+            set { value = currentOrderList[clientId]; } 
+        }
 
+        List<orderEnrty> placedOrderList = new List<orderEnrty>(); //выполненный заказ текущего клиента
+        
+
+        OrderManager orderManager = new OrderManager(); //модель курьера
+        
         /// <summary>
         /// добавление блюда во внутренний список заказа
         /// </summary>
@@ -39,7 +56,8 @@ namespace TRPO.Controller
                     return;
                 }
             }
-            currentOrder.Add(new orderEnrty(dish, price,findIdDish(dish)));
+            
+            currentOrder.Add(new orderEnrty(dish, price, 1, findIdDish(dish)));
         }
 
         /// <summary>
@@ -66,11 +84,43 @@ namespace TRPO.Controller
             }
             
         }
+
+        /// <summary>
+        /// обработчик выдачи заказа
+        /// </summary>
+        public void updatePlacedOrderMenu()
+        {
+            clientId = view.getEmplId();
+            
+            placedOrderList = orderManager.getPlacedOrder(clientId, true);
+            ListViewItem[] viewOrder = new ListViewItem[placedOrderList.Count];
+
+            int ptr = 0;
+            float totalPrice = 0;
+            ListViewItem temp = new ListViewItem();
+            foreach (orderEnrty entry in placedOrderList)
+            {
+                temp = new ListViewItem(entry.Dish);
+                temp.SubItems.Add(entry.Cost.ToString());
+                temp.SubItems.Add(entry.Count.ToString());
+                temp.SubItems.Add(entry.Price.ToString());
+                viewOrder[ptr] = temp;
+                ptr++;
+                totalPrice += entry.Cost;
+            }
+
+            view.updatePlacedOrderMenu(viewOrder);
+            view.updatePlaceOrderTotalPrice(totalPrice);
+            String status = (placedOrderList.Count > 0) ? "Открыт" : "Нет заказа";
+            view.updatePlecedStatusOrder(status);
+        }
+
+
         /// <summary>
         /// возвращает список блюд выбранных для заказа, подготовленный для добавление в листВью
         /// </summary>
         /// <returns></returns>
-        public ListViewItem[] getOrderMenuForView()
+        public void updateOrderMenu()
         {
             ListViewItem[] viewOrder = new ListViewItem[currentOrder.Count];
             int ptr = 0;
@@ -83,13 +133,14 @@ namespace TRPO.Controller
                 viewOrder[ptr] = temp ;
                 ptr++;
             }
-            return viewOrder;
+
+            view.updateOrderMenu(viewOrder);
         }
 
         public OrdersConroller(User u)
         {
             user = u;
-            
+            clientId = -1;
          //TODO:
          //в загловок имя, роль
         }
@@ -120,25 +171,23 @@ namespace TRPO.Controller
             throw new ArgumentException();
         }
 
-        public void checkoutOrder()
+        public void createOrder()
         {
             try
             {
-                orderManager.checkoutOrder(view.getEmplId(), currentOrder);
+                orderManager.createOrder(view.getEmplId(), currentOrder);
                 view.clearOrderMenu();
             }
             catch (ApplicationException ex)
             { 
                 view.showMsg(ex.ToString(), ErrorLevels.Critical); 
-            }
-
-          
-           
-            
+            }  
 
         }
         
-
+        /// <summary>
+        /// обновлет во view теущиий список блюд в меню
+        /// </summary>
         public void updateActiveMenu()
         {
             currentMenu = orderManager.getActiveMenu();
@@ -146,6 +195,10 @@ namespace TRPO.Controller
 
         }
 
+        /// <summary>
+        /// возвращает сумму заказа
+        /// </summary>
+        /// <returns></returns>
         public float getTotalPrice()
         {
             float total = 0;
@@ -154,6 +207,23 @@ namespace TRPO.Controller
                 total += entry.Cost;
             }
             return total;
+        }
+
+        public void checkoutOrder()
+        {
+            if (placedOrderList.Count == 0)
+                return;
+            bool result = orderManager.checkoutOrder(clientId);
+            if (result)
+            {
+                updatePlacedOrderMenu();
+                view.updatePlecedStatusOrder("Выполнен");
+            }
+            else
+                view.showMsg("Не удалось провести заказ", ErrorLevels.Info);
+
+
+
         }
 
     }

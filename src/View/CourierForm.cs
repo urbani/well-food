@@ -24,6 +24,7 @@ namespace TRPO.View
         DialogResult notifyValue=DialogResult.Yes;
         int lastEmployIndex = 0; 
         int lastCompanyIndex = 0;
+        delegate void proprietyEvent();
         bool systemChange = false; //флаг изменение списка прозошло в системых целях (не по вызову пользователя)
         DishesTypes curTypeMenu; //если подчеркивает зеленым - то это чушь
 
@@ -55,18 +56,18 @@ namespace TRPO.View
             showMsg(msg, levels, MessageBoxButtons.OK);
         }
 
-        public void showMsg(String msg, GlobalObj.ErrorLevels levels, MessageBoxButtons buttons = MessageBoxButtons.OK)
+        public void showMsg(String msg,  GlobalObj.ErrorLevels levels, MessageBoxButtons buttons = MessageBoxButtons.OK, String title="")
         {
-            ;
-            String titile;
-            if (levels == GlobalObj.ErrorLevels.Info)
-                titile = "Уведомление";
-            else if (levels == GlobalObj.ErrorLevels.Critical)
-                titile = "Ошибка";
-            else
-                throw new NotImplementedException("showMsg courier не предвиденный ErrorLevel");
-            
-            notifyValue = MessageBox.Show(msg, titile, buttons);
+           if (title!="")
+           {
+                if (levels == GlobalObj.ErrorLevels.Info)
+                    title = "Уведомление";
+                else if (levels == GlobalObj.ErrorLevels.Critical)
+                    title = "Ошибка";
+                else
+                    throw new NotImplementedException("showMsg courier не предвиденный ErrorLevel");
+           }
+            notifyValue = MessageBox.Show(msg, title, buttons);
 
         }
 
@@ -75,7 +76,11 @@ namespace TRPO.View
             MessageBox.Show(msg, header);
         }
 
-
+        void handlerNewOrderEvent(proprietyEvent func, int tabIndex)
+        {
+            if (tabControl1.SelectedIndex==tabIndex || tabIndex==-1)
+                func();
+        }
 
 
         public int getIndexSelectedCompany()
@@ -97,7 +102,7 @@ namespace TRPO.View
         bool requestFromContinue()
         {
 
-            showMsg("выбрано несколько блюд, сбросить список и продолжить?", GlobalObj.ErrorLevels.Info, MessageBoxButtons.OKCancel);
+            showMsg("Выбрано несколько блюд, сбросить список и продолжить?", GlobalObj.ErrorLevels.Info, MessageBoxButtons.OKCancel, "Создание новогого заказа");
             if (notifyValue == DialogResult.Yes)
             {
                 handlerContinueChoose();
@@ -114,49 +119,42 @@ namespace TRPO.View
             buyOrderMenu.Items.Clear();
         }
 
+        /// <summary>
+        /// обработчик вызова(вызывать или нет?) viewReadyOrder
+        /// </summary>
+        void callHandlerViewReadyOrder()
+        {
+            if (tabControl1.SelectedIndex == 1)
+            {
+                ordersController.updatePlacedOrderMenu();
+            }
+        }
+
+
 
         private void headerList2_SelectionChangeCommitted(object sender, EventArgs e)
         {
-            if (buyOrderMenu.Items.Count != 0)
-            {
-                if (requestFromContinue())
-                {
-                    buyOrderMenu.Items.Clear();
-                }
-                else
-                {
-                    headerList2.SelectedIndex = lastEmployIndex;
-                }
-            }
-            lastEmployIndex = headerList2.SelectedIndex;
+            
+            ordersController.clientId = getEmplId(true);
+            ordersController.updateActiveMenu();
+            ordersController.updateOrderMenu();
+            ordersController.updatePlacedOrderMenu();
+        }
+        private void headerList1_SelectionChangeCommitted(object sender, EventArgs e)
+        {
+
         }
 
         private void headerList1_SelectedIndexChanged(object sender, EventArgs e) 
         {
-            if (systemChange)
-            {
-                systemChange = false;
-                return;
-            }
-            if (buyOrderMenu.Items.Count == 0)
-                clientManagementController.fillEmployList();
-            else
-            {
-                if (requestFromContinue())
-                {
-                    buyOrderMenu.Items.Clear();
-                    clientManagementController.fillEmployList();
-                }
-                else
-                {
-                    systemChange = true;
-                    headerList1.SelectedIndex = lastCompanyIndex;
-                }
-            }
-            lastCompanyIndex = headerList1.SelectedIndex;
-        }
+            clientManagementController.fillEmployList();
+            try { ordersController.clientId = getEmplId(true); }
+            catch (KeyNotFoundException) { }
+            
+            ordersController.updateOrderMenu();
+            ordersController.updatePlacedOrderMenu();
 
-        private void headerList2_SelectedIndexChanged(object sender, EventArgs e) { }
+        }
 
         public void updateCompanyList()
         {
@@ -218,8 +216,11 @@ namespace TRPO.View
         }
 
 
-
-
+        public void updateOrderMenu(ListViewItem[] dishesInOrder)
+        {
+            buyOrderMenu.Items.Clear();
+            buyOrderMenu.Items.AddRange(dishesInOrder);
+        }
 
 
         private void employEditButton_Click(object sender, EventArgs e)
@@ -231,8 +232,7 @@ namespace TRPO.View
         private void orderMenu_DoubleClick(object sender, EventArgs e) 
         {
             ordersController.removeDishFromOrder(buyOrderMenu.SelectedItems[0].Text, Convert.ToSingle(buyOrderMenu.SelectedItems[0].SubItems[1].Text));
-            buyOrderMenu.Items.Clear();
-            buyOrderMenu.Items.AddRange(ordersController.getOrderMenuForView());
+            ordersController.updateOrderMenu();
             changeTotalLabel(ordersController.getTotalPrice());
         }
 
@@ -262,8 +262,7 @@ namespace TRPO.View
             }
             ordersController.addDishToOrder(curList.SelectedItems[0].Text, Convert.ToSingle(curList.SelectedItems[0].SubItems[1].Text));
 
-            buyOrderMenu.Items.Clear();
-            buyOrderMenu.Items.AddRange(ordersController.getOrderMenuForView());
+            ordersController.updateOrderMenu();
             changeTotalLabel(ordersController.getTotalPrice());
 
             
@@ -302,17 +301,18 @@ namespace TRPO.View
 
         private void button1_Click(object sender, EventArgs e)
         {
-            ordersController.checkoutOrder();
+            ordersController.createOrder();
         }
         public void clearOrderMenu()
         {
             buyOrderMenu.Items.Clear();
         }
-        public int getEmplId()
+        public int getEmplId(bool silent=false)
         {
             if (Equals(null,headerList2.SelectedIndex))
             {
-                showMsg("Выбирите сотрудника", ErrorLevels.Info, MessageBoxButtons.OK);
+                if(!silent)
+                    showMsg("Выбирите сотрудника", ErrorLevels.Info, MessageBoxButtons.OK);
                 return -1;
             }
             return clientManagementController.getEmployId();
@@ -325,8 +325,36 @@ namespace TRPO.View
 
         public int getIndexSelectedEmploy()
         {
+            int t = headerList2.SelectedIndex;
             return headerList2.SelectedIndex;
         }
+
+        private void tabControl1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            
+        }
+
+        public void updatePlacedOrderMenu(ListViewItem[] orderArr)
+        {
+            placedOrderMenu.Items.Clear();
+            placedOrderMenu.Items.AddRange(orderArr);
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            ordersController.checkoutOrder();
+        }
+
+        public void updatePlaceOrderTotalPrice(float totalPrice)
+        {
+            placedOrderTotalSum.Text = String.Format("{0} руб", totalPrice);
+        }
+
+        public void updatePlecedStatusOrder(String statusMsg)
+        {
+            placedStatusOrder.Text = statusMsg;
+        }
+
 
 
 

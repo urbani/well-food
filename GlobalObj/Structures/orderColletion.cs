@@ -11,54 +11,55 @@ namespace TRPO.Structures
     /// </summary>
     public struct orderEnrty
     {
-        String dish; //название
+        String dish;
+        /// <summary>
+        /// название
+        /// </summary>
         public String Dish { get { return dish; } }
         
-        float price; //цена за шт.
+        /// <summary>
+        ///цена за шт.
+        /// </summary>
+        float price;
+        public float Price { get { return price ; } }
+       
+        /// <summary>
+        /// общая цена
+        /// </summary>
+        public float Cost { get { return price * count; } }
         
-        float cost; //общая цена
-        public float Cost { get { return cost; } }
-        
-        int count; //количество
+        int count; 
+        /// <summary>
+        /// количество
+        /// </summary>
         public int Count { get { return count; } }
 
         public int id;
         //полный конструктор
-        public orderEnrty(String dish, float price, float cost, int count, int id)
+        public orderEnrty(String dish, float price,  int count, int id)
         {
             this.dish = dish;
             this.price = price;
-            this.cost = cost;
             this.count = count;
             this.id = id;
         }
 
 
-        public orderEnrty(String dish, float price, float cost, int count)
+        public orderEnrty(String dish, float price, int count)
         {
             this.dish=dish;
-            this.price=price;
-            this.cost=cost;
+            this.price = price;
             this.count=count;
             id = 0;
         }
 
-        //конструктор ноого объекта, когда больше не чего не знаем/не нужно
-        public orderEnrty(String dish, float price, int id)
-        {
-            this.dish = dish;
-            this.price = price;
-            this.cost = price;
-            this.count = 1;
-            this.id = id;
-        }
+
 
         //конструктор ноого объекта, когда больше не чего не знаем/не нужно
         public orderEnrty(String dish, float price)
         {
             this.dish = dish;
             this.price = price;
-            this.cost = price;
             this.count = 1;
             id = 0;
         }
@@ -66,9 +67,8 @@ namespace TRPO.Structures
         public orderEnrty(orderEnrty entry)
         {
             this.dish = entry.Dish;
-            this.cost = entry.Cost;
             this.count = entry.Count;
-            this.price = this.cost / this.count;
+            this.price = entry.price;
             this.id = entry.id;
         }
 
@@ -77,7 +77,6 @@ namespace TRPO.Structures
             if (count+off<1)
                 throw new ArgumentException();
             this.count += off;
-            this.cost = this.price * this.count;
         }
         public void inreament()
         {
