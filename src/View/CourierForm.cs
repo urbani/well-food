@@ -31,6 +31,10 @@ namespace TRPO.View
         public CourierForm(ClientManagementConroller cmc, OrdersConroller oc)
         {
             InitializeComponent();
+            listViewList.Add(menuList1);
+            listViewList.Add(menuList2);
+            listViewList.Add(menuList3);
+            listViewList.Add(menuList4);
             clientManagementController = cmc;
             clientManagementController.addForm(this);
             ordersController = oc;
@@ -48,10 +52,7 @@ namespace TRPO.View
             headerList2.AutoCompleteSource = AutoCompleteSource.ListItems;
             ordersController.updateActiveMenu();
             buyOrderMenu.Items.Clear();
-            listViewList.Add(menuList1);
-            listViewList.Add(menuList2);
-            listViewList.Add(menuList3);
-            listViewList.Add(menuList4);
+
             
 
 
@@ -153,8 +154,8 @@ namespace TRPO.View
         private void headerList1_SelectedIndexChanged(object sender, EventArgs e) 
         {
             clientManagementController.fillEmployList();
-            try { ordersController.clientId = getEmplId(true); }
-            catch (KeyNotFoundException) { }
+            ordersController.clientId = getEmplId(true); 
+
             
             ordersController.updateOrderMenu();
             ordersController.updatePlacedOrderMenu();
@@ -182,9 +183,13 @@ namespace TRPO.View
         {
             foreach (int i in Enumerable.Range(0, listViewList.Count))
             {
-                listViewList[i].Clear();
-                listViewList[i].Items.AddRange(listDishes[i]);
-            }  
+                listViewList[i].Items.Clear();
+                
+            }
+            listViewList[0].Items.AddRange(listDishes[1]);
+            listViewList[1].Items.AddRange(listDishes[2]);
+            listViewList[2].Items.AddRange(listDishes[3]);
+            listViewList[3].Items.AddRange(listDishes[4]);
         }
 
 

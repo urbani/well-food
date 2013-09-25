@@ -56,8 +56,9 @@ namespace TRPO.GlobalObj
            return dishArr;
        }
 
-       static List<int> DishTypeIndex = new List<int> { 0,1, 2, 3 };
+       static List<int> DishTypeIndex = new List<int> { 1, 2, 3, 4 };
        public static List<int> dishTypeIndex { get { return DishTypeIndex; } }
+       public static int countTypeDish { get { return DishTypeIndex.Count; } }
 
        /// <summary>
        /// сортируют блюда по типу
@@ -65,7 +66,7 @@ namespace TRPO.GlobalObj
        public static Dictionary<int, List<CourierListEntry>> dishListToMenuList(List<CourierListEntry> dishList)
        {
            Dictionary<int, List<CourierListEntry>> sortedMenuList = new Dictionary<int, List<CourierListEntry>>();
-           foreach (int itype in Enumerable.Range(1, 3))
+           foreach (int itype in Enumerable.Range(1, countTypeDish))
                sortedMenuList.Add(itype, new List<CourierListEntry>());
            foreach (CourierListEntry entry in dishList)
            {
@@ -123,7 +124,7 @@ namespace TRPO.GlobalObj
        static ListViewItem[] viewListToViewArr (List<ListViewItem> listView)
        {
            ListViewItem[] viewArr = new ListViewItem[listView.Count];
-           foreach (int i in Enumerable.Range(0, listView.Count))
+           foreach (int i in Enumerable.Range(1, listView.Count))
            {
                viewArr[i] = viewArr[i];
            }

@@ -17,14 +17,21 @@ namespace TRPO.Controller
         IOrderManagable view;
         User user; //класс над объектом пользователь-сотрудник (ФИО фото роль и т.д.)
         public int clientId { get; set; } //id-клиента с которым мы рабдотали в предывдущий раз
-        public int typeIndex = 0;
-        public int dishindex = 0;
+        int TypeIndex;
+        public int typeIndex{ get { return TypeIndex; } set { TypeIndex = value + 1; } }
+
+        public int dishindex; 
         
 
         Dictionary<int, List<CourierListEntry>> currentMenuList = new Dictionary<int, List<CourierListEntry>>();
         public List<CourierListEntry> currentMenu
         {
-            get { return currentMenuList[typeIndex]; }
+            get 
+            {
+                if (!currentMenuList.ContainsKey(typeIndex))
+                    currentMenuList.Add(typeIndex, new List<CourierListEntry>());
+                return currentMenuList[typeIndex]; 
+            }
             set { value = currentMenuList[typeIndex]; }
         }
 
@@ -69,28 +76,6 @@ namespace TRPO.Controller
                 }
             }
             currentOrder.Add(currentMenu[dishindex].ToOrderEntry());
-
-            //List<CourierListEntry> t = currentMenuList[view.getSelectedDishType()];
-            //List<orderEnrty> t2 = currentOrderList[1];
-            //foreach (CourierListEntry entry in currentMenuList[view.getSelectedDishType()])
-            //{
-            //    if(entry.id==view.
-            //}
-
-
-            
-            //foreach (int i in Enumerable.Range(0,currentOrder.Count))
-            //{
-            //    if (currentOrder[i].id == view.)
-            //    {
-            //        orderEnrty temp = new orderEnrty(currentOrder[i]);
-            //        temp.inreament();
-            //        currentOrder[i] = temp;
-            //        return;
-            //    }
-            //}
-            
-            //currentOrder.Add(new orderEnrty(dish, price, 1, findIdDish(dish)));
         }
 
         /// <summary>
@@ -213,7 +198,9 @@ namespace TRPO.Controller
         /// </summary>
         public void updateActiveMenu()
         {
+            currentMenuList = new Dictionary<int, List<CourierListEntry>>();
             currentMenuList = Convertor.dishListToMenuList(orderManager.getActiveMenu());
+            currentMenuList.Remove(0);
             view.updateMenuList(Convertor.menuDictToViewArr(currentMenuList));
 
         }
