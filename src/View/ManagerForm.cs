@@ -144,6 +144,14 @@ namespace TRPO.View
         {
             boughtProducts.Rows.Remove(boughtProducts.SelectedRows[0]);
         }
+
+        private void boughtProducts_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                buyButton_Click(sender, new EventArgs());
+            }
+        }
         
     }
 }

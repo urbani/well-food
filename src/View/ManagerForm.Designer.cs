@@ -95,7 +95,7 @@
             // toolStripStatusLabel1
             // 
             this.toolStripStatusLabel1.Name = "toolStripStatusLabel1";
-            this.toolStripStatusLabel1.Size = new System.Drawing.Size(104, 20);
+            this.toolStripStatusLabel1.Size = new System.Drawing.Size(104, 17);
             this.toolStripStatusLabel1.Text = "Текст ошибки";
             this.toolStripStatusLabel1.Visible = false;
             // 
@@ -412,6 +412,7 @@
             this.boughtProducts.TabIndex = 10;
             this.boughtProducts.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.boughtProducts_CellDoubleClick);
             this.boughtProducts.Click += new System.EventHandler(this.ManagerForm_Click);
+            this.boughtProducts.KeyDown += new System.Windows.Forms.KeyEventHandler(this.boughtProducts_KeyDown);
             // 
             // dataGridViewTextBoxColumn3
             // 
