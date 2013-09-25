@@ -5,6 +5,7 @@ using System.Text;
 using TRPO.Structures;
 using TRPO.Model;
 using TRPO.View;
+using TRPO.GlobalObj;
 
 namespace TRPO.Controller
 {
@@ -28,6 +29,36 @@ namespace TRPO.Controller
         public void updateProductsList()
         {
             view.setProductsList(productManager.getProductsLeft());
+        }
+
+        public void updateReqProductsList()
+        {
+            view.setReqProductsList(productManager.getReqProducts());
+        }
+
+        public void addBoughtProducts()
+        {
+            List<ProductListEntry> tmp = null;
+            try
+            {
+                tmp = view.getBoughtProducts();
+            }
+            catch (FormatException ex)
+            {
+                view.showMsg("Ошибка! Неверный формат данных!", ErrorLevels.Info);
+            }
+            if (tmp != null && tmp.Count > 0)
+            {
+                productManager.addIncomeProducts(tmp);
+            }
+            view.clearLists();
+            updateProductsList();
+            updateReqProductsList();
+        }
+
+        public void addProdToBuy()
+        {
+            view.addProductToBuyList(view.getSelectedProd());
         }
     }
 }

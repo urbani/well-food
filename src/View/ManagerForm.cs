@@ -36,8 +36,8 @@ namespace TRPO.View
                     MessageBox.Show(msg);
                     break;
                 case GlobalObj.ErrorLevels.Info:
-                    statusStrip1.Text = msg;
-                    statusStrip1.Visible = true;
+                    toolStripStatusLabel1.Text = msg;
+                    toolStripStatusLabel1.Visible = true;
                     break;
             }
         }
@@ -47,39 +47,102 @@ namespace TRPO.View
             MessageBox.Show(msg, header);
         }
 
+        public ProductListEntry getSelectedProd()
+        {
+            if(storeDataGrid.Focused)
+            {
+                return new ProductListEntry(
+                    storeDataGrid.SelectedRows[0].Cells[0].Value.ToString(),
+                    Convert.ToDouble(storeDataGrid.SelectedRows[0].Cells[1].Value.ToString()),
+                    Convert.ToDouble(storeDataGrid.SelectedRows[0].Cells[2].Value.ToString()));
+            } else if (reqProdDataGrid.Focused)
+            {
+                return new ProductListEntry(
+                    reqProdDataGrid.SelectedRows[0].Cells[0].Value.ToString(), 
+                    Convert.ToDouble(reqProdDataGrid.SelectedRows[0].Cells[1].Value.ToString()), 
+                    Convert.ToDouble(reqProdDataGrid.SelectedRows[0].Cells[2].Value.ToString())
+                                            );
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+        public void addProductToBuyList(ProductListEntry p)
+        {
+            boughtProducts.Rows.Add(p.Name, p.Count, p.Price);
+        }
+
+        public void clearLists()
+        {
+            storeDataGrid.Rows.Clear();
+            reqProdDataGrid.Rows.Clear();
+            boughtProducts.Rows.Clear();
+        }
+
         public void setProductsList(List<ProductListEntry> plist)
         {
             foreach (ProductListEntry p in plist)
             {
-                storeDataGrid.Rows.Add(p.name, p.count);
+                storeDataGrid.Rows.Add(p.Name, p.Count, p.Price);
             }
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        public void setReqProductsList(List<ProductListEntry> plist)
         {
-        /*    Microsoft.Office.Interop.Excel.Application ExcelApp = new Microsoft.Office.Interop.Excel.Application();
-            Microsoft.Office.Interop.Excel.Workbook ExcelWorkBook;
-            Microsoft.Office.Interop.Excel.Worksheet ExcelWorkSheet;
-            ExcelWorkBook = ExcelApp.Workbooks.Add(System.Reflection.Missing.Value);
-            ExcelWorkSheet = (Microsoft.Office.Interop.Excel.Worksheet)ExcelWorkBook.Worksheets.get_Item(1);
-            for (int i = 1; i < dataGridView1.Columns.Count + 1; i++)
+            foreach (ProductListEntry p in plist)
             {
-                ExcelWorkSheet.Cells[1, i] = dataGridView1.Columns[i - 1].HeaderText;
+                reqProdDataGrid.Rows.Add(p.Name, p.Count, p.Price);
             }
-            for (int i = 0; i < dataGridView1.Rows.Count - 1; i++)
+        }
+
+        public List<ProductListEntry> getBoughtProducts()
+        {
+            List<ProductListEntry> res = new List<ProductListEntry>();
+            if (boughtProducts.Rows.Count > 0)
             {
-                for (int j = 0; j < dataGridView1.Columns.Count; j++)
+                foreach (DataGridViewRow r in boughtProducts.Rows)
                 {
-                    ExcelWorkSheet.Cells[i + 2, j + 1] = dataGridView1.Rows[i].Cells[j].Value.ToString();
+                    if (r.Cells[0].Value != null && r.Cells[1].Value != null && r.Cells[2].Value != null)
+                    {
+                        res.Add(new ProductListEntry(r.Cells[0].Value.ToString(), Convert.ToDouble(r.Cells[1].Value.ToString()), Convert.ToDouble(r.Cells[2].Value.ToString())));
+                    }
                 }
             }
-
-            ExcelApp.Visible = true;*/
+            return res;
         }
 
         private void ManagerForm_Load(object sender, EventArgs e)
         {
             prodController.updateProductsList();
+            prodController.updateReqProductsList();
+        }
+
+        private void buyButton_Click(object sender, EventArgs e)
+        {
+            toolStripStatusLabel1.Visible = false;
+            prodController.addBoughtProducts();
+        }
+
+        private void ManagerForm_Click(object sender, EventArgs e)
+        {
+            toolStripStatusLabel1.Visible = false;
+        }
+
+        private void storeDataGrid_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+        {
+            prodController.addProdToBuy();
+        }
+
+        private void reqProdDataGrid_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+        {
+            prodController.addProdToBuy();
+        }
+
+        private void boughtProducts_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+        {
+            boughtProducts.Rows.Remove(boughtProducts.SelectedRows[0]);
         }
         
     }
