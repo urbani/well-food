@@ -7,6 +7,7 @@ using TRPO.Model;
 using TRPO.Structures;
 using System.Windows.Forms;
 using TRPO.GlobalObj;
+using System.IO;
 
 namespace TRPO.Controller
 {
@@ -66,6 +67,7 @@ namespace TRPO.Controller
         {
 
             int index = view.getIndexSelectedDish();
+            bool nothing = true;
             foreach (int i in Enumerable.Range(0, currentOrder.Count))
             {
                 if (currentOrder[i].id == currentMenu[dishindex].id)
@@ -73,10 +75,44 @@ namespace TRPO.Controller
                     orderEnrty temp = new orderEnrty(currentOrder[i]);
                     temp.inreament();
                     currentOrder[i] = temp;
-                    return;
+                    nothing = false; ;
                 }
             }
-            currentOrder.Add(currentMenu[dishindex].ToOrderEntry());
+            if (nothing)
+                currentOrder.Add(currentMenu[dishindex].ToOrderEntry());
+            updateDishPhoto();
+            //void setDishPhoto(String path)
+
+        }
+
+        int findDishOrder(String dishName)
+        {
+            int index = 0;
+            foreach (int i in Enumerable.Range(0, currentOrder.Count))
+                if (currentOrder[i].Dish == orderDiahNameCrutch)
+                {
+                    index = i;
+                    break;
+                }
+            return index;
+        }
+
+        public void updateDishPhoto(bool isOrderChange=true)
+        {
+            String link = "";
+            if (isOrderChange)
+                link = currentMenu[dishindex].linkToPhoto;
+            else
+                link = currentOrder[findDishOrder(orderDiahNameCrutch)].LinkToPhoto;
+            if (link != "" && File.Exists(Properties.Settings.Default.dishesImagesFolderPath + link))
+            {
+
+                view.setDishPhoto(Properties.Settings.Default.dishesImagesFolderPath + link);
+            }
+            else
+            {
+                view.setDishPhoto(null);
+            }
         }
 
         /// <summary>
@@ -86,13 +122,7 @@ namespace TRPO.Controller
         /// <param name="price"></param>
         public void removeDishFromOrder()
         {
-            int index = 0;
-            foreach (int i in Enumerable.Range(0, currentOrder.Count))
-                if (currentOrder[i].Dish == orderDiahNameCrutch)
-                {
-                    index = i;
-                    break;
-                }
+            int index = findDishOrder(orderDiahNameCrutch);
             orderEnrty temp = new orderEnrty(currentOrder[index]);
             if (temp.Count == 1)
                 currentOrder.Remove(temp);

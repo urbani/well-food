@@ -198,7 +198,7 @@ namespace TRPO.View
 
         private void employEditButton_Click(object sender, EventArgs e)
         {
-            ClientManagerDialog cmd = new ClientManagerDialog();
+            ClientManagerDialog cmd = new ClientManagerDialog(clientManagementController,clientManagementController.getEmployId(), clientManagementController.getCompanyId());
             cmd.ShowDialog();
         }
 
@@ -345,6 +345,17 @@ namespace TRPO.View
             ordersController.typeIndex = leftBodyTable.SelectedIndex;
         }
 
+        private void headerTable_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+        public void setDishPhoto(String path)
+        {
+            if(Equals(null, path))
+                dishPicture.Image = null;
+            else
+                dishPicture.Image = Image.FromFile(path);
+        }
 
 
 

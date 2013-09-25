@@ -45,7 +45,7 @@ namespace TRPO.Model
             //TODO сделать в sql вычесление цены продукта (% * себесстоимость (с учетом, того сколько продуката в блюде)
             OleDbDataReader reader = connector.executeQuery(@"
                 SELECT 
-                    m.ID_dish, jo.price, jo.Name_dish, jo.Dish_Type, m.Is_Special
+                    m.ID_dish, jo.price, jo.Name_dish, jo.Dish_Type, m.Is_Special, jo.Link_To_Photo
                 FROM 
                     Menu as m
                 INNER JOIN
@@ -53,7 +53,7 @@ namespace TRPO.Model
                         SELECT 
                                 di.ID_Dish,
                                 (prices.price*(1 + di.Percent/100)/100) as price,
-                                di.Name_Dish, di.Dish_Type
+                                di.Name_Dish, di.Dish_Type, di.Link_To_Photo
                         FROM 
                             Dishes AS di 
                         INNER JOIN
@@ -83,8 +83,8 @@ namespace TRPO.Model
                 tmpDish.dish = reader[2].ToString();
                 tmpDish.type = reader[3].ToString();
                 tmpDish.isSpecial = Convert.ToBoolean(reader[4]);
+                tmpDish.linkToPhoto = reader[5].ToString();
                 
-
 
                 resultList.Add(tmpDish);
             }

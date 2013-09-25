@@ -44,6 +44,7 @@ namespace TRPO.View
         /// <returns></returns>
         int getSelectedDishType();
         int getIndexSelectedDish();
+        void setDishPhoto(String path);
 
         void clearOrderMenu();
         int getEmplId(bool silent=false);
