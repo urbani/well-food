@@ -12,11 +12,12 @@ namespace TRPO.Controller
     public class ClientManagementConroller
     {
         IClientManagable view;
+        IDialog dialog;
         //класс над объектом пользователь-сотрудник (ФИО фото роль и т.д.)
         User user;
         private ClientManager clientManager;
 
-        public Dictionary<int, int> companyIds = new Dictionary<int, int>(); //храним id`шники - № в списки - id - в базе
+        public Dictionary<int, int> companyIds = new Dictionary<int, int>(); //храним id`шники - id - в базе
         public List<string> companyList = new List<string>(); //название компании, для вывода в списке
 
         public Dictionary<int, int> employIds = new Dictionary<int, int>();
@@ -41,6 +42,16 @@ namespace TRPO.Controller
 
         }
 
+        public int getCompanyId()
+        {
+            //TODO отладить: при смени компании где-то вызывается этот код
+            int index = view.getIndexSelectedCompany();
+            if (companyIds.ContainsKey(index))
+                return companyIds[index];
+            else
+                return -1;
+
+        }
         public void fillEmployList()
         {
             
@@ -84,6 +95,19 @@ namespace TRPO.Controller
         public void addForm(IClientManagable somethingView)
         {
             view = somethingView;
+        }
+
+        public void addDialog(IDialog someDialog)
+        {
+            dialog = someDialog;
+
+        }
+
+        public void updateEmployDate()
+        {
+            clientManager.updateEmployData(dialog.getFileds(), dialog.getEmployId());
+            fillEmployList();
+
         }
 
 

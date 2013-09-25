@@ -22,20 +22,25 @@ namespace TRPO.View
         OrdersConroller ordersController;
         ListView curList = new ListView(); //список указателей на меню (1,2,3,ланч) - для упрощения управления
         DialogResult notifyValue=DialogResult.Yes;
-        int lastEmployIndex = 0; 
-        int lastCompanyIndex = 0;
         delegate void proprietyEvent();
         bool systemChange = false; //флаг изменение списка прозошло в системых целях (не по вызову пользователя)
         DishesTypes curTypeMenu; //если подчеркивает зеленым - то это чушь
+        List<ListView> listViewList = new List<ListView>();
+
 
         public CourierForm(ClientManagementConroller cmc, OrdersConroller oc)
         {
             InitializeComponent();
+            listViewList.Add(menuList1);
+            listViewList.Add(menuList2);
+            listViewList.Add(menuList3);
+            listViewList.Add(menuList4);
             clientManagementController = cmc;
             clientManagementController.addForm(this);
             ordersController = oc;
             ordersController.addForm(this);
             clientManagementController.fillCompanyList();
+            
             
             //включаем автозаполнение и подключаем источник данных
             headerList1.DataSource = clientManagementController.companyList;  
@@ -48,6 +53,7 @@ namespace TRPO.View
             ordersController.updateActiveMenu();
             buyOrderMenu.Items.Clear();
 
+            
 
 
         }
@@ -148,8 +154,8 @@ namespace TRPO.View
         private void headerList1_SelectedIndexChanged(object sender, EventArgs e) 
         {
             clientManagementController.fillEmployList();
-            try { ordersController.clientId = getEmplId(true); }
-            catch (KeyNotFoundException) { }
+            ordersController.clientId = getEmplId(true); 
+
             
             ordersController.updateOrderMenu();
             ordersController.updatePlacedOrderMenu();
@@ -173,45 +179,12 @@ namespace TRPO.View
         /// обновление доступного меню
         /// </summary>
         /// <param name="listDishes"></param>
-        public void updateMenuList(List<CourierListEntry> listDishes)
+        public void updateMenuList(List<ListViewItem[]> listDishes)
         {
-            menuList1.Items.Clear();
-            menuList2.Items.Clear();
-            menuList3.Items.Clear();
-            menuList4.Items.Clear();
-            String[] rawSting;
-
-            
-            int ptr = 0;
-            //listDishes[0].id = 2;
-            foreach (CourierListEntry dishWithPrice in listDishes)
+            foreach (int i in Enumerable.Range(0, listViewList.Count))
             {
-                rawSting = new String[] { dishWithPrice.dish, dishWithPrice.price.ToString() };
-               // dishWithPrice.id = 2;
-                ListViewItem tmp = new ListViewItem(rawSting);
-                if (dishWithPrice.isSpecial)
-                {
-                    
-                    menuList4.Items.Add(tmp);
-                }
-                else
-                {
-
-
-                    switch (dishWithPrice.type)
-                    {
-                        case ("Первое"):
-                            menuList1.Items.Add(tmp);
-                            break;
-                        case ("Второе"):
-                            menuList2.Items.Add(tmp);
-                            break;
-                        case ("Третье"):
-                            menuList3.Items.Add(tmp);
-                            break;
-                    }
-                }
-                ptr ++;
+                listViewList[i].Items.Clear();
+                listViewList[i].Items.AddRange(listDishes[i]);
             }
         }
 
@@ -225,30 +198,40 @@ namespace TRPO.View
 
         private void employEditButton_Click(object sender, EventArgs e)
         {
-            ClientManagerDialog cmd = new ClientManagerDialog();
+            ClientManagerDialog cmd = new ClientManagerDialog(clientManagementController,clientManagementController.getEmployId(), clientManagementController.getCompanyId());
             cmd.ShowDialog();
         }
 
+        /// <summary>
+        /// удаление блюда из списка заказов
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void orderMenu_DoubleClick(object sender, EventArgs e) 
         {
-            ordersController.removeDishFromOrder(buyOrderMenu.SelectedItems[0].Text, Convert.ToSingle(buyOrderMenu.SelectedItems[0].SubItems[1].Text));
+
+            //ordersController.updateDishIndexFromOrder(buyOrderMenu.SelectedIndices[0]);
+            ordersController.orderDiahNameCrutch = buyOrderMenu.SelectedItems[0].Text;
+            ordersController.removeDishFromOrder();
             ordersController.updateOrderMenu();
             changeTotalLabel(ordersController.getTotalPrice());
         }
 
-        public List<ListViewItem> getOrderMenu()
-        {
-            List<ListViewItem> result = new List<ListViewItem>();
-            foreach (ListViewItem entry in buyOrderMenu.Items)
-            {
-                result.Add(entry);
-            }
-            return result;
-        }
         void changeTotalLabel(float total)
         {
             totalLabel.Text = String.Format("{0} руб.", total);
         }
+
+        public int getSelectedDishType()
+        {
+            return tabControl1.SelectedIndex;
+        }
+
+        public int getIndexSelectedDish()
+        {
+            return curList.SelectedIndices[0];
+        }
+
 
         /// <summary>
         /// обработчик добавления новго элемента в список покупок
@@ -260,7 +243,8 @@ namespace TRPO.View
             {
                 return;
             }
-            ordersController.addDishToOrder(curList.SelectedItems[0].Text, Convert.ToSingle(curList.SelectedItems[0].SubItems[1].Text));
+            ordersController.dishindex = curList.SelectedIndices[0];
+            ordersController.addDishToOrder();
 
             ordersController.updateOrderMenu();
             changeTotalLabel(ordersController.getTotalPrice());
@@ -272,6 +256,7 @@ namespace TRPO.View
 
         private void menuList1_DoubleClick(object sender, EventArgs e)
         {
+            ordersController.dishindex = buyOrderMenu.SelectedIndices[0];
             curTypeMenu = DishesTypes.Первое;
             curList = menuList1;
             handlerMenuList_DoubleClick();
@@ -355,6 +340,22 @@ namespace TRPO.View
             placedStatusOrder.Text = statusMsg;
         }
 
+        private void leftBodyTable_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            ordersController.typeIndex = leftBodyTable.SelectedIndex;
+        }
+
+        private void headerTable_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+        public void setDishPhoto(String path)
+        {
+            if(Equals(null, path))
+                dishPicture.Image = null;
+            else
+                dishPicture.Image = Image.FromFile(path);
+        }
 
 
 

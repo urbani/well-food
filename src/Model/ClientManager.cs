@@ -61,5 +61,12 @@ namespace TRPO.Model
             return result;
         }
 
+        public void updateEmployData(List<String> data, int emplId)
+        {
+            connector.openConnection();
+            connector.executeNonQuery(String.Format("UPDATE Employee SET Surname={0}, Name_Emp={1}, Patronymic={2} WHERE ID_Emp={3}", data[1], data[2], data[3], emplId));
+            connector.closeConnection();
+        }
+
     }
 }

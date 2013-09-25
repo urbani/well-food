@@ -45,7 +45,7 @@ namespace TRPO.Model
             //TODO сделать в sql вычесление цены продукта (% * себесстоимость (с учетом, того сколько продуката в блюде)
             OleDbDataReader reader = connector.executeQuery(@"
                 SELECT 
-                    m.ID_dish, jo.price, jo.Name_dish, jo.Dish_Type, m.Is_Special
+                    m.ID_dish, jo.price, jo.Name_dish, jo.Dish_Type, m.Is_Special, jo.Link_To_Photo
                 FROM 
                     Menu as m
                 INNER JOIN
@@ -53,7 +53,7 @@ namespace TRPO.Model
                         SELECT 
                                 di.ID_Dish,
                                 (prices.price*(1 + di.Percent/100)/100) as price,
-                                di.Name_Dish, di.Dish_Type
+                                di.Name_Dish, di.Dish_Type, di.Link_To_Photo
                         FROM 
                             Dishes AS di 
                         INNER JOIN
@@ -83,8 +83,8 @@ namespace TRPO.Model
                 tmpDish.dish = reader[2].ToString();
                 tmpDish.type = reader[3].ToString();
                 tmpDish.isSpecial = Convert.ToBoolean(reader[4]);
+                tmpDish.linkToPhoto = reader[5].ToString();
                 
-
 
                 resultList.Add(tmpDish);
             }
@@ -138,7 +138,7 @@ namespace TRPO.Model
             {
                 id = Convert.ToInt32(reader[0]);
                 count = Convert.ToInt32(reader[1]);
-                order.Add(new orderEnrty(getDishName(id), getPriceByDishId(id), count, id));
+                order.Add(new orderEnrty(getDishName(id), getPriceByDishId(id), count, id,getLinkToPhoto(id)));
             }
             
 
@@ -259,6 +259,21 @@ namespace TRPO.Model
             }
             connector.closeConnection(true);
             return id;
+        }
+
+
+        String getLinkToPhoto(int idDish)
+        {
+            connector.openConnection(true);
+            String link = "";
+            OleDbDataReader reader = connector.executeQuery(String.Format(@"SELECT Link_To_Photo FROM Dishes WHERE ID_Dish={0}", idDish));
+            while (reader.Read())
+            {
+                link = reader[0].ToString();
+            }
+            connector.closeConnection(true);
+            return link;
+            
         }
     }
 }

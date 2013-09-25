@@ -68,6 +68,11 @@
     <Compile Include="GlobalObj\Time.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
     <Compile Include="Properties\Settings.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
@@ -124,6 +129,7 @@
     <Compile Include="src\View\CourierForm.Designer.cs">
       <DependentUpon>CourierForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="src\View\interfaces\IDialog.cs" />
     <Compile Include="src\View\interfaces\IMenuManagable.cs" />
     <Compile Include="src\View\interfaces\IAuthentification.cs" />
     <Compile Include="src\View\interfaces\IClientManagable.cs" />
@@ -144,9 +150,13 @@
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
+    <None Include="well-food Diagram.cd" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Properties\Resources.resx" />
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
     <EmbeddedResource Include="src\View\AdminForm.resx">
       <DependentUpon>AdminForm.cs</DependentUpon>
       <SubType>Designer</SubType>
