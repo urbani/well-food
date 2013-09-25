@@ -72,7 +72,7 @@ namespace TRPO.Model
             return result;
         }
 
-        //возвращает число оставшихся блюд
+        
         public int addReadyDishes(String dishName, int amount)
         {
             if ((dishName == "") || (amount <= 0)) 
@@ -116,9 +116,24 @@ namespace TRPO.Model
                     rowsChanged += connector.executeNonQuery("UPDATE Dishes_Order AS do SET do.Ready_Count = " + (amount + dishesReadyInOrder) + " WHERE do.ID_Order = " + currentOrder + "AND do.ID_Dish = " + currentDish);
                     amount = 0;
                 }
-
+                
             }
-                     
+
+
+            reader = connector.executeQuery("SELECT pd.ID_Prod, SUM(pd.Product_Count) AS needProd FROM Products_Dishes pd INNER JOIN Dishes di ON di.ID_Dish = pd.ID_Dish WHERE di.Name_Dish = \"" + dishName + "\" GROUP BY pd.ID_Prod");
+
+            Dictionary<int, Double> prodUsed = new Dictionary<int, Double>();
+            while (reader.Read())
+            {
+                prodUsed.Add(Convert.ToInt32(reader[0].ToString()), (Convert.ToDouble(reader[1]) * amount));
+            }
+
+            foreach (KeyValuePair<int, Double> p in prodUsed)
+            {
+                connector.executeNonQuery("INSERT INTO Prod_out (ID, ID_Prod, Amount, Out_Date) SELECT MAX(pout.ID) + 1 , " + p.Key + " , " + p.Value + ", \"" + DateTime.Now.ToShortDateString() + "\" FROM Prod_out pout");
+            }
+            //TODO:Prod_out update  
+            
             connector.closeConnection();
 
             return amount;
