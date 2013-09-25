@@ -202,8 +202,16 @@ namespace TRPO.View
             cmd.ShowDialog();
         }
 
+        /// <summary>
+        /// удаление блюда из списка заказов
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void orderMenu_DoubleClick(object sender, EventArgs e) 
         {
+
+            //ordersController.updateDishIndexFromOrder(buyOrderMenu.SelectedIndices[0]);
+            ordersController.orderDiahNameCrutch = buyOrderMenu.SelectedItems[0].Text;
             ordersController.removeDishFromOrder();
             ordersController.updateOrderMenu();
             changeTotalLabel(ordersController.getTotalPrice());

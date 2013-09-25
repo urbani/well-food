@@ -20,7 +20,9 @@ namespace TRPO.Controller
         int TypeIndex;
         public int typeIndex{ get { return TypeIndex; } set { TypeIndex = value + 1; } }
 
-        public int dishindex; 
+        public int dishindex=0;
+        public int orderIndex=0;
+        public String orderDiahNameCrutch; //:)
         
 
         Dictionary<int, List<CourierListEntry>> currentMenuList = new Dictionary<int, List<CourierListEntry>>();
@@ -84,21 +86,24 @@ namespace TRPO.Controller
         /// <param name="price"></param>
         public void removeDishFromOrder()
         {
+            int index = 0;
             foreach (int i in Enumerable.Range(0, currentOrder.Count))
-            {
-                if (currentOrder[i].id == currentMenu[dishindex].id)
+                if (currentOrder[i].Dish == orderDiahNameCrutch)
                 {
-                    orderEnrty temp = new orderEnrty(currentOrder[i]);
-                    if (temp.Count == 1)
-                        currentOrder.Remove(temp);
-                    else
-                    {
-                        temp.decreament();
-                        currentOrder[i] = temp;
-                    }
-                    return;
+                    index = i;
+                    break;
                 }
+            orderEnrty temp = new orderEnrty(currentOrder[index]);
+            if (temp.Count == 1)
+                currentOrder.Remove(temp);
+            else
+            {
+                temp.decreament();
+                currentOrder[index] = temp;
             }
+            return;
+
+            
             
         }
 
@@ -234,6 +239,7 @@ namespace TRPO.Controller
 
 
         }
+
 
     }
 }
