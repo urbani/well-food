@@ -532,8 +532,8 @@
             // splitContainerOnTab2.Panel2
             // 
             this.splitContainerOnTab2.Panel2.Controls.Add(this.splitContaintBottom);
-            this.splitContainerOnTab2.Size = new System.Drawing.Size(970, 600);
-            this.splitContainerOnTab2.SplitterDistance = 530;
+            this.splitContainerOnTab2.Size = new System.Drawing.Size(970, 584);
+            this.splitContainerOnTab2.SplitterDistance = 514;
             this.splitContainerOnTab2.TabIndex = 5;
             // 
             // placedOrderMenu
@@ -551,7 +551,7 @@
             this.placedOrderMenu.ImeMode = System.Windows.Forms.ImeMode.NoControl;
             this.placedOrderMenu.Location = new System.Drawing.Point(0, 0);
             this.placedOrderMenu.Name = "placedOrderMenu";
-            this.placedOrderMenu.Size = new System.Drawing.Size(970, 530);
+            this.placedOrderMenu.Size = new System.Drawing.Size(970, 514);
             this.placedOrderMenu.Sorting = System.Windows.Forms.SortOrder.Ascending;
             this.placedOrderMenu.TabIndex = 4;
             this.placedOrderMenu.UseCompatibleStateImageBehavior = false;
@@ -784,9 +784,10 @@
             // 
             // dishPicture
             // 
+            this.dishPicture.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.dishPicture.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.dishPicture.InitialImage = null;
-            this.dishPicture.Location = new System.Drawing.Point(3, 3);
+            this.dishPicture.Location = new System.Drawing.Point(279, 5);
             this.dishPicture.Name = "dishPicture";
             this.dishPicture.Size = new System.Drawing.Size(103, 95);
             this.dishPicture.TabIndex = 1;

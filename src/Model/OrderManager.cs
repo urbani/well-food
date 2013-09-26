@@ -157,14 +157,14 @@ namespace TRPO.Model
         {
             int intFormStatus = status?1:0;
             connector.openConnection(true);
-            OleDbDataReader reader = connector.executeQuery(String.Format("SELECT id_ord FROM Orders WHERE id_emp={0} AND Status={1}",emlId,intFormStatus));
+            OleDbDataReader reader = connector.executeQuery(String.Format("SELECT MAX(id_ord) FROM Orders"));
             int id_ord = -1;
             while (reader.Read())
             {
                 id_ord = Convert.ToInt32(reader[0]);
             }
             connector.closeConnection(true);
-            return id_ord;
+            return id_ord+1;
         }
 
         /// <summary>
