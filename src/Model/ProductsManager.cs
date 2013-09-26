@@ -61,7 +61,7 @@ namespace TRPO.Model
             foreach (KeyValuePair<String, Double> e in productsIn)
             {
                 left = e.Value - (productsOut.ContainsKey(e.Key) ? productsOut[e.Key] : 0);
-                if (left != 0)
+                if (left > 0)
                 {
                     result.Add(new ProductListEntry(e.Key, left, productPrices[e.Key]));
                     addedProducts.Add(e.Key);

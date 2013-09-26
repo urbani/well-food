@@ -85,17 +85,16 @@
             // 
             this.statusStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.toolStripStatusLabel1});
-            this.statusStrip1.Location = new System.Drawing.Point(0, 715);
+            this.statusStrip1.Location = new System.Drawing.Point(0, 577);
             this.statusStrip1.Name = "statusStrip1";
-            this.statusStrip1.Padding = new System.Windows.Forms.Padding(1, 0, 19, 0);
-            this.statusStrip1.Size = new System.Drawing.Size(1219, 22);
+            this.statusStrip1.Size = new System.Drawing.Size(914, 22);
             this.statusStrip1.TabIndex = 1;
             this.statusStrip1.Text = "Текст ошибки";
             // 
             // toolStripStatusLabel1
             // 
             this.toolStripStatusLabel1.Name = "toolStripStatusLabel1";
-            this.toolStripStatusLabel1.Size = new System.Drawing.Size(104, 17);
+            this.toolStripStatusLabel1.Size = new System.Drawing.Size(85, 17);
             this.toolStripStatusLabel1.Text = "Текст ошибки";
             this.toolStripStatusLabel1.Visible = false;
             // 
@@ -103,7 +102,6 @@
             // 
             this.splitContainer1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.splitContainer1.Location = new System.Drawing.Point(0, 0);
-            this.splitContainer1.Margin = new System.Windows.Forms.Padding(4);
             this.splitContainer1.Name = "splitContainer1";
             // 
             // splitContainer1.Panel1
@@ -113,9 +111,8 @@
             // splitContainer1.Panel2
             // 
             this.splitContainer1.Panel2.Controls.Add(this.splitContainer2);
-            this.splitContainer1.Size = new System.Drawing.Size(1219, 715);
-            this.splitContainer1.SplitterDistance = 388;
-            this.splitContainer1.SplitterWidth = 5;
+            this.splitContainer1.Size = new System.Drawing.Size(914, 577);
+            this.splitContainer1.SplitterDistance = 290;
             this.splitContainer1.TabIndex = 2;
             // 
             // tableLayoutPanel3
@@ -126,12 +123,11 @@
             this.tableLayoutPanel3.Controls.Add(this.label1, 0, 0);
             this.tableLayoutPanel3.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel3.Location = new System.Drawing.Point(0, 0);
-            this.tableLayoutPanel3.Margin = new System.Windows.Forms.Padding(4);
             this.tableLayoutPanel3.Name = "tableLayoutPanel3";
             this.tableLayoutPanel3.RowCount = 2;
-            this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 37F));
+            this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30F));
             this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel3.Size = new System.Drawing.Size(388, 715);
+            this.tableLayoutPanel3.Size = new System.Drawing.Size(290, 577);
             this.tableLayoutPanel3.TabIndex = 0;
             // 
             // storeDataGrid
@@ -157,15 +153,14 @@
             this.dataGridViewTextBoxColumn8,
             this.prodInStorePrice});
             this.storeDataGrid.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.storeDataGrid.Location = new System.Drawing.Point(4, 41);
-            this.storeDataGrid.Margin = new System.Windows.Forms.Padding(4);
+            this.storeDataGrid.Location = new System.Drawing.Point(3, 33);
             this.storeDataGrid.MultiSelect = false;
             this.storeDataGrid.Name = "storeDataGrid";
             this.storeDataGrid.RowHeadersVisible = false;
             this.storeDataGrid.RowHeadersWidth = 50;
             this.storeDataGrid.RowTemplate.Height = 24;
             this.storeDataGrid.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.storeDataGrid.Size = new System.Drawing.Size(380, 670);
+            this.storeDataGrid.Size = new System.Drawing.Size(284, 541);
             this.storeDataGrid.TabIndex = 10;
             this.storeDataGrid.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.storeDataGrid_CellDoubleClick);
             this.storeDataGrid.Click += new System.EventHandler(this.ManagerForm_Click);
@@ -200,10 +195,9 @@
             this.label1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label1.Location = new System.Drawing.Point(4, 12);
-            this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label1.Location = new System.Drawing.Point(3, 10);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(208, 25);
+            this.label1.Size = new System.Drawing.Size(173, 20);
             this.label1.TabIndex = 11;
             this.label1.Text = "В наличии на складе:";
             // 
@@ -211,7 +205,6 @@
             // 
             this.splitContainer2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.splitContainer2.Location = new System.Drawing.Point(0, 0);
-            this.splitContainer2.Margin = new System.Windows.Forms.Padding(4);
             this.splitContainer2.Name = "splitContainer2";
             // 
             // splitContainer2.Panel1
@@ -221,9 +214,8 @@
             // splitContainer2.Panel2
             // 
             this.splitContainer2.Panel2.Controls.Add(this.tableLayoutPanel4);
-            this.splitContainer2.Size = new System.Drawing.Size(826, 715);
-            this.splitContainer2.SplitterDistance = 401;
-            this.splitContainer2.SplitterWidth = 5;
+            this.splitContainer2.Size = new System.Drawing.Size(620, 577);
+            this.splitContainer2.SplitterDistance = 300;
             this.splitContainer2.TabIndex = 0;
             // 
             // tableLayoutPanel1
@@ -234,12 +226,11 @@
             this.tableLayoutPanel1.Controls.Add(this.label2, 0, 0);
             this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 0);
-            this.tableLayoutPanel1.Margin = new System.Windows.Forms.Padding(4);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
             this.tableLayoutPanel1.RowCount = 2;
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 37F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(401, 715);
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(300, 577);
             this.tableLayoutPanel1.TabIndex = 0;
             // 
             // reqProdDataGrid
@@ -265,15 +256,14 @@
             this.dataGridViewTextBoxColumn2,
             this.prodPriceCol});
             this.reqProdDataGrid.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.reqProdDataGrid.Location = new System.Drawing.Point(4, 41);
-            this.reqProdDataGrid.Margin = new System.Windows.Forms.Padding(4);
+            this.reqProdDataGrid.Location = new System.Drawing.Point(3, 33);
             this.reqProdDataGrid.MultiSelect = false;
             this.reqProdDataGrid.Name = "reqProdDataGrid";
             this.reqProdDataGrid.RowHeadersVisible = false;
             this.reqProdDataGrid.RowHeadersWidth = 50;
             this.reqProdDataGrid.RowTemplate.Height = 24;
             this.reqProdDataGrid.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.reqProdDataGrid.Size = new System.Drawing.Size(393, 670);
+            this.reqProdDataGrid.Size = new System.Drawing.Size(294, 541);
             this.reqProdDataGrid.TabIndex = 10;
             this.reqProdDataGrid.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.reqProdDataGrid_CellDoubleClick);
             this.reqProdDataGrid.Click += new System.EventHandler(this.ManagerForm_Click);
@@ -308,10 +298,9 @@
             this.label2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label2.Location = new System.Drawing.Point(4, 12);
-            this.label2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label2.Location = new System.Drawing.Point(3, 10);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(225, 25);
+            this.label2.Size = new System.Drawing.Size(180, 20);
             this.label2.TabIndex = 13;
             this.label2.Text = "Необходимо закупить:";
             // 
@@ -324,13 +313,12 @@
             this.tableLayoutPanel4.Controls.Add(this.label3, 0, 0);
             this.tableLayoutPanel4.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel4.Location = new System.Drawing.Point(0, 0);
-            this.tableLayoutPanel4.Margin = new System.Windows.Forms.Padding(4);
             this.tableLayoutPanel4.Name = "tableLayoutPanel4";
             this.tableLayoutPanel4.RowCount = 3;
-            this.tableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 37F));
+            this.tableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30F));
             this.tableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 53F));
-            this.tableLayoutPanel4.Size = new System.Drawing.Size(420, 715);
+            this.tableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 43F));
+            this.tableLayoutPanel4.Size = new System.Drawing.Size(316, 577);
             this.tableLayoutPanel4.TabIndex = 1;
             // 
             // tableLayoutPanel2
@@ -341,23 +329,21 @@
             this.tableLayoutPanel2.Controls.Add(this.buyButton, 1, 0);
             this.tableLayoutPanel2.Controls.Add(this.button1, 0, 0);
             this.tableLayoutPanel2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel2.Location = new System.Drawing.Point(4, 666);
-            this.tableLayoutPanel2.Margin = new System.Windows.Forms.Padding(4);
+            this.tableLayoutPanel2.Location = new System.Drawing.Point(3, 537);
             this.tableLayoutPanel2.Name = "tableLayoutPanel2";
             this.tableLayoutPanel2.RowCount = 1;
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel2.Size = new System.Drawing.Size(412, 45);
+            this.tableLayoutPanel2.Size = new System.Drawing.Size(310, 37);
             this.tableLayoutPanel2.TabIndex = 12;
             // 
             // buyButton
             // 
-            this.buyButton.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-                        | System.Windows.Forms.AnchorStyles.Right)));
+            this.buyButton.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.buyButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.buyButton.Location = new System.Drawing.Point(273, 4);
-            this.buyButton.Margin = new System.Windows.Forms.Padding(4);
+            this.buyButton.Location = new System.Drawing.Point(206, 3);
             this.buyButton.Name = "buyButton";
-            this.buyButton.Size = new System.Drawing.Size(135, 37);
+            this.buyButton.Size = new System.Drawing.Size(101, 31);
             this.buyButton.TabIndex = 11;
             this.buyButton.Text = "Провести";
             this.buyButton.UseVisualStyleBackColor = true;
@@ -365,13 +351,12 @@
             // 
             // button1
             // 
-            this.button1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-                        | System.Windows.Forms.AnchorStyles.Left)));
+            this.button1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left)));
             this.button1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.button1.Location = new System.Drawing.Point(4, 4);
-            this.button1.Margin = new System.Windows.Forms.Padding(4);
+            this.button1.Location = new System.Drawing.Point(3, 3);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(143, 37);
+            this.button1.Size = new System.Drawing.Size(107, 31);
             this.button1.TabIndex = 12;
             this.button1.Text = "Экспорт в Excel";
             this.button1.UseVisualStyleBackColor = true;
@@ -400,15 +385,14 @@
             this.priceCol});
             this.boughtProducts.Dock = System.Windows.Forms.DockStyle.Fill;
             this.boughtProducts.EditMode = System.Windows.Forms.DataGridViewEditMode.EditOnEnter;
-            this.boughtProducts.Location = new System.Drawing.Point(4, 41);
-            this.boughtProducts.Margin = new System.Windows.Forms.Padding(4);
+            this.boughtProducts.Location = new System.Drawing.Point(3, 33);
             this.boughtProducts.MultiSelect = false;
             this.boughtProducts.Name = "boughtProducts";
             this.boughtProducts.RowHeadersVisible = false;
             this.boughtProducts.RowHeadersWidth = 50;
             this.boughtProducts.RowTemplate.Height = 24;
             this.boughtProducts.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.boughtProducts.Size = new System.Drawing.Size(412, 617);
+            this.boughtProducts.Size = new System.Drawing.Size(310, 498);
             this.boughtProducts.TabIndex = 10;
             this.boughtProducts.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.boughtProducts_CellDoubleClick);
             this.boughtProducts.Click += new System.EventHandler(this.ManagerForm_Click);
@@ -444,22 +428,20 @@
             this.label3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label3.Location = new System.Drawing.Point(4, 12);
-            this.label3.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label3.Location = new System.Drawing.Point(3, 10);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(116, 25);
+            this.label3.Size = new System.Drawing.Size(94, 20);
             this.label3.TabIndex = 13;
             this.label3.Text = "Закуплено:";
             // 
             // ManagerForm
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1219, 737);
+            this.ClientSize = new System.Drawing.Size(914, 599);
             this.Controls.Add(this.splitContainer1);
             this.Controls.Add(this.statusStrip1);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "ManagerForm";
             this.Text = "Закупщик";
             this.Load += new System.EventHandler(this.ManagerForm_Load);
