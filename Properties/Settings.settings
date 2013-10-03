@@ -17,7 +17,7 @@
       <Value Profile="(Default)">../../img/</Value>
     </Setting>
     <Setting Name="refresh_rate_sec" Type="System.Int32" Scope="User">
-      <Value Profile="(Default)">5</Value>
+      <Value Profile="(Default)">3</Value>
     </Setting>
   </Settings>
 </SettingsFile>

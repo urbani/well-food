@@ -161,6 +161,7 @@
             this.toolStripStatusLabel = new System.Windows.Forms.ToolStripStatusLabel();
             this.tabPage6 = new System.Windows.Forms.TabPage();
             this.tabPage7 = new System.Windows.Forms.TabPage();
+            this.columnHeader5 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.mainTab.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.tableLayoutPanel3.SuspendLayout();
@@ -335,7 +336,7 @@
             this.getFromReadyButton.Name = "getFromReadyButton";
             this.getFromReadyButton.Size = new System.Drawing.Size(179, 30);
             this.getFromReadyButton.TabIndex = 0;
-            this.getFromReadyButton.Text = "Списать из готовых";
+            this.getFromReadyButton.Text = "Списать из остатка";
             this.getFromReadyButton.UseVisualStyleBackColor = true;
             // 
             // label13
@@ -343,11 +344,11 @@
             this.label13.Anchor = System.Windows.Forms.AnchorStyles.Right;
             this.label13.AutoSize = true;
             this.label13.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label13.Location = new System.Drawing.Point(19, 9);
+            this.label13.Location = new System.Drawing.Point(8, 1);
             this.label13.Name = "label13";
-            this.label13.Size = new System.Drawing.Size(77, 17);
+            this.label13.Size = new System.Drawing.Size(88, 34);
             this.label13.TabIndex = 2;
-            this.label13.Text = "В наличии";
+            this.label13.Text = "В наличии в остатке:";
             this.label13.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
             // ableToGetTextBox
@@ -639,7 +640,8 @@
             this.columnHeader1,
             this.columnHeader2,
             this.columnHeader3,
-            this.columnHeader4});
+            this.columnHeader4,
+            this.columnHeader5});
             this.listView1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.listView1.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.listView1.FullRowSelect = true;
@@ -662,7 +664,7 @@
             // columnHeader1
             // 
             this.columnHeader1.Text = "Блюдо";
-            this.columnHeader1.Width = 174;
+            this.columnHeader1.Width = 109;
             // 
             // columnHeader2
             // 
@@ -672,12 +674,12 @@
             // columnHeader3
             // 
             this.columnHeader3.Text = "Приготовлено";
-            this.columnHeader3.Width = 118;
+            this.columnHeader3.Width = 112;
             // 
             // columnHeader4
             // 
-            this.columnHeader4.Text = "Осталось";
-            this.columnHeader4.Width = 85;
+            this.columnHeader4.Text = "Необходимо";
+            this.columnHeader4.Width = 103;
             // 
             // tabPage2
             // 
@@ -1826,6 +1828,11 @@
             this.tabPage7.TabIndex = 0;
             this.tabPage7.Text = "Комплекс";
             // 
+            // columnHeader5
+            // 
+            this.columnHeader5.Text = "Остаток";
+            this.columnHeader5.Width = 72;
+            // 
             // ChiefForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -2035,5 +2042,6 @@
         protected System.Windows.Forms.Button getFromReadyButton;
         private System.Windows.Forms.Label label13;
         private System.Windows.Forms.TextBox ableToGetTextBox;
+        private System.Windows.Forms.ColumnHeader columnHeader5;
     }
 }
