@@ -11,11 +11,12 @@ namespace TRPO.Model
     {
         private OleDbConnection connection = null;
         private static string m_CONN_STR = Properties.Settings.Default.main_dbConnectionString;// "Provider=Microsoft.ACE.OLEDB.12.0;Data Source={0}";
-        int softStack = 0;//сколько раз был вызван мегкий openCoennection
+        int softStack = 0;//сколько раз был вызван мегкий openConnection
+        String connStr = String.Format(m_CONN_STR, Properties.Settings.Default.db_path);
+
 
         public DBConnector()
         {
-            String connStr = String.Format(m_CONN_STR, Properties.Settings.Default.db_path);
             connection = new OleDbConnection(connStr);
         }
 
@@ -32,6 +33,7 @@ namespace TRPO.Model
             //по логике вещей должна быть проверка ConnectionState.Opened! хотя это не так
             if ((connection != null) && (connection.State == ConnectionState.Closed))
             {
+                
                 connection.Open();
             }
         }
@@ -50,7 +52,7 @@ namespace TRPO.Model
  
             }
             if ((connection != null) && (connection.State != ConnectionState.Closed))
-            {
+            {      
                 connection.Close();
             }
         }

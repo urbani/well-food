@@ -36,6 +36,8 @@ namespace TRPO.Controller
         public void addReadyDishes()
         {
             int readyDishes = view.getReadyDishesAmount();
+           //TODO: Списать из уже готовых
+            // readyDishes -= 
             String readyDish = view.getSelectedDishName();
             int redundantDishes = dishesManager.addReadyDishes(readyDish, readyDishes);
             if (redundantDishes > 0)

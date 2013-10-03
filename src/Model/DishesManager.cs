@@ -245,7 +245,6 @@ namespace TRPO.Model
             }
 
             reader.Close();
-
             connector.closeConnection();
             return result;
 

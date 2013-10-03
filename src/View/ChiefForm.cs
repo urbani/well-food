@@ -13,6 +13,7 @@ using TRPO.Controller;
 using TRPO.Structures;
 using System.IO;
 using TRPO.GlobalObj;
+using TRPO.Properties;
 
 namespace TRPO.View
 {
@@ -22,6 +23,8 @@ namespace TRPO.View
         DishesManagementController dishesManagementContr;
         MenuManagementConroller menuController;
 
+        Timer refreshTimer;
+
         public ChiefForm(OrderCookController occ, DishesManagementController dmc, MenuManagementConroller mmc)
         {
             InitializeComponent();
@@ -30,8 +33,20 @@ namespace TRPO.View
             menuController = mmc;
             setDishInfo(new Dish());
             
+            refreshTimer = new Timer();
+            refreshTimer.Interval = Settings.Default.refresh_rate_sec * 1000;
+            refreshTimer.Tick += new EventHandler(refreshTimer_Tick);
+            refreshTimer.Enabled = true;
         }
 
+        private void refreshTimer_Tick(Object myObject, EventArgs myEventArgs)
+        {
+            if (listView1 != null && mainTab.SelectedIndex == 0) 
+            {
+                ordCookContr.updateOrderList();
+                dishesManagementContr.updateAbleToCookDishes();
+            }
+        }
 
         public void showMsg(String msg, GlobalObj.ErrorLevels el)
         {
@@ -208,7 +223,8 @@ namespace TRPO.View
                 {
                     selectedItem = listView1.Items.Count - 1;
                 }
-                this.listView1.Focus();
+                
+                //this.listView1.Focus();
                 this.listView1.Items[selectedItem].Selected = true;
             }
             dishesManagementContr.updateDishInfo();
@@ -518,6 +534,7 @@ namespace TRPO.View
 
         private void listView1_ItemSelectionChanged(object sender, ListViewItemSelectionChangedEventArgs e)
         {
+            dishesManagementContr.fillDishProd();
             dishesManagementContr.updateDishInfo();
             dishesManagementContr.updateAbleToCookDishes();
         }
@@ -533,6 +550,8 @@ namespace TRPO.View
         private void mainTab_Selected(object sender, TabControlEventArgs e)
         {
             toolStripStatusLabel.Visible = false;
+            ordCookContr.updateOrderList();
+            dishesManagementContr.updateAbleToCookDishes();
             dishesManagementContr.fillDishProd();
         }
 
@@ -789,6 +808,21 @@ namespace TRPO.View
             {
                 dishesManagementContr.updateDishPrice();
             }
+        }
+
+        private void ableToCookTextBox_TextChanged(object sender, EventArgs e)
+        {
+            readyDishesAmount.Maximum = Convert.ToInt32(ableToCookTextBox.Text);
+        }
+
+        private void ableToGetTextBox_TextChanged(object sender, EventArgs e)
+        {
+            readyDishesAmount2.Maximum = Convert.ToInt32(ableToGetTextBox.Text);
+        }
+
+        private void ChiefForm_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            refreshTimer.Enabled = false;
         }
     }
 }

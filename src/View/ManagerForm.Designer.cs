@@ -215,7 +215,7 @@
             // 
             this.splitContainer2.Panel2.Controls.Add(this.tableLayoutPanel4);
             this.splitContainer2.Size = new System.Drawing.Size(620, 577);
-            this.splitContainer2.SplitterDistance = 300;
+            this.splitContainer2.SplitterDistance = 299;
             this.splitContainer2.TabIndex = 0;
             // 
             // tableLayoutPanel1
@@ -230,7 +230,7 @@
             this.tableLayoutPanel1.RowCount = 2;
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(300, 577);
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(299, 577);
             this.tableLayoutPanel1.TabIndex = 0;
             // 
             // reqProdDataGrid
@@ -263,7 +263,7 @@
             this.reqProdDataGrid.RowHeadersWidth = 50;
             this.reqProdDataGrid.RowTemplate.Height = 24;
             this.reqProdDataGrid.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.reqProdDataGrid.Size = new System.Drawing.Size(294, 541);
+            this.reqProdDataGrid.Size = new System.Drawing.Size(293, 541);
             this.reqProdDataGrid.TabIndex = 10;
             this.reqProdDataGrid.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.reqProdDataGrid_CellDoubleClick);
             this.reqProdDataGrid.Click += new System.EventHandler(this.ManagerForm_Click);
@@ -318,7 +318,7 @@
             this.tableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30F));
             this.tableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.tableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 43F));
-            this.tableLayoutPanel4.Size = new System.Drawing.Size(316, 577);
+            this.tableLayoutPanel4.Size = new System.Drawing.Size(317, 577);
             this.tableLayoutPanel4.TabIndex = 1;
             // 
             // tableLayoutPanel2
@@ -333,7 +333,7 @@
             this.tableLayoutPanel2.Name = "tableLayoutPanel2";
             this.tableLayoutPanel2.RowCount = 1;
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel2.Size = new System.Drawing.Size(310, 37);
+            this.tableLayoutPanel2.Size = new System.Drawing.Size(311, 37);
             this.tableLayoutPanel2.TabIndex = 12;
             // 
             // buyButton
@@ -341,7 +341,7 @@
             this.buyButton.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.buyButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.buyButton.Location = new System.Drawing.Point(206, 3);
+            this.buyButton.Location = new System.Drawing.Point(207, 3);
             this.buyButton.Name = "buyButton";
             this.buyButton.Size = new System.Drawing.Size(101, 31);
             this.buyButton.TabIndex = 11;
@@ -392,7 +392,7 @@
             this.boughtProducts.RowHeadersWidth = 50;
             this.boughtProducts.RowTemplate.Height = 24;
             this.boughtProducts.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.boughtProducts.Size = new System.Drawing.Size(310, 498);
+            this.boughtProducts.Size = new System.Drawing.Size(311, 498);
             this.boughtProducts.TabIndex = 10;
             this.boughtProducts.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.boughtProducts_CellDoubleClick);
             this.boughtProducts.Click += new System.EventHandler(this.ManagerForm_Click);
