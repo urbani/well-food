@@ -82,10 +82,11 @@
             this.headerLabel2 = new System.Windows.Forms.Label();
             this.headerList1 = new System.Windows.Forms.ComboBox();
             this.headerList2 = new System.Windows.Forms.ComboBox();
-            this.headerSearchButton1 = new System.Windows.Forms.Button();
-            this.headerSearchButton2 = new System.Windows.Forms.Button();
             this.employEditButton = new System.Windows.Forms.Button();
             this.companyEditButton = new System.Windows.Forms.Button();
+            this.button3 = new System.Windows.Forms.Button();
+            this.button4 = new System.Windows.Forms.Button();
+            this.button5 = new System.Windows.Forms.Button();
             this.dishPicture = new System.Windows.Forms.PictureBox();
             this.mainTable.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
@@ -660,24 +661,26 @@
             // 
             this.splitContainer1.Panel2.Controls.Add(this.dishPicture);
             this.splitContainer1.Size = new System.Drawing.Size(996, 100);
-            this.splitContainer1.SplitterDistance = 603;
+            this.splitContainer1.SplitterDistance = 708;
             this.splitContainer1.TabIndex = 5;
             // 
             // headerTable
             // 
-            this.headerTable.ColumnCount = 4;
+            this.headerTable.ColumnCount = 5;
             this.headerTable.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 120F));
             this.headerTable.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 320F));
-            this.headerTable.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 76F));
+            this.headerTable.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 87F));
             this.headerTable.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.headerTable.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 93F));
             this.headerTable.Controls.Add(this.headerLabel1, 0, 0);
             this.headerTable.Controls.Add(this.headerLabel2, 0, 1);
             this.headerTable.Controls.Add(this.headerList1, 1, 0);
             this.headerTable.Controls.Add(this.headerList2, 1, 1);
-            this.headerTable.Controls.Add(this.headerSearchButton1, 2, 0);
-            this.headerTable.Controls.Add(this.headerSearchButton2, 2, 1);
             this.headerTable.Controls.Add(this.employEditButton, 3, 1);
             this.headerTable.Controls.Add(this.companyEditButton, 3, 0);
+            this.headerTable.Controls.Add(this.button3, 2, 1);
+            this.headerTable.Controls.Add(this.button4, 4, 1);
+            this.headerTable.Controls.Add(this.button5, 2, 0);
             this.headerTable.Dock = System.Windows.Forms.DockStyle.Fill;
             this.headerTable.Location = new System.Drawing.Point(0, 0);
             this.headerTable.Name = "headerTable";
@@ -685,7 +688,7 @@
             this.headerTable.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 48.80952F));
             this.headerTable.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 51.19048F));
             this.headerTable.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.headerTable.Size = new System.Drawing.Size(603, 100);
+            this.headerTable.Size = new System.Drawing.Size(708, 100);
             this.headerTable.TabIndex = 2;
             this.headerTable.Paint += new System.Windows.Forms.PaintEventHandler(this.headerTable_Paint);
             // 
@@ -734,60 +737,77 @@
             this.headerList2.TabIndex = 3;
             this.headerList2.SelectionChangeCommitted += new System.EventHandler(this.headerList2_SelectionChangeCommitted);
             // 
-            // headerSearchButton1
-            // 
-            this.headerSearchButton1.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.headerSearchButton1.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.headerSearchButton1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.headerSearchButton1.Image = ((System.Drawing.Image)(resources.GetObject("headerSearchButton1.Image")));
-            this.headerSearchButton1.Location = new System.Drawing.Point(459, 7);
-            this.headerSearchButton1.Name = "headerSearchButton1";
-            this.headerSearchButton1.Size = new System.Drawing.Size(37, 34);
-            this.headerSearchButton1.TabIndex = 4;
-            this.headerSearchButton1.UseVisualStyleBackColor = true;
-            this.headerSearchButton1.Visible = false;
-            // 
-            // headerSearchButton2
-            // 
-            this.headerSearchButton2.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.headerSearchButton2.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.headerSearchButton2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.headerSearchButton2.Image = ((System.Drawing.Image)(resources.GetObject("headerSearchButton2.Image")));
-            this.headerSearchButton2.Location = new System.Drawing.Point(459, 56);
-            this.headerSearchButton2.Name = "headerSearchButton2";
-            this.headerSearchButton2.Size = new System.Drawing.Size(37, 35);
-            this.headerSearchButton2.TabIndex = 5;
-            this.headerSearchButton2.UseVisualStyleBackColor = true;
-            this.headerSearchButton2.Visible = false;
-            this.headerSearchButton2.Click += new System.EventHandler(this.headerSearchButton2_Click);
-            // 
             // employEditButton
             // 
-            this.employEditButton.Location = new System.Drawing.Point(519, 51);
+            this.employEditButton.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.employEditButton.Location = new System.Drawing.Point(530, 51);
             this.employEditButton.Name = "employEditButton";
-            this.employEditButton.Size = new System.Drawing.Size(75, 30);
+            this.employEditButton.Size = new System.Drawing.Size(82, 46);
             this.employEditButton.TabIndex = 7;
             this.employEditButton.Text = "изменить";
             this.employEditButton.UseVisualStyleBackColor = true;
-            this.employEditButton.Visible = false;
             this.employEditButton.Click += new System.EventHandler(this.employEditButton_Click);
             // 
             // companyEditButton
             // 
-            this.companyEditButton.Location = new System.Drawing.Point(519, 3);
+            this.companyEditButton.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.companyEditButton.Location = new System.Drawing.Point(530, 3);
             this.companyEditButton.Name = "companyEditButton";
-            this.companyEditButton.Size = new System.Drawing.Size(75, 30);
+            this.companyEditButton.Size = new System.Drawing.Size(82, 42);
             this.companyEditButton.TabIndex = 6;
             this.companyEditButton.Text = "Изменить";
             this.companyEditButton.UseVisualStyleBackColor = true;
-            this.companyEditButton.Visible = false;
+            this.companyEditButton.Click += new System.EventHandler(this.companyEditButton_Click);
+            // 
+            // button3
+            // 
+            this.button3.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.button3.Location = new System.Drawing.Point(443, 51);
+            this.button3.Name = "button3";
+            this.button3.Size = new System.Drawing.Size(81, 46);
+            this.button3.TabIndex = 8;
+            this.button3.Text = "Добавить";
+            this.button3.UseVisualStyleBackColor = true;
+            this.button3.Click += new System.EventHandler(this.button3_Click);
+            // 
+            // button4
+            // 
+            this.button4.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.button4.Location = new System.Drawing.Point(618, 51);
+            this.button4.Name = "button4";
+            this.button4.Size = new System.Drawing.Size(87, 46);
+            this.button4.TabIndex = 9;
+            this.button4.Text = "Удалить";
+            this.button4.UseVisualStyleBackColor = true;
+            this.button4.Click += new System.EventHandler(this.button4_Click);
+            // 
+            // button5
+            // 
+            this.button5.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.button5.Location = new System.Drawing.Point(443, 3);
+            this.button5.Name = "button5";
+            this.button5.Size = new System.Drawing.Size(81, 42);
+            this.button5.TabIndex = 10;
+            this.button5.Text = "Добавить";
+            this.button5.UseVisualStyleBackColor = true;
+            this.button5.Click += new System.EventHandler(this.button5_Click);
             // 
             // dishPicture
             // 
             this.dishPicture.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.dishPicture.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.dishPicture.InitialImage = null;
-            this.dishPicture.Location = new System.Drawing.Point(279, 5);
+            this.dishPicture.Location = new System.Drawing.Point(174, 5);
             this.dishPicture.Name = "dishPicture";
             this.dishPicture.Size = new System.Drawing.Size(103, 95);
             this.dishPicture.TabIndex = 1;
@@ -860,8 +880,6 @@
      /// список сотрудников
      /// </summary>
         protected System.Windows.Forms.ComboBox headerList2;
-        protected System.Windows.Forms.Button headerSearchButton1;
-        protected System.Windows.Forms.Button headerSearchButton2;
         private System.Windows.Forms.Button companyEditButton;
         private System.Windows.Forms.Button employEditButton;
         protected System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
@@ -912,5 +930,8 @@
         private System.Windows.Forms.ColumnHeader columnHeader6;
         private System.Windows.Forms.SplitContainer splitContainer1;
         private System.Windows.Forms.PictureBox dishPicture;
+        private System.Windows.Forms.Button button3;
+        private System.Windows.Forms.Button button4;
+        private System.Windows.Forms.Button button5;
     }
 }

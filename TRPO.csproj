@@ -57,15 +57,15 @@
     </Content>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="src\GlobalObj\dishesTypes.cs" />
-    <Compile Include="src\GlobalObj\ErrorLevels.cs" />
-    <Compile Include="src\GlobalObj\Structures\ChiefListEntry.cs" />
-    <Compile Include="src\GlobalObj\Structures\orderColletion.cs" />
-    <Compile Include="src\GlobalObj\Structures\Menu.cs" />
-    <Compile Include="src\GlobalObj\Structures\CourierListEntry.cs" />
-    <Compile Include="src\GlobalObj\Structures\Dish.cs" />
-    <Compile Include="src\GlobalObj\Structures\ProductListEntry.cs" />
-    <Compile Include="src\GlobalObj\Time.cs" />
+    <Compile Include="GlobalObj\dishesTypes.cs" />
+    <Compile Include="GlobalObj\ErrorLevels.cs" />
+    <Compile Include="GlobalObj\Structures\ChiefListEntry.cs" />
+    <Compile Include="GlobalObj\Structures\orderColletion.cs" />
+    <Compile Include="GlobalObj\Structures\Menu.cs" />
+    <Compile Include="GlobalObj\Structures\CourierListEntry.cs" />
+    <Compile Include="GlobalObj\Structures\Dish.cs" />
+    <Compile Include="GlobalObj\Structures\ProductListEntry.cs" />
+    <Compile Include="GlobalObj\Time.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Properties\Resources.Designer.cs">
@@ -117,12 +117,6 @@
     <Compile Include="src\View\ClientManagerDialog.Designer.cs">
       <DependentUpon>ClientManagerDialog.cs</DependentUpon>
     </Compile>
-    <Compile Include="src\View\CompanyManager.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="src\View\CompanyManager.Designer.cs">
-      <DependentUpon>CompanyManager.cs</DependentUpon>
-    </Compile>
     <Compile Include="src\View\CourierForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -171,9 +165,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="src\View\ClientManagerDialog.resx">
       <DependentUpon>ClientManagerDialog.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="src\View\CompanyManager.resx">
-      <DependentUpon>CompanyManager.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="src\View\CourierForm.resx">
       <DependentUpon>CourierForm.cs</DependentUpon>

@@ -117,8 +117,6 @@ namespace TRPO.View
         {
             prodController.updateProductsList();
             prodController.updateReqProductsList();
-            storeDataGrid.Sort(storeDataGrid.Columns[0], ListSortDirection.Ascending);
-            storeDataGrid.Rows[0].Selected = true;
         }
 
         private void buyButton_Click(object sender, EventArgs e)

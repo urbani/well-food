@@ -73,7 +73,7 @@ namespace TRPO.Controller
         }
 
         //начальное заполнение формы данными
-        public void fillCompanyList()
+        public void fillCompanyList(bool system=false)
         {
             
             
@@ -90,6 +90,8 @@ namespace TRPO.Controller
                 companyIds.Add(ptr, pair.Key);
                 ptr++;
             }
+//            if (system)
+               // view.updateCompanyList();
         }
 
         public void addForm(IClientManagable somethingView)
@@ -102,6 +104,11 @@ namespace TRPO.Controller
             dialog = someDialog;
 
         }
+        public void selectEmployDat()
+        {
+            dialog.fillFiled(clientManager.selectEmployData(dialog.getEmployId()));
+
+        }
 
         public void updateEmployDate()
         {
@@ -109,7 +116,37 @@ namespace TRPO.Controller
             fillEmployList();
 
         }
+        public void insertEmployData()
+        {
+            clientManager.insertEmployData(dialog.getFileds(), dialog.getCompanyId());
+            fillEmployList();
+        }
 
+        public void deleteEmploy()
+        {
+            clientManager.deleteEmploy(getEmployId());
+            fillEmployList();
+        }
+
+        public void createCompany()
+        {
+            if(dialog.getCompanyName()=="")
+                return;
+            clientManager.createCompany(dialog.getCompanyName());
+            fillCompanyList();
+            fillEmployList();
+        }
+
+        public void editCompany()
+        {
+            if (dialog.getCompanyName() == "")
+                return;
+
+            clientManager.editCompany(dialog.getCompanyName(), dialog.getCompanyId());
+            fillCompanyList();
+            fillEmployList();
+
+        }
 
 
 

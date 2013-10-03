@@ -481,14 +481,9 @@ namespace TRPO.View
             int i = 0;
             try
             {
-                String tmpProdName = "";
                 for (i = 0; i < createDishContentsDataGrid.Rows.Count; i++)
                 {
-                    tmpProdName = createDishContentsDataGrid.Rows[i].Cells[0].Value.ToString();
-                    if (!res.ContainsKey(tmpProdName))
-                    {
-                        res.Add(tmpProdName, Convert.ToDouble(createDishContentsDataGrid.Rows[i].Cells[1].Value.ToString()));
-                    }
+                    res.Add(createDishContentsDataGrid.Rows[i].Cells[0].Value.ToString(), Convert.ToDouble(createDishContentsDataGrid.Rows[i].Cells[1].Value.ToString()));
                 }
                 return res;
             }
@@ -511,15 +506,9 @@ namespace TRPO.View
             return Microsoft.VisualBasic.Interaction.InputBox("Введите название продукта:", "Добавление продукта", "", -1, -1);
         }
 
-        public void setDishCreationPrice(Double price)
-        {
-            priceTextBox.Text = price.ToString();
-        }
-
         private void listView1_ItemSelectionChanged(object sender, ListViewItemSelectionChangedEventArgs e)
         {
             dishesManagementContr.updateDishInfo();
-            dishesManagementContr.updateAbleToCookDishes();
         }
 
         private void readyButton_Click(object sender, EventArgs e)
@@ -527,7 +516,6 @@ namespace TRPO.View
             toolStripStatusLabel.Visible = false;
             dishesManagementContr.addReadyDishes();
             ordCookContr.updateOrderList();
-            dishesManagementContr.updateAbleToCookDishes();
         }
 
         private void mainTab_Selected(object sender, TabControlEventArgs e)
@@ -569,9 +557,6 @@ namespace TRPO.View
                 dishesDataGrid.DefaultCellStyle.ForeColor = Color.FromArgb(200, 200, 200);
                 createDishName.ReadOnly = false;
                 createDishName.BackColor = System.Drawing.Color.White;
-
-                //labelPrice.Visible = true;
-               // priceTextBox.Visible = true;
             }
             else
             {
@@ -583,9 +568,6 @@ namespace TRPO.View
                 dishesDataGrid.DefaultCellStyle.ForeColor = Color.FromArgb(0, 0, 0);
                 createDishName.ReadOnly = true;
                 createDishName.BackColor = System.Drawing.SystemColors.Control;
-
-             //   labelPrice.Visible = false;
-              //  priceTextBox.Visible = false;
             }
         }
 
@@ -648,11 +630,6 @@ namespace TRPO.View
             //Создание меню
             dateTimePicker.Value = DateTime.Now.AddDays(1);
 
-        }
-
-        public void setAbleToCookDishes(int amount)
-        {
-            ableToCookTextBox.Text = amount.ToString();
         }
 
         private void addProdButton_Click(object sender, EventArgs e)
@@ -748,9 +725,7 @@ namespace TRPO.View
 
         private void createDishContentsDataGrid_MouseDoubleClick(object sender, MouseEventArgs e)
         {
-            createDishContentsDataGrid.Rows.Remove(createDishContentsDataGrid.SelectedRows[0]);
-
-         //       dishesManagementContr.deleteProductFromDish();
+            dishesManagementContr.deleteProductFromDish();
         }
 
         private void dataGridView1_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
@@ -771,24 +746,6 @@ namespace TRPO.View
         private void dataGridView4_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
             dataGridView4.Rows.Remove(dataGridView4.SelectedRows[0]);
-        }
-
-        private void createDishContentsDataGrid_RowsAdded(object sender, DataGridViewRowsAddedEventArgs e)
-        {
-            dishesManagementContr.updateDishPrice();
-        }
-
-        private void createDishContentsDataGrid_RowsRemoved(object sender, DataGridViewRowsRemovedEventArgs e)
-        {
-            dishesManagementContr.updateDishPrice();
-        }
-
-        private void createDishContentsDataGrid_CellValueChanged(object sender, DataGridViewCellEventArgs e)
-        {
-            if (dishesManagementContr != null)
-            {
-                dishesManagementContr.updateDishPrice();
-            }
         }
     }
 }

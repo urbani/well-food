@@ -45,7 +45,7 @@
             // 
             // cancelButton
             // 
-            this.cancelButton.Location = new System.Drawing.Point(198, 202);
+            this.cancelButton.Location = new System.Drawing.Point(198, 205);
             this.cancelButton.Name = "cancelButton";
             this.cancelButton.Size = new System.Drawing.Size(100, 35);
             this.cancelButton.TabIndex = 0;
@@ -55,9 +55,9 @@
             // 
             // okButton
             // 
-            this.okButton.Location = new System.Drawing.Point(38, 202);
+            this.okButton.Location = new System.Drawing.Point(38, 205);
             this.okButton.Name = "okButton";
-            this.okButton.Size = new System.Drawing.Size(101, 28);
+            this.okButton.Size = new System.Drawing.Size(101, 35);
             this.okButton.TabIndex = 1;
             this.okButton.Text = "Ок";
             this.okButton.UseVisualStyleBackColor = true;
@@ -74,6 +74,7 @@
             // 
             // companyBox
             // 
+            this.companyBox.Enabled = false;
             this.companyBox.Location = new System.Drawing.Point(179, 19);
             this.companyBox.Name = "companyBox";
             this.companyBox.Size = new System.Drawing.Size(100, 20);
@@ -88,6 +89,7 @@
             this.label2.Size = new System.Drawing.Size(56, 13);
             this.label2.TabIndex = 4;
             this.label2.Text = "Фамилия";
+            this.label2.Click += new System.EventHandler(this.label2_Click);
             // 
             // label3
             // 
@@ -153,13 +155,13 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(348, 252);
+            this.Controls.Add(this.okButton);
             this.Controls.Add(this.patrBox);
             this.Controls.Add(this.nameBox);
             this.Controls.Add(this.surnameBox);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
-            this.Controls.Add(this.okButton);
             this.Controls.Add(this.cancelButton);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.groupBox2);

@@ -80,16 +80,6 @@ namespace TRPO.Controller
             view.addProductToContence(view.getSelectedProductName(), 1);
         }
 
-        public void updateDishPrice()
-        {
-            view.setDishCreationPrice(dishesManager.getDishPrice(view.getCreatedDish()));
-        }
-
-        public void updateAbleToCookDishes()
-        {
-            view.setAbleToCookDishes(dishesManager.getAbleToCookDishes(view.getSelectedDishName()));
-        }
-
         public void addProduct()
         {
             String addingProdName = view.getAddingProductName();

@@ -101,7 +101,7 @@ namespace TRPO.Model
         {
             int timesChanges = 0;
             connector.openConnection();
-            int idOrd = getOpenOrderFromEmloy(id_empl);
+            int idOrd = getOpenOrderFromEmloy2(id_empl);
             if (idOrd == -1)
             {
                 connector.executeNonQuery(String.Format("INSERT INTO Orders (ID_Emp, Status) VALUES ({0},  1)", id_empl));
@@ -165,6 +165,20 @@ namespace TRPO.Model
             }
             connector.closeConnection(true);
             return id_ord+1;
+        }
+
+        private int getOpenOrderFromEmloy2(int emlId, bool status = true)
+        {
+            int intFormStatus = status ? 1 : 0;
+            connector.openConnection(true);
+            OleDbDataReader reader = connector.executeQuery(String.Format("SELECT MAX(id_order) FROM dishes_Order"));
+            int id_ord = -1;
+            while (reader.Read())
+            {
+                id_ord = Convert.ToInt32(reader[0]);
+            }
+            connector.closeConnection(true);
+            return id_ord + 1;
         }
 
         /// <summary>
