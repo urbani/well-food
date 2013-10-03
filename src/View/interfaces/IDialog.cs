@@ -11,5 +11,6 @@ namespace TRPO.View
          int getEmployId();
          List<String> getFileds();
          void fillFiled(List<String> listStr);
+         String getCompanyName();
     }
 }

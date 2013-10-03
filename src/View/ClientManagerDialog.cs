@@ -14,15 +14,41 @@ namespace TRPO.View
         ClientManagementConroller clientManagementConroller;
         int companyId;
         int employId;
+        bool newempl;
+        int compEdit = 0;
 
         String company, surname, name, patr;
 
-        public ClientManagerDialog(ClientManagementConroller cmc, int emplId, int compId)
+        public ClientManagerDialog(ClientManagementConroller cmc, int emplId, int compId, bool newempl=false)
         {
             InitializeComponent();
             clientManagementConroller = cmc;
             companyId = compId;
             employId = emplId;
+            clientManagementConroller.addDialog(this);
+            this.newempl = newempl;
+            if (!newempl)
+                clientManagementConroller.selectEmployDat();
+            //clientManagementConroller.();
+        }
+
+        public ClientManagerDialog(ClientManagementConroller cmc, int compId, int status)
+        {
+            InitializeComponent();
+            clientManagementConroller = cmc;
+            companyId = compId;
+            clientManagementConroller.addDialog(this);
+            groupBox1.Visible=false;
+            label3.Visible = false;
+            label4.Visible = false;
+            surnameBox.Visible = false;
+            nameBox.Visible = false;
+            patrBox.Visible = false;
+            label2.Visible = false;
+            compEdit = status;
+            companyBox.Enabled = true;
+          //  clientManagementConroller.
+
         }
 
         private void ClientCompanyManagerDialog_Load(object sender, EventArgs e)
@@ -42,7 +68,20 @@ namespace TRPO.View
 
         private void okButton_Click(object sender, EventArgs e)
         {
-            clientManagementConroller.updateEmployDate();
+            if (compEdit == 1)
+            {
+                clientManagementConroller.createCompany();
+                this.Close();
+            }
+            if (compEdit == 2)
+            {
+                clientManagementConroller.editCompany();
+                this.Close();
+            }
+            if (!newempl)
+                clientManagementConroller.updateEmployDate();
+            else
+                clientManagementConroller.insertEmployData();
             this.Close();
         }
         public int getCompanyId() { return companyId; }
@@ -57,7 +96,22 @@ namespace TRPO.View
         public List<String> getFileds()
         {
             return new List<string>() { companyBox.Text, surnameBox.Text, nameBox.Text, patrBox.Text };
+
             
+        }
+
+        private void label2_Click(object sender, EventArgs e)
+        {
+
+        }
+        public String getCompanyName()
+        {
+            return companyBox.Text;
+        }
+
+        public void insertCompanyName(String comp)
+        {
+            companyBox.Text = comp;
         }
     }
 }

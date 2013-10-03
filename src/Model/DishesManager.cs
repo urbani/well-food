@@ -17,77 +17,6 @@ namespace TRPO.Model
             connector = new DBConnector();
         }
 
-        public int getAbleToCookDishes(String dishName)
-        {
-            List<int> dishesAbleToCook = new List<int>();
-            Dictionary<String, Double> prodInDish = new Dictionary<String, Double>();
-            if(dishName != "")
-            {
-                connector.openConnection();
-                OleDbDataReader reader;
-                reader = connector.executeQuery("SELECT prod.Name_Prod, pd.Product_Count FROM Products_Dishes pd INNER JOIN Products prod ON pd.ID_Prod = prod.ID_Prod WHERE pd.ID_Dish = (SELECT di.ID_Dish FROM Dishes di WHERE di.Name_Dish = \"" + dishName + "\")");
-                while(reader.Read())
-                {
-                    prodInDish.Add(reader[0].ToString(), Convert.ToDouble(reader[1].ToString()));
-                }
-                reader.Close();
-
-                Dictionary<String, Double> leftProducts = this.getProductsLeft();
-
-                int tmpLeftProds = 0;
-
-                foreach (KeyValuePair<String, Double> p in prodInDish)
-                {
-//                     if (leftProducts.ContainsKey(p.Key))
-//                     {
-//                         System.Diagnostics.Debug.WriteLine("leftProducts " + leftProducts[p.Key]);
-//                     }
-                    tmpLeftProds = leftProducts.ContainsKey(p.Key) ? Convert.ToInt32(leftProducts[p.Key]) : 0;
-                    dishesAbleToCook.Add(Convert.ToInt32(tmpLeftProds / p.Value));
-                }
-                connector.closeConnection();
-            }
-            return dishesAbleToCook.Count > 0 ? dishesAbleToCook.Min() : 0;
-        }
-
-        public Dictionary<String, Double> getProductsLeft()
-        {
-            Dictionary<String, Double> productsIn = new Dictionary<String, Double>();
-            Dictionary<String, Double> productsOut = new Dictionary<String, Double>();
-            Dictionary<String, Double> productPrices = new Dictionary<String, Double>();
-            connector.openConnection();
-            OleDbDataReader reader;
-            reader = connector.executeQuery("SELECT pr.Name_Prod, SUM(pi.Amount), pr.Price FROM Prod_in pi INNER JOIN Products pr ON pi.ID_Prod = pr.ID_Prod GROUP BY pr.Name_Prod, pr.Price");
-            while (reader.Read())
-            {
-                productsIn.Add(reader[0].ToString(), Convert.ToDouble(reader[1].ToString()));
-                productPrices.Add(reader[0].ToString(), Convert.ToDouble(reader[2].ToString()));
-            }
-
-            reader = connector.executeQuery("SELECT pr.Name_Prod, SUM(po.Amount) FROM Prod_out po INNER JOIN Products pr ON po.ID_Prod = pr.ID_Prod GROUP BY pr.Name_Prod");
-            while (reader.Read())
-            {
-                productsOut.Add(reader[0].ToString(), Convert.ToDouble(reader[1].ToString()));
-            }
-
-            reader.Close();
-
-            Dictionary<String, Double> result = new Dictionary<String, Double>();
-            double left = 0;
-            foreach (KeyValuePair<String, Double> e in productsIn)
-            {
-                left = e.Value - (productsOut.ContainsKey(e.Key) ? productsOut[e.Key] : 0);
-                if (left > 0)
-                {
-                    result.Add(e.Key, left);
-                }
-            }
-
-            connector.closeConnection();
-            return result;
-        }
-
-
         public Dish getDish(int id)
         {
             Dish result = new Dish();
@@ -114,30 +43,6 @@ namespace TRPO.Model
 
             connector.closeConnection();
             return result;
-        }
-
-        public Double getDishPrice(Dish dish)
-        {
-            Double price = 0;
-            connector.openConnection();
-
-            OleDbDataReader reader = null;
-            foreach (KeyValuePair<String, Double> cons in dish.Consistance)
-            {
-                reader = connector.executeQuery("SELECT prod.Price FROM Products prod WHERE prod.Name_Prod = \"" + cons.Key +  "\"");
-
-                if (reader.Read())
-                {
-                    price += Convert.ToDouble(reader[0].ToString()) * cons.Value / 100;
-                }
-            }
-
-            if (reader != null)
-            {
-                reader.Close();
-            }
-            connector.closeConnection();
-            return price;
         }
 
         public Dish getDish(String name)

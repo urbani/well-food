@@ -196,11 +196,7 @@ namespace TRPO.View
         }
 
 
-        private void employEditButton_Click(object sender, EventArgs e)
-        {
-            ClientManagerDialog cmd = new ClientManagerDialog(clientManagementController,clientManagementController.getEmployId(), clientManagementController.getCompanyId());
-            cmd.ShowDialog();
-        }
+
 
         /// <summary>
         /// удаление блюда из списка заказов
@@ -355,6 +351,48 @@ namespace TRPO.View
                 dishPicture.Image = null;
             else
                 dishPicture.Image = Image.FromFile(path);
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            ClientManagerDialog cmd = new ClientManagerDialog(clientManagementController, clientManagementController.getEmployId(), clientManagementController.getCompanyId(),true);
+            cmd.insertCompanyName(headerList1.SelectedItem.ToString());
+            cmd.ShowDialog();
+        }
+
+        private void employEditButton_Click(object sender, EventArgs e)
+        {
+            ClientManagerDialog cmd = new ClientManagerDialog(clientManagementController, clientManagementController.getEmployId(), clientManagementController.getCompanyId(),false);
+
+            cmd.ShowDialog();
+        }
+
+        private void button4_Click(object sender, EventArgs e)
+        {
+            
+            showMsg("Вы точно хотите удалить этого сотрудника", ErrorLevels.Info, MessageBoxButtons.YesNo, "Удаление сотрудника");
+            if (notifyValue == DialogResult.Yes)
+            {
+                clientManagementController.deleteEmploy();
+            }
+        }
+
+        private void button5_Click(object sender, EventArgs e)
+        {
+            ClientManagerDialog cmd = new ClientManagerDialog(clientManagementController, clientManagementController.getCompanyId(),1);
+            clientManagementController.fillCompanyList();
+
+            cmd.ShowDialog();
+            headerList1.DataSource = null;
+            headerList1.DataSource = clientManagementController.companyList;
+            headerList1.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
+            headerList1.AutoCompleteSource = AutoCompleteSource.ListItems;
+        }
+
+        private void companyEditButton_Click(object sender, EventArgs e)
+        {
+            ClientManagerDialog cmd = new ClientManagerDialog(clientManagementController, clientManagementController.getCompanyId(), 2);
+            cmd.ShowDialog();
         }
 
 
