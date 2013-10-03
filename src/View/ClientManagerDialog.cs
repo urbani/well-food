@@ -96,6 +96,7 @@ namespace TRPO.View
         public List<String> getFileds()
         {
             return new List<string>() { companyBox.Text, surnameBox.Text, nameBox.Text, patrBox.Text };
+
             
         }
 

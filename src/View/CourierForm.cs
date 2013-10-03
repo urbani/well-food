@@ -380,7 +380,13 @@ namespace TRPO.View
         private void button5_Click(object sender, EventArgs e)
         {
             ClientManagerDialog cmd = new ClientManagerDialog(clientManagementController, clientManagementController.getCompanyId(),1);
+            clientManagementController.fillCompanyList();
+
             cmd.ShowDialog();
+            headerList1.DataSource = null;
+            headerList1.DataSource = clientManagementController.companyList;
+            headerList1.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
+            headerList1.AutoCompleteSource = AutoCompleteSource.ListItems;
         }
 
         private void companyEditButton_Click(object sender, EventArgs e)
