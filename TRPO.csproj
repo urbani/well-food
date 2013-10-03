@@ -60,12 +60,11 @@
     <Compile Include="GlobalObj\dishesTypes.cs" />
     <Compile Include="GlobalObj\ErrorLevels.cs" />
     <Compile Include="GlobalObj\Structures\ChiefListEntry.cs" />
-    <Compile Include="GlobalObj\Structures\orderColletion.cs" />
-    <Compile Include="GlobalObj\Structures\Menu.cs" />
     <Compile Include="GlobalObj\Structures\CourierListEntry.cs" />
     <Compile Include="GlobalObj\Structures\Dish.cs" />
+    <Compile Include="GlobalObj\Structures\Menu.cs" />
+    <Compile Include="GlobalObj\Structures\orderColletion.cs" />
     <Compile Include="GlobalObj\Structures\ProductListEntry.cs" />
-    <Compile Include="GlobalObj\Time.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Properties\Resources.Designer.cs">
@@ -138,6 +137,7 @@
     <Compile Include="src\View\ManagerForm.Designer.cs">
       <DependentUpon>ManagerForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="GlobalObj\Time.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />

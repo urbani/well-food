@@ -36,7 +36,7 @@ namespace TRPO.Controller
         public void addReadyDishes()
         {
             int readyDishes = view.getReadyDishesAmount();
-           //TODO: Списать из уже готовых
+            //TODO: Списать из уже готовых
             // readyDishes -= 
             String readyDish = view.getSelectedDishName();
             int redundantDishes = dishesManager.addReadyDishes(readyDish, readyDishes);
@@ -82,6 +82,16 @@ namespace TRPO.Controller
             view.addProductToContence(view.getSelectedProductName(), 1);
         }
 
+        public void updateDishPrice()
+        {
+            view.setDishCreationPrice(dishesManager.getDishPrice(view.getCreatedDish()));
+        }
+
+        public void updateAbleToCookDishes()
+        {
+            view.setAbleToCookDishes(dishesManager.getAbleToCookDishes(view.getSelectedDishName()));
+        }
+
         public void addProduct()
         {
             String addingProdName = view.getAddingProductName();
@@ -99,7 +109,7 @@ namespace TRPO.Controller
         }
         public void checkoutOrder()
         {
-            
+
         }
     }
 }
