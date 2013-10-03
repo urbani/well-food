@@ -116,5 +116,10 @@ namespace TRPO.Model
             connector.executeNonQuery(String.Format("UPDATE Employee SET Surname='{0}', Name_Emp='{1}', Patronymic='{2}' WHERE ID_Emp={3}",idComp));
             connector.closeConnection();
         }
+
+        public String getCompanyName(int empId)
+        {
+            return "NET!";
+        }
     }
 }

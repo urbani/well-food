@@ -196,11 +196,7 @@ namespace TRPO.View
         }
 
 
-        private void employEditButton_Click(object sender, EventArgs e)
-        {
-            ClientManagerDialog cmd = new ClientManagerDialog(clientManagementController,clientManagementController.getEmployId(), clientManagementController.getCompanyId());
-            cmd.ShowDialog();
-        }
+
 
         /// <summary>
         /// удаление блюда из списка заказов
@@ -360,6 +356,14 @@ namespace TRPO.View
         private void button3_Click(object sender, EventArgs e)
         {
             ClientManagerDialog cmd = new ClientManagerDialog(clientManagementController, clientManagementController.getEmployId(), clientManagementController.getCompanyId(),true);
+            cmd.insertCompanyName(headerList1.SelectedItem.ToString());
+            cmd.ShowDialog();
+        }
+
+        private void employEditButton_Click(object sender, EventArgs e)
+        {
+            ClientManagerDialog cmd = new ClientManagerDialog(clientManagementController, clientManagementController.getEmployId(), clientManagementController.getCompanyId(),false);
+
             cmd.ShowDialog();
         }
 

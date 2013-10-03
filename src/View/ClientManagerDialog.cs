@@ -47,6 +47,7 @@ namespace TRPO.View
             label2.Visible = false;
             compEdit = status;
             companyBox.Enabled = true;
+          //  clientManagementConroller.
 
         }
 
@@ -105,6 +106,11 @@ namespace TRPO.View
         public String getCompanyName()
         {
             return companyBox.Text;
+        }
+
+        public void insertCompanyName(String comp)
+        {
+            companyBox.Text = comp;
         }
     }
 }

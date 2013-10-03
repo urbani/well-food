@@ -104,30 +104,38 @@ namespace TRPO.Controller
             dialog = someDialog;
 
         }
-        public void selectEmployDat()
-        {
-            dialog.fillFiled(clientManager.selectEmployData(dialog.getEmployId()));
 
-        }
-
+        //апдейт таблицы клиентов
         public void updateEmployDate()
         {
             clientManager.updateEmployData(dialog.getFileds(), dialog.getEmployId());
             fillEmployList();
 
         }
+
+        //данные по текущему клиенту
+        public void selectEmployDat()
+        {
+            dialog.fillFiled(clientManager.selectEmployData(dialog.getEmployId()));
+
+        }
+
+
+        //создание новго клиента+
         public void insertEmployData()
         {
             clientManager.insertEmployData(dialog.getFileds(), dialog.getCompanyId());
             fillEmployList();
         }
 
+        //удалдение клиента+
         public void deleteEmploy()
         {
             clientManager.deleteEmploy(getEmployId());
             fillEmployList();
         }
 
+        //-
         public void createCompany()
         {
             if(dialog.getCompanyName()=="")
@@ -137,6 +145,7 @@ namespace TRPO.Controller
             fillEmployList();
         }
 
+        //-
         public void editCompany()
         {
             if (dialog.getCompanyName() == "")
