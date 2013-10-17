@@ -76,6 +76,11 @@ namespace TRPO.Model
         /// <returns></returns>
         public OleDbDataReader executeQuery(String query)
         {
+            if (Properties.Settings.Default.debug)
+            {
+                System.Diagnostics.Debug.WriteLine(query);
+            }
+
             OleDbDataReader result = null;
             if (connection != null && connection.State == ConnectionState.Open)
             {
@@ -100,6 +105,11 @@ namespace TRPO.Model
         /// <returns></returns>
         public int executeNonQuery(String query)
         {
+            if (Properties.Settings.Default.debug)
+            {
+                System.Diagnostics.Debug.WriteLine(query);
+            }
+
             int res = 0;
             if (connection != null && connection.State == ConnectionState.Open)
             {
@@ -114,7 +124,7 @@ namespace TRPO.Model
                 catch (OleDbException ex)
                 {
                     connection.Close(); //думаю, правильно в случае чего закрывать соединение тут, что бы не где об этом не заморачиваться
-                    throw new ApplicationException(String.Format("Ошибка при выполнении запроса: {0}.\n Original error: {1}",query, ex.ToString() ));
+                    System.Diagnostics.Debug.WriteLine(String.Format("Ошибка при выполнении запроса: {0}.\n Original error: {1}",query, ex.ToString() ));
                 }
             }
             else

@@ -197,6 +197,7 @@ namespace TRPO.Model
                 }
                 else
                 {
+                    addRedundantDishes(dishName, amount);
                     return amount;
                 }
                 reader.Close();
@@ -214,24 +215,126 @@ namespace TRPO.Model
 
             }
 
+            writeProdOut(dishName, amount);
 
-            reader = connector.executeQuery("SELECT pd.ID_Prod, SUM(pd.Product_Count) AS needProd FROM Products_Dishes pd INNER JOIN Dishes di ON di.ID_Dish = pd.ID_Dish WHERE di.Name_Dish = \"" + dishName + "\" GROUP BY pd.ID_Prod");
+            //Adding redundant dishes
+            addRedundantDishes(dishName, amount);
+            
+            connector.closeConnection();
+
+            return amount;
+        }
+
+        private void writeProdOut(String dishName, int amount)
+        {
+            connector.openConnection();
+            OleDbDataReader reader = connector.executeQuery("SELECT pd.ID_Prod, SUM(pd.Product_Count) AS needProd FROM Products_Dishes pd INNER JOIN Dishes di ON di.ID_Dish = pd.ID_Dish WHERE di.Name_Dish = \"" + dishName + "\" GROUP BY pd.ID_Prod");
 
             Dictionary<int, Double> prodUsed = new Dictionary<int, Double>();
             while (reader.Read())
             {
                 prodUsed.Add(Convert.ToInt32(reader[0].ToString()), (Convert.ToDouble(reader[1]) * amount));
             }
+            reader.Close();
+
 
             foreach (KeyValuePair<int, Double> p in prodUsed)
             {
                 connector.executeNonQuery("INSERT INTO Prod_out (ID, ID_Prod, Amount, Out_Date) SELECT MAX(pout.ID) + 1 , " + p.Key + " , " + p.Value + ", \"" + DateTime.Now.ToShortDateString() + "\" FROM Prod_out pout");
             }
-            //TODO:Prod_out update  
 
             connector.closeConnection();
+        }
 
-            return amount;
+
+        public int addReadyDishesFromStock(String readyDish, int readyStockDishes)
+        {
+            addReadyDishes(readyDish, readyStockDishes);
+
+            connector.openConnection();
+            OleDbDataReader reader = null;
+            int rowsChanged = 0;
+            int lfdId = -1;
+            int lfdAmount = -1;
+            int lfdOutAmount = -1;
+            int ldfLeft = -1;
+
+            while (readyStockDishes > 0)
+            {
+                reader = connector.executeQuery("SELECT TOP 1 lfd.ID, lfd.Amount, lfd.Out_Amount FROM (SELECT * FROM Left_Cooked_Dishes lf WHERE lf.Name_Dish = \"" + readyDish + "\" AND ((lf.Amount - lf.Out_Amount) > 0 ) ORDER BY lf.Cook_Date) AS LFD");
+
+                if (reader.Read())
+                {
+                    lfdId = Convert.ToInt32(reader[0]);
+                    lfdAmount = Convert.ToInt32(reader[1]);
+                    lfdOutAmount = Convert.ToInt32(reader[2]);
+
+                    ldfLeft = lfdAmount - lfdOutAmount;
+                }
+                //!!Необходимо контролировать количество блюд списываемых из готовых во View
+               /* else
+                {
+                    addRedundantDishes(dishName, amount);
+                    return amount;
+                }*/
+
+                reader.Close();
+
+
+                if (readyStockDishes >= ldfLeft)
+                {
+                    rowsChanged += connector.executeNonQuery("UPDATE Left_Cooked_Dishes AS lfd SET lfd.Out_Amount = " + lfdAmount + " WHERE lfd.ID = " + lfdId);
+                    readyStockDishes -= ldfLeft;
+                }
+                else
+                {
+                    rowsChanged += connector.executeNonQuery("UPDATE Left_Cooked_Dishes AS lfd SET lfd.Out_Amount = " + readyStockDishes + " WHERE lfd.ID = " + lfdId);
+
+                    readyStockDishes = 0;
+                }
+
+            }
+
+
+            connector.closeConnection();
+            return rowsChanged;
+        }
+
+        public int getRedundantDishes(String dishName)
+        {
+            int result = 0;
+            if (dishName != "")
+            {
+                connector.openConnection();
+                OleDbDataReader reader = connector.executeQuery("SELECT SUM(lfd.Amount - lfd.Out_Amount) FROM Left_Cooked_Dishes lfd WHERE lfd.Name_Dish = \"" + dishName + "\"");
+                try
+                {
+                    if (reader.Read())
+                    {
+                        result = Convert.ToInt32(reader[0]);
+                    }
+                }
+                catch (System.InvalidCastException ex)
+                {
+                    return 0;
+                }
+                
+
+                connector.closeConnection();
+            }
+            return result;
+        }
+
+        public int addRedundantDishes(String dishName, int amount)
+        {
+            if (amount > 0)
+            {
+                connector.openConnection();
+                int i = connector.executeNonQuery("INSERT INTO Left_Cooked_Dishes (ID, Name_Dish, Cook_Date, Amount, Out_Amount) SELECT MAX(lcd.ID) + 1, \"" + dishName + "\", \"" + DateTime.Now.ToShortDateString() + "\", " + amount + ", 0 FROM Left_Cooked_Dishes lcd");
+                connector.closeConnection();
+                return i;
+            }
+            return 0;
         }
 
         public Dictionary<String, String> getDishNamesWithTypes()

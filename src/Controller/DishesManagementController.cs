@@ -36,14 +36,29 @@ namespace TRPO.Controller
         public void addReadyDishes()
         {
             int readyDishes = view.getReadyDishesAmount();
-            //TODO: Списать из уже готовых
-            // readyDishes -= 
             String readyDish = view.getSelectedDishName();
             int redundantDishes = dishesManager.addReadyDishes(readyDish, readyDishes);
             if (redundantDishes > 0)
             {
                 view.showMsg("Все заказы на блюдо [" + readyDish + "] закрыты. Осталось неучтенных блюд: [" + readyDish + " : " + redundantDishes + "шт.]", GlobalObj.ErrorLevels.Info);
             }
+            updateRedundantDishesAmount();
+        }
+
+        
+        public void addDishesFromStock()
+        {
+            int readyStockDishes = view.getReadyStockDishesAmount();
+            String readyDish = view.getSelectedDishName();
+            if (readyDish != "" && readyStockDishes > 0)
+            {
+                dishesManager.addReadyDishesFromStock(readyDish, readyStockDishes);
+            }
+        }
+
+        public void updateRedundantDishesAmount()
+        {
+            view.setRedundantDishes(dishesManager.getRedundantDishes(view.getSelectedDishName()));
         }
 
         public void fillDishProd()

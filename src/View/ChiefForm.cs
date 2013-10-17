@@ -45,6 +45,7 @@ namespace TRPO.View
             {
                 ordCookContr.updateOrderList();
                 dishesManagementContr.updateAbleToCookDishes();
+                dishesManagementContr.updateRedundantDishesAmount();
             }
         }
 
@@ -67,6 +68,12 @@ namespace TRPO.View
         {
             MessageBox.Show(msg, header);
             
+        }
+
+        public void setRedundantDishes(int n)
+        {
+            ableToGetTextBox.Text = n.ToString();
+            readyDishesAmount2.Maximum = getSelectedDishAmount();
         }
 
         public void setDishInfo(Dish d)
@@ -455,6 +462,27 @@ namespace TRPO.View
             return result;
         }
 
+        public int getSelectedDishAmount()
+        {
+            int res = 0;
+            switch (mainTab.SelectedIndex)
+            {
+                case 0:
+                    res = Convert.ToInt32(listView1.SelectedItems[0].SubItems[3].Text);
+                    break;
+                case 1:
+                    break;
+                case 2:
+                    break;
+            }
+            return res;
+        }
+
+        public int getReadyStockDishesAmount()
+        {
+            return (int) readyDishesAmount2.Value;
+        }
+
         public String getCreationImageLocation()
         {
             return Path.GetFileName(createDishImage.ImageLocation);
@@ -537,6 +565,8 @@ namespace TRPO.View
             dishesManagementContr.fillDishProd();
             dishesManagementContr.updateDishInfo();
             dishesManagementContr.updateAbleToCookDishes();
+            dishesManagementContr.updateRedundantDishesAmount();
+
         }
 
         private void readyButton_Click(object sender, EventArgs e)
@@ -545,6 +575,10 @@ namespace TRPO.View
             dishesManagementContr.addReadyDishes();
             ordCookContr.updateOrderList();
             dishesManagementContr.updateAbleToCookDishes();
+            dishesManagementContr.updateRedundantDishesAmount();
+
+            readyDishesAmount.Value = 0;
+            readyDishesAmount2.Value = 0;
         }
 
         private void mainTab_Selected(object sender, TabControlEventArgs e)
@@ -552,6 +586,7 @@ namespace TRPO.View
             toolStripStatusLabel.Visible = false;
             ordCookContr.updateOrderList();
             dishesManagementContr.updateAbleToCookDishes();
+            dishesManagementContr.updateRedundantDishesAmount();
             dishesManagementContr.fillDishProd();
         }
 
@@ -663,10 +698,8 @@ namespace TRPO.View
             createDishType.AutoCompleteSource = AutoCompleteSource.ListItems;
             createDishType.DropDownStyle = ComboBoxStyle.DropDownList;
 
-
             //Создание меню
             dateTimePicker.Value = DateTime.Now.AddDays(1);
-
         }
 
         public void setAbleToCookDishes(int amount)
@@ -823,6 +856,18 @@ namespace TRPO.View
         private void ChiefForm_FormClosing(object sender, FormClosingEventArgs e)
         {
             refreshTimer.Enabled = false;
+        }
+
+        private void getFromReadyButton_Click(object sender, EventArgs e)
+        {
+            dishesManagementContr.addDishesFromStock();
+
+            ordCookContr.updateOrderList();
+            dishesManagementContr.updateAbleToCookDishes();
+            dishesManagementContr.updateRedundantDishesAmount();
+
+            readyDishesAmount.Value = 0;
+            readyDishesAmount2.Value = 0;
         }
     }
 }
