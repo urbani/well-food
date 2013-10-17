@@ -145,6 +145,9 @@ namespace TRPO.View
             ordersController.updateActiveMenu();
             ordersController.updateOrderMenu();
             ordersController.updatePlacedOrderMenu();
+            ordersController.updateOpenedMenu();
+
+
         }
         private void headerList1_SelectionChangeCommitted(object sender, EventArgs e)
         {

@@ -138,6 +138,20 @@ namespace TRPO.Controller
         }
 
         /// <summary>
+        /// в список выбранных блюд, добавляет, те которые уже были выбранны в прошлый раз
+        /// </summary>
+        public void updateOpenedMenu()
+        {
+            clientId = view.getEmplId();
+            placedOrderList = orderManager.getPlacedOrder(clientId, true); //зачем тру?
+            foreach(orderEnrty entry in placedOrderList)
+                currentOrder.Add(entry);
+            updateOrderMenu();
+        }
+
+
+
+        /// <summary>
         /// обработчик выдачи заказа
         /// </summary>
         public void updatePlacedOrderMenu()

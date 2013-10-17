@@ -93,7 +93,7 @@ namespace TRPO.Model
             return resultList;
         }
         /// <summary>
-        /// провести заказ
+        /// открыть заказ
         /// </summary>
         /// <param name="id_empl">id клиента</param>
         /// <param name="orderList">список блюд в заказе</param>
@@ -105,7 +105,7 @@ namespace TRPO.Model
             if (idOrd == -1)
             {
                 connector.executeNonQuery(String.Format("INSERT INTO Orders (ID_Emp, Status) VALUES ({0},  1)", id_empl));
-                idOrd = getOpenOrderFromEmloy(id_empl);
+                idOrd = getOpenOrderFromEmloy(id_empl); //!!!!===
 
             }
             foreach(orderEnrty dish in orderList)
