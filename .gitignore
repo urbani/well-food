@@ -6,13 +6,13 @@
 
 # Visual studio files
 *.csproj.user
-app.config
 
 # Visual Studio db files
 *.laccdb
 *.xsc
 *.xsd
 *.xss
+*.suo
 main_dbDataSet.Designer.cs
 
 # Debug files
