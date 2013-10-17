@@ -52,6 +52,7 @@ namespace TRPO.View
             headerList2.AutoCompleteSource = AutoCompleteSource.ListItems;
             ordersController.updateActiveMenu();
             buyOrderMenu.Items.Clear();
+            ordersController.updateOpenedMenu();
 
             
 
