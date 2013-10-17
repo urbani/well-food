@@ -219,7 +219,7 @@ namespace TRPO.View
 
             foreach (ChiefListEntry entry in list)
             {
-                s = new String[] { entry.name, entry.need.ToString(), entry.ready.ToString(), entry.left.ToString() };
+                s = new String[] { entry.name, entry.need.ToString(), entry.ready.ToString(), entry.left.ToString(), entry.inStock.ToString()};
                 ListViewItem tmp = new ListViewItem(s);
                 listView1.Items.Add(tmp);
             }

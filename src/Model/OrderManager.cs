@@ -30,6 +30,8 @@ namespace TRPO.Model
                 tmpEntry.need = Convert.ToInt32(reader[1]);
                 tmpEntry.ready = Convert.ToInt32(reader[2]);
                 tmpEntry.left = Convert.ToInt32(reader[3]);
+
+                tmpEntry.inStock = Convert.ToInt32();
                 list.Add(tmpEntry);
             }
             reader.Close();
