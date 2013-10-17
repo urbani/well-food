@@ -90,6 +90,7 @@
     <Compile Include="src\Model\DBConnector.cs" />
     <Compile Include="src\Model\DishesManager.cs" />
     <Compile Include="src\Model\OrderManager.cs" />
+    <Compile Include="src\Model\OrderManagerServiceFunction.cs" />
     <Compile Include="src\Model\ProductsManager.cs" />
     <Compile Include="src\Model\Roles.cs" />
     <Compile Include="src\Model\User.cs" />

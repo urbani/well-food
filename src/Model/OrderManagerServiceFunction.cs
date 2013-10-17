@@ -10,7 +10,7 @@ namespace TRPO.Model
 {
    public class OrderManagerServiceFunction
     {
-       public DBConnector connector;
+       private DBConnector connector;
        public OrderManagerServiceFunction(DBConnector con)
        {
            connector = con;
@@ -152,6 +152,20 @@ namespace TRPO.Model
             connector.closeConnection(true);
             return link;
 
+        }
+
+        public List<int> getDishIdesFronClient(int clientId)
+        {
+            connector.openConnection(true);
+            List<int> dishesIds = new List<int>();
+            OleDbDataReader reader = connector.executeQuery(String.Format(@"SELECT id_dish FROM Orders AS o INNER JOIN 
+                (SELECT do.ID_Dish, do.ID_Order, do.Dish_Count, do.Ready_Count FROM Dishes_Order AS do ) AS do ON o.ID_Ord=do.ID_Order 
+                WHERE o.Status=1 AND o.ID_Emp={0}", clientId));
+            while (reader.Read())
+            {
+                dishesIds.Add(Convert.ToInt32(reader[0].ToString()));
+            }
+            return dishesIds
         }
 
     }

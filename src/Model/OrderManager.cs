@@ -93,22 +93,42 @@ namespace TRPO.Model
             connector.closeConnection();
             return resultList;
         }
+
+        /// <summary>
+        /// сообщает выполняется ли уже заказ для данного клиента 
+        /// </summary>
+        /// <param name="id_empl"></param>
+        /// <returns></returns>
+        public bool orderRunning(int id_empl)
+        {
+            int idOrd = serviceFunction.getOrderId(id_empl);
+            bool orderRunning = idOrd == serviceFunction.getOrderId(id_empl, false) ? false : true;
+            return orderRunning;
+        }
+
         /// <summary>
         /// открыть заказ
         /// </summary>
-        /// <param name="id_empl">id клиента</param>
+        /// <param name="clientId">id клиента</param>
         /// <param name="orderList">список блюд в заказе</param>
-        public int createOrder(int id_empl, List<orderEnrty> orderList)
+        public int createOrder(int clientId, List<orderEnrty> orderList)
         {
             int timesChanges = 0;
             connector.openConnection();
-            int idOrd = serviceFunction.getOpenOrderFromEmloy2(id_empl);
+            int idOrd = serviceFunction.getOrderId(clientId);
+            
             if (idOrd == -1)
             {
-                connector.executeNonQuery(String.Format("INSERT INTO Orders (ID_Emp, Status) VALUES ({0},  1)", id_empl));
-                idOrd = serviceFunction.getOpenOrderFromEmloy(id_empl); //!!!!===
+                connector.executeNonQuery(String.Format("INSERT INTO Orders (ID_Emp, Status) VALUES ({0},  1)", clientId));
+                idOrd = serviceFunction.getOpenOrderFromEmloy(clientId);
+                if (idOrd == -1)
+                {
+                    throw new ApplicationException(String.Format("id order все еще -1. id empl={0}", clientId));
+                }
 
             }
+            List<int> updateList = getDishIdesFronClient
+            
             foreach(orderEnrty dish in orderList)
             {
                 timesChanges += connector.executeNonQuery(String.Format("INSERT INTO Dishes_Order (Id_dish, id_order, dish_count, ready_count) VALUES ({0},  {1} , {2}, 0)", dish.id, idOrd, dish.Count));
