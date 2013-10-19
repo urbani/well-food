@@ -38,12 +38,12 @@ namespace TRPO.GlobalObj
        /// <summary>
        /// конвертирует список блюд из системного представления в View-прикодный тип
        /// </summary>
-       public static ListViewItem[] orderListToViewArr(List<orderEnrty> dishList, bool incudePrice = false)
+       public static ListViewItem[] orderListToViewArr(List<orderEntry> dishList, bool incudePrice = false)
        {
            ListViewItem[] dishArr = new ListViewItem[dishList.Count];
            int ptr = 0;
            ListViewItem temp = new ListViewItem();
-           foreach (orderEnrty entry in dishList)
+           foreach (orderEntry entry in dishList)
            {
                temp = new ListViewItem(entry.Dish);
                temp.SubItems.Add(entry.Cost.ToString());

@@ -165,7 +165,7 @@ namespace TRPO.Model
             {
                 dishesIds.Add(Convert.ToInt32(reader[0].ToString()));
             }
-            return dishesIds
+            return dishesIds;
         }
 
     }

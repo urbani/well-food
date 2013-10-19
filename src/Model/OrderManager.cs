@@ -17,7 +17,7 @@ namespace TRPO.Model
             connector = new DBConnector();
             serviceFunction = new OrderManagerServiceFunction(connector);
         }
-
+        enum dishTriger { insert, update, delete };
         public List<ChiefListEntry> getActiveOrders()
         {
             List<ChiefListEntry> list = new List<ChiefListEntry>();
@@ -110,13 +110,17 @@ namespace TRPO.Model
         /// открыть заказ
         /// </summary>
         /// <param name="clientId">id клиента</param>
-        /// <param name="orderList">список блюд в заказе</param>
-        public int createOrder(int clientId, List<orderEnrty> orderList)
+        /// <param name="crudeOrderList">список блюд в заказе</param>
+        public int createOrder(int clientId, List<orderEntry> crudeOrderList)
         {
-            int timesChanges = 0;
-            connector.openConnection();
-            int idOrd = serviceFunction.getOrderId(clientId);
-            //dsdd
+           // 
+
+            int timesChanges = 0; //индекс для самопроверки
+            connector.openConnection(); 
+            int idOrd = serviceFunction.getOrderId(clientId); //получить ид заказа
+            //List<List<orderEnrty>> intellyOrderList = new List<List<orderEnrty>>(); //заказ, в котором блюда отсортированы по типу 
+
+            //если заказ еще не создан, то создать
             if (idOrd == -1)
             {
                 connector.executeNonQuery(String.Format("INSERT INTO Orders (ID_Emp, Status) VALUES ({0},  1)", clientId));
@@ -127,28 +131,74 @@ namespace TRPO.Model
                 }
 
             }
-            List<int> updateList = serviceFunction.getDishIdesFronClient(clientId);
-            //убираем из insertLIst`а все блюда которые пойдут в update
-            int i = 0;
-            foreach (orderEnrty entry in orderList)
+
+            List<int> oldOrderListIds = serviceFunction.getDishIdesFronClient(clientId); //получаем блюда на апдейт
+            List<orderEntry> updateListDishes = new List<orderEntry>();
+            List<orderEntry> insertList = new List<orderEntry>();
+            List<int> removeList = new List<int>();
+
+            //заполняем update-лист
+            foreach (orderEntry entry in crudeOrderList)
             {
-                foreach (int id in updateList)
+                foreach (int id in oldOrderListIds)
                 {
-                    if (orderList[i].id == id)
+                    if (entry.id == id)
                     {
-                        orderList.RemoveAt(i);
-                        i--;
+                        updateListDishes.Add(entry);
 
                     }
                 }
-                i++;
+                
             }
             
-            foreach(orderEnrty dish in orderList)
+            //заполняем removeList
+            bool found = false;
+            foreach (int id in oldOrderListIds)
+            {
+                found = false;
+                foreach (orderEntry entry in crudeOrderList)
+                {
+                    if (id == entry.id)
+                    {
+                        found = true;
+                        break;
+                    }
+                }
+                if (!found)
+                    removeList.Add(id);
+            }
+
+            //заполняем insertList
+            foreach (orderEntry rawEntry in crudeOrderList)
+            {
+                found = false;
+                foreach (orderEntry entry in updateListDishes)
+                {
+                    if (Equals(entry,rawEntry))
+                    {
+                        found = true;
+                        break;
+                    }
+                }
+            }
+
+            foreach (orderEntry entry in updateListDishes)
+            {
+                connector.executeNonQuery(String.Format("UPDATE Dishes_Order SET DISH_count={0} WHERE ID_order={1} AND id_dish={2}", entry.Count, idOrd, entry.id));
+            }
+
+
+            //делаем инсерт
+            foreach(orderEntry dish in insertList)
             {
                 timesChanges += connector.executeNonQuery(String.Format("INSERT INTO Dishes_Order (Id_dish, id_order, dish_count, ready_count) VALUES ({0},  {1} , {2}, 0)", dish.id, idOrd, dish.Count));
 
             }
+            foreach (int id in removeList)
+            {
+                connector.executeNonQuery(String.Format("DELETE FROM Dishes_Order WHERE ID_dish={0} AND id_order={1}", id, idOrd));
+            }
+
             connector.closeConnection();
             return timesChanges;
         }
@@ -159,10 +209,10 @@ namespace TRPO.Model
         /// <param name="emplId">id клиента</param>
         /// <param name="readyOrder">заказ открыт?</param>
         /// <returns></returns>
-        public List<orderEnrty> getPlacedOrder(int emplId, bool readyOrder = true)
+        public List<orderEntry> getPlacedOrder(int emplId, bool readyOrder = true)
         {
             String readyOrderSymbol = readyOrder ? "=" : "<>"; //должны ли все блюда в заказе быть выполнены
-            List<orderEnrty> order = new List<orderEnrty>();
+            List<orderEntry> order = new List<orderEntry>();
             connector.openConnection();
             List<int> dishIdsList = new List<int>();
             OleDbDataReader reader = connector.executeQuery(String.Format(@"SELECT do.ID_Dish, do.Dish_Count FROM Orders AS o INNER JOIN 
@@ -174,7 +224,7 @@ namespace TRPO.Model
             {
                 id = Convert.ToInt32(reader[0]);
                 count = Convert.ToInt32(reader[1]);
-                order.Add(new orderEnrty(serviceFunction.getDishName(id), serviceFunction.getPriceByDishId(id), count, id,serviceFunction.getLinkToPhoto(id)));
+                order.Add(new orderEntry(serviceFunction.getDishName(id), serviceFunction.getPriceByDishId(id), count, id,serviceFunction.getLinkToPhoto(id)));
             }
             
 
