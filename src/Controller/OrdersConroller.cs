@@ -143,10 +143,13 @@ namespace TRPO.Controller
         public void updateOpenedMenu()
         {
             clientId = view.getEmplId();
-            placedOrderList = orderManager.getPlacedOrder(clientId, true); //зачем тру?
+            placedOrderList = orderManager.getPlacedOrder(clientId); //зачем тру?
+            currentOrder.Clear();
             foreach(orderEntry entry in placedOrderList)
                 currentOrder.Add(entry);
             updateOrderMenu();
+            return;
+            
         }
 
 
@@ -229,15 +232,8 @@ namespace TRPO.Controller
 
         public void createOrder()
         {
-            try
-            {
-                orderManager.createOrder(view.getEmplId(), currentOrder);
-                view.clearOrderMenu();
-            }
-            catch (ApplicationException ex)
-            { 
-                view.showMsg(ex.ToString(), ErrorLevels.Critical); 
-            }  
+            orderManager.createOrder(view.getEmplId(), currentOrder);
+            updateOpenedMenu();
 
         }
         

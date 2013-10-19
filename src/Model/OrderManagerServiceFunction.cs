@@ -34,19 +34,19 @@ namespace TRPO.Model
             return id_ord + 1;
         }
 
-        public int getOpenOrderFromEmloy2(int emlId, bool status = true)
-        {
-            int intFormStatus = status ? 1 : 0;
-            connector.openConnection(true);
-            OleDbDataReader reader = connector.executeQuery(String.Format("SELECT MAX(id_order) FROM dishes_Order"));
-            int id_ord = -1;
-            while (reader.Read())
-            {
-                id_ord = Convert.ToInt32(reader[0]);
-            }
-            connector.closeConnection(true);
-            return id_ord + 1;
-        }
+        //public int getOpenOrderFromEmloy2(int emlId, bool status = true)
+        //{
+        //    int intFormStatus = status ? 1 : 0;
+        //    connector.openConnection(true);
+        //    OleDbDataReader reader = connector.executeQuery(String.Format("SELECT MAX(id_order) FROM dishes_Order"));
+        //    int id_ord = -1;
+        //    while (reader.Read())
+        //    {
+        //        id_ord = Convert.ToInt32(reader[0]);
+        //    }
+        //    connector.closeConnection(true);
+        //    return id_ord + 1;
+        //}
 
 
 
