@@ -34,6 +34,7 @@ namespace TRPO.Model
             {
                 connection.Open();
             }
+
         }
 
         /// <summary>
@@ -53,6 +54,7 @@ namespace TRPO.Model
             {
                 connection.Close();
             }
+
         }
 
         /// <summary>

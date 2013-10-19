@@ -143,7 +143,7 @@ namespace TRPO.Controller
         public void updateOpenedMenu()
         {
             clientId = view.getEmplId();
-            placedOrderList = orderManager.getPlacedOrder(clientId); //зачем тру?
+            placedOrderList = orderManager.getPlacedOrder(clientId, false); //зачем тру?
             currentOrder.Clear();
             foreach(orderEntry entry in placedOrderList)
                 currentOrder.Add(entry);
