@@ -116,7 +116,7 @@ namespace TRPO.Model
             int timesChanges = 0;
             connector.openConnection();
             int idOrd = serviceFunction.getOrderId(clientId);
-            
+            //dsdd
             if (idOrd == -1)
             {
                 connector.executeNonQuery(String.Format("INSERT INTO Orders (ID_Emp, Status) VALUES ({0},  1)", clientId));
@@ -127,7 +127,22 @@ namespace TRPO.Model
                 }
 
             }
-            List<int> updateList = getDishIdesFronClient
+            List<int> updateList = serviceFunction.getDishIdesFronClient(clientId);
+            //убираем из insertLIst`а все блюда которые пойдут в update
+            int i = 0;
+            foreach (orderEnrty entry in orderList)
+            {
+                foreach (int id in updateList)
+                {
+                    if (orderList[i].id == id)
+                    {
+                        orderList.RemoveAt(i);
+                        i--;
+
+                    }
+                }
+                i++;
+            }
             
             foreach(orderEnrty dish in orderList)
             {
