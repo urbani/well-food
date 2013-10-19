@@ -119,7 +119,7 @@ namespace TRPO.Model
         }
 
         /// <summary>
-        /// сообщает id заказа (выполненного или не выполненного)
+        /// сообщает id заказа (выполненного)
         /// </summary>
         /// <param name="emplId"></param>
         /// <returns></returns>
@@ -130,7 +130,7 @@ namespace TRPO.Model
             String readySymbol = ready ? "=" : "<>";
             OleDbDataReader reader = connector.executeQuery(String.Format(@"SELECT id_ord FROM Orders AS o INNER JOIN 
                 (SELECT do.ID_Dish, do.ID_Order, do.Dish_Count, do.Ready_Count FROM Dishes_Order AS do ) AS do ON o.ID_Ord=do.ID_Order 
-                WHERE o.Status=1 AND do.Dish_Count{1}do.Ready_Count AND o.ID_Emp={0}", emplId, readySymbol));
+                WHERE o.Status=1 AND do.Ready_Count=0 AND o.ID_Emp={0}", emplId, readySymbol));
             while (reader.Read())
             {
                 id = Convert.ToInt32(reader[0]);
