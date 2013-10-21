@@ -22,7 +22,39 @@ namespace TRPO.Model
             List<ChiefListEntry> list = new List<ChiefListEntry>();
             ChiefListEntry tmpEntry = new ChiefListEntry();
             connector.openConnection();
-            OleDbDataReader reader = connector.executeQuery("SELECT d.Name_Dish, SUM(do.Dish_Count) as Need, SUM(do.Ready_Count) as Ready, (Need - Ready) as Left_ FROM Dishes_Order AS do INNER JOIN Dishes AS d ON d.ID_Dish = do.ID_Dish WHERE do.Dish_Count - do.Ready_Count > 0 GROUP BY d.Name_Dish");
+            OleDbDataReader reader = connector.executeQuery(
+            @"SELECT 
+                sel.Name_Dish, 
+                sel.Need, 
+                sel.Ready, 
+                sel.Left_,
+                sel2.StockLeft
+            FROM
+            (
+                SELECT 
+                    d.Name_Dish, 
+                    SUM(do.Dish_Count) as Need, 
+                    SUM(do.Ready_Count) as Ready, 
+                    (Need - Ready) as Left_ 
+                FROM 
+                    Dishes_Order AS do 
+                INNER JOIN 
+                    Dishes AS d ON d.ID_Dish = do.ID_Dish 
+                WHERE 
+                    do.Dish_Count - do.Ready_Count > 0 
+                GROUP BY 
+                    d.Name_Dish
+            ) as sel 
+            LEFT JOIN
+            (
+                SELECT
+                    lcd.Name_Dish, SUM(lcd.Amount - lcd.Out_Amount) as StockLeft
+                FROM
+                    Left_Cooked_Dishes as lcd
+                GROUP BY lcd.Name_Dish
+            ) as sel2
+            ON sel.Name_Dish = sel2.Name_Dish"
+            );
 
             while (reader.Read())
             {
@@ -31,7 +63,7 @@ namespace TRPO.Model
                 tmpEntry.ready = Convert.ToInt32(reader[2]);
                 tmpEntry.left = Convert.ToInt32(reader[3]);
 
-                tmpEntry.inStock = Convert.ToInt32();
+                tmpEntry.inStock = !DBNull.Value.Equals(reader[4]) ? Convert.ToInt32(reader[4]) : 0;
                 list.Add(tmpEntry);
             }
             reader.Close();

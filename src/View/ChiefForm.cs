@@ -465,16 +465,20 @@ namespace TRPO.View
         public int getSelectedDishAmount()
         {
             int res = 0;
-            switch (mainTab.SelectedIndex)
+            if (mainTab != null && listView1 != null && listView1.SelectedItems.Count > 0 && listView1.SelectedItems[0].SubItems.Count > 4)
             {
-                case 0:
-                    res = Convert.ToInt32(listView1.SelectedItems[0].SubItems[3].Text);
-                    break;
-                case 1:
-                    break;
-                case 2:
-                    break;
+                switch (mainTab.SelectedIndex)
+                {
+                    case 0:
+                        res = Convert.ToInt32(listView1.SelectedItems[0].SubItems[3].Text);
+                        break;
+                    case 1:
+                        break;
+                    case 2:
+                        break;
+                }
             }
+            
             return res;
         }
 
