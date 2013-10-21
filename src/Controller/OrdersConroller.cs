@@ -7,6 +7,7 @@ using TRPO.Model;
 using TRPO.Structures;
 using System.Windows.Forms;
 using TRPO.GlobalObj;
+using System.IO;
 
 namespace TRPO.Controller
 {
@@ -17,8 +18,26 @@ namespace TRPO.Controller
         IOrderManagable view;
         User user; //класс над объектом пользователь-сотрудник (ФИО фото роль и т.д.)
         public int clientId { get; set; } //id-клиента с которым мы рабдотали в предывдущий раз
+        int TypeIndex;
+        public int typeIndex{ get { return TypeIndex; } set { TypeIndex = value + 1; } }
+
+        public int dishindex=0;
+        public int orderIndex=0;
+        public String orderDiahNameCrutch; //:)
         
-        public List<CourierListEntry> currentMenu = new List<CourierListEntry>(); //текущее меню в системном виде
+
+        Dictionary<int, List<CourierListEntry>> currentMenuList = new Dictionary<int, List<CourierListEntry>>();
+        public List<CourierListEntry> currentMenu
+        {
+            get 
+            {
+                if (!currentMenuList.ContainsKey(typeIndex))
+                    currentMenuList.Add(typeIndex, new List<CourierListEntry>());
+                return currentMenuList[typeIndex]; 
+            }
+            set { value = currentMenuList[typeIndex]; }
+        }
+
         Dictionary<int, List<orderEnrty>> currentOrderList = new Dictionary<int, List<orderEnrty>>();
         //List<orderEnrty> currentOrder = new List<orderEnrty>(); //текущий заказ в системном виде
         //геттеры и сеттеры творят чудеса!!!
@@ -44,20 +63,56 @@ namespace TRPO.Controller
         /// </summary>
         /// <param name="dish"></param>
         /// <param name="price"></param>
-        public void addDishToOrder(String dish, float price)
+        public void addDishToOrder()
         {
-            foreach (int i in Enumerable.Range(0,currentOrder.Count))
+
+            int index = view.getIndexSelectedDish();
+            bool nothing = true;
+            foreach (int i in Enumerable.Range(0, currentOrder.Count))
             {
-                if (currentOrder[i].Dish == dish)
+                if (currentOrder[i].id == currentMenu[dishindex].id)
                 {
                     orderEnrty temp = new orderEnrty(currentOrder[i]);
                     temp.inreament();
                     currentOrder[i] = temp;
-                    return;
+                    nothing = false; ;
                 }
             }
-            
-            currentOrder.Add(new orderEnrty(dish, price, 1, findIdDish(dish)));
+            if (nothing)
+                currentOrder.Add(currentMenu[dishindex].ToOrderEntry());
+            updateDishPhoto();
+            //void setDishPhoto(String path)
+
+        }
+
+        int findDishOrder(String dishName)
+        {
+            int index = 0;
+            foreach (int i in Enumerable.Range(0, currentOrder.Count))
+                if (currentOrder[i].Dish == orderDiahNameCrutch)
+                {
+                    index = i;
+                    break;
+                }
+            return index;
+        }
+
+        public void updateDishPhoto(bool isOrderChange=true)
+        {
+            String link = "";
+            if (isOrderChange)
+                link = currentMenu[dishindex].linkToPhoto;
+            else
+                link = currentOrder[findDishOrder(orderDiahNameCrutch)].LinkToPhoto;
+            if (link != "" && File.Exists(Properties.Settings.Default.dishesImagesFolderPath + link))
+            {
+
+                view.setDishPhoto(Properties.Settings.Default.dishesImagesFolderPath + link);
+            }
+            else
+            {
+                view.setDishPhoto(null);
+            }
         }
 
         /// <summary>
@@ -65,23 +120,20 @@ namespace TRPO.Controller
         /// </summary>
         /// <param name="dish"></param>
         /// <param name="price"></param>
-        public void removeDishFromOrder(String dish, float price)
+        public void removeDishFromOrder()
         {
-            foreach (int i in Enumerable.Range(0, currentOrder.Count))
+            int index = findDishOrder(orderDiahNameCrutch);
+            orderEnrty temp = new orderEnrty(currentOrder[index]);
+            if (temp.Count == 1)
+                currentOrder.Remove(temp);
+            else
             {
-                if (currentOrder[i].Dish == dish)
-                {
-                    orderEnrty temp = new orderEnrty(currentOrder[i]);
-                    if (temp.Count == 1)
-                        currentOrder.Remove(temp);
-                    else
-                    {
-                        temp.decreament();
-                        currentOrder[i] = temp;
-                    }
-                    return;
-                }
+                temp.decreament();
+                currentOrder[index] = temp;
             }
+            return;
+
+            
             
         }
 
@@ -122,27 +174,17 @@ namespace TRPO.Controller
         /// <returns></returns>
         public void updateOrderMenu()
         {
-            ListViewItem[] viewOrder = new ListViewItem[currentOrder.Count];
-            int ptr = 0;
-            ListViewItem temp = new ListViewItem();
-            foreach (orderEnrty entry in currentOrder)
-            {
-                temp = new ListViewItem(entry.Dish);
-                temp.SubItems.Add(entry.Cost.ToString());
-                temp.SubItems.Add(entry.Count.ToString());
-                viewOrder[ptr] = temp ;
-                ptr++;
-            }
-
-            view.updateOrderMenu(viewOrder);
+            view.updateOrderMenu(Convertor.orderListToViewArr(currentOrder));
         }
 
         public OrdersConroller(User u)
         {
             user = u;
             clientId = -1;
-         //TODO:
-         //в загловок имя, роль
+            //создаем индекс во внутреннем представлении меню
+
+
+
         }
 
         public void addForm(IOrderManagable c)
@@ -190,8 +232,10 @@ namespace TRPO.Controller
         /// </summary>
         public void updateActiveMenu()
         {
-            currentMenu = orderManager.getActiveMenu();
-            view.updateMenuList(currentMenu);
+            currentMenuList = new Dictionary<int, List<CourierListEntry>>();
+            currentMenuList = Convertor.dishListToMenuList(orderManager.getActiveMenu());
+            currentMenuList.Remove(0);
+            view.updateMenuList(Convertor.menuDictToViewArr(currentMenuList));
 
         }
 
@@ -225,6 +269,7 @@ namespace TRPO.Controller
 
 
         }
+
 
     }
 }

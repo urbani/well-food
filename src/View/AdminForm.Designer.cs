@@ -28,6 +28,9 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(AdminForm));
             this.mainTable = new System.Windows.Forms.TableLayoutPanel();
             this.headerTable = new System.Windows.Forms.TableLayoutPanel();
@@ -44,11 +47,19 @@
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.tabPage2 = new System.Windows.Forms.TabPage();
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
+            this.usersDataGrid = new System.Windows.Forms.DataGridView();
+            this.dataGridViewTextBoxColumn7 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn8 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.patr = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.role = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.login = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.mainTable.SuspendLayout();
             this.headerTable.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
             this.rightBodyTabel.SuspendLayout();
             this.leftBodyTable.SuspendLayout();
+            this.tabPage1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.usersDataGrid)).BeginInit();
             this.SuspendLayout();
             // 
             // mainTable
@@ -157,8 +168,8 @@
             // tableLayoutPanel1
             // 
             this.tableLayoutPanel1.ColumnCount = 2;
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 84.33566F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 15.66434F));
             this.tableLayoutPanel1.Controls.Add(this.rightBodyTabel, 0, 0);
             this.tableLayoutPanel1.Controls.Add(this.leftBodyTable, 0, 0);
             this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -176,12 +187,13 @@
             this.rightBodyTabel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 58.68545F));
             this.rightBodyTabel.Controls.Add(this.button1, 0, 1);
             this.rightBodyTabel.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.rightBodyTabel.Location = new System.Drawing.Point(360, 3);
+            this.rightBodyTabel.Location = new System.Drawing.Point(605, 3);
             this.rightBodyTabel.Name = "rightBodyTabel";
             this.rightBodyTabel.RowCount = 2;
             this.rightBodyTabel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 41.97531F));
             this.rightBodyTabel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 36F));
-            this.rightBodyTabel.Size = new System.Drawing.Size(352, 360);
+            this.rightBodyTabel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+            this.rightBodyTabel.Size = new System.Drawing.Size(107, 360);
             this.rightBodyTabel.TabIndex = 5;
             // 
             // button1
@@ -189,12 +201,13 @@
             this.button1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.button1.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.button1.Location = new System.Drawing.Point(232, 327);
+            this.button1.Location = new System.Drawing.Point(3, 327);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(117, 30);
+            this.button1.Size = new System.Drawing.Size(101, 30);
             this.button1.TabIndex = 0;
             this.button1.Text = "button1";
             this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // leftBodyTable
             // 
@@ -205,15 +218,16 @@
             this.leftBodyTable.Location = new System.Drawing.Point(3, 3);
             this.leftBodyTable.Name = "leftBodyTable";
             this.leftBodyTable.SelectedIndex = 0;
-            this.leftBodyTable.Size = new System.Drawing.Size(351, 360);
+            this.leftBodyTable.Size = new System.Drawing.Size(596, 360);
             this.leftBodyTable.TabIndex = 4;
             // 
             // tabPage1
             // 
+            this.tabPage1.Controls.Add(this.usersDataGrid);
             this.tabPage1.Location = new System.Drawing.Point(4, 33);
             this.tabPage1.Name = "tabPage1";
             this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage1.Size = new System.Drawing.Size(343, 323);
+            this.tabPage1.Size = new System.Drawing.Size(588, 323);
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "tabPage1";
             this.tabPage1.UseVisualStyleBackColor = true;
@@ -236,6 +250,74 @@
             this.statusStrip1.TabIndex = 1;
             this.statusStrip1.Text = "statusStrip1";
             // 
+            // usersDataGrid
+            // 
+            this.usersDataGrid.AllowUserToAddRows = false;
+            this.usersDataGrid.AllowUserToDeleteRows = false;
+            this.usersDataGrid.AllowUserToResizeRows = false;
+            this.usersDataGrid.BackgroundColor = System.Drawing.SystemColors.Window;
+            this.usersDataGrid.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.usersDataGrid.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.Sunken;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.GradientActiveCaption;
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.usersDataGrid.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            this.usersDataGrid.ColumnHeadersHeight = 30;
+            this.usersDataGrid.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
+            this.usersDataGrid.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.dataGridViewTextBoxColumn7,
+            this.dataGridViewTextBoxColumn8,
+            this.patr,
+            this.role,
+            this.login});
+            this.usersDataGrid.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.usersDataGrid.Location = new System.Drawing.Point(3, 3);
+            this.usersDataGrid.MultiSelect = false;
+            this.usersDataGrid.Name = "usersDataGrid";
+            this.usersDataGrid.RowHeadersVisible = false;
+            this.usersDataGrid.RowHeadersWidth = 50;
+            this.usersDataGrid.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.usersDataGrid.Size = new System.Drawing.Size(582, 317);
+            this.usersDataGrid.TabIndex = 10;
+            // 
+            // dataGridViewTextBoxColumn7
+            // 
+            this.dataGridViewTextBoxColumn7.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.dataGridViewTextBoxColumn7.DefaultCellStyle = dataGridViewCellStyle2;
+            this.dataGridViewTextBoxColumn7.HeaderText = "Фамилия";
+            this.dataGridViewTextBoxColumn7.Name = "dataGridViewTextBoxColumn7";
+            this.dataGridViewTextBoxColumn7.ReadOnly = true;
+            // 
+            // dataGridViewTextBoxColumn8
+            // 
+            this.dataGridViewTextBoxColumn8.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            dataGridViewCellStyle3.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.dataGridViewTextBoxColumn8.DefaultCellStyle = dataGridViewCellStyle3;
+            this.dataGridViewTextBoxColumn8.HeaderText = "Имя";
+            this.dataGridViewTextBoxColumn8.Name = "dataGridViewTextBoxColumn8";
+            this.dataGridViewTextBoxColumn8.ReadOnly = true;
+            this.dataGridViewTextBoxColumn8.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            // 
+            // patr
+            // 
+            this.patr.HeaderText = "Отчество";
+            this.patr.Name = "patr";
+            // 
+            // role
+            // 
+            this.role.HeaderText = "Роль";
+            this.role.Name = "role";
+            // 
+            // login
+            // 
+            this.login.HeaderText = "Логин";
+            this.login.Name = "login";
+            // 
             // AdminForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -252,6 +334,8 @@
             this.tableLayoutPanel1.ResumeLayout(false);
             this.rightBodyTabel.ResumeLayout(false);
             this.leftBodyTable.ResumeLayout(false);
+            this.tabPage1.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.usersDataGrid)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -274,5 +358,11 @@
         protected System.Windows.Forms.TabPage tabPage1;
         protected System.Windows.Forms.TabPage tabPage2;
         protected System.Windows.Forms.TableLayoutPanel rightBodyTabel;
+        private System.Windows.Forms.DataGridView usersDataGrid;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn7;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn8;
+        private System.Windows.Forms.DataGridViewTextBoxColumn patr;
+        private System.Windows.Forms.DataGridViewTextBoxColumn role;
+        private System.Windows.Forms.DataGridViewTextBoxColumn login;
     }
 }

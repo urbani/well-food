@@ -12,11 +12,12 @@ namespace TRPO.Controller
     public class ClientManagementConroller
     {
         IClientManagable view;
+        IDialog dialog;
         //класс над объектом пользователь-сотрудник (ФИО фото роль и т.д.)
         User user;
         private ClientManager clientManager;
 
-        public Dictionary<int, int> companyIds = new Dictionary<int, int>(); //храним id`шники - № в списки - id - в базе
+        public Dictionary<int, int> companyIds = new Dictionary<int, int>(); //храним id`шники - id - в базе
         public List<string> companyList = new List<string>(); //название компании, для вывода в списке
 
         public Dictionary<int, int> employIds = new Dictionary<int, int>();
@@ -41,6 +42,16 @@ namespace TRPO.Controller
 
         }
 
+        public int getCompanyId()
+        {
+            //TODO отладить: при смени компании где-то вызывается этот код
+            int index = view.getIndexSelectedCompany();
+            if (companyIds.ContainsKey(index))
+                return companyIds[index];
+            else
+                return -1;
+
+        }
         public void fillEmployList()
         {
             
@@ -62,7 +73,7 @@ namespace TRPO.Controller
         }
 
         //начальное заполнение формы данными
-        public void fillCompanyList()
+        public void fillCompanyList(bool system=false)
         {
             
             
@@ -79,6 +90,8 @@ namespace TRPO.Controller
                 companyIds.Add(ptr, pair.Key);
                 ptr++;
             }
+//            if (system)
+               // view.updateCompanyList();
         }
 
         public void addForm(IClientManagable somethingView)
@@ -86,6 +99,63 @@ namespace TRPO.Controller
             view = somethingView;
         }
 
+        public void addDialog(IDialog someDialog)
+        {
+            dialog = someDialog;
+
+        }
+
+        //апдейт таблицы клиентов
+        public void updateEmployDate()
+        {
+            clientManager.updateEmployData(dialog.getFileds(), dialog.getEmployId());
+            fillEmployList();
+
+        }
+
+        //данные по текущему клиенту
+        public void selectEmployDat()
+        {
+            dialog.fillFiled(clientManager.selectEmployData(dialog.getEmployId()));
+
+        }
+
+
+        //создание новго клиента+
+        public void insertEmployData()
+        {
+            clientManager.insertEmployData(dialog.getFileds(), dialog.getCompanyId());
+            fillEmployList();
+        }
+
+        //удалдение клиента+
+        public void deleteEmploy()
+        {
+            clientManager.deleteEmploy(getEmployId());
+            fillEmployList();
+        }
+
+        //-
+        public void createCompany()
+        {
+            if(dialog.getCompanyName()=="")
+                return;
+            clientManager.createCompany(dialog.getCompanyName());
+            fillCompanyList();
+            fillEmployList();
+        }
+
+        //-
+        public void editCompany()
+        {
+            if (dialog.getCompanyName() == "")
+                return;
+
+            clientManager.editCompany(dialog.getCompanyName(), dialog.getCompanyId());
+            fillCompanyList();
+            fillEmployList();
+
+        }
 
 
 

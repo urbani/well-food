@@ -42,6 +42,23 @@ namespace TRPO.Controller
             {
                 view.showMsg("Все заказы на блюдо [" + readyDish + "] закрыты. Осталось неучтенных блюд: [" + readyDish + " : " + redundantDishes + "шт.]", GlobalObj.ErrorLevels.Info);
             }
+            updateRedundantDishesAmount();
+        }
+
+        
+        public void addDishesFromStock()
+        {
+            int readyStockDishes = view.getReadyStockDishesAmount();
+            String readyDish = view.getSelectedDishName();
+            if (readyDish != "" && readyStockDishes > 0)
+            {
+                dishesManager.addReadyDishesFromStock(readyDish, readyStockDishes);
+            }
+        }
+
+        public void updateRedundantDishesAmount()
+        {
+            view.setRedundantDishes(dishesManager.getRedundantDishes(view.getSelectedDishName()));
         }
 
         public void fillDishProd()
@@ -80,6 +97,16 @@ namespace TRPO.Controller
             view.addProductToContence(view.getSelectedProductName(), 1);
         }
 
+        public void updateDishPrice()
+        {
+            view.setDishCreationPrice(dishesManager.getDishPrice(view.getCreatedDish()));
+        }
+
+        public void updateAbleToCookDishes()
+        {
+            view.setAbleToCookDishes(dishesManager.getAbleToCookDishes(view.getSelectedDishName()));
+        }
+
         public void addProduct()
         {
             String addingProdName = view.getAddingProductName();
@@ -97,7 +124,7 @@ namespace TRPO.Controller
         }
         public void checkoutOrder()
         {
-            
+
         }
     }
 }

@@ -30,6 +30,8 @@ namespace TRPO.Model
                 tmpEntry.need = Convert.ToInt32(reader[1]);
                 tmpEntry.ready = Convert.ToInt32(reader[2]);
                 tmpEntry.left = Convert.ToInt32(reader[3]);
+
+                tmpEntry.inStock = Convert.ToInt32();
                 list.Add(tmpEntry);
             }
             reader.Close();
@@ -45,7 +47,7 @@ namespace TRPO.Model
             //TODO сделать в sql вычесление цены продукта (% * себесстоимость (с учетом, того сколько продуката в блюде)
             OleDbDataReader reader = connector.executeQuery(@"
                 SELECT 
-                    m.ID_dish, jo.price, jo.Name_dish, jo.Dish_Type, m.Is_Special
+                    m.ID_dish, jo.price, jo.Name_dish, jo.Dish_Type, m.Is_Special, jo.Link_To_Photo
                 FROM 
                     Menu as m
                 INNER JOIN
@@ -53,7 +55,7 @@ namespace TRPO.Model
                         SELECT 
                                 di.ID_Dish,
                                 (prices.price*(1 + di.Percent/100)/100) as price,
-                                di.Name_Dish, di.Dish_Type
+                                di.Name_Dish, di.Dish_Type, di.Link_To_Photo
                         FROM 
                             Dishes AS di 
                         INNER JOIN
@@ -83,8 +85,8 @@ namespace TRPO.Model
                 tmpDish.dish = reader[2].ToString();
                 tmpDish.type = reader[3].ToString();
                 tmpDish.isSpecial = Convert.ToBoolean(reader[4]);
+                tmpDish.linkToPhoto = reader[5].ToString();
                 
-
 
                 resultList.Add(tmpDish);
             }
@@ -101,7 +103,7 @@ namespace TRPO.Model
         {
             int timesChanges = 0;
             connector.openConnection();
-            int idOrd = getOpenOrderFromEmloy(id_empl);
+            int idOrd = getOpenOrderFromEmloy2(id_empl);
             if (idOrd == -1)
             {
                 connector.executeNonQuery(String.Format("INSERT INTO Orders (ID_Emp, Status) VALUES ({0},  1)", id_empl));
@@ -138,7 +140,7 @@ namespace TRPO.Model
             {
                 id = Convert.ToInt32(reader[0]);
                 count = Convert.ToInt32(reader[1]);
-                order.Add(new orderEnrty(getDishName(id), getPriceByDishId(id), count, id));
+                order.Add(new orderEnrty(getDishName(id), getPriceByDishId(id), count, id,getLinkToPhoto(id)));
             }
             
 
@@ -157,14 +159,28 @@ namespace TRPO.Model
         {
             int intFormStatus = status?1:0;
             connector.openConnection(true);
-            OleDbDataReader reader = connector.executeQuery(String.Format("SELECT id_ord FROM Orders WHERE id_emp={0} AND Status={1}",emlId,intFormStatus));
+            OleDbDataReader reader = connector.executeQuery(String.Format("SELECT MAX(id_ord) FROM Orders"));
             int id_ord = -1;
             while (reader.Read())
             {
                 id_ord = Convert.ToInt32(reader[0]);
             }
             connector.closeConnection(true);
-            return id_ord;
+            return id_ord+1;
+        }
+
+        private int getOpenOrderFromEmloy2(int emlId, bool status = true)
+        {
+            int intFormStatus = status ? 1 : 0;
+            connector.openConnection(true);
+            OleDbDataReader reader = connector.executeQuery(String.Format("SELECT MAX(id_order) FROM dishes_Order"));
+            int id_ord = -1;
+            while (reader.Read())
+            {
+                id_ord = Convert.ToInt32(reader[0]);
+            }
+            connector.closeConnection(true);
+            return id_ord + 1;
         }
 
         /// <summary>
@@ -259,6 +275,21 @@ namespace TRPO.Model
             }
             connector.closeConnection(true);
             return id;
+        }
+
+
+        String getLinkToPhoto(int idDish)
+        {
+            connector.openConnection(true);
+            String link = "";
+            OleDbDataReader reader = connector.executeQuery(String.Format(@"SELECT Link_To_Photo FROM Dishes WHERE ID_Dish={0}", idDish));
+            while (reader.Read())
+            {
+                link = reader[0].ToString();
+            }
+            connector.closeConnection(true);
+            return link;
+            
         }
     }
 }

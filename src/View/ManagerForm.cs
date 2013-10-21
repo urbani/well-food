@@ -13,6 +13,7 @@ using System.Collections;
 using Microsoft.Office.Interop.Excel;
 using TRPO.Controller;
 using TRPO.Structures;
+using TRPO.Properties;
 
 namespace TRPO.View
 {
@@ -22,10 +23,27 @@ namespace TRPO.View
     public partial class ManagerForm : Form, IProductManagable
     {
         ProductsManagementController prodController;
+        Timer refreshTimer;
+
+
         public ManagerForm(ProductsManagementController p)
         {
             InitializeComponent();
             prodController = p;
+
+            refreshTimer = new Timer();
+            refreshTimer.Interval = Settings.Default.refresh_rate_sec * 1000;
+            refreshTimer.Tick += new EventHandler(refreshTimer_Tick);
+            refreshTimer.Enabled = true;
+        }
+
+        private void refreshTimer_Tick(Object myObject, EventArgs myEventArgs)
+        {
+            if (true)
+            {
+                
+                prodController.updateReqProductsList();
+            }
         }
 
         public void showMsg(String msg, GlobalObj.ErrorLevels el)
@@ -36,8 +54,8 @@ namespace TRPO.View
                     MessageBox.Show(msg);
                     break;
                 case GlobalObj.ErrorLevels.Info:
-                    statusStrip1.Text = msg;
-                    statusStrip1.Visible = true;
+                    toolStripStatusLabel1.Text = msg;
+                    toolStripStatusLabel1.Visible = true;
                     break;
             }
         }
@@ -47,41 +65,112 @@ namespace TRPO.View
             MessageBox.Show(msg, header);
         }
 
-        public void setProductsList(List<ProductListEntry> plist)
+        public ProductListEntry getSelectedProd()
         {
-            foreach (ProductListEntry p in plist)
+            if(storeDataGrid.Focused)
             {
-                storeDataGrid.Rows.Add(p.name, p.count);
+                return new ProductListEntry(
+                    storeDataGrid.SelectedRows[0].Cells[0].Value.ToString(),
+                    Convert.ToDouble(storeDataGrid.SelectedRows[0].Cells[1].Value.ToString()),
+                    Convert.ToDouble(storeDataGrid.SelectedRows[0].Cells[2].Value.ToString()));
+            } else if (reqProdDataGrid.Focused)
+            {
+                return new ProductListEntry(
+                    reqProdDataGrid.SelectedRows[0].Cells[0].Value.ToString(), 
+                    Convert.ToDouble(reqProdDataGrid.SelectedRows[0].Cells[1].Value.ToString()), 
+                    Convert.ToDouble(reqProdDataGrid.SelectedRows[0].Cells[2].Value.ToString())
+                                            );
+            }
+            else
+            {
+                return null;
             }
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        public void addProductToBuyList(ProductListEntry p)
         {
-        /*    Microsoft.Office.Interop.Excel.Application ExcelApp = new Microsoft.Office.Interop.Excel.Application();
-            Microsoft.Office.Interop.Excel.Workbook ExcelWorkBook;
-            Microsoft.Office.Interop.Excel.Worksheet ExcelWorkSheet;
-            ExcelWorkBook = ExcelApp.Workbooks.Add(System.Reflection.Missing.Value);
-            ExcelWorkSheet = (Microsoft.Office.Interop.Excel.Worksheet)ExcelWorkBook.Worksheets.get_Item(1);
-            for (int i = 1; i < dataGridView1.Columns.Count + 1; i++)
+            boughtProducts.Rows.Add(p.Name, p.Count, p.Price);
+        }
+
+        public void clearLists()
+        {
+            storeDataGrid.Rows.Clear();
+            reqProdDataGrid.Rows.Clear();
+            boughtProducts.Rows.Clear();
+        }
+
+        public void setProductsList(List<ProductListEntry> plist)
+        {
+            
+            foreach (ProductListEntry p in plist)
             {
-                ExcelWorkSheet.Cells[1, i] = dataGridView1.Columns[i - 1].HeaderText;
+                storeDataGrid.Rows.Add(p.Name, p.Count, p.Price);
             }
-            for (int i = 0; i < dataGridView1.Rows.Count - 1; i++)
+        }
+
+        public void setReqProductsList(List<ProductListEntry> plist)
+        {
+            reqProdDataGrid.Rows.Clear();
+            foreach (ProductListEntry p in plist)
             {
-                for (int j = 0; j < dataGridView1.Columns.Count; j++)
+                reqProdDataGrid.Rows.Add(p.Name, p.Count, p.Price);
+            }
+        }
+
+        public List<ProductListEntry> getBoughtProducts()
+        {
+            List<ProductListEntry> res = new List<ProductListEntry>();
+            if (boughtProducts.Rows.Count > 0)
+            {
+                foreach (DataGridViewRow r in boughtProducts.Rows)
                 {
-                    ExcelWorkSheet.Cells[i + 2, j + 1] = dataGridView1.Rows[i].Cells[j].Value.ToString();
+                    if (r.Cells[0].Value != null && r.Cells[1].Value != null && r.Cells[2].Value != null)
+                    {
+                        res.Add(new ProductListEntry(r.Cells[0].Value.ToString(), Convert.ToDouble(r.Cells[1].Value.ToString()), Convert.ToDouble(r.Cells[2].Value.ToString())));
+                    }
                 }
             }
-
-            ExcelApp.Visible = true;*/
+            return res;
         }
 
         private void ManagerForm_Load(object sender, EventArgs e)
         {
             prodController.updateProductsList();
-            storeDataGrid.Sort(storeDataGrid.Columns[0], ListSortDirection.Ascending);
-            storeDataGrid.Rows[0].Selected = true;
+            prodController.updateReqProductsList();
+        }
+
+        private void buyButton_Click(object sender, EventArgs e)
+        {
+            toolStripStatusLabel1.Visible = false;
+            prodController.addBoughtProducts();
+        }
+
+        private void ManagerForm_Click(object sender, EventArgs e)
+        {
+            toolStripStatusLabel1.Visible = false;
+        }
+
+        private void storeDataGrid_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+        {
+            prodController.addProdToBuy();
+        }
+
+        private void reqProdDataGrid_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+        {
+            prodController.addProdToBuy();
+        }
+
+        private void boughtProducts_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+        {
+            boughtProducts.Rows.Remove(boughtProducts.SelectedRows[0]);
+        }
+
+        private void boughtProducts_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                buyButton_Click(sender, new EventArgs());
+            }
         }
         
     }

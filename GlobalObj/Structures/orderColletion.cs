@@ -35,13 +35,16 @@ namespace TRPO.Structures
         public int Count { get { return count; } }
 
         public int id;
+        String linkToPhoto;
+        public String LinkToPhoto { get { return linkToPhoto; } }
         //полный конструктор
-        public orderEnrty(String dish, float price,  int count, int id)
+        public orderEnrty(String dish, float price,  int count, int id, String linkToPhoto)
         {
             this.dish = dish;
             this.price = price;
             this.count = count;
             this.id = id;
+            this.linkToPhoto = linkToPhoto;
         }
 
 
@@ -51,6 +54,7 @@ namespace TRPO.Structures
             this.price = price;
             this.count=count;
             id = 0;
+            this.linkToPhoto = "";
         }
 
 
@@ -62,6 +66,7 @@ namespace TRPO.Structures
             this.price = price;
             this.count = 1;
             id = 0;
+            this.linkToPhoto = "";
         }
         //конструктор копии
         public orderEnrty(orderEnrty entry)
@@ -70,14 +75,16 @@ namespace TRPO.Structures
             this.count = entry.Count;
             this.price = entry.price;
             this.id = entry.id;
+            this.linkToPhoto = entry.linkToPhoto;
         }
-
+        
         public void changeOf(int off = 1)
         {
             if (count+off<1)
                 throw new ArgumentException();
             this.count += off;
         }
+        //TODO можно была бы перегрузить оператор ++
         public void inreament()
         {
             changeOf(1);
@@ -89,7 +96,7 @@ namespace TRPO.Structures
     }
 
     /// <summary>
-    /// системное представление о блюде из заказа
+    /// системное представление блюда из выполненного заказа
     /// </summary>
     public struct orderCheckoutEnry
     {
