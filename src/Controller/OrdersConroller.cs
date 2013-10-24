@@ -152,7 +152,7 @@ namespace TRPO.Controller
             
         }
 
-
+        
 
         /// <summary>
         /// обработчик выдачи заказа
@@ -177,7 +177,7 @@ namespace TRPO.Controller
                 ptr++;
                 totalPrice += entry.Cost;
             }
-
+            orderManager.closeOrder(clientId);
             view.updatePlacedOrderMenu(viewOrder);
             view.updatePlaceOrderTotalPrice(totalPrice);
             String status = (placedOrderList.Count > 0) ? "Открыт" : "Нет заказа";
@@ -265,16 +265,8 @@ namespace TRPO.Controller
 
         public void checkoutOrder()
         {
-            if (placedOrderList.Count == 0)
-                return;
-            bool result = orderManager.checkoutOrder(clientId);
-            if (result)
-            {
                 updatePlacedOrderMenu();
                 view.updatePlecedStatusOrder("Выполнен");
-            }
-            else
-                view.showMsg("Не удалось провести заказ", ErrorLevels.Info);
 
 
 

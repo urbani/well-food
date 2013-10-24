@@ -248,9 +248,6 @@ namespace TRPO.Model
             List<orderEntry> order = new List<orderEntry>();
             connector.openConnection(true);
             List<int> dishIdsList = new List<int>();
-            String ds = String.Format(@"SELECT do.ID_Dish, do.Dish_Count FROM Orders AS o INNER JOIN 
-                (SELECT do.ID_Dish, do.ID_Order, do.Dish_Count, do.Ready_Count FROM Dishes_Order AS do ) AS do ON o.ID_Ord=do.ID_Order 
-                WHERE o.Status=1 AND do.Ready_Count=0 AND o.ID_Emp={0}", emplId, readyOrderSymbol);
 
             OleDbDataReader reader = connector.executeQuery(String.Format(@"SELECT do.ID_Dish, do.Dish_Count FROM Orders AS o INNER JOIN 
                 (SELECT do.ID_Dish, do.ID_Order, do.Dish_Count, do.Ready_Count FROM Dishes_Order AS do ) AS do ON o.ID_Ord=do.ID_Order 
@@ -287,21 +284,33 @@ namespace TRPO.Model
 
 
 
+        public void closeOrder(int clientId)
+        {
+            connector.openConnection(true);
+            int orderId = serviceFunction.getOrderId(clientId, true);
+            int result;
+            result = connector.executeNonQuery(String.Format(@"UPDATE orders SET Status=2 WHERE id_emp={0}", clientId));
 
-  
+            connector.closeConnection(true);
+
+        }
+
+
 
         public bool checkoutOrder(int emplId)
         {
+            return true;
             connector.openConnection(true);
-            int orderId=serviceFunction.getOrderId(emplId, true);
+            int orderId = serviceFunction.getOrderId(emplId, true);
             int result;
             result = connector.executeNonQuery(String.Format(@"UPDATE Orders SET status=2 WHERE id_ord={0}", orderId));
+            connector.closeConnection(true);
             if (result > 0)
                 return true;
             else
                 return false;
+            
         }
-
      
     }
 }
