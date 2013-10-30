@@ -5,5 +5,5 @@ using System.Text;
 
 namespace TRPO.GlobalObj
 {
-    public enum DishesTypes {Первое,Второе, Третье, Бизнесс};
+    public enum DishesTypes {Первое, Второе, Третье, Бизнесс};
 }

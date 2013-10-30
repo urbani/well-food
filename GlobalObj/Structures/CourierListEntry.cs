@@ -28,7 +28,7 @@ namespace TRPO.Structures
                 else if (type == DishesTypes.Третье.ToString())
                     return 3;
                 else
-                    throw new ArgumentException("courier list enry error type");
+                    throw new ArgumentException("courier list entry error type");
             }
 
         }
