@@ -38,22 +38,22 @@ namespace TRPO.Controller
             set { value = currentMenuList[typeIndex]; }
         }
 
-        Dictionary<int, List<orderEnrty>> currentOrderList = new Dictionary<int, List<orderEnrty>>();
+        Dictionary<int, List<orderEntry>> currentOrderList = new Dictionary<int, List<orderEntry>>();
         //List<orderEnrty> currentOrder = new List<orderEnrty>(); //текущий заказ в системном виде
         //геттеры и сеттеры творят чудеса!!!
-        List<orderEnrty> currentOrder 
+        List<orderEntry> currentOrder 
         {
             get 
             {
                 if (!currentOrderList.ContainsKey(clientId))
-                    currentOrderList.Add(clientId, new List<orderEnrty>());
+                    currentOrderList.Add(clientId, new List<orderEntry>());
                  return currentOrderList[clientId];
                 
             } 
             set { value = currentOrderList[clientId]; } 
         }
 
-        List<orderEnrty> placedOrderList = new List<orderEnrty>(); //выполненный заказ текущего клиента
+        List<orderEntry> placedOrderList = new List<orderEntry>(); //выполненный заказ текущего клиента
         
 
         OrderManager orderManager = new OrderManager(); //модель курьера
@@ -72,7 +72,7 @@ namespace TRPO.Controller
             {
                 if (currentOrder[i].id == currentMenu[dishindex].id)
                 {
-                    orderEnrty temp = new orderEnrty(currentOrder[i]);
+                    orderEntry temp = new orderEntry(currentOrder[i]);
                     temp.inreament();
                     currentOrder[i] = temp;
                     nothing = false; ;
@@ -123,7 +123,7 @@ namespace TRPO.Controller
         public void removeDishFromOrder()
         {
             int index = findDishOrder(orderDiahNameCrutch);
-            orderEnrty temp = new orderEnrty(currentOrder[index]);
+            orderEntry temp = new orderEntry(currentOrder[index]);
             if (temp.Count == 1)
                 currentOrder.Remove(temp);
             else
@@ -138,6 +138,23 @@ namespace TRPO.Controller
         }
 
         /// <summary>
+        /// в список выбранных блюд, добавляет, те которые уже были выбранны в прошлый раз
+        /// </summary>
+        public void updateOpenedMenu()
+        {
+            clientId = view.getEmplId();
+            placedOrderList = orderManager.getPlacedOrder(clientId, false); //зачем тру?
+            currentOrder.Clear();
+            foreach(orderEntry entry in placedOrderList)
+                currentOrder.Add(entry);
+            updateOrderMenu();
+            return;
+            
+        }
+
+        
+
+        /// <summary>
         /// обработчик выдачи заказа
         /// </summary>
         public void updatePlacedOrderMenu()
@@ -150,7 +167,7 @@ namespace TRPO.Controller
             int ptr = 0;
             float totalPrice = 0;
             ListViewItem temp = new ListViewItem();
-            foreach (orderEnrty entry in placedOrderList)
+            foreach (orderEntry entry in placedOrderList)
             {
                 temp = new ListViewItem(entry.Dish);
                 temp.SubItems.Add(entry.Cost.ToString());
@@ -160,7 +177,7 @@ namespace TRPO.Controller
                 ptr++;
                 totalPrice += entry.Cost;
             }
-
+            
             view.updatePlacedOrderMenu(viewOrder);
             view.updatePlaceOrderTotalPrice(totalPrice);
             String status = (placedOrderList.Count > 0) ? "Открыт" : "Нет заказа";
@@ -215,15 +232,8 @@ namespace TRPO.Controller
 
         public void createOrder()
         {
-            try
-            {
-                orderManager.createOrder(view.getEmplId(), currentOrder);
-                view.clearOrderMenu();
-            }
-            catch (ApplicationException ex)
-            { 
-                view.showMsg(ex.ToString(), ErrorLevels.Critical); 
-            }  
+            orderManager.createOrder(view.getEmplId(), currentOrder);
+            updateOpenedMenu();
 
         }
         
@@ -246,7 +256,7 @@ namespace TRPO.Controller
         public float getTotalPrice()
         {
             float total = 0;
-            foreach (orderEnrty entry in currentOrder)
+            foreach (orderEntry entry in currentOrder)
             {
                 total += entry.Cost;
             }
@@ -255,16 +265,9 @@ namespace TRPO.Controller
 
         public void checkoutOrder()
         {
-            if (placedOrderList.Count == 0)
-                return;
-            bool result = orderManager.checkoutOrder(clientId);
-            if (result)
-            {
+                orderManager.closeOrder(clientId);
                 updatePlacedOrderMenu();
                 view.updatePlecedStatusOrder("Выполнен");
-            }
-            else
-                view.showMsg("Не удалось провести заказ", ErrorLevels.Info);
 
 
 

@@ -11,12 +11,14 @@ namespace TRPO.Model
     public class OrderManager
     {
         DBConnector connector;
-
+        OrderManagerServiceFunction serviceFunction;
         public OrderManager()
         {
             connector = new DBConnector();
+            serviceFunction = new OrderManagerServiceFunction(connector);
         }
-
+        enum dishTriger { insert, update, delete };
+        //
         public List<ChiefListEntry> getActiveOrders()
         {
             List<ChiefListEntry> list = new List<ChiefListEntry>();
@@ -71,6 +73,10 @@ namespace TRPO.Model
             return list;
         }
 
+        /// <summary>
+        /// возвращает меню на сегодня
+        /// </summary>
+        /// <returns></returns>
         public List<CourierListEntry> getActiveMenu()
         {
             List<CourierListEntry> resultList = new List<CourierListEntry>();
@@ -126,27 +132,140 @@ namespace TRPO.Model
             connector.closeConnection();
             return resultList;
         }
+
         /// <summary>
-        /// провести заказ
+        /// сообщает выполняется ли уже заказ для данного клиента 
         /// </summary>
-        /// <param name="id_empl">id клиента</param>
-        /// <param name="orderList">список блюд в заказе</param>
-        public int createOrder(int id_empl, List<orderEnrty> orderList)
+        /// <param name="id_empl"></param>
+        /// <returns></returns>
+        public bool orderRunning(int id_empl)
         {
-            int timesChanges = 0;
-            connector.openConnection();
-            int idOrd = getOpenOrderFromEmloy2(id_empl);
+            int idOrd = serviceFunction.getOrderId(id_empl);
+            bool orderRunning = idOrd == serviceFunction.getOrderId(id_empl, false) ? false : true;
+            return orderRunning;
+        }
+
+        /// <summary>
+        /// открыть/провести/изменить заказ
+        /// </summary>
+        /// <param name="clientId">id клиента</param>
+        /// <param name="crudeOrderList">список блюд в заказе</param>
+        public int createOrder(int clientId, List<orderEntry> crudeOrderList)
+        {
+            int timesChanges = 0; //индекс для самопроверки
+            connector.openConnection(); 
+            int idOrd = serviceFunction.getOrderId(clientId); //получить ид заказа
+            //List<List<orderEnrty>> intellyOrderList = new List<List<orderEnrty>>(); //заказ, в котором блюда отсортированы по типу 
+
+            //если заказ еще не создан, то создать
             if (idOrd == -1)
             {
-                connector.executeNonQuery(String.Format("INSERT INTO Orders (ID_Emp, Status) VALUES ({0},  1)", id_empl));
-                idOrd = getOpenOrderFromEmloy(id_empl);
+                connector.executeNonQuery(String.Format("INSERT INTO Orders (ID_Emp, Status) VALUES ({0},  1)", clientId));
+                idOrd = serviceFunction.getOpenOrderFromEmloy(clientId);
+                if (idOrd == -1)
+                {
+                    throw new ApplicationException(String.Format("id order все еще -1. id empl={0}", clientId));
+                }
 
             }
-            foreach(orderEnrty dish in orderList)
+
+            //List<int> oldOrderListIds = serviceFunction.getDishIdesFronClient(clientId); //получаем блюда на апдейт
+            List<orderEntry> oldOrderList = new List<orderEntry>();
+            oldOrderList = getPlacedOrderFromIdOrder(idOrd);
+            List<orderEntry> updateListDishes = new List<orderEntry>();
+            List<orderEntry> insertList = new List<orderEntry>();
+            List<orderEntry> unchangeList = new List<orderEntry>();
+            List<int> removeList = new List<int>();
+
+            //заполняем updateList && unchangeList
+            foreach (orderEntry entry in crudeOrderList)
+            {
+                foreach( orderEntry oldEntry in oldOrderList)
+                {
+                    if (Equals(entry, oldEntry))
+                    {
+                        unchangeList.Add(entry);
+                        break;
+                    }
+
+                    if (entry.id==oldEntry.id)
+                    {
+                        updateListDishes.Add(entry);
+                        break;
+
+                    }
+                }
+                
+            }
+            
+            //заполняем removeList
+            bool found = false;
+            foreach (orderEntry oldEntry in oldOrderList)
+            {
+                found = false;
+                foreach (orderEntry entry in crudeOrderList)
+                {
+                    if (oldEntry.id == entry.id)
+                    {
+                        found = true;
+                        break;
+                    }
+                }
+                if (!found)
+                    removeList.Add(oldEntry.id);
+            }
+
+            //заполняем insertList
+            foreach (orderEntry rawEntry in crudeOrderList)
+            {
+                found = false;
+                foreach (orderEntry entry in updateListDishes)
+                {
+                    if (Equals(entry,rawEntry))
+                    {
+                        found = true;
+                        break;
+                    }
+                }
+                if (!found)
+                    foreach (int id in removeList)
+                    {
+                        if (rawEntry.id == id)
+                        {
+                            found = true;
+                            break;
+                        }
+                    }
+                if (!found)
+                    foreach (orderEntry entry in unchangeList)
+                    {
+                        if (Equals(entry, rawEntry))
+                        {
+                            found = true;
+                            break;
+                        }
+                    }
+                if (!found)
+                    insertList.Add(rawEntry);
+            }
+
+            foreach (orderEntry entry in updateListDishes)
+            {
+                connector.executeNonQuery(String.Format("UPDATE Dishes_Order SET DISH_count={0} WHERE ID_order={1} AND id_dish={2}", entry.Count, idOrd, entry.id));
+            }
+
+
+            //делаем инсерт
+            foreach(orderEntry dish in insertList)
             {
                 timesChanges += connector.executeNonQuery(String.Format("INSERT INTO Dishes_Order (Id_dish, id_order, dish_count, ready_count) VALUES ({0},  {1} , {2}, 0)", dish.id, idOrd, dish.Count));
 
             }
+            foreach (int id in removeList)
+            {
+                connector.executeNonQuery(String.Format("DELETE FROM Dishes_Order WHERE ID_dish={0} AND id_order={1}", id, idOrd));
+            }
+
             connector.closeConnection();
             return timesChanges;
         }
@@ -157,12 +276,13 @@ namespace TRPO.Model
         /// <param name="emplId">id клиента</param>
         /// <param name="readyOrder">заказ открыт?</param>
         /// <returns></returns>
-        public List<orderEnrty> getPlacedOrder(int emplId, bool readyOrder = true)
+        public List<orderEntry> getPlacedOrder(int emplId, bool readyOrder = true)
         {
             String readyOrderSymbol = readyOrder ? "=" : "<>"; //должны ли все блюда в заказе быть выполнены
-            List<orderEnrty> order = new List<orderEnrty>();
-            connector.openConnection();
+            List<orderEntry> order = new List<orderEntry>();
+            connector.openConnection(true);
             List<int> dishIdsList = new List<int>();
+
             OleDbDataReader reader = connector.executeQuery(String.Format(@"SELECT do.ID_Dish, do.Dish_Count FROM Orders AS o INNER JOIN 
                 (SELECT do.ID_Dish, do.ID_Order, do.Dish_Count, do.Ready_Count FROM Dishes_Order AS do ) AS do ON o.ID_Ord=do.ID_Order 
                 WHERE o.Status=1 AND do.Dish_Count{1}do.Ready_Count AND o.ID_Emp={0}", emplId,readyOrderSymbol));
@@ -172,156 +292,59 @@ namespace TRPO.Model
             {
                 id = Convert.ToInt32(reader[0]);
                 count = Convert.ToInt32(reader[1]);
-                order.Add(new orderEnrty(getDishName(id), getPriceByDishId(id), count, id,getLinkToPhoto(id)));
+                order.Add(new orderEntry(serviceFunction.getDishName(id), serviceFunction.getPriceByDishId(id), count, id,serviceFunction.getLinkToPhoto(id)));
             }
-            
-
-
-            connector.closeConnection();
+            connector.closeConnection(true);
             return order;
         }
 
-
-        /// <summary>
-        /// сообщает № заказа по ID клиента и статусу заказа
-        /// </summary>
-        /// <param name="emlId"></param>
-        /// <returns></returns>
-        private int getOpenOrderFromEmloy(int emlId, bool status=true)
+        public List<orderEntry> getPlacedOrderFromIdOrder(int idOrd)
         {
-            int intFormStatus = status?1:0;
+            List<orderEntry> order = new List<orderEntry>();
             connector.openConnection(true);
-            OleDbDataReader reader = connector.executeQuery(String.Format("SELECT MAX(id_ord) FROM Orders"));
-            int id_ord = -1;
+            OleDbDataReader reader = connector.executeQuery(String.Format(@"SELECT id_dish, dish_count from dishes_order WHERE id_order={0} and ready_count<>0", idOrd));
+            int id = 0;
+            int count = 0;
             while (reader.Read())
             {
-                id_ord = Convert.ToInt32(reader[0]);
+                id = Convert.ToInt32(reader[0]);
+                count = Convert.ToInt32(reader[1]);
+                order.Add(new orderEntry(serviceFunction.getDishName(id), serviceFunction.getPriceByDishId(id), count, id, serviceFunction.getLinkToPhoto(id)));
             }
             connector.closeConnection(true);
-            return id_ord+1;
+            return order;
+
         }
 
-        private int getOpenOrderFromEmloy2(int emlId, bool status = true)
-        {
-            int intFormStatus = status ? 1 : 0;
-            connector.openConnection(true);
-            OleDbDataReader reader = connector.executeQuery(String.Format("SELECT MAX(id_order) FROM dishes_Order"));
-            int id_ord = -1;
-            while (reader.Read())
-            {
-                id_ord = Convert.ToInt32(reader[0]);
-            }
-            connector.closeConnection(true);
-            return id_ord + 1;
-        }
 
-        /// <summary>
-        /// сообщает цену блюда по его ID
-        /// </summary>
-        /// <param name="dishId"></param>
-        /// <returns></returns>
-        float getPriceByDishId(int dishId)
+
+        public void closeOrder(int clientId)
         {
             connector.openConnection(true);
-            float price = 0;
-            OleDbDataReader reader = connector.executeQuery(String.Format(@"
-                SELECT 
-                        (prices.price*(1 + di.Percent/100)/100) as price
-
-                FROM 
-                    Dishes AS di 
-                INNER JOIN
-                    (
-                        SELECT 
-                            pd.ID_Dish, 
-                            SUM(pd.Product_Count * pr.Price) AS Price 
-                        FROM 
-                            Products_Dishes pd 
-                        INNER JOIN 
-                            Products pr 
-                        ON 
-                            pd.ID_Prod = pr.ID_Prod 
-                        GROUP BY 
-                            pd.ID_Dish
-                    ) AS prices
-                ON 
-                    di.ID_Dish = prices.ID_Dish
-                WHERE di.Id_dish={0}", dishId));
-            while (reader.Read())
-            {
-                price = Convert.ToInt32(reader[0]);
-                break;
-            }
+            int orderId = serviceFunction.getOrderId(clientId, true);
+            int result;
+            result = connector.executeNonQuery(String.Format(@"UPDATE orders SET Status=2 WHERE id_emp={0}", clientId));
 
             connector.closeConnection(true);
-            return price;
-        }
-
-        /// <summary>
-        /// возвращает название блюда, по его ID
-        /// </summary>
-        /// <param name="dishId"></param>
-        /// <returns></returns>
-        String getDishName(int dishId)
-        {
-            String dishName="";
-            connector.openConnection(true);
-            OleDbDataReader reader = connector.executeQuery(String.Format(@"SELECT name_dish FROM dishes WHERE id_dish={0}", dishId));
-            while (reader.Read())
-            {
-                dishName = Convert.ToString(reader[0]);
-            }
-            connector.closeConnection(true);
-            return dishName;
 
         }
+
+
 
         public bool checkoutOrder(int emplId)
         {
+            return true;
             connector.openConnection(true);
-            int orderId= getOrderId(emplId, true);
+            int orderId = serviceFunction.getOrderId(emplId, true);
             int result;
             result = connector.executeNonQuery(String.Format(@"UPDATE Orders SET status=2 WHERE id_ord={0}", orderId));
+            connector.closeConnection(true);
             if (result > 0)
                 return true;
             else
                 return false;
-        }
-
-        /// <summary>
-        /// сообщает id заказа (выполненного или не выполненного)
-        /// </summary>
-        /// <param name="emplId"></param>
-        /// <returns></returns>
-        int getOrderId(int emplId, bool ready=true)
-        {
-            connector.openConnection(true);
-            int id = -1;
-            String readySymbol = ready ? "=" : "<>";
-            OleDbDataReader reader = connector.executeQuery(String.Format(@"SELECT id_ord FROM Orders AS o INNER JOIN 
-                (SELECT do.ID_Dish, do.ID_Order, do.Dish_Count, do.Ready_Count FROM Dishes_Order AS do ) AS do ON o.ID_Ord=do.ID_Order 
-                WHERE o.Status=1 AND do.Dish_Count{1}do.Ready_Count AND o.ID_Emp={0}",emplId, readySymbol));
-            while (reader.Read())
-            {
-                id=Convert.ToInt32(reader[0]);
-            }
-            connector.closeConnection(true);
-            return id;
-        }
-
-
-        String getLinkToPhoto(int idDish)
-        {
-            connector.openConnection(true);
-            String link = "";
-            OleDbDataReader reader = connector.executeQuery(String.Format(@"SELECT Link_To_Photo FROM Dishes WHERE ID_Dish={0}", idDish));
-            while (reader.Read())
-            {
-                link = reader[0].ToString();
-            }
-            connector.closeConnection(true);
-            return link;
             
         }
+     
     }
 }

@@ -7,7 +7,7 @@ using System.Data;
 
 namespace TRPO.Model
 {
-    class DBConnector
+   public class DBConnector
     {
         private OleDbConnection connection = null;
         private static string m_CONN_STR = Properties.Settings.Default.main_dbConnectionString;// "Provider=Microsoft.ACE.OLEDB.12.0;Data Source={0}";
@@ -36,6 +36,7 @@ namespace TRPO.Model
                 
                 connection.Open();
             }
+
         }
 
         /// <summary>
@@ -55,6 +56,7 @@ namespace TRPO.Model
             {      
                 connection.Close();
             }
+
         }
 
         /// <summary>

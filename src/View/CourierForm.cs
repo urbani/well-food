@@ -52,6 +52,7 @@ namespace TRPO.View
             headerList2.AutoCompleteSource = AutoCompleteSource.ListItems;
             ordersController.updateActiveMenu();
             buyOrderMenu.Items.Clear();
+            ordersController.updateOpenedMenu();
 
             
 
@@ -145,6 +146,9 @@ namespace TRPO.View
             ordersController.updateActiveMenu();
             ordersController.updateOrderMenu();
             ordersController.updatePlacedOrderMenu();
+            ordersController.updateOpenedMenu();
+
+
         }
         private void headerList1_SelectionChangeCommitted(object sender, EventArgs e)
         {
