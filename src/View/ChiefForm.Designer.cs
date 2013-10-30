@@ -650,7 +650,7 @@
             // columnHeader2
             // 
             this.columnHeader2.Text = "Требуется";
-            this.columnHeader2.Width = 123;
+            this.columnHeader2.Width = 84;
             // 
             // columnHeader3
             // 
@@ -660,12 +660,12 @@
             // columnHeader4
             // 
             this.columnHeader4.Text = "Необходимо";
-            this.columnHeader4.Width = 109;
+            this.columnHeader4.Width = 102;
             // 
             // columnHeader5
             // 
             this.columnHeader5.Text = "На складе";
-            this.columnHeader5.Width = 107;
+            this.columnHeader5.Width = 85;
             // 
             // tabPage2
             // 
