@@ -267,6 +267,12 @@ namespace TRPO.Model
                 connector.executeNonQuery(String.Format("DELETE FROM Dishes_Order WHERE ID_dish={0} AND id_order={1}", id, idOrd));
             }
 
+            //вставляем дату заказа
+            
+            connector.executeNonQuery(String.Format("INSERT INTO OrderDate(date_ord, id_ord) VALUES ({0}, {1})", TRPOGlobal.getCurrentTime(), idOrd));
+
+            
+
             connector.closeConnection();
             return timesChanges;
         }
@@ -287,7 +293,7 @@ namespace TRPO.Model
             OleDbDataReader reader = connector.executeQuery(String.Format(@"
 SELECT * FROM employee e
  INNER JOIN orders o ON e.id_emp=o.id_emp
- WHERE o.status=1 AND e.id_emp={0}", emplId));
+ WHERE o.status=1 AND e.id_emp={0} ", emplId));
             int id=0;
             int count=0;
             while(reader.Read())
@@ -300,11 +306,16 @@ SELECT * FROM employee e
             return order;
         }
 
+        /// <summary>
+        /// дать открытый заказ, по id заказа 
+        /// </summary>
+        /// <param name="idOrd"></param>
+        /// <returns></returns>
         public List<OrderEntry> getPlacedOrderFromIdOrder(int idOrd)
         {
             List<OrderEntry> order = new List<OrderEntry>();
             connector.openConnection(true);
-            OleDbDataReader reader = connector.executeQuery(String.Format(@"SELECT id_dish, dish_count from dishes_order WHERE id_order={0} and ready_count<>0", idOrd));
+            OleDbDataReader reader = connector.executeQuery(String.Format(@"SELECT id_dish, dish_count from dishes_order WHERE id_order={0} and ready_count=0", idOrd));
             int id = 0;
             int count = 0;
             while (reader.Read())

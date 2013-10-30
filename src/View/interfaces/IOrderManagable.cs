@@ -49,6 +49,7 @@ namespace TRPO.View
         void clearOrderMenu();
         int getEmplId(bool silent=false);
         void setWindowTitile(String Title);
+        
 
 
     
