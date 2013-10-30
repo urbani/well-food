@@ -56,9 +56,9 @@ namespace TRPO.Structures
             this.linkToPhoto = "";
 
         }
-        public orderEntry ToOrderEntry()
+        public OrderEntry ToOrderEntry()
         {
-            return new orderEntry(this.dish, this.price, 1, this.id, this.linkToPhoto);
+            return new OrderEntry(this.dish, this.price, 1, this.id, this.linkToPhoto);
             
         }
     }

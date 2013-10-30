@@ -67,7 +67,7 @@
     <Compile Include="GlobalObj\Structures\CourierListEntry.cs" />
     <Compile Include="GlobalObj\Structures\Dish.cs" />
     <Compile Include="GlobalObj\Structures\Menu.cs" />
-    <Compile Include="GlobalObj\Structures\orderColletion.cs" />
+    <Compile Include="GlobalObj\Structures\OrderColletion.cs" />
     <Compile Include="GlobalObj\Structures\ProductListEntry.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

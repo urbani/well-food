@@ -12,12 +12,11 @@ namespace TRPO.GlobalObj
     {
        public static String getCurrentTime()
        {
-
            //Удобное использование времени
            //DateTime.Parse("01.09.2013").ToLongDateString();
            //DateTime.Parse("01.09.2013").AddDays(1);
            return DateTime.Now.ToShortDateString();
-           
+
            //return DateTime.Parse("1.09.2013").ToShortDateString();
        }
 
@@ -38,12 +37,12 @@ namespace TRPO.GlobalObj
        /// <summary>
        /// конвертирует список блюд из системного представления в View-прикодный тип
        /// </summary>
-       public static ListViewItem[] orderListToViewArr(List<orderEnrty> dishList, bool incudePrice = false)
+       public static ListViewItem[] orderListToViewArr(List<OrderEntry> dishList, bool incudePrice = false)
        {
            ListViewItem[] dishArr = new ListViewItem[dishList.Count];
            int ptr = 0;
            ListViewItem temp = new ListViewItem();
-           foreach (orderEnrty entry in dishList)
+           foreach (OrderEntry entry in dishList)
            {
                temp = new ListViewItem(entry.Dish);
                temp.SubItems.Add(entry.Cost.ToString());
@@ -117,8 +116,6 @@ namespace TRPO.GlobalObj
            }
            return dishArr;
        }
-
-
 
 
        static ListViewItem[] viewListToViewArr (List<ListViewItem> listView)

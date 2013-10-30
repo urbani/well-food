@@ -36,15 +36,6 @@ namespace TRPO.Properties {
         
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("main_db.accdb")]
-        public string db_path {
-            get {
-                return ((string)(this["db_path"]));
-            }
-        }
-        
-        [global::System.Configuration.ApplicationScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("../../img/")]
         public string dishesImagesFolderPath {
             get {
@@ -73,6 +64,15 @@ namespace TRPO.Properties {
             }
             set {
                 this["debug"] = value;
+            }
+        }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("../../main_db.accdb")]
+        public string db_path {
+            get {
+                return ((string)(this["db_path"]));
             }
         }
     }

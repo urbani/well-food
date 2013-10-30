@@ -9,7 +9,7 @@ namespace TRPO.Structures
     /// <summary>
     /// системное представление записи о блюде добовляемом в заказ
     /// </summary>
-    public struct orderEntry
+    public struct OrderEntry
     {
         String dish;
         /// <summary>
@@ -38,7 +38,7 @@ namespace TRPO.Structures
         String linkToPhoto;
         public String LinkToPhoto { get { return linkToPhoto; } }
         //полный конструктор
-        public orderEntry(String dish, float price,  int count, int id, String linkToPhoto)
+        public OrderEntry(String dish, float price,  int count, int id, String linkToPhoto)
         {
             this.dish = dish;
             this.price = price;
@@ -48,7 +48,7 @@ namespace TRPO.Structures
         }
 
 
-        public orderEntry(String dish, float price, int count)
+        public OrderEntry(String dish, float price, int count)
         {
             this.dish=dish;
             this.price = price;
@@ -60,7 +60,7 @@ namespace TRPO.Structures
 
 
         //конструктор ноого объекта, когда больше не чего не знаем/не нужно
-        public orderEntry(String dish, float price)
+        public OrderEntry(String dish, float price)
         {
             this.dish = dish;
             this.price = price;
@@ -69,7 +69,7 @@ namespace TRPO.Structures
             this.linkToPhoto = "";
         }
         //конструктор копии
-        public orderEntry(orderEntry entry)
+        public OrderEntry(OrderEntry entry)
         {
             this.dish = entry.Dish;
             this.count = entry.Count;
@@ -93,7 +93,7 @@ namespace TRPO.Structures
         {
             changeOf(-1);
         }
-        public bool Equals(orderEntry other)
+        public bool Equals(OrderEntry other)
         {
             if (this.id != other.id || this.count != other.count || this.price != other.price || this.dish!=other.dish)
                 return false;

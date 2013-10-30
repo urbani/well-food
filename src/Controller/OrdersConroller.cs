@@ -38,22 +38,22 @@ namespace TRPO.Controller
             set { value = currentMenuList[typeIndex]; }
         }
 
-        Dictionary<int, List<orderEntry>> currentOrderList = new Dictionary<int, List<orderEntry>>();
+        Dictionary<int, List<OrderEntry>> currentOrderList = new Dictionary<int, List<OrderEntry>>();
         //List<orderEnrty> currentOrder = new List<orderEnrty>(); //текущий заказ в системном виде
         //геттеры и сеттеры творят чудеса!!!
-        List<orderEntry> currentOrder 
+        List<OrderEntry> currentOrder 
         {
             get 
             {
                 if (!currentOrderList.ContainsKey(clientId))
-                    currentOrderList.Add(clientId, new List<orderEntry>());
+                    currentOrderList.Add(clientId, new List<OrderEntry>());
                  return currentOrderList[clientId];
                 
             } 
             set { value = currentOrderList[clientId]; } 
         }
 
-        List<orderEntry> placedOrderList = new List<orderEntry>(); //выполненный заказ текущего клиента
+        List<OrderEntry> placedOrderList = new List<OrderEntry>(); //выполненный заказ текущего клиента
         
 
         OrderManager orderManager = new OrderManager(); //модель курьера
@@ -72,7 +72,7 @@ namespace TRPO.Controller
             {
                 if (currentOrder[i].id == currentMenu[dishindex].id)
                 {
-                    orderEntry temp = new orderEntry(currentOrder[i]);
+                    OrderEntry temp = new OrderEntry(currentOrder[i]);
                     temp.inreament();
                     currentOrder[i] = temp;
                     nothing = false; ;
@@ -123,7 +123,7 @@ namespace TRPO.Controller
         public void removeDishFromOrder()
         {
             int index = findDishOrder(orderDiahNameCrutch);
-            orderEntry temp = new orderEntry(currentOrder[index]);
+            OrderEntry temp = new OrderEntry(currentOrder[index]);
             if (temp.Count == 1)
                 currentOrder.Remove(temp);
             else
@@ -145,7 +145,7 @@ namespace TRPO.Controller
             clientId = view.getEmplId();
             placedOrderList = orderManager.getPlacedOrder(clientId, false); //зачем тру?
             currentOrder.Clear();
-            foreach(orderEntry entry in placedOrderList)
+            foreach(OrderEntry entry in placedOrderList)
                 currentOrder.Add(entry);
             updateOrderMenu();
             return;
@@ -167,7 +167,7 @@ namespace TRPO.Controller
             int ptr = 0;
             float totalPrice = 0;
             ListViewItem temp = new ListViewItem();
-            foreach (orderEntry entry in placedOrderList)
+            foreach (OrderEntry entry in placedOrderList)
             {
                 temp = new ListViewItem(entry.Dish);
                 temp.SubItems.Add(entry.Cost.ToString());
@@ -256,7 +256,7 @@ namespace TRPO.Controller
         public float getTotalPrice()
         {
             float total = 0;
-            foreach (orderEntry entry in currentOrder)
+            foreach (OrderEntry entry in currentOrder)
             {
                 total += entry.Cost;
             }
