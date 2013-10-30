@@ -110,9 +110,11 @@ namespace TRPO.Controller
         public void addProduct()
         {
             String addingProdName = view.getAddingProductName();
+            Double addingProdPrice = view.getAddingProductPrice();
+
             if (addingProdName != "")
             {
-                productManager.addProduct(addingProdName);
+                productManager.addProduct(addingProdName, addingProdPrice);
                 view.setProductsList(productManager.getProdNames());
             }
         }

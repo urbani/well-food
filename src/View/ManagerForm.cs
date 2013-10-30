@@ -39,7 +39,10 @@ namespace TRPO.View
 
         private void refreshTimer_Tick(Object myObject, EventArgs myEventArgs)
         {
-            if (true)
+            if (   reqProdDataGrid != null
+                && reqProdDataGrid.Columns.Count > 0
+                && reqProdDataGrid.Rows.Count > 0
+                )
             {
                 
                 prodController.updateReqProductsList();

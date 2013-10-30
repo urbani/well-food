@@ -27,6 +27,7 @@ namespace TRPO.View
         String getSelectedContenceName();
         Dish getCreatedDish();
         String getAddingProductName();
+        Double getAddingProductPrice();
 
         void setDishCreationPrice(Double price);
         void setAbleToCookDishes(int amount);

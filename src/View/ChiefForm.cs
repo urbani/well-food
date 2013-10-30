@@ -559,6 +559,23 @@ namespace TRPO.View
             return Microsoft.VisualBasic.Interaction.InputBox("Введите название продукта:", "Добавление продукта", "", -1, -1);
         }
 
+        public Double getAddingProductPrice()
+        {
+            Double result = 0;
+            String inp = "";
+            bool goodInput = true;
+            do
+            {
+                if (!goodInput)
+                {
+                    MessageBox.Show("Неверный формат ввода цены!");
+                }
+                inp = Microsoft.VisualBasic.Interaction.InputBox("Введите цену продукта:", "Добавление продукта", "", -1, -1);
+            } while (!(goodInput = Double.TryParse(inp, out result)));
+
+            return result;
+        }
+
         public void setDishCreationPrice(Double price)
         {
             priceTextBox.Text = price.ToString();
