@@ -86,7 +86,6 @@
             this.loginTextBox.Name = "loginTextBox";
             this.loginTextBox.Size = new System.Drawing.Size(139, 27);
             this.loginTextBox.TabIndex = 7;
-            this.loginTextBox.Text = "courier";
             this.loginTextBox.KeyDown += new System.Windows.Forms.KeyEventHandler(this.passTextBox_KeyDown);
             // 
             // passTextBox
@@ -97,7 +96,6 @@
             this.passTextBox.PasswordChar = '*';
             this.passTextBox.Size = new System.Drawing.Size(139, 27);
             this.passTextBox.TabIndex = 8;
-            this.passTextBox.Text = "courier";
             this.passTextBox.KeyDown += new System.Windows.Forms.KeyEventHandler(this.passTextBox_KeyDown);
             // 
             // AuthForm

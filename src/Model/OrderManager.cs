@@ -24,7 +24,39 @@ namespace TRPO.Model
             List<ChiefListEntry> list = new List<ChiefListEntry>();
             ChiefListEntry tmpEntry = new ChiefListEntry();
             connector.openConnection();
-            OleDbDataReader reader = connector.executeQuery("SELECT d.Name_Dish, SUM(do.Dish_Count) as Need, SUM(do.Ready_Count) as Ready, (Need - Ready) as Left_ FROM Dishes_Order AS do INNER JOIN Dishes AS d ON d.ID_Dish = do.ID_Dish WHERE do.Dish_Count - do.Ready_Count > 0 GROUP BY d.Name_Dish");
+            OleDbDataReader reader = connector.executeQuery(
+            @"SELECT 
+                sel.Name_Dish, 
+                sel.Need, 
+                sel.Ready, 
+                sel.Left_,
+                sel2.StockLeft
+            FROM
+            (
+                SELECT 
+                    d.Name_Dish, 
+                    SUM(do.Dish_Count) as Need, 
+                    SUM(do.Ready_Count) as Ready, 
+                    (Need - Ready) as Left_ 
+                FROM 
+                    Dishes_Order AS do 
+                INNER JOIN 
+                    Dishes AS d ON d.ID_Dish = do.ID_Dish 
+                WHERE 
+                    do.Dish_Count - do.Ready_Count > 0 
+                GROUP BY 
+                    d.Name_Dish
+            ) as sel 
+            LEFT JOIN
+            (
+                SELECT
+                    lcd.Name_Dish, SUM(lcd.Amount - lcd.Out_Amount) as StockLeft
+                FROM
+                    Left_Cooked_Dishes as lcd
+                GROUP BY lcd.Name_Dish
+            ) as sel2
+            ON sel.Name_Dish = sel2.Name_Dish"
+            );
 
             while (reader.Read())
             {
@@ -32,6 +64,8 @@ namespace TRPO.Model
                 tmpEntry.need = Convert.ToInt32(reader[1]);
                 tmpEntry.ready = Convert.ToInt32(reader[2]);
                 tmpEntry.left = Convert.ToInt32(reader[3]);
+
+                tmpEntry.inStock = !DBNull.Value.Equals(reader[4]) ? Convert.ToInt32(reader[4]) : 0;
                 list.Add(tmpEntry);
             }
             reader.Close();
@@ -116,7 +150,7 @@ namespace TRPO.Model
         /// </summary>
         /// <param name="clientId">id клиента</param>
         /// <param name="crudeOrderList">список блюд в заказе</param>
-        public int createOrder(int clientId, List<orderEntry> crudeOrderList)
+        public int createOrder(int clientId, List<OrderEntry> crudeOrderList)
         {
             int timesChanges = 0; //индекс для самопроверки
             connector.openConnection(); 
@@ -136,17 +170,17 @@ namespace TRPO.Model
             }
 
             //List<int> oldOrderListIds = serviceFunction.getDishIdesFronClient(clientId); //получаем блюда на апдейт
-            List<orderEntry> oldOrderList = new List<orderEntry>();
+            List<OrderEntry> oldOrderList = new List<OrderEntry>();
             oldOrderList = getPlacedOrderFromIdOrder(idOrd);
-            List<orderEntry> updateListDishes = new List<orderEntry>();
-            List<orderEntry> insertList = new List<orderEntry>();
-            List<orderEntry> unchangeList = new List<orderEntry>();
+            List<OrderEntry> updateListDishes = new List<OrderEntry>();
+            List<OrderEntry> insertList = new List<OrderEntry>();
+            List<OrderEntry> unchangeList = new List<OrderEntry>();
             List<int> removeList = new List<int>();
 
             //заполняем updateList && unchangeList
-            foreach (orderEntry entry in crudeOrderList)
+            foreach (OrderEntry entry in crudeOrderList)
             {
-                foreach( orderEntry oldEntry in oldOrderList)
+                foreach( OrderEntry oldEntry in oldOrderList)
                 {
                     if (Equals(entry, oldEntry))
                     {
@@ -166,10 +200,10 @@ namespace TRPO.Model
             
             //заполняем removeList
             bool found = false;
-            foreach (orderEntry oldEntry in oldOrderList)
+            foreach (OrderEntry oldEntry in oldOrderList)
             {
                 found = false;
-                foreach (orderEntry entry in crudeOrderList)
+                foreach (OrderEntry entry in crudeOrderList)
                 {
                     if (oldEntry.id == entry.id)
                     {
@@ -182,10 +216,10 @@ namespace TRPO.Model
             }
 
             //заполняем insertList
-            foreach (orderEntry rawEntry in crudeOrderList)
+            foreach (OrderEntry rawEntry in crudeOrderList)
             {
                 found = false;
-                foreach (orderEntry entry in updateListDishes)
+                foreach (OrderEntry entry in updateListDishes)
                 {
                     if (Equals(entry,rawEntry))
                     {
@@ -203,7 +237,7 @@ namespace TRPO.Model
                         }
                     }
                 if (!found)
-                    foreach (orderEntry entry in unchangeList)
+                    foreach (OrderEntry entry in unchangeList)
                     {
                         if (Equals(entry, rawEntry))
                         {
@@ -215,15 +249,16 @@ namespace TRPO.Model
                     insertList.Add(rawEntry);
             }
 
-            foreach (orderEntry entry in updateListDishes)
+            foreach (OrderEntry entry in updateListDishes)
             {
                 connector.executeNonQuery(String.Format("UPDATE Dishes_Order SET DISH_count={0} WHERE ID_order={1} AND id_dish={2}", entry.Count, idOrd, entry.id));
             }
 
 
             //делаем инсерт
-            foreach(orderEntry dish in insertList)
+            foreach(OrderEntry dish in insertList)
             {
+                String ss = String.Format("INSERT INTO Dishes_Order (Id_dish, id_order, dish_count, ready_count) VALUES ({0},  {1} , {2}, 0)", dish.id, idOrd, dish.Count);
                 timesChanges += connector.executeNonQuery(String.Format("INSERT INTO Dishes_Order (Id_dish, id_order, dish_count, ready_count) VALUES ({0},  {1} , {2}, 0)", dish.id, idOrd, dish.Count));
 
             }
@@ -242,31 +277,32 @@ namespace TRPO.Model
         /// <param name="emplId">id клиента</param>
         /// <param name="readyOrder">заказ открыт?</param>
         /// <returns></returns>
-        public List<orderEntry> getPlacedOrder(int emplId, bool readyOrder = true)
+        public List<OrderEntry> getPlacedOrder(int emplId, bool readyOrder = true)
         {
             String readyOrderSymbol = readyOrder ? "=" : "<>"; //должны ли все блюда в заказе быть выполнены
-            List<orderEntry> order = new List<orderEntry>();
+            List<OrderEntry> order = new List<OrderEntry>();
             connector.openConnection(true);
             List<int> dishIdsList = new List<int>();
 
-            OleDbDataReader reader = connector.executeQuery(String.Format(@"SELECT do.ID_Dish, do.Dish_Count FROM Orders AS o INNER JOIN 
-                (SELECT do.ID_Dish, do.ID_Order, do.Dish_Count, do.Ready_Count FROM Dishes_Order AS do ) AS do ON o.ID_Ord=do.ID_Order 
-                WHERE o.Status=1 AND do.Dish_Count{1}do.Ready_Count AND o.ID_Emp={0}", emplId,readyOrderSymbol));
+            OleDbDataReader reader = connector.executeQuery(String.Format(@"
+SELECT * FROM employee e
+ INNER JOIN orders o ON e.id_emp=o.id_emp
+ WHERE o.status=1 AND e.id_emp={0}", emplId));
             int id=0;
             int count=0;
             while(reader.Read())
             {
                 id = Convert.ToInt32(reader[0]);
                 count = Convert.ToInt32(reader[1]);
-                order.Add(new orderEntry(serviceFunction.getDishName(id), serviceFunction.getPriceByDishId(id), count, id,serviceFunction.getLinkToPhoto(id)));
+                order.Add(new OrderEntry(serviceFunction.getDishName(id), serviceFunction.getPriceByDishId(id), count, id,serviceFunction.getLinkToPhoto(id)));
             }
             connector.closeConnection(true);
             return order;
         }
 
-        public List<orderEntry> getPlacedOrderFromIdOrder(int idOrd)
+        public List<OrderEntry> getPlacedOrderFromIdOrder(int idOrd)
         {
-            List<orderEntry> order = new List<orderEntry>();
+            List<OrderEntry> order = new List<OrderEntry>();
             connector.openConnection(true);
             OleDbDataReader reader = connector.executeQuery(String.Format(@"SELECT id_dish, dish_count from dishes_order WHERE id_order={0} and ready_count<>0", idOrd));
             int id = 0;
@@ -275,7 +311,7 @@ namespace TRPO.Model
             {
                 id = Convert.ToInt32(reader[0]);
                 count = Convert.ToInt32(reader[1]);
-                order.Add(new orderEntry(serviceFunction.getDishName(id), serviceFunction.getPriceByDishId(id), count, id, serviceFunction.getLinkToPhoto(id)));
+                order.Add(new OrderEntry(serviceFunction.getDishName(id), serviceFunction.getPriceByDishId(id), count, id, serviceFunction.getLinkToPhoto(id)));
             }
             connector.closeConnection(true);
             return order;

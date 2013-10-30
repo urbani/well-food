@@ -24,7 +24,7 @@ namespace TRPO.Model
             while (reader.Read())
             {
                 result.Add(reader[0].ToString());
-            }
+             }
 
             reader.Close();
 
@@ -157,7 +157,17 @@ namespace TRPO.Model
 
         public void addProduct(String prodName, Double price)
         {
-            throw new NotImplementedException();
+            connector.openConnection();
+
+            int lastID = 0;
+            OleDbDataReader reader = connector.executeQuery("SELECT MAX(ID_Prod) FROM Products");
+            if (reader.Read())
+            {
+                lastID = Convert.ToInt32(reader[0]);
+            }
+
+            connector.executeNonQuery("INSERT INTO Products VALUES (" + (lastID + 1) + ", \"" + prodName + "\", " + price + ", FALSE)");
+            connector.closeConnection();
         }
 
         public void addIncomeProducts(List<ProductListEntry> products)

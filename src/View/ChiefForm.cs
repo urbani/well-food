@@ -13,6 +13,7 @@ using TRPO.Controller;
 using TRPO.Structures;
 using System.IO;
 using TRPO.GlobalObj;
+using TRPO.Properties;
 
 namespace TRPO.View
 {
@@ -22,6 +23,8 @@ namespace TRPO.View
         DishesManagementController dishesManagementContr;
         MenuManagementConroller menuController;
 
+        Timer refreshTimer;
+
         public ChiefForm(OrderCookController occ, DishesManagementController dmc, MenuManagementConroller mmc)
         {
             InitializeComponent();
@@ -30,8 +33,21 @@ namespace TRPO.View
             menuController = mmc;
             setDishInfo(new Dish());
             
+            refreshTimer = new Timer();
+            refreshTimer.Interval = Settings.Default.refresh_rate_sec * 1000;
+            refreshTimer.Tick += new EventHandler(refreshTimer_Tick);
+            refreshTimer.Enabled = true;
         }
 
+        private void refreshTimer_Tick(Object myObject, EventArgs myEventArgs)
+        {
+            if (listView1 != null && mainTab.SelectedIndex == 0) 
+            {
+                ordCookContr.updateOrderList();
+                dishesManagementContr.updateAbleToCookDishes();
+                dishesManagementContr.updateRedundantDishesAmount();
+            }
+        }
 
         public void showMsg(String msg, GlobalObj.ErrorLevels el)
         {
@@ -52,6 +68,12 @@ namespace TRPO.View
         {
             MessageBox.Show(msg, header);
             
+        }
+
+        public void setRedundantDishes(int n)
+        {
+            ableToGetTextBox.Text = n.ToString();
+            readyDishesAmount2.Maximum = getSelectedDishAmount();
         }
 
         public void setDishInfo(Dish d)
@@ -197,7 +219,7 @@ namespace TRPO.View
 
             foreach (ChiefListEntry entry in list)
             {
-                s = new String[] { entry.name, entry.need.ToString(), entry.ready.ToString(), entry.left.ToString() };
+                s = new String[] { entry.name, entry.need.ToString(), entry.ready.ToString(), entry.left.ToString(), entry.inStock.ToString()};
                 ListViewItem tmp = new ListViewItem(s);
                 listView1.Items.Add(tmp);
             }
@@ -208,7 +230,8 @@ namespace TRPO.View
                 {
                     selectedItem = listView1.Items.Count - 1;
                 }
-                this.listView1.Focus();
+                
+                //this.listView1.Focus();
                 this.listView1.Items[selectedItem].Selected = true;
             }
             dishesManagementContr.updateDishInfo();
@@ -439,6 +462,31 @@ namespace TRPO.View
             return result;
         }
 
+        public int getSelectedDishAmount()
+        {
+            int res = 0;
+            if (mainTab != null && listView1 != null && listView1.SelectedItems.Count > 0 && listView1.SelectedItems[0].SubItems.Count > 4)
+            {
+                switch (mainTab.SelectedIndex)
+                {
+                    case 0:
+                        res = Convert.ToInt32(listView1.SelectedItems[0].SubItems[3].Text);
+                        break;
+                    case 1:
+                        break;
+                    case 2:
+                        break;
+                }
+            }
+            
+            return res;
+        }
+
+        public int getReadyStockDishesAmount()
+        {
+            return (int) readyDishesAmount2.Value;
+        }
+
         public String getCreationImageLocation()
         {
             return Path.GetFileName(createDishImage.ImageLocation);
@@ -481,9 +529,14 @@ namespace TRPO.View
             int i = 0;
             try
             {
+                String tmpProdName = "";
                 for (i = 0; i < createDishContentsDataGrid.Rows.Count; i++)
                 {
-                    res.Add(createDishContentsDataGrid.Rows[i].Cells[0].Value.ToString(), Convert.ToDouble(createDishContentsDataGrid.Rows[i].Cells[1].Value.ToString()));
+                    tmpProdName = createDishContentsDataGrid.Rows[i].Cells[0].Value.ToString();
+                    if (!res.ContainsKey(tmpProdName))
+                    {
+                        res.Add(tmpProdName, Convert.ToDouble(createDishContentsDataGrid.Rows[i].Cells[1].Value.ToString()));
+                    }
                 }
                 return res;
             }
@@ -506,9 +559,35 @@ namespace TRPO.View
             return Microsoft.VisualBasic.Interaction.InputBox("Введите название продукта:", "Добавление продукта", "", -1, -1);
         }
 
+        public Double getAddingProductPrice()
+        {
+            Double result = 0;
+            String inp = "";
+            bool goodInput = true;
+            do
+            {
+                if (!goodInput)
+                {
+                    MessageBox.Show("Неверный формат ввода цены!");
+                }
+                inp = Microsoft.VisualBasic.Interaction.InputBox("Введите цену продукта:", "Добавление продукта", "", -1, -1);
+            } while (!(goodInput = Double.TryParse(inp, out result)));
+
+            return result;
+        }
+
+        public void setDishCreationPrice(Double price)
+        {
+            priceTextBox.Text = price.ToString();
+        }
+
         private void listView1_ItemSelectionChanged(object sender, ListViewItemSelectionChangedEventArgs e)
         {
+            dishesManagementContr.fillDishProd();
             dishesManagementContr.updateDishInfo();
+            dishesManagementContr.updateAbleToCookDishes();
+            dishesManagementContr.updateRedundantDishesAmount();
+
         }
 
         private void readyButton_Click(object sender, EventArgs e)
@@ -516,11 +595,19 @@ namespace TRPO.View
             toolStripStatusLabel.Visible = false;
             dishesManagementContr.addReadyDishes();
             ordCookContr.updateOrderList();
+            dishesManagementContr.updateAbleToCookDishes();
+            dishesManagementContr.updateRedundantDishesAmount();
+
+            readyDishesAmount.Value = 0;
+            readyDishesAmount2.Value = 0;
         }
 
         private void mainTab_Selected(object sender, TabControlEventArgs e)
         {
             toolStripStatusLabel.Visible = false;
+            ordCookContr.updateOrderList();
+            dishesManagementContr.updateAbleToCookDishes();
+            dishesManagementContr.updateRedundantDishesAmount();
             dishesManagementContr.fillDishProd();
         }
 
@@ -557,6 +644,9 @@ namespace TRPO.View
                 dishesDataGrid.DefaultCellStyle.ForeColor = Color.FromArgb(200, 200, 200);
                 createDishName.ReadOnly = false;
                 createDishName.BackColor = System.Drawing.Color.White;
+
+                //labelPrice.Visible = true;
+               // priceTextBox.Visible = true;
             }
             else
             {
@@ -568,6 +658,9 @@ namespace TRPO.View
                 dishesDataGrid.DefaultCellStyle.ForeColor = Color.FromArgb(0, 0, 0);
                 createDishName.ReadOnly = true;
                 createDishName.BackColor = System.Drawing.SystemColors.Control;
+
+             //   labelPrice.Visible = false;
+              //  priceTextBox.Visible = false;
             }
         }
 
@@ -626,10 +719,13 @@ namespace TRPO.View
             createDishType.AutoCompleteSource = AutoCompleteSource.ListItems;
             createDishType.DropDownStyle = ComboBoxStyle.DropDownList;
 
-
             //Создание меню
             dateTimePicker.Value = DateTime.Now.AddDays(1);
+        }
 
+        public void setAbleToCookDishes(int amount)
+        {
+            ableToCookTextBox.Text = amount.ToString();
         }
 
         private void addProdButton_Click(object sender, EventArgs e)
@@ -725,7 +821,9 @@ namespace TRPO.View
 
         private void createDishContentsDataGrid_MouseDoubleClick(object sender, MouseEventArgs e)
         {
-            dishesManagementContr.deleteProductFromDish();
+            createDishContentsDataGrid.Rows.Remove(createDishContentsDataGrid.SelectedRows[0]);
+
+         //       dishesManagementContr.deleteProductFromDish();
         }
 
         private void dataGridView1_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
@@ -746,6 +844,51 @@ namespace TRPO.View
         private void dataGridView4_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
             dataGridView4.Rows.Remove(dataGridView4.SelectedRows[0]);
+        }
+
+        private void createDishContentsDataGrid_RowsAdded(object sender, DataGridViewRowsAddedEventArgs e)
+        {
+            dishesManagementContr.updateDishPrice();
+        }
+
+        private void createDishContentsDataGrid_RowsRemoved(object sender, DataGridViewRowsRemovedEventArgs e)
+        {
+            dishesManagementContr.updateDishPrice();
+        }
+
+        private void createDishContentsDataGrid_CellValueChanged(object sender, DataGridViewCellEventArgs e)
+        {
+            if (dishesManagementContr != null)
+            {
+                dishesManagementContr.updateDishPrice();
+            }
+        }
+
+        private void ableToCookTextBox_TextChanged(object sender, EventArgs e)
+        {
+            readyDishesAmount.Maximum = Convert.ToInt32(ableToCookTextBox.Text);
+        }
+
+        private void ableToGetTextBox_TextChanged(object sender, EventArgs e)
+        {
+            readyDishesAmount2.Maximum = Convert.ToInt32(ableToGetTextBox.Text);
+        }
+
+        private void ChiefForm_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            refreshTimer.Enabled = false;
+        }
+
+        private void getFromReadyButton_Click(object sender, EventArgs e)
+        {
+            dishesManagementContr.addDishesFromStock();
+
+            ordCookContr.updateOrderList();
+            dishesManagementContr.updateAbleToCookDishes();
+            dishesManagementContr.updateRedundantDishesAmount();
+
+            readyDishesAmount.Value = 0;
+            readyDishesAmount2.Value = 0;
         }
     }
 }

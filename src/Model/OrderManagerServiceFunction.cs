@@ -128,12 +128,18 @@ namespace TRPO.Model
             connector.openConnection(true);
             int id = -1;
             String readySymbol = ready ? "=" : "<>";
-            OleDbDataReader reader = connector.executeQuery(String.Format(@"SELECT id_ord FROM Orders AS o INNER JOIN 
-                (SELECT do.ID_Dish, do.ID_Order, do.Dish_Count, do.Ready_Count FROM Dishes_Order AS do ) AS do ON o.ID_Ord=do.ID_Order 
-                WHERE o.Status=1 AND do.Ready_Count=0 AND o.ID_Emp={0}", emplId, readySymbol));
+            String t = String.Format(@"
+SELECT e.*, o.* FROM employee e
+ INNER JOIN orders o ON e.id_emp=o.id_ord 
+ WHERE o.status=1 AND e.id_emp={0}", emplId);
+            OleDbDataReader reader = connector.executeQuery(String.Format(@"
+SELECT * FROM employee e
+ INNER JOIN orders o ON e.id_emp=o.id_emp
+ WHERE o.status=1 AND e.id_emp={0}", emplId));
             while (reader.Read())
             {
                 id = Convert.ToInt32(reader[0]);
+                break;
             }
             connector.closeConnection(true);
             return id;

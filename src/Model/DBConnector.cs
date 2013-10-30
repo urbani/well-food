@@ -11,11 +11,12 @@ namespace TRPO.Model
     {
         private OleDbConnection connection = null;
         private static string m_CONN_STR = Properties.Settings.Default.main_dbConnectionString;// "Provider=Microsoft.ACE.OLEDB.12.0;Data Source={0}";
-        int softStack = 0;//сколько раз был вызван мегкий openCoennection
+        int softStack = 0;//сколько раз был вызван мегкий openConnection
+        String connStr = String.Format(m_CONN_STR, Properties.Settings.Default.db_path);
+
 
         public DBConnector()
         {
-            String connStr = String.Format(m_CONN_STR, Properties.Settings.Default.db_path);
             connection = new OleDbConnection(connStr);
         }
 
@@ -32,6 +33,7 @@ namespace TRPO.Model
             //по логике вещей должна быть проверка ConnectionState.Opened! хотя это не так
             if ((connection != null) && (connection.State == ConnectionState.Closed))
             {
+                
                 connection.Open();
             }
 
@@ -51,7 +53,7 @@ namespace TRPO.Model
  
             }
             if ((connection != null) && (connection.State != ConnectionState.Closed))
-            {
+            {      
                 connection.Close();
             }
 
@@ -76,6 +78,11 @@ namespace TRPO.Model
         /// <returns></returns>
         public OleDbDataReader executeQuery(String query)
         {
+            if (Properties.Settings.Default.debug)
+            {
+                System.Diagnostics.Debug.WriteLine(query);
+            }
+
             OleDbDataReader result = null;
             if (connection != null && connection.State == ConnectionState.Open)
             {
@@ -100,6 +107,11 @@ namespace TRPO.Model
         /// <returns></returns>
         public int executeNonQuery(String query)
         {
+            if (Properties.Settings.Default.debug)
+            {
+                System.Diagnostics.Debug.WriteLine(query);
+            }
+
             int res = 0;
             if (connection != null && connection.State == ConnectionState.Open)
             {
@@ -114,7 +126,7 @@ namespace TRPO.Model
                 catch (OleDbException ex)
                 {
                     connection.Close(); //думаю, правильно в случае чего закрывать соединение тут, что бы не где об этом не заморачиваться
-                    throw new ApplicationException(String.Format("Ошибка при выполнении запроса: {0}.\n Original error: {1}",query, ex.ToString() ));
+                    System.Diagnostics.Debug.WriteLine(String.Format("Ошибка при выполнении запроса: {0}.\n Original error: {1}",query, ex.ToString() ));
                 }
             }
             else

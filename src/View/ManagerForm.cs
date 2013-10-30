@@ -13,6 +13,7 @@ using System.Collections;
 using Microsoft.Office.Interop.Excel;
 using TRPO.Controller;
 using TRPO.Structures;
+using TRPO.Properties;
 
 namespace TRPO.View
 {
@@ -22,10 +23,30 @@ namespace TRPO.View
     public partial class ManagerForm : Form, IProductManagable
     {
         ProductsManagementController prodController;
+        Timer refreshTimer;
+
+
         public ManagerForm(ProductsManagementController p)
         {
             InitializeComponent();
             prodController = p;
+
+            refreshTimer = new Timer();
+            refreshTimer.Interval = Settings.Default.refresh_rate_sec * 1000;
+            refreshTimer.Tick += new EventHandler(refreshTimer_Tick);
+            refreshTimer.Enabled = true;
+        }
+
+        private void refreshTimer_Tick(Object myObject, EventArgs myEventArgs)
+        {
+            if (   reqProdDataGrid != null
+                && reqProdDataGrid.Columns.Count > 0
+                && reqProdDataGrid.Rows.Count > 0
+                )
+            {
+                
+                prodController.updateReqProductsList();
+            }
         }
 
         public void showMsg(String msg, GlobalObj.ErrorLevels el)
@@ -83,6 +104,7 @@ namespace TRPO.View
 
         public void setProductsList(List<ProductListEntry> plist)
         {
+            
             foreach (ProductListEntry p in plist)
             {
                 storeDataGrid.Rows.Add(p.Name, p.Count, p.Price);
@@ -91,6 +113,7 @@ namespace TRPO.View
 
         public void setReqProductsList(List<ProductListEntry> plist)
         {
+            reqProdDataGrid.Rows.Clear();
             foreach (ProductListEntry p in plist)
             {
                 reqProdDataGrid.Rows.Add(p.Name, p.Count, p.Price);

@@ -49,6 +49,7 @@ namespace TRPO.Controller
                         authView.hideForm();
                         break;
                     case (Roles.Chief):
+
                         OrderCookController occ = new OrderCookController(user);
                         DishesManagementController dmc = new DishesManagementController(user);
                         MenuManagementConroller mmc = new MenuManagementConroller(user);
@@ -60,6 +61,8 @@ namespace TRPO.Controller
                         chief.FormClosed += new FormClosedEventHandler(showAuthForm);
                         chief.Show();
                         authView.hideForm();
+
+
                         break;
                     case (Roles.Manager):
                         ProductsManagementController pm = new ProductsManagementController(user);

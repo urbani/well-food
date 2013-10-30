@@ -11,12 +11,14 @@ namespace TRPO.View
         String getSelectedDishName();
         void setDishInfo(Dish dish);
         int getReadyDishesAmount();
+        int getReadyStockDishesAmount();
         void setDishesList(Dictionary<String, String> dishesTypes);
         //void setMenuList1(Dictionary<String, String> dishesTypes);
         //void setMenuList2(Dictionary<String, String> dishesTypes);
         //void setMenuList3(Dictionary<String, String> dishesTypes);
         //void setMenuList4(Dictionary<String, String> dishesTypes);
         //void setOrderList(Dictionary<String, String> dishesTypes);
+        void setRedundantDishes(int n);
         void setProductsList(List<String> pList);
         void updateContents(Dictionary<String, Double> cont);
 
@@ -25,5 +27,9 @@ namespace TRPO.View
         String getSelectedContenceName();
         Dish getCreatedDish();
         String getAddingProductName();
+        Double getAddingProductPrice();
+
+        void setDishCreationPrice(Double price);
+        void setAbleToCookDishes(int amount);
     }
 }
