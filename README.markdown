@@ -10,7 +10,7 @@
 
 nik				nikallass@yandex.ru
 
-vatslav			vatslav.dovnar@gmail.com
+vatslav
 
 Мария Михайлова
 
